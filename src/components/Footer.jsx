@@ -17,11 +17,15 @@ export default function Footer() {
                         </p>
 
                         <div className="flex gap-6">
-                            {[Linkedin, Twitter, Github].map((Icon, i) => (
-                                <a key={i} href="#" className="p-4 glass rounded-2xl hover:bg-primary/20 transition-all hover:shadow-neon-cyan">
-                                    <Icon className="w-6 h-6" />
-                                </a>
-                            ))}
+                            <a href="https://fr.linkedin.com/in/romain-kantzer-9323b920a" target="_blank" rel="noopener noreferrer" className="p-4 glass rounded-2xl hover:bg-primary/20 transition-all hover:shadow-neon-cyan">
+                                <Linkedin className="w-6 h-6" />
+                            </a>
+                            <a href="#" className="p-4 glass rounded-2xl hover:bg-primary/20 transition-all hover:shadow-neon-cyan">
+                                <Twitter className="w-6 h-6" />
+                            </a>
+                            <a href="#" className="p-4 glass rounded-2xl hover:bg-primary/20 transition-all hover:shadow-neon-cyan">
+                                <Github className="w-6 h-6" />
+                            </a>
                         </div>
                     </div>
 
