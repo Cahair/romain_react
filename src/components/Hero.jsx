@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const typewriterText = [
     "système intelligent.",
@@ -65,13 +66,13 @@ export default function Hero() {
                     </p>
 
                     <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-                        <button className="group relative px-8 py-4 bg-primary rounded-full font-bold text-background transition-all hover:scale-105 active:scale-95 shadow-neon-cyan">
+                        <Link href="/contact" className="group relative px-8 py-4 bg-primary rounded-full font-bold text-background transition-all hover:scale-105 active:scale-95 shadow-neon-cyan">
                             Auditer mon business
                             <ArrowRight className="inline-block ml-2 group-hover:translate-x-1 transition-transform" />
-                        </button>
-                        <button className="px-8 py-4 glass rounded-full font-bold transition-all hover:bg-white/10 active:scale-95">
+                        </Link>
+                        <Link href="/services" className="px-8 py-4 glass rounded-full font-bold transition-all hover:bg-white/10 active:scale-95">
                             Voir nos solutions
-                        </button>
+                        </Link>
                     </div>
                 </motion.div>
             </div>
