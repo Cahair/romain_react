@@ -19,7 +19,7 @@ export default function Storytelling() {
                             Notre Evolution
                         </span>
                         <h2 className="text-4xl md:text-7xl font-black tracking-tighter mb-8 italic leading-relaxed">
-                            "Le web est la <span className="text-white/60">fondation</span>. <br />
+                            "Le web est la <span className="text-white/60">fondatio</span>. <br />
                             L'IA est le <span className="text-gradient inline-block border-b-[3px] border-primary/30 pb-4 pr-3">moteur</span>."
                         </h2>
                     </motion.div>
