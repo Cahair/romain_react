@@ -1,0 +1,37 @@
+﻿node.exe : [33m[1mÔ
+Üá[22m[39m Port 
+3000 is in use by 
+process 33468, using 
+available port 3001 
+instead.
+Au caractère Ligne:1 
+: 1
++ & "C:\Program Files
+\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: ([33m[   
+ 1mÔÜá[2...t 300    
+1 instead.:Strin    
+g) [], RemoteExc    
+eption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+[31m[1mÔ¿»[22m[39
+m Unable to acquire 
+lock at [36mC:\Apps\
+tests\sites\romain_re
+act\.next\dev\lock[3
+9m, is another 
+instance of 
+[36mnext dev[39m 
+running?
