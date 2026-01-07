@@ -46,6 +46,7 @@ export function LanguageProvider({ children }) {
     };
 
     // Translation function with nested key support (e.g., "hero.title")
+    // Returns string, array, or key if not found
     const t = (key) => {
         const keys = key.split(".");
         let value = translations[locale];
@@ -67,7 +68,11 @@ export function LanguageProvider({ children }) {
             }
         }
 
-        return typeof value === "string" ? value : key;
+        // Return value if it's a string or array, otherwise return key
+        if (typeof value === "string" || Array.isArray(value)) {
+            return value;
+        }
+        return key;
     };
 
     // Prevent hydration mismatch
