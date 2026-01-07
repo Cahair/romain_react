@@ -8,17 +8,31 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                background: "#020617", // Deep Space Blue
-                foreground: "#f8fafc",
+                background: "var(--background)",
+                foreground: "var(--foreground)",
+                muted: {
+                    DEFAULT: "var(--muted)",
+                    foreground: "var(--muted-foreground)",
+                },
+                card: {
+                    DEFAULT: "var(--card)",
+                    foreground: "var(--card-foreground)",
+                },
+                accent: {
+                    DEFAULT: "var(--accent)",
+                    foreground: "var(--accent-foreground)",
+                },
+                border: "var(--border)",
+                input: "var(--input)",
+                ring: "var(--ring)",
                 primary: {
-                    DEFAULT: "#06b6d4", // Cyan
+                    DEFAULT: "#06b6d4",
                     dark: "#0891b2",
                 },
                 secondary: {
-                    DEFAULT: "#8b5cf6", // Violet
+                    DEFAULT: "#8b5cf6",
                     dark: "#7c3aed",
                 },
-                accent: "#22d3ee",
             },
             backgroundImage: {
                 'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

@@ -67,7 +67,7 @@ export default function Hero() {
                     {/* Optimized title for mobile */}
                     <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-black tracking-tighter mb-4 md:mb-8 leading-tight md:leading-none">
                         <span className="block">{t("hero.line1")}</span>
-                        <span className="block text-white">{t("hero.line2")}</span>
+                        <span className="block text-foreground">{t("hero.line2")}</span>
                         <span className="text-gradient">{t("hero.line3")}</span>
                         <span className="block text-primary text-2xl sm:text-3xl md:text-5xl lg:text-7xl mt-2">
                             {displayText}
@@ -75,7 +75,7 @@ export default function Hero() {
                         </span>
                     </h1>
 
-                    <p className="text-gray-400 text-sm sm:text-base md:text-xl lg:text-2xl max-w-3xl mx-auto mb-8 md:mb-12 px-2">
+                    <p className="text-muted-foreground text-sm sm:text-base md:text-xl lg:text-2xl max-w-3xl mx-auto mb-8 md:mb-12 px-2">
                         {t("hero.subtitle")}
                     </p>
 
@@ -84,7 +84,7 @@ export default function Hero() {
                             {t("hero.cta1")}
                             <ArrowRight className="inline-block ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
                         </Link>
-                        <Link href="/services" className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 glass rounded-full font-bold text-sm md:text-base transition-all hover:bg-white/10 active:scale-95">
+                        <Link href="/services" className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 glass rounded-full font-bold text-foreground text-sm md:text-base transition-all hover:bg-accent active:scale-95">
                             {t("hero.cta2")}
                         </Link>
                     </div>
@@ -99,8 +99,8 @@ export default function Hero() {
             >
                 <div className="glass p-4 rounded-2xl w-48 shadow-neon-violet">
                     <div className="h-2 w-12 bg-secondary rounded-full mb-3" />
-                    <div className="h-2 w-full bg-white/10 rounded-full mb-2" />
-                    <div className="h-2 w-3/4 bg-white/10 rounded-full" />
+                    <div className="h-2 w-full bg-muted rounded-full mb-2" />
+                    <div className="h-2 w-3/4 bg-muted rounded-full" />
                 </div>
             </motion.div>
         </section>

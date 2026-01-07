@@ -43,14 +43,14 @@ export default function Navbar() {
     return (
         <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? "py-2 md:py-4" : "py-4 md:py-8"}`}>
             <div className="container mx-auto px-4 md:px-6">
-                <div className={`glass px-4 md:px-6 py-2 md:py-3 rounded-full flex items-center justify-between transition-all duration-500 ${scrolled ? "shadow-2xl bg-background/80" : "bg-white/5"}`}>
+                <div className={`glass px-4 md:px-6 py-2 md:py-3 rounded-full flex items-center justify-between transition-all duration-500 ${scrolled ? "shadow-2xl bg-background/80" : "bg-background/20"}`}>
                     <Link href="/" className="flex items-center gap-2">
                         <div
                             className={`w-10 h-10 bg-gradient-to-br ${accent.gradient} rounded-xl flex items-center justify-center font-black text-xl italic transition-all duration-500 ${accent.glow}`}
                         >
                             RK
                         </div>
-                        <span className="hidden md:block font-black tracking-tighter text-2xl uppercase">
+                        <span className="hidden md:block font-black tracking-tighter text-2xl uppercase text-foreground">
                             Kantzer<span style={{ color: accent.primary }} className="italic transition-colors duration-500">.ai</span>
                         </span>
                     </Link>
@@ -60,7 +60,7 @@ export default function Navbar() {
                             <Link
                                 key={item.path}
                                 href={item.path}
-                                className={`text-sm font-bold tracking-widest uppercase transition-colors ${pathname === item.path ? "text-primary" : "hover:text-primary"
+                                className={`text-sm font-bold tracking-widest uppercase transition-colors ${pathname === item.path ? "text-primary" : "text-foreground hover:text-primary"
                                     }`}
                             >
                                 {item.name}
@@ -71,7 +71,7 @@ export default function Navbar() {
                         <div className="relative">
                             <button
                                 onClick={(e) => { e.stopPropagation(); setLangMenu(!langMenu); }}
-                                className="flex items-center gap-1 p-2 rounded-full hover:bg-white/10 transition-all text-sm font-bold"
+                                className="flex items-center gap-1 p-2 rounded-full hover:bg-accent transition-all text-sm font-bold text-foreground"
                             >
                                 <span>{currentLocale?.flag}</span>
                                 <ChevronDown className={`w-4 h-4 transition-transform ${langMenu ? "rotate-180" : ""}`} />
@@ -89,7 +89,7 @@ export default function Navbar() {
                                             <button
                                                 key={lang.code}
                                                 onClick={() => { setLocale(lang.code); setLangMenu(false); }}
-                                                className={`w-full px-4 py-3 flex items-center gap-3 hover:bg-white/10 transition-colors text-left ${locale === lang.code ? "bg-primary/20 text-primary" : ""}`}
+                                                className={`w-full px-4 py-3 flex items-center gap-3 hover:bg-accent transition-colors text-left ${locale === lang.code ? "bg-primary/20 text-primary" : "text-foreground"}`}
                                             >
                                                 <span>{lang.flag}</span>
                                                 <span className="text-sm font-medium">{lang.name}</span>
@@ -103,7 +103,7 @@ export default function Navbar() {
                         {/* Theme Toggle */}
                         <button
                             onClick={toggleTheme}
-                            className="p-2 rounded-full hover:bg-white/10 transition-all"
+                            className="p-2 rounded-full hover:bg-accent transition-all"
                             aria-label="Toggle theme"
                         >
                             {theme === "dark" ? (
@@ -113,12 +113,12 @@ export default function Navbar() {
                             )}
                         </button>
 
-                        <Link href="/contact" className="px-6 py-2 bg-white text-background rounded-full font-bold text-sm hover:scale-105 transition-transform active:scale-95">
+                        <Link href="/contact" className="px-6 py-2 bg-foreground text-background rounded-full font-bold text-sm hover:scale-105 transition-transform active:scale-95">
                             {t("nav.audit")}
                         </Link>
                     </div>
 
-                    <button className="md:hidden" onClick={() => setMobileMenu(!mobileMenu)}>
+                    <button className="md:hidden text-foreground" onClick={() => setMobileMenu(!mobileMenu)}>
                         {mobileMenu ? <X /> : <Menu />}
                     </button>
                 </div>
@@ -136,7 +136,7 @@ export default function Navbar() {
                             <Link
                                 key={item.path}
                                 href={item.path}
-                                className={`text-lg font-bold uppercase tracking-widest ${pathname === item.path ? "text-primary" : ""
+                                className={`text-lg font-bold uppercase tracking-widest ${pathname === item.path ? "text-primary" : "text-foreground"
                                     }`}
                                 onClick={() => setMobileMenu(false)}
                             >
@@ -145,12 +145,12 @@ export default function Navbar() {
                         ))}
 
                         {/* Mobile Language Selector */}
-                        <div className="flex gap-2 pt-4 border-t border-white/10">
+                        <div className="flex gap-2 pt-4 border-t border-border">
                             {availableLocales.map((lang) => (
                                 <button
                                     key={lang.code}
                                     onClick={() => setLocale(lang.code)}
-                                    className={`px-3 py-2 rounded-lg text-lg ${locale === lang.code ? "bg-primary/20" : "hover:bg-white/10"}`}
+                                    className={`px-3 py-2 rounded-lg text-lg ${locale === lang.code ? "bg-primary/20" : "hover:bg-accent"}`}
                                 >
                                     {lang.flag}
                                 </button>

@@ -33,22 +33,64 @@
 }
 
 :root {
+  /* Background & Foreground */
   --background: #020617;
   --foreground: #f8fafc;
+
+  /* Muted colors for subtle elements */
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+
+  /* Card backgrounds */
+  --card: #0f172a;
+  --card-foreground: #f8fafc;
+
+  /* Accent for hover states */
+  --accent: #1e293b;
+  --accent-foreground: #f8fafc;
+
+  /* Borders and inputs */
+  --border: #334155;
+  --input: #1e293b;
+  --ring: #06b6d4;
+
+  /* Glass effect */
   --glass-bg: rgba(255, 255, 255, 0.05);
   --glass-border: rgba(255, 255, 255, 0.1);
-  --card-bg: #0f172a;
+
+  /* Legacy */
   --text-muted: #94a3b8;
 }
 
 /* Light mode variables */
 html.light {
+  /* Background & Foreground */
   --background: #f8fafc;
   --foreground: #0f172a;
-  --glass-bg: rgba(0, 0, 0, 0.03);
-  --glass-border: rgba(0, 0, 0, 0.08);
-  --card-bg: #ffffff;
-  --text-muted: #64748b;
+
+  /* Muted colors for subtle elements */
+  --muted: #e2e8f0;
+  --muted-foreground: #475569;
+
+  /* Card backgrounds */
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+
+  /* Accent for hover states */
+  --accent: #e2e8f0;
+  --accent-foreground: #0f172a;
+
+  /* Borders and inputs */
+  --border: #94a3b8;
+  --input: #e2e8f0;
+  --ring: #0891b2;
+
+  /* Glass effect - solid background for light mode */
+  --glass-bg: #ffffff;
+  --glass-border: #94a3b8;
+
+  /* Legacy */
+  --text-muted: #475569;
 }
 
 body {
@@ -75,6 +117,53 @@ body {
     background-size: 200% auto;
     animation: gradient 6s linear infinite;
   }
+}
+
+/* ============================================== */
+/* LIGHT MODE - EXPLICIT OVERRIDES (WCAG AA+)    */
+/* ============================================== */
+
+/* Force light backgrounds to white/off-white */
+html.light .bg-background {
+  background-color: #f8fafc !important;
+}
+
+html.light .bg-card {
+  background-color: #ffffff !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+}
+
+html.light .bg-muted {
+  background-color: #e2e8f0 !important;
+}
+
+html.light .bg-input {
+  background-color: #f1f5f9 !important;
+}
+
+/* Force dark text colors */
+html.light .text-foreground {
+  color: #0f172a !important;
+}
+
+html.light .text-muted-foreground {
+  color: #475569 !important;
+}
+
+html.light .text-card-foreground {
+  color: #0f172a !important;
+}
+
+/* Force visible borders */
+html.light .border-border {
+  border-color: #94a3b8 !important;
+}
+
+/* Glass effect in light mode - solid white with shadow */
+html.light .glass {
+  background-color: #ffffff !important;
+  border-color: #94a3b8 !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
 }
 
 /* Light mode text adjustments */
@@ -115,9 +204,7 @@ html.light .bg-background {
   background-color: var(--background);
 }
 
-html.light .bg-\[#010413\] {
-  background-color: #e2e8f0;
-}
+
 
 ::selection {
   background: rgba(6, 182, 212, 0.3);

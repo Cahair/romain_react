@@ -24,7 +24,7 @@ export default function Storytelling() {
                         <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-black tracking-tight mb-4 md:mb-8 italic leading-normal md:leading-relaxed">
                             {/* First line */}
                             <span className="block">
-                                {t("storytelling.title")} <span className="text-white/60">{t("storytelling.titleHighlight")}</span> {t("storytelling.titleEnd")}
+                                {t("storytelling.title")} <span className="text-muted-foreground">{t("storytelling.titleHighlight")}</span> {t("storytelling.titleEnd")}
                             </span>
                             {/* Second line */}
                             <span className="block mt-1 md:mt-2">
@@ -38,7 +38,7 @@ export default function Storytelling() {
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.3 }}
-                        className="text-gray-400 text-sm md:text-lg lg:text-xl leading-relaxed px-2"
+                        className="text-muted-foreground text-sm md:text-lg lg:text-xl leading-relaxed px-2"
                     >
                         {t("storytelling.description")}
                     </motion.p>
