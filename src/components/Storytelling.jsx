@@ -21,9 +21,15 @@ export default function Storytelling() {
                         <span className="px-3 md:px-4 py-1.5 md:py-2 rounded-full glass text-[10px] md:text-xs font-black tracking-[0.2em] md:tracking-[0.3em] uppercase mb-6 md:mb-8 inline-block">
                             {t("storytelling.badge")}
                         </span>
-                        <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-black tracking-tighter mb-4 md:mb-8 italic leading-snug md:leading-relaxed">
-                            {t("storytelling.title")} <span className="text-white/60">{t("storytelling.titleHighlight")}</span>{t("storytelling.titleEnd")} <br />
-                            {t("storytelling.subtitle1")} <span className="text-gradient inline-block border-b-2 md:border-b-[3px] border-primary/30 pb-2 md:pb-4 pr-2 md:pr-3">{t("storytelling.subtitleHighlight")}</span> {t("storytelling.subtitle2")}
+                        <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-black tracking-tight mb-4 md:mb-8 italic leading-normal md:leading-relaxed">
+                            {/* First line */}
+                            <span className="block">
+                                {t("storytelling.title")} <span className="text-white/60">{t("storytelling.titleHighlight")}</span> {t("storytelling.titleEnd")}
+                            </span>
+                            {/* Second line */}
+                            <span className="block mt-1 md:mt-2">
+                                {t("storytelling.subtitle1")} <span className="text-gradient border-b-2 md:border-b-[3px] border-primary/30 pb-1 md:pb-2">{t("storytelling.subtitleHighlight")}</span> {t("storytelling.subtitle2")}
+                            </span>
                         </h2>
                     </motion.div>
 
