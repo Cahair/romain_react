@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Send, Linkedin, Twitter, Github } from "lucide-react";
+import { Send, Linkedin, Github } from "lucide-react";
 
 export default function Footer() {
     return (
@@ -17,13 +17,10 @@ export default function Footer() {
                         </p>
 
                         <div className="flex gap-6">
-                            <a href="https://fr.linkedin.com/in/romain-kantzer-9323b920a" target="_blank" rel="noopener noreferrer" className="p-4 glass rounded-2xl hover:bg-primary/20 transition-all hover:shadow-neon-cyan">
+                            <a href="https://www.linkedin.com/in/romain-kantzer-9323b920a/" target="_blank" rel="noopener noreferrer" className="p-4 glass rounded-2xl hover:bg-primary/20 transition-all hover:shadow-neon-cyan">
                                 <Linkedin className="w-6 h-6" />
                             </a>
-                            <a href="#" className="p-4 glass rounded-2xl hover:bg-primary/20 transition-all hover:shadow-neon-cyan">
-                                <Twitter className="w-6 h-6" />
-                            </a>
-                            <a href="#" className="p-4 glass rounded-2xl hover:bg-primary/20 transition-all hover:shadow-neon-cyan">
+                            <a href="https://github.com/Cahair" target="_blank" rel="noopener noreferrer" className="p-4 glass rounded-2xl hover:bg-primary/20 transition-all hover:shadow-neon-cyan">
                                 <Github className="w-6 h-6" />
                             </a>
                         </div>

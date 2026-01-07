@@ -1,10 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { usePageAccent } from "./PageAccent";
+import { useTheme } from "./ThemeProvider";
 
 const navItems = [
     { name: "Accueil", path: "/" },
@@ -17,6 +18,7 @@ export default function Navbar() {
     const [mobileMenu, setMobileMenu] = useState(false);
     const pathname = usePathname();
     const accent = usePageAccent();
+    const { theme, toggleTheme } = useTheme();
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -39,7 +41,7 @@ export default function Navbar() {
                         </span>
                     </Link>
 
-                    <div className="hidden md:flex items-center gap-10">
+                    <div className="hidden md:flex items-center gap-8">
                         {navItems.map((item) => (
                             <Link
                                 key={item.path}
@@ -50,6 +52,20 @@ export default function Navbar() {
                                 {item.name}
                             </Link>
                         ))}
+
+                        {/* Theme Toggle */}
+                        <button
+                            onClick={toggleTheme}
+                            className="p-2 rounded-full hover:bg-white/10 transition-all"
+                            aria-label="Toggle theme"
+                        >
+                            {theme === "dark" ? (
+                                <Sun className="w-5 h-5 text-yellow-400" />
+                            ) : (
+                                <Moon className="w-5 h-5 text-slate-700" />
+                            )}
+                        </button>
+
                         <Link href="/contact" className="px-6 py-2 bg-white text-background rounded-full font-bold text-sm hover:scale-105 transition-transform active:scale-95">
                             AUDIT GRATUIT
                         </Link>
