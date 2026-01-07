@@ -92,16 +92,28 @@
                 "title": "Erfahrung",
                 "items": [
                     {
-                        "year": "2023 - Heute",
+                        "year": "2026 - Heute",
                         "role": "Gründer & AI Architect",
                         "company": "Kantzer.ai",
                         "description": "Erstellung von Automatisierungs- und generativen KI-Lösungen für Unternehmen. Spezialisierung auf Chatbots, LLMs und autonome Workflows."
                     },
                     {
-                        "year": "2021 - Heute",
+                        "year": "2024 - 2026",
+                        "role": "Ingenieur-Lehrling",
+                        "company": "ERAS",
+                        "description": "Digitale Systemtechnik und industrielle Prozessautomatisierung. Technisches Projektmanagement und Entwicklung vernetzter Lösungen."
+                    },
+                    {
+                        "year": "2025",
                         "role": "Freelance Entwickler",
                         "company": "Unabhängig",
                         "description": "Design und Entwicklung moderner, leistungsstarker Websites (Next.js, React). Fokus auf Benutzererfahrung und Premium-Design."
+                    },
+                    {
+                        "year": "2021 - 2023",
+                        "role": "Automatisierungs-Lehrling",
+                        "company": "Clemessy",
+                        "description": "SPS-Programmierung, industrielle Überwachung und Inbetriebnahme elektrischer und automatisierter Anlagen."
                     }
                 ]
             },
@@ -109,10 +121,22 @@
                 "title": "Ausbildung",
                 "items": [
                     {
-                        "year": "2021 - 2026",
-                        "degree": "Diplom-Ingenieur (Allgemein)",
+                        "year": "2024 - 2026",
+                        "degree": "Diplom Industrielle Digitale Systeme",
                         "school": "Icam Strasbourg-Europe",
-                        "description": "Allgemeine Ingenieurausbildung mit starkem Fokus auf Innovation und digitale Technologien."
+                        "description": "Spezialisierte Ingenieurausbildung mit Fokus auf Industrie 4.0 und vernetzte Systeme."
+                    },
+                    {
+                        "year": "2023",
+                        "degree": "Automatisierte Systeme & Industrielle Informatik",
+                        "school": "IUT de Haguenau",
+                        "description": "Spezialisierung auf industrielle Netzwerke und Steuerung automatisierter Systeme."
+                    },
+                    {
+                        "year": "2020 - 2022",
+                        "degree": "Elektrotechnik & Industrielle Informatik",
+                        "school": "IUT",
+                        "description": "Fundierte technische Ausbildung in Elektronik, Automatisierung und eingebetteter Informatik."
                     }
                 ]
             },

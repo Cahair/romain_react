@@ -92,16 +92,28 @@
                 "title": "Expérience",
                 "items": [
                     {
-                        "year": "2023 - Présent",
+                        "year": "2026 - Présent",
                         "role": "Fondateur & AI Architect",
                         "company": "Kantzer.ai",
                         "description": "Création de solutions d'automatisation et d'IA générative pour les entreprises. Spécialisation en Chatbots, LLMs et workflows autonomes."
                     },
                     {
-                        "year": "2021 - Présent",
+                        "year": "2024 - 2026",
+                        "role": "Apprenti Ingénieur",
+                        "company": "ERAS",
+                        "description": "Ingénierie des systèmes numériques et automatisation de procédés industriels. Gestion de projets techniques et développement de solutions connectées."
+                    },
+                    {
+                        "year": "2025",
                         "role": "Développeur Freelance",
                         "company": "Indépendant",
                         "description": "Conception et développement de sites web modernes et performants (Next.js, React). Focus sur l'expérience utilisateur et le design premium."
+                    },
+                    {
+                        "year": "2021 - 2023",
+                        "role": "Apprenti Automaticien",
+                        "company": "Clemessy",
+                        "description": "Programmation d'automates, supervision industrielle et mise en service d'installations électriques et automatisées."
                     }
                 ]
             },
@@ -109,10 +121,22 @@
                 "title": "Formation",
                 "items": [
                     {
-                        "year": "2021 - 2026",
-                        "degree": "Diplôme d'Ingénieur Généraliste",
+                        "year": "2024 - 2026",
+                        "degree": "Diplôme Systèmes Numériques Industriels",
                         "school": "Icam Strasbourg-Europe",
-                        "description": "Formation d'ingénieur généraliste avec une forte orientation vers l'innovation et les technologies numériques."
+                        "description": "Formation d'ingénieur spécialisée, orientée vers l'industrie 4.0 et les systèmes connectés."
+                    },
+                    {
+                        "year": "2023",
+                        "degree": "Systèmes Automatisés & Informatique Industrielle",
+                        "school": "IUT de Haguenau",
+                        "description": "Spécialisation en réseaux industriels et pilotage de systèmes automatisés."
+                    },
+                    {
+                        "year": "2020 - 2022",
+                        "degree": "Génie Électrique et Informatique Industrielle",
+                        "school": "IUT",
+                        "description": "Formation technique approfondie en électronique, automatisme et informatique embarquée."
                     }
                 ]
             },

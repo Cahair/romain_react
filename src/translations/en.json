@@ -92,16 +92,28 @@
                 "title": "Experience",
                 "items": [
                     {
-                        "year": "2023 - Present",
+                        "year": "2026 - Present",
                         "role": "Founder & AI Architect",
                         "company": "Kantzer.ai",
                         "description": "Creating automation and generative AI solutions for businesses. Specializing in Chatbots, LLMs, and autonomous workflows."
                     },
                     {
-                        "year": "2021 - Present",
+                        "year": "2024 - 2026",
+                        "role": "Engineering Apprentice",
+                        "company": "ERAS",
+                        "description": "Digital systems engineering and industrial process automation. Technical project management and connected solutions development."
+                    },
+                    {
+                        "year": "2025",
                         "role": "Freelance Developer",
                         "company": "Independent",
                         "description": "Designing and developing modern, high-performance websites (Next.js, React). Focused on user experience and premium design."
+                    },
+                    {
+                        "year": "2021 - 2023",
+                        "role": "Automation Apprentice",
+                        "company": "Clemessy",
+                        "description": "PLC programming, industrial supervision, and commissioning of electrical and automated installations."
                     }
                 ]
             },
@@ -109,10 +121,22 @@
                 "title": "Education",
                 "items": [
                     {
-                        "year": "2021 - 2026",
-                        "degree": "General Engineering Degree",
+                        "year": "2024 - 2026",
+                        "degree": "Industrial Digital Systems Degree",
                         "school": "Icam Strasbourg-Europe",
-                        "description": "General engineering education with a strong focus on innovation and digital technologies."
+                        "description": "Specialized engineering training focused on Industry 4.0 and connected systems."
+                    },
+                    {
+                        "year": "2023",
+                        "degree": "Automated Systems & Industrial Computing",
+                        "school": "IUT de Haguenau",
+                        "description": "Specialization in industrial networks and control of automated systems."
+                    },
+                    {
+                        "year": "2020 - 2022",
+                        "degree": "Electrical Engineering & Industrial Computing",
+                        "school": "IUT",
+                        "description": "In-depth technical training in electronics, automation, and embedded computing."
                     }
                 ]
             },
