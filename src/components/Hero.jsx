@@ -5,9 +5,9 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 const typewriterText = [
-    "système intelligent.",
-    "croissance automatisée.",
-    "futur compétitif.",
+    "un système intelligent.",
+    "une croissance automatisée.",
+    "un futur compétitif.",
 ];
 
 export default function Hero() {
@@ -54,7 +54,7 @@ export default function Hero() {
                     <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-8 leading-none">
                         Ne construisez pas <br />
                         <span className="text-white">juste un site.</span> <br />
-                        <span className="text-gradient">Construisez un </span>
+                        <span className="text-gradient">Construisez </span>
                         <span className="inline-block min-w-[300px] text-primary">
                             {displayText}
                             <span className="animate-pulse">|</span>
