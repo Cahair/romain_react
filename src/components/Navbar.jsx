@@ -41,9 +41,9 @@ export default function Navbar() {
     const currentLocale = availableLocales.find(l => l.code === locale);
 
     return (
-        <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? "py-4" : "py-8"}`}>
-            <div className="container mx-auto px-6">
-                <div className={`glass px-6 py-3 rounded-full flex items-center justify-between transition-all duration-500 ${scrolled ? "shadow-2xl bg-background/80" : "bg-white/5"}`}>
+        <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? "py-2 md:py-4" : "py-4 md:py-8"}`}>
+            <div className="container mx-auto px-4 md:px-6">
+                <div className={`glass px-4 md:px-6 py-2 md:py-3 rounded-full flex items-center justify-between transition-all duration-500 ${scrolled ? "shadow-2xl bg-background/80" : "bg-white/5"}`}>
                     <Link href="/" className="flex items-center gap-2">
                         <div
                             className={`w-10 h-10 bg-gradient-to-br ${accent.gradient} rounded-xl flex items-center justify-center font-black text-xl italic transition-all duration-500 ${accent.glow}`}
