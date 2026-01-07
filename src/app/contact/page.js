@@ -3,8 +3,11 @@ import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Calendar } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useTranslation } from "@/components/LanguageProvider";
 
 export default function ContactPage() {
+    const { t } = useTranslation();
+
     return (
         <main className="bg-background min-h-screen flex flex-col">
             <Navbar />
@@ -24,10 +27,10 @@ export default function ContactPage() {
                         className="text-center max-w-4xl mx-auto"
                     >
                         <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-4">
-                            LANÇONS VOTRE <span className="text-gradient">TRANSFORMATION IA</span>
+                            {t("contact.title")} <span className="text-gradient">{t("contact.titleHighlight")}</span>
                         </h1>
                         <p className="text-lg text-gray-400">
-                            Un audit gratuit pour identifier les opportunités d'automatisation.
+                            {t("contact.subtitle")}
                         </p>
                     </motion.div>
                 </div>
@@ -44,36 +47,36 @@ export default function ContactPage() {
                             className="space-y-6 flex flex-col"
                         >
                             <div className="glass p-8 rounded-3xl flex-1">
-                                <h2 className="text-2xl font-black mb-6">Pourquoi un Audit IA ?</h2>
+                                <h2 className="text-2xl font-black mb-6">{t("contact.why.title")}</h2>
                                 <ul className="space-y-4 text-base text-gray-300">
                                     <li className="flex items-start gap-3">
                                         <span className="text-primary mt-1">✦</span>
-                                        <span>Identification des processus à fort ROI d'automatisation</span>
+                                        <span>{t("contact.why.items.0")}</span>
                                     </li>
                                     <li className="flex items-start gap-3">
                                         <span className="text-primary mt-1">✦</span>
-                                        <span>Estimation du temps et budget nécessaires</span>
+                                        <span>{t("contact.why.items.1")}</span>
                                     </li>
                                     <li className="flex items-start gap-3">
                                         <span className="text-primary mt-1">✦</span>
-                                        <span>Roadmap personnalisée de transformation</span>
+                                        <span>{t("contact.why.items.2")}</span>
                                     </li>
                                     <li className="flex items-start gap-3">
                                         <span className="text-primary mt-1">✦</span>
-                                        <span>Conseils d'expert sans engagement</span>
+                                        <span>{t("contact.why.items.3")}</span>
                                     </li>
                                 </ul>
                             </div>
 
                             <div className="glass p-8 rounded-3xl">
-                                <h3 className="text-lg font-black mb-5 uppercase tracking-widest">Contact Direct</h3>
+                                <h3 className="text-lg font-black mb-5 uppercase tracking-widest">{t("contact.contact.title")}</h3>
                                 <div className="space-y-4">
                                     <div className="flex items-center gap-4">
                                         <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                                             <Mail className="w-6 h-6 text-primary" />
                                         </div>
                                         <div>
-                                            <div className="text-xs text-gray-500 uppercase tracking-wide">Email</div>
+                                            <div className="text-xs text-gray-500 uppercase tracking-wide">{t("contact.contact.email")}</div>
                                             <div className="text-base font-bold">romain@kantzer.ai</div>
                                         </div>
                                     </div>
@@ -82,7 +85,7 @@ export default function ContactPage() {
                                             <Phone className="w-6 h-6 text-secondary" />
                                         </div>
                                         <div>
-                                            <div className="text-xs text-gray-500 uppercase tracking-wide">Téléphone</div>
+                                            <div className="text-xs text-gray-500 uppercase tracking-wide">{t("contact.contact.phone")}</div>
                                             <div className="text-base font-bold">+33 6 XX XX XX XX</div>
                                         </div>
                                     </div>
@@ -91,8 +94,8 @@ export default function ContactPage() {
                                             <MapPin className="w-6 h-6 text-accent" />
                                         </div>
                                         <div>
-                                            <div className="text-xs text-gray-500 uppercase tracking-wide">Localisation</div>
-                                            <div className="text-base font-bold">France & Remote</div>
+                                            <div className="text-xs text-gray-500 uppercase tracking-wide">{t("contact.contact.location")}</div>
+                                            <div className="text-base font-bold">{t("contact.contact.locationValue")}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -107,26 +110,26 @@ export default function ContactPage() {
                             className="flex"
                         >
                             <div className="glass p-8 rounded-3xl flex-1 flex flex-col">
-                                <h2 className="text-2xl font-black mb-6 uppercase tracking-widest">Demande de Contact</h2>
+                                <h2 className="text-2xl font-black mb-6 uppercase tracking-widest">{t("contact.form.title")}</h2>
                                 <form className="space-y-5 flex-1 flex flex-col">
                                     <div className="grid grid-cols-2 gap-4">
                                         <div>
                                             <label className="block text-sm font-bold uppercase tracking-wide text-gray-500 mb-2">
-                                                Nom
+                                                {t("contact.form.name")}
                                             </label>
                                             <input
                                                 type="text"
-                                                placeholder="Jean Dupont"
+                                                placeholder={t("contact.form.namePlaceholder")}
                                                 className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors"
                                             />
                                         </div>
                                         <div>
                                             <label className="block text-sm font-bold uppercase tracking-wide text-gray-500 mb-2">
-                                                Email
+                                                {t("contact.form.email")}
                                             </label>
                                             <input
                                                 type="email"
-                                                placeholder="jean@entreprise.com"
+                                                placeholder={t("contact.form.emailPlaceholder")}
                                                 className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors"
                                             />
                                         </div>
@@ -134,38 +137,38 @@ export default function ContactPage() {
                                     <div className="grid grid-cols-2 gap-4">
                                         <div>
                                             <label className="block text-sm font-bold uppercase tracking-wide text-gray-500 mb-2">
-                                                Type de Projet
+                                                {t("contact.form.project")}
                                             </label>
                                             <select className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors">
-                                                <option value="">Sélectionnez...</option>
-                                                <option value="chatbot">Chatbot IA</option>
-                                                <option value="automation">Automatisation</option>
-                                                <option value="lead-gen">Lead Gen IA</option>
-                                                <option value="custom-ai">Solution sur-mesure</option>
-                                                <option value="audit">Audit uniquement</option>
+                                                <option value="">{t("contact.form.projectOptions.select")}</option>
+                                                <option value="chatbot">{t("contact.form.projectOptions.chatbot")}</option>
+                                                <option value="automation">{t("contact.form.projectOptions.automation")}</option>
+                                                <option value="leadgen">{t("contact.form.projectOptions.leadgen")}</option>
+                                                <option value="custom">{t("contact.form.projectOptions.custom")}</option>
+                                                <option value="audit">{t("contact.form.projectOptions.audit")}</option>
                                             </select>
                                         </div>
                                         <div>
                                             <label className="block text-sm font-bold uppercase tracking-wide text-gray-500 mb-2">
-                                                Budget
+                                                {t("contact.form.budget")}
                                             </label>
                                             <select className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors">
-                                                <option value="">Sélectionnez...</option>
-                                                <option value="<5k">Moins de 5,000€</option>
-                                                <option value="5k-10k">5,000€ - 10,000€</option>
-                                                <option value="10k-25k">10,000€ - 25,000€</option>
-                                                <option value="25k+">Plus de 25,000€</option>
-                                                <option value="tbd">À définir</option>
+                                                <option value="">{t("contact.form.budgetOptions.select")}</option>
+                                                <option value="less5k">{t("contact.form.budgetOptions.less5k")}</option>
+                                                <option value="5k10k">{t("contact.form.budgetOptions.5k10k")}</option>
+                                                <option value="10k25k">{t("contact.form.budgetOptions.10k25k")}</option>
+                                                <option value="more25k">{t("contact.form.budgetOptions.more25k")}</option>
+                                                <option value="tbd">{t("contact.form.budgetOptions.tbd")}</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div className="flex-1">
                                         <label className="block text-sm font-bold uppercase tracking-wide text-gray-500 mb-2">
-                                            Message
+                                            {t("contact.form.message")}
                                         </label>
                                         <textarea
                                             rows="4"
-                                            placeholder="Décrivez brièvement votre besoin..."
+                                            placeholder={t("contact.form.messagePlaceholder")}
                                             className="w-full h-full min-h-[100px] bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors resize-none"
                                         />
                                     </div>
@@ -173,7 +176,7 @@ export default function ContactPage() {
                                         type="submit"
                                         className="w-full py-4 bg-gradient-to-r from-primary to-secondary rounded-xl font-black uppercase tracking-widest hover:scale-[1.02] transition-transform shadow-neon-cyan"
                                     >
-                                        Envoyer ma Demande
+                                        {t("contact.form.submit")}
                                     </button>
                                 </form>
 
@@ -182,10 +185,10 @@ export default function ContactPage() {
                                     <div className="flex items-center justify-between">
                                         <div className="flex items-center gap-3">
                                             <Calendar className="w-5 h-5 text-primary" />
-                                            <span className="text-sm font-bold uppercase tracking-wide">Ou réservez directement</span>
+                                            <span className="text-sm font-bold uppercase tracking-wide">{t("contact.calendly.title")}</span>
                                         </div>
                                         <button className="text-sm text-primary font-bold hover:underline">
-                                            Ouvrir Calendly →
+                                            {t("contact.calendly.button")}
                                         </button>
                                     </div>
                                 </div>

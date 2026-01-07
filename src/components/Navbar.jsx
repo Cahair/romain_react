@@ -1,30 +1,44 @@
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X, Sun, Moon, Globe, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { usePageAccent } from "./PageAccent";
 import { useTheme } from "./ThemeProvider";
-
-const navItems = [
-    { name: "Accueil", path: "/" },
-    { name: "Services", path: "/services" },
-    { name: "À Propos", path: "/about" }
-];
+import { useTranslation, availableLocales } from "./LanguageProvider";
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenu, setMobileMenu] = useState(false);
+    const [langMenu, setLangMenu] = useState(false);
     const pathname = usePathname();
     const accent = usePageAccent();
     const { theme, toggleTheme } = useTheme();
+    const { locale, setLocale, t } = useTranslation();
+
+    const navItems = [
+        { name: t("nav.home"), path: "/" },
+        { name: t("nav.services"), path: "/services" },
+        { name: t("nav.about"), path: "/about" }
+    ];
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 20);
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
+
+    // Close language menu when clicking outside
+    useEffect(() => {
+        const handleClick = () => setLangMenu(false);
+        if (langMenu) {
+            document.addEventListener("click", handleClick);
+            return () => document.removeEventListener("click", handleClick);
+        }
+    }, [langMenu]);
+
+    const currentLocale = availableLocales.find(l => l.code === locale);
 
     return (
         <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? "py-4" : "py-8"}`}>
@@ -41,7 +55,7 @@ export default function Navbar() {
                         </span>
                     </Link>
 
-                    <div className="hidden md:flex items-center gap-8">
+                    <div className="hidden md:flex items-center gap-6">
                         {navItems.map((item) => (
                             <Link
                                 key={item.path}
@@ -52,6 +66,39 @@ export default function Navbar() {
                                 {item.name}
                             </Link>
                         ))}
+
+                        {/* Language Selector */}
+                        <div className="relative">
+                            <button
+                                onClick={(e) => { e.stopPropagation(); setLangMenu(!langMenu); }}
+                                className="flex items-center gap-1 p-2 rounded-full hover:bg-white/10 transition-all text-sm font-bold"
+                            >
+                                <span>{currentLocale?.flag}</span>
+                                <ChevronDown className={`w-4 h-4 transition-transform ${langMenu ? "rotate-180" : ""}`} />
+                            </button>
+
+                            <AnimatePresence>
+                                {langMenu && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                                        exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                                        className="absolute top-full right-0 mt-2 glass rounded-xl overflow-hidden min-w-[140px]"
+                                    >
+                                        {availableLocales.map((lang) => (
+                                            <button
+                                                key={lang.code}
+                                                onClick={() => { setLocale(lang.code); setLangMenu(false); }}
+                                                className={`w-full px-4 py-3 flex items-center gap-3 hover:bg-white/10 transition-colors text-left ${locale === lang.code ? "bg-primary/20 text-primary" : ""}`}
+                                            >
+                                                <span>{lang.flag}</span>
+                                                <span className="text-sm font-medium">{lang.name}</span>
+                                            </button>
+                                        ))}
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
 
                         {/* Theme Toggle */}
                         <button
@@ -67,7 +114,7 @@ export default function Navbar() {
                         </button>
 
                         <Link href="/contact" className="px-6 py-2 bg-white text-background rounded-full font-bold text-sm hover:scale-105 transition-transform active:scale-95">
-                            AUDIT GRATUIT
+                            {t("nav.audit")}
                         </Link>
                     </div>
 
@@ -96,6 +143,19 @@ export default function Navbar() {
                                 {item.name}
                             </Link>
                         ))}
+
+                        {/* Mobile Language Selector */}
+                        <div className="flex gap-2 pt-4 border-t border-white/10">
+                            {availableLocales.map((lang) => (
+                                <button
+                                    key={lang.code}
+                                    onClick={() => setLocale(lang.code)}
+                                    className={`px-3 py-2 rounded-lg text-lg ${locale === lang.code ? "bg-primary/20" : "hover:bg-white/10"}`}
+                                >
+                                    {lang.flag}
+                                </button>
+                            ))}
+                        </div>
                     </motion.div>
                 )}
             </AnimatePresence>

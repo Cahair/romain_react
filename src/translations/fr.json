@@ -1,0 +1,170 @@
+{
+    "nav": {
+        "home": "Accueil",
+        "services": "Services",
+        "about": "À Propos",
+        "audit": "AUDIT GRATUIT"
+    },
+    "hero": {
+        "line1": "Ne construisez pas",
+        "line2": "juste un site.",
+        "line3": "Construisez",
+        "typewriter": [
+            "un système intelligent.",
+            "une croissance automatisée.",
+            "un futur compétitif."
+        ],
+        "subtitle": "L'Agence AI qui automatise votre croissance et transforme vos opérations en un moteur de performance autonome.",
+        "cta1": "Auditer mon business",
+        "cta2": "Voir nos solutions"
+    },
+    "services": {
+        "title": "NOS",
+        "titleHighlight": "SERVICES IA",
+        "subtitle": "Des solutions d'intelligence artificielle qui automatisent et transforment votre business.",
+        "chatbot": {
+            "title": "AI Chatbots & Agents",
+            "subtitle": "Support Client 24/7",
+            "description": "Assistants intelligents qui comprennent vos clients et génèrent des leads qualifiés.",
+            "features": [
+                "Support multilingue intelligent",
+                "Qualification automatique des leads",
+                "Intégration CRM & outils existants"
+            ]
+        },
+        "automation": {
+            "title": "Business Automation",
+            "subtitle": "Make, Zapier & Beyond",
+            "description": "Automatisation complète de vos workflows. Éliminez les tâches répétitives.",
+            "features": [
+                "Automatisation de processus complexes",
+                "Intégrations multi-outils",
+                "Reporting automatisé"
+            ]
+        },
+        "custom": {
+            "title": "Custom AI Solutions",
+            "subtitle": "Sur-Mesure pour Votre Business",
+            "description": "Solutions AI personnalisées pour vos besoins uniques.",
+            "features": [
+                "Analyse de données & insights",
+                "Outils internes sur-mesure",
+                "Intégration API (OpenAI, Anthropic)"
+            ]
+        },
+        "learnMore": "En savoir plus",
+        "cta": {
+            "title": "Prêt à",
+            "titleHighlight": "automatiser",
+            "subtitle": "Réservez un audit AI gratuit pour découvrir vos opportunités.",
+            "button": "Réserver mon Audit"
+        }
+    },
+    "about": {
+        "title": "L'EXPERT",
+        "titleHighlight1": "WEB",
+        "titleMiddle": "DEVENU",
+        "titleHighlight2": "ARCHITECTE IA",
+        "story": {
+            "title": "Romain Kantzer",
+            "text": "Expert web devenu architecte AI. Je conçois des systèmes intelligents qui automatisent et accroissent la valeur de votre entreprise.",
+            "highlight": "Le web est la fondation, l'AI est le moteur."
+        },
+        "vision": {
+            "title": "MA",
+            "titleHighlight": "VISION",
+            "quote": "\"L'AI n'est plus une option. C'est une nécessité pour rester compétitif.\"",
+            "stats": {
+                "productivity": "Productivité",
+                "available": "Disponible",
+                "scalable": "Scalable"
+            }
+        },
+        "tech": {
+            "title": "STACK",
+            "titleHighlight": "TECH"
+        }
+    },
+    "contact": {
+        "title": "LANÇONS VOTRE",
+        "titleHighlight": "TRANSFORMATION IA",
+        "subtitle": "Un audit gratuit pour identifier les opportunités d'automatisation.",
+        "why": {
+            "title": "Pourquoi un Audit AI ?",
+            "items": [
+                "Identification des processus à fort ROI d'automatisation",
+                "Estimation du temps et budget nécessaires",
+                "Roadmap personnalisée de transformation",
+                "Conseils d'expert sans engagement"
+            ]
+        },
+        "contact": {
+            "title": "Contact Direct",
+            "email": "Email",
+            "phone": "Téléphone",
+            "location": "Localisation",
+            "locationValue": "France & Remote"
+        },
+        "form": {
+            "title": "Demande de Contact",
+            "name": "Nom",
+            "namePlaceholder": "Jean Dupont",
+            "email": "Email",
+            "emailPlaceholder": "jean@entreprise.com",
+            "project": "Type de Projet",
+            "projectOptions": {
+                "select": "Sélectionnez...",
+                "chatbot": "Chatbot AI",
+                "automation": "Automatisation",
+                "leadgen": "Lead Gen AI",
+                "custom": "Solution sur-mesure",
+                "audit": "Audit uniquement"
+            },
+            "budget": "Budget",
+            "budgetOptions": {
+                "select": "Sélectionnez...",
+                "less5k": "Moins de 5,000€",
+                "5k10k": "5,000€ - 10,000€",
+                "10k25k": "10,000€ - 25,000€",
+                "more25k": "Plus de 25,000€",
+                "tbd": "À définir"
+            },
+            "message": "Message",
+            "messagePlaceholder": "Décrivez brièvement votre besoin...",
+            "submit": "Envoyer ma Demande"
+        },
+        "calendly": {
+            "title": "Ou réservez directement",
+            "button": "Ouvrir Calendly →"
+        }
+    },
+    "footer": {
+        "title": "PRÊT POUR",
+        "titleHighlight": "L'AUTOMATION ?",
+        "subtitle": "Ne laissez pas vos concurrents prendre l'avantage. Contactez-nous pour un audit AI gratuit de vos processus business.",
+        "form": {
+            "name": "Votre Nom",
+            "namePlaceholder": "Romain...",
+            "email": "Email Business",
+            "emailPlaceholder": "romain@agency.ai",
+            "message": "Message",
+            "messagePlaceholder": "Quels processus voulez-vous automatiser ?",
+            "submit": "Envoyer"
+        },
+        "legal": {
+            "rights": "TOUS DROITS RÉSERVÉS",
+            "privacy": "Politique Privée",
+            "terms": "Termes"
+        }
+    },
+    "storytelling": {
+        "badge": "L'ÉVOLUTION EN MARCHE",
+        "title": "Nous ne",
+        "titleHighlight": "remplaçons",
+        "titleEnd": "pas.",
+        "subtitle1": "Nous",
+        "subtitleHighlight": "amplifions",
+        "subtitle2": "vos capacités.",
+        "description": "Bienvenue dans l'ère de l'intelligence intégrée."
+    }
+}

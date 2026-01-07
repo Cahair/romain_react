@@ -1,22 +1,35 @@
 "use client";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-
-const typewriterText = [
-    "un système intelligent.",
-    "une croissance automatisée.",
-    "un futur compétitif.",
-];
+import { useTranslation } from "./LanguageProvider";
 
 export default function Hero() {
+    const { t, locale } = useTranslation();
     const [textIndex, setTextIndex] = useState(0);
     const [displayText, setDisplayText] = useState("");
     const [isDeleting, setIsDeleting] = useState(false);
 
+    // Get typewriter texts from translations
+    const typewriterTexts = useMemo(() => {
+        const texts = t("hero.typewriter");
+        return Array.isArray(texts) ? texts : [
+            "un système intelligent.",
+            "une croissance automatisée.",
+            "un futur compétitif."
+        ];
+    }, [t, locale]);
+
+    // Reset typewriter when language changes
     useEffect(() => {
-        const currentText = typewriterText[textIndex];
+        setTextIndex(0);
+        setDisplayText("");
+        setIsDeleting(false);
+    }, [locale]);
+
+    useEffect(() => {
+        const currentText = typewriterTexts[textIndex];
         const speed = isDeleting ? 50 : 100;
 
         const timeout = setTimeout(() => {
@@ -24,7 +37,7 @@ export default function Hero() {
                 setTimeout(() => setIsDeleting(true), 2000);
             } else if (isDeleting && displayText === "") {
                 setIsDeleting(false);
-                setTextIndex((prev) => (prev + 1) % typewriterText.length);
+                setTextIndex((prev) => (prev + 1) % typewriterTexts.length);
             } else {
                 setDisplayText(
                     isDeleting
@@ -35,7 +48,7 @@ export default function Hero() {
         }, speed);
 
         return () => clearTimeout(timeout);
-    }, [displayText, isDeleting, textIndex]);
+    }, [displayText, isDeleting, textIndex, typewriterTexts]);
 
     return (
         <section className="relative min-h-screen flex items-center justify-center pt-32 pb-20 overflow-hidden">
@@ -52,9 +65,9 @@ export default function Hero() {
                     transition={{ duration: 0.8 }}
                 >
                     <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-8 leading-none">
-                        Ne construisez pas <br />
-                        <span className="text-white">juste un site.</span> <br />
-                        <span className="text-gradient">Construisez </span>
+                        {t("hero.line1")} <br />
+                        <span className="text-white">{t("hero.line2")}</span> <br />
+                        <span className="text-gradient">{t("hero.line3")} </span>
                         <span className="inline-block min-w-[300px] text-primary">
                             {displayText}
                             <span className="animate-pulse">|</span>
@@ -62,16 +75,16 @@ export default function Hero() {
                     </h1>
 
                     <p className="text-gray-400 text-lg md:text-2xl max-w-3xl mx-auto mb-12">
-                        L'Agence AI qui automatise votre croissance et transforme vos opérations en un moteur de performance autonome.
+                        {t("hero.subtitle")}
                     </p>
 
                     <div className="flex flex-col md:flex-row items-center justify-center gap-6">
                         <Link href="/contact" className="group relative px-8 py-4 bg-primary rounded-full font-bold text-background transition-all hover:scale-105 active:scale-95 shadow-neon-cyan">
-                            Auditer mon business
+                            {t("hero.cta1")}
                             <ArrowRight className="inline-block ml-2 group-hover:translate-x-1 transition-transform" />
                         </Link>
                         <Link href="/services" className="px-8 py-4 glass rounded-full font-bold transition-all hover:bg-white/10 active:scale-95">
-                            Voir nos solutions
+                            {t("hero.cta2")}
                         </Link>
                     </div>
                 </motion.div>

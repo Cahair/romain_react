@@ -5,6 +5,7 @@ import PageTransition from "@/components/PageTransition";
 import { PageAccentProvider, PageAccentIndicator } from "@/components/PageAccent";
 import LoadingBar from "@/components/LoadingBar";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { LanguageProvider } from "@/components/LanguageProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,15 +19,17 @@ export default function RootLayout({ children }) {
     <html lang="fr" className="scroll-smooth" suppressHydrationWarning>
       <body className={`${inter.className} antialiased`} suppressHydrationWarning>
         <ThemeProvider>
-          <PageAccentProvider>
-            <Suspense fallback={null}>
-              <LoadingBar />
-            </Suspense>
-            <PageAccentIndicator />
-            <PageTransition>
-              {children}
-            </PageTransition>
-          </PageAccentProvider>
+          <LanguageProvider>
+            <PageAccentProvider>
+              <Suspense fallback={null}>
+                <LoadingBar />
+              </Suspense>
+              <PageAccentIndicator />
+              <PageTransition>
+                {children}
+              </PageTransition>
+            </PageAccentProvider>
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

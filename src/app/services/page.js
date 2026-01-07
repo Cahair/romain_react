@@ -4,47 +4,50 @@ import { MessageSquare, Zap, Brain, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
-const services = [
-    {
-        icon: <MessageSquare className="w-8 h-8" />,
-        title: "AI Chatbots & Agents",
-        subtitle: "Support Client 24/7",
-        description: "Assistants intelligents qui comprennent vos clients et génèrent des leads qualifiés.",
-        features: [
-            "Support multilingue intelligent",
-            "Qualification automatique des leads",
-            "Intégration CRM & outils existants"
-        ],
-        color: "from-cyan-500 to-blue-500"
-    },
-    {
-        icon: <Zap className="w-8 h-8" />,
-        title: "Business Automation",
-        subtitle: "Make, Zapier & Beyond",
-        description: "Automatisation complète de vos workflows. Éliminez les tâches répétitives.",
-        features: [
-            "Automatisation de processus complexes",
-            "Intégrations multi-outils",
-            "Reporting automatisé"
-        ],
-        color: "from-violet-500 to-purple-500"
-    },
-    {
-        icon: <Brain className="w-8 h-8" />,
-        title: "Custom AI Solutions",
-        subtitle: "Sur-Mesure pour Votre Business",
-        description: "Solutions IA personnalisées pour vos besoins uniques.",
-        features: [
-            "Analyse de données & insights",
-            "Outils internes sur-mesure",
-            "Intégration API (OpenAI, Anthropic)"
-        ],
-        color: "from-emerald-500 to-teal-500"
-    }
-];
+import { useTranslation } from "@/components/LanguageProvider";
 
 export default function ServicesPage() {
+    const { t } = useTranslation();
+
+    const services = [
+        {
+            icon: <MessageSquare className="w-8 h-8" />,
+            title: t("services.chatbot.title"),
+            subtitle: t("services.chatbot.subtitle"),
+            description: t("services.chatbot.description"),
+            features: [
+                t("services.chatbot.features.0"),
+                t("services.chatbot.features.1"),
+                t("services.chatbot.features.2")
+            ],
+            color: "from-cyan-500 to-blue-500"
+        },
+        {
+            icon: <Zap className="w-8 h-8" />,
+            title: t("services.automation.title"),
+            subtitle: t("services.automation.subtitle"),
+            description: t("services.automation.description"),
+            features: [
+                t("services.automation.features.0"),
+                t("services.automation.features.1"),
+                t("services.automation.features.2")
+            ],
+            color: "from-violet-500 to-purple-500"
+        },
+        {
+            icon: <Brain className="w-8 h-8" />,
+            title: t("services.custom.title"),
+            subtitle: t("services.custom.subtitle"),
+            description: t("services.custom.description"),
+            features: [
+                t("services.custom.features.0"),
+                t("services.custom.features.1"),
+                t("services.custom.features.2")
+            ],
+            color: "from-emerald-500 to-teal-500"
+        }
+    ];
+
     return (
         <main className="bg-background min-h-screen flex flex-col">
             <Navbar />
@@ -55,7 +58,7 @@ export default function ServicesPage() {
                 transition={{ duration: 0.6 }}
                 className="flex-1 pt-28 pb-8 flex flex-col justify-center"
             >
-                {/* Hero Section - Compact */}
+                {/* Hero Section */}
                 <div className="container mx-auto px-6 mb-8">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -64,15 +67,15 @@ export default function ServicesPage() {
                         className="text-center max-w-4xl mx-auto"
                     >
                         <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-4">
-                            NOS <span className="text-gradient">SERVICES IA</span>
+                            {t("services.title")} <span className="text-gradient">{t("services.titleHighlight")}</span>
                         </h1>
                         <p className="text-lg text-gray-400">
-                            Des solutions d'intelligence artificielle qui automatisent et transforment votre business.
+                            {t("services.subtitle")}
                         </p>
                     </motion.div>
                 </div>
 
-                {/* Services Grid - Compact */}
+                {/* Services Grid */}
                 <div className="container mx-auto px-6 mb-8">
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                         {services.map((service, index) => (
@@ -101,14 +104,14 @@ export default function ServicesPage() {
                                 </ul>
 
                                 <Link href="/contact" className="inline-flex items-center gap-2 font-bold text-primary text-sm hover:gap-3 transition-all">
-                                    En savoir plus <ArrowRight className="w-4 h-4" />
+                                    {t("services.learnMore")} <ArrowRight className="w-4 h-4" />
                                 </Link>
                             </motion.div>
                         ))}
                     </div>
                 </div>
 
-                {/* CTA Section - Compact */}
+                {/* CTA Section */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -122,14 +125,14 @@ export default function ServicesPage() {
                         <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4">
                             <div className="text-left">
                                 <h2 className="text-2xl md:text-3xl font-black mb-1">
-                                    Prêt à <span className="text-gradient">automatiser</span> ?
+                                    {t("services.cta.title")} <span className="text-gradient">{t("services.cta.titleHighlight")}</span> ?
                                 </h2>
                                 <p className="text-gray-400 text-sm">
-                                    Réservez un audit IA gratuit pour découvrir vos opportunités.
+                                    {t("services.cta.subtitle")}
                                 </p>
                             </div>
                             <Link href="/contact" className="shrink-0 px-8 py-4 bg-gradient-to-r from-primary to-secondary rounded-xl font-black uppercase tracking-widest hover:scale-105 transition-transform shadow-neon-cyan">
-                                Réserver mon Audit
+                                {t("services.cta.button")}
                             </Link>
                         </div>
                     </div>

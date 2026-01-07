@@ -1,0 +1,170 @@
+{
+    "nav": {
+        "home": "Home",
+        "services": "Services",
+        "about": "About",
+        "audit": "FREE AUDIT"
+    },
+    "hero": {
+        "line1": "Don't just build",
+        "line2": "a website.",
+        "line3": "Build",
+        "typewriter": [
+            "an intelligent system.",
+            "automated growth.",
+            "a competitive future."
+        ],
+        "subtitle": "The AI Agency that automates your growth and transforms your operations into an autonomous performance engine.",
+        "cta1": "Audit my business",
+        "cta2": "View our solutions"
+    },
+    "services": {
+        "title": "OUR",
+        "titleHighlight": "AI SERVICES",
+        "subtitle": "Artificial intelligence solutions that automate and transform your business.",
+        "chatbot": {
+            "title": "AI Chatbots & Agents",
+            "subtitle": "24/7 Customer Support",
+            "description": "Intelligent assistants that understand your customers and generate qualified leads.",
+            "features": [
+                "Intelligent multilingual support",
+                "Automatic lead qualification",
+                "CRM & existing tools integration"
+            ]
+        },
+        "automation": {
+            "title": "Business Automation",
+            "subtitle": "Make, Zapier & Beyond",
+            "description": "Complete automation of your workflows. Eliminate repetitive tasks.",
+            "features": [
+                "Complex process automation",
+                "Multi-tool integrations",
+                "Automated reporting"
+            ]
+        },
+        "custom": {
+            "title": "Custom AI Solutions",
+            "subtitle": "Tailored for Your Business",
+            "description": "Custom AI solutions for your unique needs.",
+            "features": [
+                "Data analysis & insights",
+                "Custom internal tools",
+                "API integration (OpenAI, Anthropic)"
+            ]
+        },
+        "learnMore": "Learn more",
+        "cta": {
+            "title": "Ready to",
+            "titleHighlight": "automate",
+            "subtitle": "Book a free AI audit to discover your opportunities.",
+            "button": "Book my Audit"
+        }
+    },
+    "about": {
+        "title": "THE WEB",
+        "titleHighlight1": "EXPERT",
+        "titleMiddle": "TURNED",
+        "titleHighlight2": "AI ARCHITECT",
+        "story": {
+            "title": "Romain Kantzer",
+            "text": "Web expert turned AI architect. I design intelligent systems that automate and increase your company's value.",
+            "highlight": "The web is the foundation, AI is the engine."
+        },
+        "vision": {
+            "title": "MY",
+            "titleHighlight": "VISION",
+            "quote": "\"AI is no longer an option. It's a necessity to stay competitive.\"",
+            "stats": {
+                "productivity": "Productivity",
+                "available": "Available",
+                "scalable": "Scalable"
+            }
+        },
+        "tech": {
+            "title": "TECH",
+            "titleHighlight": "STACK"
+        }
+    },
+    "contact": {
+        "title": "LET'S START YOUR",
+        "titleHighlight": "AI TRANSFORMATION",
+        "subtitle": "A free audit to identify automation opportunities.",
+        "why": {
+            "title": "Why an AI Audit?",
+            "items": [
+                "Identify high-ROI automation processes",
+                "Time and budget estimation",
+                "Personalized transformation roadmap",
+                "Expert advice with no commitment"
+            ]
+        },
+        "contact": {
+            "title": "Direct Contact",
+            "email": "Email",
+            "phone": "Phone",
+            "location": "Location",
+            "locationValue": "France & Remote"
+        },
+        "form": {
+            "title": "Contact Request",
+            "name": "Name",
+            "namePlaceholder": "John Smith",
+            "email": "Email",
+            "emailPlaceholder": "john@company.com",
+            "project": "Project Type",
+            "projectOptions": {
+                "select": "Select...",
+                "chatbot": "AI Chatbot",
+                "automation": "Automation",
+                "leadgen": "AI Lead Gen",
+                "custom": "Custom solution",
+                "audit": "Audit only"
+            },
+            "budget": "Budget",
+            "budgetOptions": {
+                "select": "Select...",
+                "less5k": "Less than €5,000",
+                "5k10k": "€5,000 - €10,000",
+                "10k25k": "€10,000 - €25,000",
+                "more25k": "More than €25,000",
+                "tbd": "To be defined"
+            },
+            "message": "Message",
+            "messagePlaceholder": "Briefly describe your needs...",
+            "submit": "Send my Request"
+        },
+        "calendly": {
+            "title": "Or book directly",
+            "button": "Open Calendly →"
+        }
+    },
+    "footer": {
+        "title": "READY FOR",
+        "titleHighlight": "AUTOMATION?",
+        "subtitle": "Don't let your competitors get ahead. Contact us for a free AI audit of your business processes.",
+        "form": {
+            "name": "Your Name",
+            "namePlaceholder": "John...",
+            "email": "Business Email",
+            "emailPlaceholder": "john@agency.ai",
+            "message": "Message",
+            "messagePlaceholder": "Which processes do you want to automate?",
+            "submit": "Send"
+        },
+        "legal": {
+            "rights": "ALL RIGHTS RESERVED",
+            "privacy": "Privacy Policy",
+            "terms": "Terms"
+        }
+    },
+    "storytelling": {
+        "badge": "EVOLUTION IN PROGRESS",
+        "title": "We don't",
+        "titleHighlight": "replace",
+        "titleEnd": ".",
+        "subtitle1": "We",
+        "subtitleHighlight": "amplify",
+        "subtitle2": "your capabilities.",
+        "description": "Welcome to the era of integrated intelligence."
+    }
+}
