@@ -104,15 +104,76 @@ export default function AboutPage() {
         <main className="bg-background min-h-screen flex flex-col overflow-x-hidden">
             <Navbar />
 
-            {/* Header Section */}
-            <div className="pt-24 pb-12 text-center container mx-auto px-6">
-                <motion.h1
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-4xl md:text-6xl font-black tracking-tighter mb-4"
-                >
+            {/* Hero Section */}
+            <section className="relative min-h-screen flex flex-col justify-center pt-24 pb-12 overflow-hidden">
+                {/* Background Blobs */}
+                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px] animate-pulse" />
+                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-[120px] animate-pulse delay-1000" />
+
+                <div className="container mx-auto px-6 relative z-10 text-center flex-1 flex flex-col justify-center">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                        className="max-w-4xl mx-auto w-full"
+                    >
+                        {/* Title */}
+                        <h1 className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tighter mb-6 leading-tight pt-4">
+                            {t("about.title")} <br className="hidden md:block" />
+                            <span className="text-gradient">{t("about.titleHighlight1")}</span> {t("about.titleMiddle")} <span className="text-gradient">{t("about.titleHighlight2")}</span>
+                        </h1>
+
+                        {/* Story Card */}
+                        <div className="glass p-6 md:p-8 rounded-3xl mb-6 backdrop-blur-xl border border-white/10 shadow-2xl relative flex flex-col md:flex-row items-center gap-8">
+
+                            {/* Profile Image */}
+                            <div className="relative shrink-0">
+                                <div className="absolute -inset-4 bg-gradient-to-r from-primary to-secondary rounded-full blur-xl opacity-20 animate-pulse"></div>
+                                <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-white/10 shadow-2xl">
+                                    <img
+                                        src="/romain-profile.jpg"
+                                        alt="Romain Kantzer"
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+                                <div className="absolute bottom-2 right-2 w-8 h-8 bg-background rounded-full flex items-center justify-center border border-white/10 shadow-lg">
+                                    <span className="text-lg">🦾</span>
+                                </div>
+                            </div>
+
+                            {/* Text Content */}
+                            <div className="text-center md:text-left">
+                                <h2 className="text-xl md:text-2xl font-bold mb-3 flex items-center justify-center md:justify-start gap-3">
+                                    <span className="text-2xl">👋</span> {t("about.story.title")}
+                                </h2>
+                                <p className="text-base md:text-lg text-gray-300 leading-relaxed max-w-2xl">
+                                    {t("about.story.text")}
+                                </p>
+                                <div className="mt-4 text-base md:text-lg font-bold text-white">
+                                    <span className="text-gradient">{t("about.story.highlight")}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Scroll Button */}
+                        <button
+                            onClick={scrollToCV}
+                            className="group flex flex-col items-center gap-2 mx-auto text-gray-400 hover:text-white transition-colors pb-2"
+                        >
+                            <span className="text-xs font-black tracking-[0.2em] uppercase">{t("about.cv.button")}</span>
+                            <div className="w-10 h-10 rounded-full glass flex items-center justify-center group-hover:bg-primary/20 transition-all group-hover:scale-110">
+                                <ArrowDown className="w-5 h-5 animate-bounce" />
+                            </div>
+                        </button>
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* Timeline Header (Small Divider) */}
+            <div className="text-center container mx-auto px-6 mb-12">
+                <h2 className="text-3xl md:text-5xl font-black tracking-tighter mb-4">
                     {t("about.cv.title")} <span className="text-gradient">{t("about.cv.titleHighlight")}</span>
-                </motion.h1>
+                </h2>
                 <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto rounded-full opacity-50" />
             </div>
 
