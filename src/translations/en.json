@@ -83,6 +83,47 @@
         "tech": {
             "title": "TECH",
             "titleHighlight": "STACK"
+        },
+        "cv": {
+            "button": "View My Journey",
+            "title": "MY",
+            "titleHighlight": "JOURNEY",
+            "experience": {
+                "title": "Experience",
+                "items": [
+                    {
+                        "year": "2023 - Present",
+                        "role": "Founder & AI Architect",
+                        "company": "Kantzer.ai",
+                        "description": "Creating automation and generative AI solutions for businesses. Specializing in Chatbots, LLMs, and autonomous workflows."
+                    },
+                    {
+                        "year": "2021 - Present",
+                        "role": "Freelance Developer",
+                        "company": "Independent",
+                        "description": "Designing and developing modern, high-performance websites (Next.js, React). Focused on user experience and premium design."
+                    }
+                ]
+            },
+            "education": {
+                "title": "Education",
+                "items": [
+                    {
+                        "year": "2021 - 2026",
+                        "degree": "General Engineering Degree",
+                        "school": "Icam Strasbourg-Europe",
+                        "description": "General engineering education with a strong focus on innovation and digital technologies."
+                    }
+                ]
+            },
+            "skills": {
+                "title": "Skills",
+                "categories": {
+                    "ai": "Artificial Intelligence & Automation",
+                    "dev": "Web Development",
+                    "tools": "Tools & Design"
+                }
+            }
         }
     },
     "contact": {

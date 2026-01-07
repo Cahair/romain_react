@@ -83,6 +83,47 @@
         "tech": {
             "title": "TECH",
             "titleHighlight": "STACK"
+        },
+        "cv": {
+            "button": "Meinen Werdegang ansehen",
+            "title": "MEIN",
+            "titleHighlight": "WERDEGANG",
+            "experience": {
+                "title": "Erfahrung",
+                "items": [
+                    {
+                        "year": "2023 - Heute",
+                        "role": "Gründer & AI Architect",
+                        "company": "Kantzer.ai",
+                        "description": "Erstellung von Automatisierungs- und generativen KI-Lösungen für Unternehmen. Spezialisierung auf Chatbots, LLMs und autonome Workflows."
+                    },
+                    {
+                        "year": "2021 - Heute",
+                        "role": "Freelance Entwickler",
+                        "company": "Unabhängig",
+                        "description": "Design und Entwicklung moderner, leistungsstarker Websites (Next.js, React). Fokus auf Benutzererfahrung und Premium-Design."
+                    }
+                ]
+            },
+            "education": {
+                "title": "Ausbildung",
+                "items": [
+                    {
+                        "year": "2021 - 2026",
+                        "degree": "Diplom-Ingenieur (Allgemein)",
+                        "school": "Icam Strasbourg-Europe",
+                        "description": "Allgemeine Ingenieurausbildung mit starkem Fokus auf Innovation und digitale Technologien."
+                    }
+                ]
+            },
+            "skills": {
+                "title": "Kompetenzen",
+                "categories": {
+                    "ai": "Künstliche Intelligenz & Automatisierung",
+                    "dev": "Webentwicklung",
+                    "tools": "Tools & Design"
+                }
+            }
         }
     },
     "contact": {
