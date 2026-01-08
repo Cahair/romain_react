@@ -212,18 +212,7 @@
         "titleHighlight": "AUTOMATION?",
         "subtitle": "Don't let your competitors get ahead. Contact us for a free AI audit of your business processes.",
         "form": {
-            "name": "Your Name",
-            "namePlaceholder": "John...",
-            "email": "Business Email",
-            "emailPlaceholder": "john@agency.ai",
-            "message": "Message",
-            "messagePlaceholder": "Which processes do you want to automate?",
-            "submit": "Send",
-            "sending": "Sending...",
-            "success": "Message sent successfully!",
-            "error": "An error occurred",
-            "connectionError": "Connection error",
-            "loading": "Sending..."
+            "submit": "Send an Email"
         },
         "legal": {
             "rights": "ALL RIGHTS RESERVED",

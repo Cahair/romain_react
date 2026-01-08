@@ -212,18 +212,7 @@
         "titleHighlight": "AUTOMATISIERUNG?",
         "subtitle": "Lassen Sie Ihre Konkurrenten nicht voraus. Kontaktieren Sie uns für ein kostenloses AI-Audit Ihrer Geschäftsprozesse.",
         "form": {
-            "name": "Ihr Name",
-            "namePlaceholder": "Max...",
-            "email": "Geschäftliche E-Mail",
-            "emailPlaceholder": "max@agentur.ai",
-            "message": "Nachricht",
-            "messagePlaceholder": "Welche Prozesse möchten Sie automatisieren?",
-            "submit": "Senden",
-            "sending": "Senden...",
-            "success": "Nachricht erfolgreich gesendet!",
-            "error": "Ein Fehler ist aufgetreten",
-            "connectionError": "Verbindungsfehler",
-            "loading": "Wird gesendet..."
+            "submit": "E-Mail Senden"
         },
         "legal": {
             "rights": "ALLE RECHTE VORBEHALTEN",
