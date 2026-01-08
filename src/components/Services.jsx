@@ -141,7 +141,23 @@ export default function Services() {
                                         <Icon className="w-6 h-6 text-white" />
                                     </div>
                                     <h3 className="font-display font-bold text-2xl uppercase mb-3 text-foreground tracking-wide">
-                                        {service.title}
+                                        {/* Parse title for highlight tags */}
+                                        {(() => {
+                                            const parts = service.title.split(/(<highlight>.*?<\/highlight>)/);
+                                            return parts.map((part, index) => {
+                                                if (part.startsWith('<highlight>') && part.endsWith('</highlight>')) {
+                                                    const content = part.replace(/<\/?highlight>/g, '');
+                                                    return (
+                                                        <span key={index} className="relative inline-block text-blue-500 drop-shadow-[0_0_35px_rgba(59,130,246,0.8)] mx-1">
+                                                            {content}
+                                                            {/* Back glow */}
+                                                            <span className="absolute -inset-4 bg-blue-500/40 blur-3xl opacity-60 -z-10 animate-pulse-slow pointer-events-none" />
+                                                        </span>
+                                                    );
+                                                }
+                                                return part;
+                                            });
+                                        })()}
                                     </h3>
                                     <p className="text-muted-foreground font-mono text-sm leading-relaxed">
                                         {service.desc}

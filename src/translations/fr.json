@@ -21,7 +21,7 @@
         "subtitle": "Des solutions sur-mesure pour propulser votre business dans l'ère de l'automatisation intelligente.",
         "items": {
             "chatbot": {
-                "title": "Chatbots Intelligents",
+                "title": "Chatbots <highlight>Intelligents</highlight>",
                 "desc": "Support client 24/7 et qualification de leads automatisée via LLMs personnalisés.",
                 "features": [
                     "Support multilingue intelligent",

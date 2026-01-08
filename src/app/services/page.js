@@ -157,17 +157,14 @@ export default function ServicesPage() {
                                     {t("services.title")}
                                 </motion.span>
                                 <motion.span
-                                    className="text-transparent block relative"
-                                    style={{ WebkitTextStroke: '2px var(--text-stroke-color)' }}
+                                    className="block relative text-blue-500 drop-shadow-[0_0_35px_rgba(59,130,246,0.8)]"
                                     initial={{ x: -100, opacity: 0 }}
                                     animate={{ x: 0, opacity: 1 }}
                                     transition={{ duration: 0.8, delay: 0.2, type: "spring", stiffness: 50 }}
                                 >
                                     {t("services.titleHighlight")}
-                                    {/* Glitch Overlay */}
-                                    <span className="absolute inset-0 text-primary-neon opacity-50 blur-[2px] animate-pulse pointer-events-none" aria-hidden="true">
-                                        {t("services.titleHighlight")}
-                                    </span>
+                                    {/* Back glow */}
+                                    <span className="absolute -inset-4 bg-blue-500/40 blur-3xl opacity-60 -z-10 animate-pulse-slow pointer-events-none" />
                                 </motion.span>
                             </h1>
 
