@@ -54,15 +54,15 @@ export default function Hero() {
             <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-primary/40 rounded-full blur-[120px] animate-pulse-slow z-0" />
             <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-secondary-neon/30 rounded-full blur-[128px] animate-pulse-slow delay-1000 z-0" />
 
-            <div className="container mx-auto px-4 relative z-10 flex flex-col items-center justify-center h-full">
+            <div className="container mx-auto px-4 relative z-10 flex flex-col items-center justify-center min-h-screen py-20">
 
                 {/* Titan Typography */}
-                <div className="relative w-full text-center">
+                <div className="relative w-full text-center flex flex-col items-center justify-center flex-grow">
                     <motion.h1
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 1, ease: "circOut" }}
-                        className="font-display font-bold text-[12vw] leading-[0.85] tracking-tighter text-transparent select-none"
+                        className="font-display font-bold text-6xl md:text-[12vw] leading-[1.1] md:leading-[0.85] tracking-tighter text-transparent select-none pt-20 md:pt-0"
                         style={{
                             WebkitTextStroke: '2px var(--text-stroke-color)',
                             // Removed mixBlendMode to ensure visibility in light mode
@@ -87,30 +87,30 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 1, duration: 0.8 }}
-                        className="mt-12 backdrop-blur-sm bg-background/30 p-6 rounded-2xl border border-white/5 inline-block"
+                        className="mt-8 md:mt-12 backdrop-blur-sm bg-background/30 p-4 md:p-6 rounded-2xl border border-white/5 inline-block max-w-[90vw] md:max-w-xl"
                     >
-                        <h2 className="text-xl md:text-2xl font-light tracking-wide text-foreground/90 font-mono">
+                        <h2 className="text-lg md:text-2xl font-light tracking-wide text-foreground/90 font-mono">
                             {t("hero.highlightTitle")}
                         </h2>
                         <p className="text-muted-foreground mt-2 text-sm md:text-base max-w-lg mx-auto whitespace-pre-line">
                             {t("hero.description")}
                         </p>
                     </motion.div>
-                </div>
 
-                {/* Terminal Prompt CTA */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 2.5, duration: 0.5 }}
-                    className="absolute bottom-20"
-                >
-                    <Link href="/contact" className="group relative inline-flex items-center gap-2 px-8 py-4 bg-black/40 border-2 border-primary text-primary-neon font-mono text-lg rounded-lg transition-all duration-300 hover:scale-105 hover:bg-primary/10 hover:shadow-neon-cyan shadow-[0_0_20px_rgba(6,182,212,0.2)]">
-                        <span className="text-secondary-neon me-2 group-hover:animate-pulse">&gt;</span>
-                        {t("hero.cta")}
-                        <span className="block w-2.5 h-5 bg-primary-neon animate-pulse ml-1 shadow-[0_0_10px_#00f0ff]" />
-                    </Link>
-                </motion.div>
+                    {/* Terminal Prompt CTA - Flowing naturally */}
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 2.5, duration: 0.5 }}
+                        className="mt-8 md:mt-12 pb-10"
+                    >
+                        <Link href="/contact" className="group relative inline-flex items-center gap-2 px-6 py-3 md:px-8 md:py-4 bg-black/40 border-2 border-primary text-primary-neon font-mono text-base md:text-lg rounded-lg transition-all duration-300 hover:scale-105 hover:bg-primary/10 hover:shadow-neon-cyan shadow-[0_0_20px_rgba(6,182,212,0.2)]">
+                            <span className="text-secondary-neon me-2 group-hover:animate-pulse">&gt;</span>
+                            {t("hero.cta")}
+                            <span className="block w-2.5 h-5 bg-primary-neon animate-pulse ml-1 shadow-[0_0_10px_#00f0ff]" />
+                        </Link>
+                    </motion.div>
+                </div>
             </div>
 
             {/* Scroll Indicator */}

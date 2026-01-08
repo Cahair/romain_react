@@ -21,7 +21,7 @@
         "subtitle": "Des solutions sur-mesure pour propulser votre business dans l'ère de l'automatisation intelligente.",
         "items": {
             "chatbot": {
-                "title": "Chatbots <highlight>Intelligents</highlight>",
+                "title": "<highlight>Chatbots</highlight> Intelligents",
                 "desc": "Support client 24/7 et qualification de leads automatisée via LLMs personnalisés.",
                 "features": [
                     "Support multilingue intelligent",
@@ -30,7 +30,7 @@
                 ]
             },
             "workflows": {
-                "title": "Workflows IA",
+                "title": "<highlight>Workflows</highlight> IA",
                 "desc": "Automatisation complète de vos processus métiers avec Zapier, Make et scripts IA.",
                 "features": [
                     "Automatisation de processus complexes",
@@ -39,7 +39,7 @@
                 ]
             },
             "leadgen": {
-                "title": "Lead Gen IA",
+                "title": "<highlight>Lead Gen</highlight> IA",
                 "desc": "Prospection ultra-ciblée et personnalisée grâce à l'analyse prédictive.",
                 "features": [
                     "Scraping & enrichissement données",
@@ -48,7 +48,7 @@
                 ]
             },
             "data": {
-                "title": "Analyse Data",
+                "title": "Analyse <highlight>Data</highlight>",
                 "desc": "Transformez vos données brutes en insights actionnables pour piloter votre croissance.",
                 "features": [
                     "Visualisation de données",

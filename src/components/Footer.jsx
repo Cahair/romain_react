@@ -6,7 +6,7 @@ export default function Footer() {
     const { t } = useTranslation();
 
     return (
-        <footer id="contact" className="py-32 bg-background border-t border-white/5 relative overflow-hidden">
+        <footer id="contact" className="py-16 md:py-32 bg-background border-t border-white/5 relative overflow-hidden">
             {/* Top Glow Line */}
             <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary-neon/50 to-transparent" />
 

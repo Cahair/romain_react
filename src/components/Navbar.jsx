@@ -197,6 +197,7 @@ export default function Navbar() {
                                         onClick={() => setLocale(lang.code)}
                                         className={`px-3 py-2 rounded-lg text-sm font-mono uppercase ${locale === lang.code ? "bg-primary/20 text-primary-neon" : "text-muted-foreground hover:bg-white/5"}`}
                                     >
+                                        <span className="text-lg me-2">{lang.flag}</span>
                                         {lang.code}
                                     </button>
                                 ))}

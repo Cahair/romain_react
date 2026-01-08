@@ -15,12 +15,12 @@ export default function Storytelling() {
     const xMoveReverse = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
 
     return (
-        <section ref={containerRef} className="py-32 relative overflow-hidden bg-background">
+        <section ref={containerRef} className="py-16 md:py-32 relative overflow-hidden bg-background">
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-secondary-neon/20 rounded-full blur-[140px] pointer-events-none z-0" />
 
             <div className="container mx-auto px-4 relative z-10">
-                <div className="flex flex-col gap-24">
+                <div className="flex flex-col gap-16 md:gap-24">
 
                     {/* Part 1: Massive Title */}
                     <div className="relative">

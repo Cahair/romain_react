@@ -27,9 +27,9 @@ export default function ServicesPage() {
 
     useEffect(() => {
         const handleMouseMove = (e) => {
-            const { pageX, pageY } = e;
-            mouseX.set(pageX);
-            mouseY.set(pageY);
+            const { clientX, clientY } = e;
+            mouseX.set(clientX);
+            mouseY.set(clientY);
         };
 
         window.addEventListener("mousemove", handleMouseMove);
@@ -46,7 +46,10 @@ export default function ServicesPage() {
                 t("services.items.chatbot.features.1"),
                 t("services.items.chatbot.features.2")
             ],
-            tech: ["LLM", "RAG", "Python"]
+            tech: ["LLM", "RAG", "Python"],
+            highlightColor: "text-blue-400",
+            shadowColor: "drop-shadow-[0_0_35px_rgba(96,165,250,0.8)]",
+            glowColor: "bg-blue-500/40"
         },
         {
             icon: Zap,
@@ -57,7 +60,10 @@ export default function ServicesPage() {
                 t("services.items.workflows.features.1"),
                 t("services.items.workflows.features.2")
             ],
-            tech: ["n8n", "Make", "API"]
+            tech: ["n8n", "Make", "API"],
+            highlightColor: "text-purple-400",
+            shadowColor: "drop-shadow-[0_0_35px_rgba(192,132,252,0.8)]",
+            glowColor: "bg-purple-500/40"
         },
         {
             icon: Target,
@@ -68,7 +74,10 @@ export default function ServicesPage() {
                 t("services.items.leadgen.features.1"),
                 t("services.items.leadgen.features.2")
             ],
-            tech: ["Scraping", "Enrichment", "CRM"]
+            tech: ["Scraping", "Enrichment", "CRM"],
+            highlightColor: "text-pink-400",
+            shadowColor: "drop-shadow-[0_0_35px_rgba(244,114,182,0.8)]",
+            glowColor: "bg-pink-500/40"
         },
         {
             icon: Database,
@@ -79,7 +88,10 @@ export default function ServicesPage() {
                 "Visualization",
                 "Insights"
             ],
-            tech: ["SQL", "Pandas", "PowerBI"]
+            tech: ["SQL", "Pandas", "PowerBI"],
+            highlightColor: "text-emerald-400",
+            shadowColor: "drop-shadow-[0_0_35px_rgba(52,211,153,0.8)]",
+            glowColor: "bg-emerald-500/40"
         }
     ];
 
@@ -181,7 +193,7 @@ export default function ServicesPage() {
 
                     {/* Services Grid with Stagger */}
                     <motion.div
-                        className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-32"
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12"
                         variants={containerVariants}
                         initial="hidden"
                         whileInView="visible"
@@ -193,7 +205,7 @@ export default function ServicesPage() {
                                 <motion.div
                                     key={index}
                                     variants={itemVariants}
-                                    className="group relative min-h-[400px] bg-white/[0.02] border border-white/10 backdrop-blur-md p-8 md:p-12 overflow-hidden hover:bg-white/[0.04] transition-colors duration-500 hover:border-primary-neon/30"
+                                    className="group relative min-h-[320px] bg-white/[0.02] border border-white/10 backdrop-blur-md p-6 overflow-hidden hover:bg-white/[0.04] transition-colors duration-500 hover:border-primary-neon/30"
                                 >
                                     {/* Hover Gradient */}
                                     <div className="absolute inset-0 bg-gradient-to-br from-primary-neon/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -205,7 +217,7 @@ export default function ServicesPage() {
                                         whileHover={{ scale: 1.1, rotate: -10 }}
                                         transition={{ duration: 0.5 }}
                                     >
-                                        <Icon size={300} strokeWidth={1} />
+                                        <Icon size={180} strokeWidth={1} />
                                     </motion.div>
 
                                     {/* Content */}
@@ -214,11 +226,27 @@ export default function ServicesPage() {
                                             <div className="w-16 h-16 bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-primary-neon/50 group-hover:scale-110 transition-all duration-300">
                                                 <Icon className="w-8 h-8 text-white group-hover:text-primary-neon transition-colors" />
                                             </div>
-                                            <span className="font-mono text-white/20 text-4xl font-bold">0{index + 1}</span>
+                                            <span className="font-mono text-white/20 text-2xl font-bold">0{index + 1}</span>
                                         </div>
 
-                                        <h2 className="font-display text-3xl md:text-4xl uppercase text-white mb-6 group-hover:text-primary-neon transition-colors duration-300 group-hover:translate-x-2 transform">
-                                            {service.title}
+                                        <h2 className="font-display text-xl md:text-2xl uppercase text-white mb-4 group-hover:text-primary-neon transition-colors duration-300 group-hover:translate-x-2 transform">
+                                            {/* Parse title for highlight tags */}
+                                            {(() => {
+                                                const parts = service.title.split(/(<highlight>.*?<\/highlight>)/);
+                                                return parts.map((part, index) => {
+                                                    if (part.startsWith('<highlight>') && part.endsWith('</highlight>')) {
+                                                        const content = part.replace(/<\/?highlight>/g, '');
+                                                        return (
+                                                            <span key={index} className={`relative inline-block ${service.highlightColor} ${service.shadowColor} mx-2`}>
+                                                                {content}
+                                                                {/* Back glow */}
+                                                                <span className={`absolute -inset-4 ${service.glowColor} blur-3xl opacity-60 -z-10 animate-pulse-slow pointer-events-none`} />
+                                                            </span>
+                                                        );
+                                                    }
+                                                    return part;
+                                                });
+                                            })()}
                                         </h2>
 
                                         <p className="text-muted-foreground font-light leading-relaxed mb-8 flex-grow group-hover:text-gray-300 transition-colors">

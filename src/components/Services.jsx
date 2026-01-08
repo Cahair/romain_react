@@ -3,12 +3,13 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 import { MessageSquare, Zap, Target, Database, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useTranslation } from "./LanguageProvider";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export default function Services() {
     const { t } = useTranslation();
+    const sectionRef = useRef(null);
 
-    // Mouse follower for Aurora effect (duplicated from Hero for consistency)
+    // Mouse follower for Aurora effect
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
 
@@ -18,9 +19,11 @@ export default function Services() {
 
     useEffect(() => {
         const handleMouseMove = (e) => {
-            const { pageX, pageY } = e;
-            mouseX.set(pageX);
-            mouseY.set(pageY);
+            if (!sectionRef.current) return;
+            const { clientX, clientY } = e;
+            const rect = sectionRef.current.getBoundingClientRect();
+            mouseX.set(clientX - rect.left);
+            mouseY.set(clientY - rect.top);
         };
 
         window.addEventListener("mousemove", handleMouseMove);
@@ -33,33 +36,45 @@ export default function Services() {
             desc: t("services.items.chatbot.desc"),
             icon: MessageSquare,
             gradient: "from-primary to-primary-neon",
-            delay: 0
+            delay: 0,
+            highlightColor: "text-blue-400",
+            shadowColor: "drop-shadow-[0_0_35px_rgba(96,165,250,0.8)]",
+            glowColor: "bg-blue-500/40"
         },
         {
             title: t("services.items.workflows.title"),
             desc: t("services.items.workflows.desc"),
             icon: Zap,
             gradient: "from-secondary to-secondary-neon",
-            delay: 0.1
+            delay: 0.1,
+            highlightColor: "text-purple-400",
+            shadowColor: "drop-shadow-[0_0_35px_rgba(192,132,252,0.8)]",
+            glowColor: "bg-purple-500/40"
         },
         {
             title: t("services.items.leadgen.title"),
             desc: t("services.items.leadgen.desc"),
             icon: Target,
             gradient: "from-pink-500 to-rose-500",
-            delay: 0.2
+            delay: 0.2,
+            highlightColor: "text-pink-400",
+            shadowColor: "drop-shadow-[0_0_35px_rgba(244,114,182,0.8)]",
+            glowColor: "bg-pink-500/40"
         },
         {
             title: t("services.items.data.title"),
             desc: t("services.items.data.desc"),
             icon: Database,
             gradient: "from-emerald-400 to-cyan-500",
-            delay: 0.3
+            delay: 0.3,
+            highlightColor: "text-emerald-400",
+            shadowColor: "drop-shadow-[0_0_35px_rgba(52,211,153,0.8)]",
+            glowColor: "bg-emerald-500/40"
         }
     ];
 
     return (
-        <section id="services" className="py-32 bg-background relative overflow-hidden">
+        <section ref={sectionRef} id="services" className="py-16 md:py-32 bg-background relative overflow-hidden">
             {/* Living Grid Background */}
             <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
                 <div
@@ -148,10 +163,10 @@ export default function Services() {
                                                 if (part.startsWith('<highlight>') && part.endsWith('</highlight>')) {
                                                     const content = part.replace(/<\/?highlight>/g, '');
                                                     return (
-                                                        <span key={index} className="relative inline-block text-blue-500 drop-shadow-[0_0_35px_rgba(59,130,246,0.8)] mx-1">
+                                                        <span key={index} className={`relative inline-block ${service.highlightColor} ${service.shadowColor} mx-1`}>
                                                             {content}
                                                             {/* Back glow */}
-                                                            <span className="absolute -inset-4 bg-blue-500/40 blur-3xl opacity-60 -z-10 animate-pulse-slow pointer-events-none" />
+                                                            <span className={`absolute -inset-4 ${service.glowColor} blur-3xl opacity-60 -z-10 animate-pulse-slow pointer-events-none`} />
                                                         </span>
                                                     );
                                                 }

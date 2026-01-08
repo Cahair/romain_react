@@ -1,51 +1,140 @@
 "use client";
-import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
-import { ArrowDown, Briefcase, GraduationCap, Code, Cpu, Globe, Zap, Database, Terminal, Factory } from "lucide-react";
+import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
+import { ArrowDown, Briefcase, GraduationCap, Code, Cpu, Globe, Zap, Database, Terminal, Factory, ChevronDown, Calendar, MapPin } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useTranslation } from "@/components/LanguageProvider";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const TimelineItem = ({ year, title, subtitle, description, isLast, icon: Icon }) => (
-    <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        className="relative pl-12 pb-16 last:pb-0 group"
-    >
-        {/* Timeline Line */}
-        {!isLast && (
-            <div className="absolute left-[11px] top-8 bottom-0 w-[1px] bg-gradient-to-b from-primary-neon/50 to-transparent" />
-        )}
+const InteractiveTimelineItem = ({ year, title, subtitle, description, isLast, icon: Icon, index }) => {
+    const [isExpanded, setIsExpanded] = useState(false);
+    const itemRef = useRef(null);
 
-        {/* Timeline Dot */}
-        <div className="absolute left-0 top-2 w-6 h-6 rounded-none bg-background border border-primary-neon flex items-center justify-center z-10 group-hover:scale-110 transition-transform duration-300 shadow-[0_0_10px_rgba(0,240,255,0.3)]">
-            <div className="w-2 h-2 bg-primary-neon" />
-        </div>
+    return (
+        <motion.div
+            ref={itemRef}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            className="relative pl-8 md:pl-12 pb-12 last:pb-0 group"
+        >
+            {/* Timeline Line - Animated Gradient */}
+            {!isLast && (
+                <div className="absolute left-[11px] top-8 bottom-0 w-[2px]">
+                    <div className="w-full h-full bg-white/5 mx-auto" />
+                    <motion.div
+                        initial={{ height: "0%" }}
+                        whileInView={{ height: "100%" }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.5, ease: "easeInOut", delay: 0.5 }}
+                        className="absolute top-0 left-0 w-full bg-gradient-to-b from-primary-neon via-secondary-neon to-transparent shadow-[0_0_10px_rgba(0,240,255,0.2)]"
+                    />
+                </div>
+            )}
 
-        {/* Card Content */}
-        <div className="relative backdrop-blur-md bg-white/5 border border-white/10 p-6 rounded-r-lg rounded-bl-lg hover:bg-white/10 hover:border-primary-neon/50 transition-all duration-300">
-            <div className="absolute -top-3 -right-3 text-4xl text-white/5 group-hover:text-primary-neon/10 transition-colors font-display font-bold select-none">
-                {year}
+            {/* Timeline Dot - Pulsing Node */}
+            <div className="absolute left-0 top-0 w-6 h-6 z-10">
+                <motion.div
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20, delay: index * 0.1 }}
+                    className="w-full h-full bg-background border border-primary-neon flex items-center justify-center relative shadow-[0_0_15px_rgba(0,240,255,0.4)] group-hover:shadow-[0_0_25px_rgba(0,240,255,0.6)] transition-shadow duration-500"
+                >
+                    <div className="w-2 h-2 bg-primary-neon animate-pulse-slow" />
+                </motion.div>
             </div>
 
-            <div className="flex items-center gap-3 mb-2">
-                <span className="font-mono text-xs text-primary-neon tracking-widest uppercase">[{year}]</span>
-                {Icon && <Icon className="w-4 h-4 text-muted-foreground group-hover:text-primary-neon transition-colors" />}
-            </div>
+            {/* Card Content - Glassmorphic Accordion */}
+            <motion.div
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="relative backdrop-blur-md bg-white/[0.03] border border-white/10 hover:border-primary-neon/40 transition-all duration-300 rounded-xl overflow-hidden cursor-pointer group/card"
+            >
+                {/* Header Section */}
+                <div className="p-6 relative z-10">
+                    <div className="flex justify-between items-start gap-4">
+                        <div className="flex-grow">
+                            {/* Year Badge */}
+                            <div className="flex items-center gap-3 mb-3">
+                                <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-primary-neon/10 border border-primary-neon/20 text-xs font-mono text-primary-neon tracking-wider uppercase">
+                                    <Calendar className="w-3 h-3" />
+                                    {year}
+                                </span>
+                                {Icon && <Icon className="w-4 h-4 text-muted-foreground group-hover/card:text-secondary-neon transition-colors" />}
+                            </div>
 
-            <h3 className="font-display font-bold text-2xl text-white mb-1 tracking-wide uppercase">
-                {title}
-            </h3>
-            <div className="text-sm font-mono text-gray-400 mb-4 uppercase tracking-wider">
-                // {subtitle}
-            </div>
-            <p className="text-gray-400 text-sm leading-relaxed font-light">
-                {description}
-            </p>
-        </div>
-    </motion.div>
-);
+                            {/* Title */}
+                            <h3 className="font-display font-bold text-xl md:text-2xl text-white mb-1 group-hover/card:text-primary-neon transition-colors duration-300">
+                                {title}
+                            </h3>
+
+                            {/* Subtitle/Company */}
+                            <div className="text-sm font-mono text-gray-400 uppercase tracking-widest flex items-center gap-2">
+                                <span className="w-2 h-[1px] bg-primary-neon"></span>
+                                {subtitle}
+                            </div>
+                        </div>
+
+                        {/* Expand Icon */}
+                        <motion.div
+                            animate={{ rotate: isExpanded ? 180 : 0 }}
+                            className="bg-white/5 p-2 rounded-full text-muted-foreground group-hover/card:text-white group-hover/card:bg-white/10 transition-colors"
+                        >
+                            <ChevronDown className="w-5 h-5" />
+                        </motion.div>
+                    </div>
+
+                    {/* Short Summary (Visible when collapsed) */}
+                    {!isExpanded && description && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="mt-4 text-sm text-gray-500 line-clamp-2 font-light"
+                        >
+                            {typeof description === 'string' ? description.split('.')[0] : ""} .
+                        </motion.div>
+                    )}
+                </div>
+
+                {/* Expanded Content */}
+                <AnimatePresence>
+                    {isExpanded && (
+                        <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                        >
+                            <div className="px-6 pb-6 pt-0 border-t border-white/5 mt-2">
+                                <motion.p
+                                    initial={{ y: 10, opacity: 0 }}
+                                    animate={{ y: 0, opacity: 1 }}
+                                    transition={{ delay: 0.1 }}
+                                    className="text-gray-400 text-sm leading-relaxed font-light mt-4"
+                                >
+                                    {description}
+                                </motion.p>
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ delay: 0.2 }}
+                                    className="mt-4 flex gap-2"
+                                >
+                                    <span className="text-[10px] uppercase tracking-widest text-white/20 font-mono">More details...</span>
+                                </motion.div>
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+
+                {/* Decorative Hover Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-neon/5 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 pointer-events-none" />
+            </motion.div>
+        </motion.div>
+    );
+};
 
 const SkillCard = ({ title, icon: Icon, skills, delay }) => (
     <motion.div
@@ -163,7 +252,7 @@ export default function AboutPage() {
                                 // {t("about.titleHighlight1")}
                             </motion.span>
 
-                            <h1 className="font-display font-bold text-6xl md:text-8xl uppercase leading-[0.85] tracking-tighter text-foreground mb-8">
+                            <h1 className="font-display font-bold text-5xl md:text-8xl uppercase leading-[0.85] tracking-tighter text-foreground mb-8">
                                 <motion.span
                                     initial={{ filter: "blur(20px)", opacity: 0, scale: 1.1 }}
                                     animate={{ filter: "blur(0px)", opacity: 1, scale: 1 }}
@@ -276,7 +365,7 @@ export default function AboutPage() {
 
             {/* Timeline Layout */}
             <div className="container mx-auto px-4 pb-32 max-w-6xl relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20">
 
                     {/* LEFT COLUMN: EXPERIENCE */}
                     <div>
@@ -290,45 +379,20 @@ export default function AboutPage() {
                             {t("about.cv.experience.title")}
                         </motion.h2>
 
-                        {/* Timeline Items */}
-                        <div className="ml-2">
-                            {experiences[0] && (
-                                <TimelineItem
-                                    year={experiences[0].year}
-                                    title="Founder & Architect"
-                                    subtitle="Kantzer.ai"
-                                    description={experiences[0].description}
-                                    icon={Cpu}
+                        {/* Interactive Timeline Items */}
+                        <div className="ml-2 border-l border-white/5 pl-2">
+                            {experiences.map((exp, index) => (
+                                <InteractiveTimelineItem
+                                    key={index}
+                                    index={index}
+                                    year={exp.year}
+                                    title={exp.role}
+                                    subtitle={exp.company}
+                                    description={exp.description}
+                                    icon={index === 0 ? Cpu : index === 1 ? Factory : index === 2 ? Globe : Zap}
+                                    isLast={index === experiences.length - 1}
                                 />
-                            )}
-                            {experiences[1] && (
-                                <TimelineItem
-                                    year={experiences[1].year}
-                                    title="Apprentice Engineer"
-                                    subtitle="ERAS"
-                                    description={experiences[1].description}
-                                    icon={Factory}
-                                />
-                            )}
-                            {experiences[2] && (
-                                <TimelineItem
-                                    year={experiences[2].year}
-                                    title="Freelance Dev"
-                                    subtitle="Independent"
-                                    description={experiences[2].description}
-                                    icon={Globe}
-                                />
-                            )}
-                            {experiences[3] && (
-                                <TimelineItem
-                                    year={experiences[3].year}
-                                    title="Automation Appr."
-                                    subtitle="Clemessy"
-                                    description={experiences[3].description}
-                                    icon={Zap}
-                                    isLast={true}
-                                />
-                            )}
+                            ))}
                         </div>
                     </div>
 
@@ -347,26 +411,19 @@ export default function AboutPage() {
                                 {t("about.cv.education.title")}
                             </motion.h2>
 
-                            <div className="ml-2">
-                                {education[0] && (
-                                    <TimelineItem
-                                        year={education[0].year}
-                                        title="Industrial Systems"
-                                        subtitle="Icam Strasbourg"
-                                        description={education[0].description}
+                            <div className="ml-2 border-l border-white/5 pl-2">
+                                {education.map((edu, index) => (
+                                    <InteractiveTimelineItem
+                                        key={index}
+                                        index={index}
+                                        year={edu.year}
+                                        title={edu.degree}
+                                        subtitle={edu.school}
+                                        description={edu.description}
                                         icon={GraduationCap}
+                                        isLast={index === education.length - 1}
                                     />
-                                )}
-                                {education[1] && (
-                                    <TimelineItem
-                                        year={education[1].year}
-                                        title="Automated Systems"
-                                        subtitle="IUT Haguenau"
-                                        description={education[1].description}
-                                        icon={Settings}
-                                        isLast={true}
-                                    />
-                                )}
+                                ))}
                             </div>
                         </div>
 
