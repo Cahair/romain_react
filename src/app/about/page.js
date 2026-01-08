@@ -215,7 +215,7 @@ export default function AboutPage() {
             <Navbar />
 
             {/* Hero Section */}
-            <section className="relative min-h-[90vh] flex flex-col justify-center py-20 overflow-hidden">
+            <section className="relative min-h-[90vh] flex flex-col justify-center py-12 md:py-20 overflow-hidden">
                 {/* Living Grid Background */}
                 <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
                     <div
@@ -234,7 +234,7 @@ export default function AboutPage() {
                 />
 
                 <div className="container mx-auto px-6 relative z-10 w-full">
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center">
 
                         {/* LEFT: Title - Titan Typography */}
                         <motion.div
@@ -256,7 +256,7 @@ export default function AboutPage() {
                                 initial={{ filter: "blur(20px)", opacity: 0, scale: 1.1 }}
                                 animate={{ filter: "blur(0px)", opacity: 1, scale: 1 }}
                                 transition={{ duration: 0.8, ease: "easeOut" }}
-                                className="block break-words hyphens-auto text-4xl md:text-8xl font-display font-bold uppercase leading-[0.85] tracking-tighter text-foreground mb-8"
+                                className="block break-words hyphens-auto text-5xl md:text-8xl font-display font-bold uppercase leading-[0.85] tracking-tighter text-foreground mb-6 md:mb-8"
                             >
                                 {t("about.title")}
                             </motion.h1>
@@ -266,7 +266,7 @@ export default function AboutPage() {
                             </span>
 
                             <motion.span
-                                className="block relative text-blue-500 drop-shadow-[0_0_35px_rgba(59,130,246,0.8)]"
+                                className="block relative text-blue-500 drop-shadow-[0_0_35px_rgba(59,130,246,0.8)] text-5xl md:text-8xl font-display font-bold uppercase leading-[0.85] tracking-tighter break-words hyphens-auto"
                                 initial={{ x: -100, opacity: 0 }}
                                 animate={{ x: 0, opacity: 1 }}
                                 transition={{ duration: 0.8, delay: 0.3, type: "spring", stiffness: 50 }}
@@ -284,7 +284,7 @@ export default function AboutPage() {
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.4, duration: 0.8 }}
                         >
-                            <div className="group relative backdrop-blur-md bg-white/[0.02] border border-white/10 p-8 hover:border-primary-neon/30 transition-all duration-500 w-full">
+                            <div className="group relative backdrop-blur-md bg-white/[0.02] border border-white/10 p-6 md:p-8 hover:border-primary-neon/30 transition-all duration-500 w-full">
                                 {/* Decorative Elements */}
                                 <div className="absolute top-0 left-0 w-2 h-2 bg-white/20" />
                                 <div className="absolute top-0 right-0 w-2 h-2 bg-white/20" />
@@ -293,7 +293,7 @@ export default function AboutPage() {
 
                                 <div className="flex flex-col items-center text-center">
                                     {/* Profile Image - Cyberpunk Border */}
-                                    <div className="relative shrink-0 w-40 h-40 mb-6">
+                                    <div className="relative shrink-0 w-32 h-32 md:w-40 md:h-40 mb-6">
                                         <div className="absolute inset-0 border-2 border-primary-neon/50 rounded-full animate-pulse-slow" />
                                         <div className="absolute inset-2 border border-white/20 rounded-full" />
                                         <div className="absolute inset-4 rounded-full overflow-hidden bg-black">
@@ -310,11 +310,11 @@ export default function AboutPage() {
 
                                     {/* Text Content */}
                                     <div>
-                                        <h2 className="font-display text-2xl uppercase mb-4 flex items-center justify-center gap-2">
+                                        <h2 className="font-display text-xl md:text-2xl uppercase mb-4 flex items-center justify-center gap-2">
                                             <span className="text-primary-neon">&gt;</span>
                                             {t("about.story.title")}
                                         </h2>
-                                        <p className="font-light text-base text-muted-foreground leading-relaxed font-mono mb-6">
+                                        <p className="font-light text-sm md:text-base text-muted-foreground leading-relaxed font-mono mb-6">
                                             {t("about.story.text")}
                                         </p>
                                         <div className="pt-6 border-t border-white/5">
@@ -335,7 +335,7 @@ export default function AboutPage() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1.2, duration: 1 }}
-                        className="flex flex-col items-center gap-4 mx-auto mt-16 group cursor-pointer"
+                        className="flex flex-col items-center gap-4 mx-auto mt-12 md:mt-16 group cursor-pointer"
                     >
                         <span className="text-[10px] font-mono tracking-[0.3em] uppercase text-muted-foreground group-hover:text-primary-neon transition-colors mb-2">
                             {t("about.cv.button")}

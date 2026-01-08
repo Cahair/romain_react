@@ -261,7 +261,12 @@ select option:checked {
   background-color: #1e293b;
 }
 
-html.light select option:hover,
 html.light select option:checked {
   background-color: #e2e8f0;
+}
+
+/* Hide Next.js Dev Toolbar (N icon) if config doesn't catch it immediately */
+nextjs-portal,
+#nextjs-dev-tools-overlay {
+  display: none !important;
 }
