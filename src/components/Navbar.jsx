@@ -154,7 +154,7 @@ export default function Navbar() {
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
-                        className="absolute top-24 left-6 right-6 bg-[#0a0a0a]/95 backdrop-blur-xl border border-white/10 rounded-3xl p-8 flex flex-col gap-6 md:hidden shadow-2xl z-40"
+                        className="absolute top-20 left-4 right-4 bg-[#0a0a0a]/95 backdrop-blur-xl border border-white/10 rounded-3xl p-6 flex flex-col gap-6 md:hidden shadow-2xl z-50"
                     >
                         {navItems.map((item) => (
                             <Link

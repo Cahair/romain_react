@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform, useMotionValue, useSpring } from "fram
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { useTranslation } from "./LanguageProvider";
+import AICore from "./AICore";
 
 export default function Hero() {
     const { t } = useTranslation();
@@ -31,7 +32,7 @@ export default function Hero() {
     }, [mouseX, mouseY]);
 
     return (
-        <section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden bg-background">
+        <section className="relative h-screen min-h-[100dvh] flex items-center justify-center overflow-hidden bg-background">
             {/* Living Grid Background */}
             <div className="absolute inset-0 z-0 opacity-20">
                 <div
@@ -45,12 +46,12 @@ export default function Hero() {
 
             {/* Aurora Effect */}
             <motion.div
-                className="absolute z-0 w-[600px] h-[600px] bg-secondary/40 rounded-full blur-[120px] pointer-events-none mix-blend-screen"
+                className="absolute z-0 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-secondary/40 rounded-full blur-[80px] md:blur-[120px] pointer-events-none mix-blend-screen"
                 style={{ x: springX, y: springY, translateX: "-50%", translateY: "-50%" }}
             />
 
 
-            <div className="container mx-auto px-4 relative z-10 flex flex-col items-center justify-center min-h-screen py-20">
+            <div className="container mx-auto px-4 relative z-10 flex flex-col items-center justify-center min-h-[100dvh] py-20">
 
                 {/* Titan Typography */}
                 <div className="relative w-full text-center flex flex-col items-center justify-center flex-grow">
@@ -58,7 +59,7 @@ export default function Hero() {
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 1, ease: "circOut" }}
-                        className="font-display font-bold text-6xl md:text-[12vw] leading-[1.1] md:leading-[0.85] tracking-tighter text-transparent select-none pt-20 md:pt-0"
+                        className="font-display font-bold text-4xl sm:text-6xl md:text-[12vw] leading-[1.1] md:leading-[0.85] tracking-tighter text-transparent select-none pt-20 md:pt-0"
                         style={{
                             WebkitTextStroke: '2px var(--text-stroke-color)',
                             // Removed mixBlendMode to ensure visibility in light mode
@@ -83,14 +84,29 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 1, duration: 0.8 }}
-                        className="mt-8 md:mt-12 backdrop-blur-sm bg-background/30 p-4 md:p-6 rounded-2xl border border-white/5 inline-block max-w-[90vw] md:max-w-xl"
+                        className="mt-8 md:mt-12 w-full max-w-5xl mx-auto"
                     >
-                        <h2 className="text-lg md:text-2xl font-light tracking-wide text-foreground/90 font-mono">
-                            {t("hero.highlightTitle")}
-                        </h2>
-                        <p className="text-muted-foreground mt-2 text-sm md:text-base max-w-lg mx-auto whitespace-pre-line">
-                            {t("hero.description")}
-                        </p>
+                        <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8">
+                            {/* Texte à gauche */}
+                            <div className="backdrop-blur-sm bg-background/30 p-4 md:p-6 rounded-2xl border border-white/5 flex-1 max-w-xl">
+                                <h2 className="text-lg md:text-2xl font-light tracking-wide text-foreground/90 font-mono">
+                                    {t("hero.highlightTitle")}
+                                </h2>
+                                <p className="text-muted-foreground mt-2 text-sm md:text-base whitespace-pre-line">
+                                    {t("hero.description")}
+                                </p>
+                            </div>
+
+                            {/* Animation AI Core à droite */}
+                            <motion.div
+                                initial={{ opacity: 0, scale: 0.8 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ delay: 1.3, duration: 0.8 }}
+                                className="flex-shrink-0"
+                            >
+                                <AICore size="default" />
+                            </motion.div>
+                        </div>
                     </motion.div>
 
                     {/* Terminal Prompt CTA - Flowing naturally */}

@@ -34,7 +34,7 @@ export default function Storytelling() {
                              // {t("storytelling.badge")}
                         </motion.span>
 
-                        <h2 className="font-display font-bold text-3xl sm:text-5xl md:text-7xl lg:text-8xl leading-[0.9] text-foreground uppercase">
+                        <h2 className="font-display font-bold text-3xl sm:text-5xl md:text-6xl lg:text-8xl leading-[0.9] text-foreground uppercase break-words">
                             <motion.div style={{ x: xMove }} className="whitespace-normal md:whitespace-nowrap">
                                 {t("storytelling.title")} <span className="text-transparent stroke-text">{t("storytelling.titleHighlight")}</span>
                             </motion.div>

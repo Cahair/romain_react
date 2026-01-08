@@ -6,6 +6,37 @@ import Footer from "@/components/Footer";
 import { useTranslation } from "@/components/LanguageProvider";
 import { useEffect, useRef, useState } from "react";
 
+const ContinuousPipeline = () => (
+    <div className="absolute left-0 top-2 bottom-2 w-[2px] z-0 pointer-events-none">
+        {/* Static Dashed Line */}
+        <div className="w-full h-full border-l-2 border-dashed border-white/10 mask-gradient-to-b" />
+
+        {/* Continuous Neon Pulse */}
+        <div className="absolute inset-0 overflow-hidden">
+            <motion.div
+                initial={{ top: "-20%" }}
+                animate={{ top: "120%" }}
+                transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "linear",
+                }}
+                className="absolute left-1/2 -translate-x-1/2 w-[4px] h-[200px] bg-gradient-to-b from-transparent via-[#00f0ff] to-transparent blur-md opacity-80"
+            />
+            <motion.div
+                initial={{ top: "-20%" }}
+                animate={{ top: "120%" }}
+                transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "linear",
+                }}
+                className="absolute left-1/2 -translate-x-1/2 w-[2px] h-[200px] bg-gradient-to-b from-transparent via-white to-transparent opacity-90"
+            />
+        </div>
+    </div>
+);
+
 const InteractiveTimelineItem = ({ year, title, subtitle, description, isLast, icon: Icon, index }) => {
     const [isExpanded, setIsExpanded] = useState(false);
     const itemRef = useRef(null);
@@ -19,30 +50,30 @@ const InteractiveTimelineItem = ({ year, title, subtitle, description, isLast, i
             transition={{ duration: 0.6, delay: index * 0.1 }}
             className="relative pl-8 md:pl-12 pb-12 last:pb-0 group"
         >
-            {/* Timeline Line - Animated Gradient */}
-            {!isLast && (
-                <div className="absolute left-[11px] top-8 bottom-0 w-[2px]">
-                    <div className="w-full h-full bg-white/5 mx-auto" />
-                    <motion.div
-                        initial={{ height: "0%" }}
-                        whileInView={{ height: "100%" }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1.5, ease: "easeInOut", delay: 0.5 }}
-                        className="absolute top-0 left-0 w-full bg-gradient-to-b from-primary-neon via-secondary-neon to-transparent shadow-[0_0_10px_rgba(0,240,255,0.2)]"
-                    />
-                </div>
-            )}
-
-            {/* Timeline Dot - Pulsing Node */}
+            {/* Pipeline Node */}
             <div className="absolute left-0 top-0 w-6 h-6 z-10">
                 <motion.div
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
+                    initial={{ scale: 0, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
                     viewport={{ once: true }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20, delay: index * 0.1 }}
-                    className="w-full h-full bg-background border border-primary-neon flex items-center justify-center relative shadow-[0_0_15px_rgba(0,240,255,0.4)] group-hover:shadow-[0_0_25px_rgba(0,240,255,0.6)] transition-shadow duration-500"
+                    transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
+                    className="w-full h-full bg-[#050505] border border-[#00f0ff]/50 rounded-full flex items-center justify-center relative shadow-[0_0_10px_rgba(0,240,255,0.3)] z-20"
                 >
-                    <div className="w-2 h-2 bg-primary-neon animate-pulse-slow" />
+                    <div className="w-1.5 h-1.5 bg-white rounded-full shadow-[0_0_5px_white]" />
+                    {/* Subtle Breathing Glow */}
+                    <motion.div
+                        animate={{
+                            scale: [1, 1.3, 1],
+                            opacity: [0.3, 0.6, 0.3],
+                            boxShadow: [
+                                "0 0 0px rgba(0,240,255,0)",
+                                "0 0 15px rgba(0,240,255,0.3)",
+                                "0 0 0px rgba(0,240,255,0)"
+                            ]
+                        }}
+                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute inset-0 rounded-full border border-[#00f0ff]/30"
+                    />
                 </motion.div>
             </div>
 
@@ -378,7 +409,8 @@ export default function AboutPage() {
                         </motion.h2>
 
                         {/* Interactive Timeline Items */}
-                        <div className="ml-2 border-l border-white/5 pl-2">
+                        <div className="ml-2 border-l border-white/5 pl-2 relative">
+                            <ContinuousPipeline />
                             {experiences.map((exp, index) => (
                                 <InteractiveTimelineItem
                                     key={index}
@@ -409,7 +441,8 @@ export default function AboutPage() {
                                 {t("about.cv.education.title")}
                             </motion.h2>
 
-                            <div className="ml-2 border-l border-white/5 pl-2">
+                            <div className="ml-2 border-l border-white/5 pl-2 relative">
+                                <ContinuousPipeline />
                                 {education.map((edu, index) => (
                                     <InteractiveTimelineItem
                                         key={index}
