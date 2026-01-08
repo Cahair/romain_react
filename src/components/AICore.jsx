@@ -6,22 +6,22 @@ import { motion } from "framer-motion";
  * Utilise les couleurs cyan néon pour s'harmoniser avec le design du site
  */
 export default function AICore({ size = "default" }) {
-    // Tailles adaptatives - AGRANDIES pour meilleure visibilité
+    // Tailles adaptatives - Optimisées pour visibilité ET landing page
     const sizeClasses = {
         small: {
-            container: "w-48 h-48 md:w-64 md:h-64",
-            core: "w-24 h-24 md:w-32 md:h-32",
-            particle: "w-16 h-16 md:w-20 md:h-20"
+            container: "w-40 h-40 md:w-48 md:h-48",
+            core: "w-20 h-20 md:w-24 md:h-24",
+            particle: "w-12 h-12 md:w-16 md:h-16"
         },
         default: {
-            container: "w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96",
-            core: "w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48",
-            particle: "w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28"
+            container: "w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64",
+            core: "w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32",
+            particle: "w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24"
         },
         large: {
-            container: "w-80 h-80 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem]",
-            core: "w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56",
-            particle: "w-28 h-28 md:w-32 md:h-32 lg:w-36 lg:h-36"
+            container: "w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80",
+            core: "w-32 h-32 md:w-36 md:h-36 lg:w-40 lg:h-40",
+            particle: "w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28"
         }
     };
 
