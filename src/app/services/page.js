@@ -159,7 +159,7 @@ export default function ServicesPage() {
                                 </span>
                             </motion.div>
 
-                            <h1 className="font-display font-bold text-7xl md:text-9xl uppercase leading-[0.9] text-foreground mb-12">
+                            <h1 className="font-display font-bold text-5xl md:text-9xl uppercase leading-[0.9] text-foreground mb-12 break-words hyphens-auto text-left">
                                 <motion.span
                                     initial={{ filter: "blur(20px)", opacity: 0, scale: 1.1 }}
                                     animate={{ filter: "blur(0px)", opacity: 1, scale: 1 }}
@@ -169,7 +169,7 @@ export default function ServicesPage() {
                                     {t("services.title")}
                                 </motion.span>
                                 <motion.span
-                                    className="block relative text-blue-500 drop-shadow-[0_0_35px_rgba(59,130,246,0.8)]"
+                                    className="block relative text-blue-500 drop-shadow-[0_0_35px_rgba(59,130,246,0.8)] decoration-clone"
                                     initial={{ x: -100, opacity: 0 }}
                                     animate={{ x: 0, opacity: 1 }}
                                     transition={{ duration: 0.8, delay: 0.2, type: "spring", stiffness: 50 }}
@@ -184,7 +184,7 @@ export default function ServicesPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.6 }}
-                                className="text-2xl md:text-3xl text-muted-foreground font-light max-w-3xl leading-relaxed border-l-4 border-primary-neon pl-8"
+                                className="text-2xl md:text-3xl text-muted-foreground font-light max-w-3xl leading-relaxed text-left border-l-4 border-primary-neon pl-8"
                             >
                                 {t("services.subtitle")}
                             </motion.p>

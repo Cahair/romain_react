@@ -105,7 +105,7 @@ export default function Services() {
                         <span className="text-primary-neon font-mono text-xs tracking-[0.3em] uppercase mb-4 block">
                             // {t("services.badge")}
                         </span>
-                        <h2 className="font-display font-bold text-4xl md:text-7xl uppercase text-foreground leading-none break-words hyphens-auto">
+                        <h2 className="font-display font-bold text-2xl md:text-7xl uppercase text-foreground leading-none break-words hyphens-auto">
                             {t("services.title")} <br />
                             <span className="relative inline text-blue-500 drop-shadow-[0_0_35px_rgba(59,130,246,0.8)] break-words hyphens-auto decoration-clone">
                                 {t("services.titleHighlight")}

@@ -16,11 +16,11 @@
     "services": {
         "badge": "KI-Lösungen",
         "title": "UNSERE DIENSTLEISTUNGEN",
-        "titleHighlight": "<highlight>INTELLIGENT</highlight>",
+        "titleHighlight": "INTELLIGENT",
         "subtitle": "Maßgeschneiderte Lösungen, um Ihr Unternehmen in das Zeitalter der intelligenten Automatisierung zu treiben.",
         "items": {
             "chatbot": {
-                "title": "Intelligente <highlight>Chatbots</highlight>",
+                "title": "Intelligente Chatbots",
                 "desc": "24/7 Kundensupport und automatisierte Lead-Qualifizierung über benutzerdefinierte LLMs.",
                 "features": [
                     "Intelligenter mehrsprachiger Support",
@@ -29,7 +29,7 @@
                 ]
             },
             "workflows": {
-                "title": "KI-<highlight>Workflows</highlight>",
+                "title": "KI-Workflows",
                 "desc": "Vollständige Automatisierung Ihrer Geschäftsprozesse mit Zapier, Make und KI-Skripten.",
                 "features": [
                     "Automatisierung komplexer Prozesse",
@@ -38,7 +38,7 @@
                 ]
             },
             "leadgen": {
-                "title": "KI <highlight>Lead Gen</highlight>",
+                "title": "KI Lead Gen",
                 "desc": "Ultra-gezielte und personalisierte Akquise durch prädiktive Analyse.",
                 "features": [
                     "Scraping & Datenanreicherung",
@@ -47,7 +47,7 @@
                 ]
             },
             "data": {
-                "title": "<highlight>Daten</highlight>analyse",
+                "title": "Datenanalyse",
                 "desc": "Verwandeln Sie Ihre Rohdaten in umsetzbare Erkenntnisse, um Ihr Wachstum voranzutreiben.",
                 "features": [
                     "Datenvisualisierung",
