@@ -3,20 +3,16 @@
         "home": "Accueil",
         "services": "Services",
         "about": "À Propos",
+        "contact": "Contact",
         "audit": "AUDIT GRATUIT"
     },
     "hero": {
-        "line1": "Ne construisez pas",
-        "line2": "juste un site.",
-        "line3": "Construisez",
-        "typewriter": [
-            "un système intelligent.",
-            "une croissance automatisée.",
-            "un futur compétitif."
-        ],
-        "subtitle": "L'Agence AI qui automatise votre croissance et transforme vos opérations en un moteur de performance autonome.",
-        "cta1": "Auditer mon business",
-        "cta2": "Voir nos solutions"
+        "titleLine1": "AU-DELÀ DES",
+        "titleLine2": "CHATBOTS",
+        "highlightTitle": "Ingénierie IA sur-mesure.",
+        "description": "Agents autonomes. LLMs optimisés. RAG haute performance.\nL'excellence technique au service du ROI.",
+        "cta": "Start_Collaboration",
+        "scroll": "Scroll"
     },
     "services": {
         "badge": "Solutions IA",
@@ -62,7 +58,13 @@
             }
         },
         "discover": "DÉCOUVRIR",
-        "viewAll": "Voir tous nos services"
+        "viewAll": "Voir tous nos services",
+        "cta": {
+            "title": "PRÊT À",
+            "titleHighlight": "DÉCOLLER ?",
+            "subtitle": "Transformez votre business avec nos solutions d'automatisation.",
+            "button": "DISCUTER DE MON PROJET"
+        }
     },
     "about": {
         "title": "L'EXPERT",

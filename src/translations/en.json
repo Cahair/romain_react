@@ -3,20 +3,16 @@
         "home": "Home",
         "services": "Services",
         "about": "About",
+        "contact": "Contact",
         "audit": "FREE AUDIT"
     },
     "hero": {
-        "line1": "Don't just build",
-        "line2": "a website.",
-        "line3": "Build",
-        "typewriter": [
-            "an intelligent system.",
-            "automated growth.",
-            "a competitive future."
-        ],
-        "subtitle": "The AI Agency that automates your growth and transforms your operations into an autonomous performance engine.",
-        "cta1": "Audit my business",
-        "cta2": "View our solutions"
+        "titleLine1": "BEYOND",
+        "titleLine2": "CHATBOTS",
+        "highlightTitle": "Bespoke AI Engineering.",
+        "description": "Autonomous agents. Optimized LLMs. High-performance RAG.\nTechnical excellence serving ROI.",
+        "cta": "Start_Collaboration",
+        "scroll": "Scroll"
     },
     "services": {
         "badge": "AI Solutions",

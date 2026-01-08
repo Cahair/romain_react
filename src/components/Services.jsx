@@ -1,182 +1,168 @@
 "use client";
-import { motion } from "framer-motion";
-import { MessageSquare, Zap, Target, TrendingUp, ArrowRight } from "lucide-react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import { MessageSquare, Zap, Target, Database, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useTranslation } from "./LanguageProvider";
+import { useEffect } from "react";
 
 export default function Services() {
     const { t } = useTranslation();
+
+    // Mouse follower for Aurora effect (duplicated from Hero for consistency)
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
+
+    const springConfig = { damping: 25, stiffness: 700 };
+    const springX = useSpring(mouseX, springConfig);
+    const springY = useSpring(mouseY, springConfig);
+
+    useEffect(() => {
+        const handleMouseMove = (e) => {
+            const { pageX, pageY } = e;
+            mouseX.set(pageX);
+            mouseY.set(pageY);
+        };
+
+        window.addEventListener("mousemove", handleMouseMove);
+        return () => window.removeEventListener("mousemove", handleMouseMove);
+    }, [mouseX, mouseY]);
 
     const services = [
         {
             title: t("services.items.chatbot.title"),
             desc: t("services.items.chatbot.desc"),
             icon: MessageSquare,
-            color: "cyan",
-            gradient: "from-cyan-500 to-blue-500",
-            glow: "shadow-[0_0_30px_rgba(6,182,212,0.4)]",
-            size: "md:col-span-2 md:row-span-1",
-            id: "chatbot"
+            gradient: "from-primary to-primary-neon",
+            delay: 0
         },
         {
             title: t("services.items.workflows.title"),
             desc: t("services.items.workflows.desc"),
             icon: Zap,
-            color: "violet",
-            gradient: "from-violet-500 to-purple-500",
-            glow: "shadow-[0_0_30px_rgba(139,92,246,0.4)]",
-            size: "md:col-span-1 md:row-span-1",
-            id: "workflows"
+            gradient: "from-secondary to-secondary-neon",
+            delay: 0.1
         },
         {
             title: t("services.items.leadgen.title"),
             desc: t("services.items.leadgen.desc"),
             icon: Target,
-            color: "emerald",
-            gradient: "from-emerald-500 to-teal-500",
-            glow: "shadow-[0_0_30px_rgba(16,185,129,0.4)]",
-            size: "md:col-span-1 md:row-span-1",
-            id: "leadgen"
+            gradient: "from-pink-500 to-rose-500",
+            delay: 0.2
         },
         {
             title: t("services.items.data.title"),
             desc: t("services.items.data.desc"),
-            icon: TrendingUp,
-            color: "amber",
-            gradient: "from-amber-500 to-orange-500",
-            glow: "shadow-[0_0_30px_rgba(245,158,11,0.4)]",
-            size: "md:col-span-2 md:row-span-1",
-            id: "data"
-        },
+            icon: Database,
+            gradient: "from-emerald-400 to-cyan-500",
+            delay: 0.3
+        }
     ];
 
     return (
-        <section id="services" className="py-20 md:py-32 bg-background relative overflow-hidden">
-            {/* Circuit pattern background */}
-            <div className="absolute inset-0 opacity-[0.03]">
-                <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <pattern id="circuit" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-                            <path d="M0 50h40M60 50h40M50 0v40M50 60v40" stroke="currentColor" strokeWidth="0.5" fill="none" />
-                            <circle cx="50" cy="50" r="3" fill="currentColor" />
-                            <circle cx="0" cy="50" r="2" fill="currentColor" />
-                            <circle cx="100" cy="50" r="2" fill="currentColor" />
-                            <circle cx="50" cy="0" r="2" fill="currentColor" />
-                            <circle cx="50" cy="100" r="2" fill="currentColor" />
-                        </pattern>
-                    </defs>
-                    <rect width="100%" height="100%" fill="url(#circuit)" />
-                </svg>
+        <section id="services" className="py-32 bg-background relative overflow-hidden">
+            {/* Living Grid Background */}
+            <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+                <div
+                    className="absolute inset-0 bg-grid-pattern bg-[length:50px_50px]"
+                    style={{
+                        maskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)',
+                        WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)'
+                    }}
+                />
             </div>
 
-            {/* Gradient orbs */}
-            <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-[100px]" />
-            <div className="absolute bottom-20 right-10 w-72 h-72 bg-secondary/10 rounded-full blur-[100px]" />
+            {/* Aurora Effect */}
+            <motion.div
+                className="absolute z-0 w-[500px] h-[500px] bg-secondary/40 rounded-full blur-[120px] pointer-events-none mix-blend-screen"
+                style={{ x: springX, y: springY, translateX: "-50%", translateY: "-50%" }}
+            />
+            <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-primary-neon/30 rounded-full blur-[120px] pointer-events-none z-0" />
 
-            <div className="container mx-auto px-6 relative z-10">
-                {/* Section Header */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-16"
-                >
-                    <span className="inline-block px-4 py-2 rounded-full border border-primary/30 bg-primary/5 text-primary text-xs font-mono uppercase tracking-widest mb-6">
-                        {t("services.badge")}
-                    </span>
-                    <h2 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter mb-6 text-foreground">
-                        {t("services.title")}{" "}
-                        <span className="text-gradient">{t("services.titleHighlight")}</span>
-                    </h2>
-                    <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-                        {t("services.subtitle")}
-                    </p>
-                </motion.div>
+            <div className="container mx-auto px-4 relative z-10">
+                {/* Header */}
+                <div className="flex flex-col md:flex-row items-end justify-between mb-24 gap-8">
+                    <motion.div
+                        initial={{ opacity: 0, x: -50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                    >
+                        <span className="text-primary-neon font-mono text-xs tracking-[0.3em] uppercase mb-4 block">
+                            // {t("services.badge")}
+                        </span>
+                        <h2 className="font-display font-bold text-5xl md:text-7xl uppercase text-foreground leading-none">
+                            {t("services.title")} <br />
+                            <span className="relative inline-block text-blue-500 drop-shadow-[0_0_35px_rgba(59,130,246,0.8)]">
+                                {t("services.titleHighlight")}
+                                {/* Back glow */}
+                                <span className="absolute -inset-4 bg-blue-500/40 blur-3xl opacity-60 -z-10 animate-pulse-slow pointer-events-none" />
+                            </span>
+                        </h2>
+                    </motion.div>
 
-                {/* Cards Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                    <motion.div
+                        initial={{ opacity: 0, x: 50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        className="md:w-1/3 text-right"
+                    >
+                        <p className="text-muted-foreground leading-relaxed font-light">
+                            {t("services.subtitle")}
+                        </p>
+                    </motion.div>
+                </div>
+
+                {/* Bento Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {services.map((service, i) => {
-                        const IconComponent = service.icon;
+                        const Icon = service.icon;
+                        // Mosaic Layout (Zig-Zag): 
+                        // Row 1: [Large (2/3)] [Small (1/3)] = 2 items
+                        // Row 2: [Small (1/3)] [Large (2/3)] = 2 items
+                        const spanClass = i === 0 || i === 3 ? "md:col-span-2" : "md:col-span-1";
+
                         return (
                             <motion.div
-                                key={service.id}
-                                initial={{ opacity: 0, y: 30 }}
+                                key={i}
+                                initial={{ opacity: 0, y: 50 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
-                                transition={{ delay: i * 0.1, duration: 0.5 }}
-                                className={`group ${service.size}`}
+                                transition={{ delay: service.delay }}
+                                className={`${spanClass} group relative min-h-[320px] p-8 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 transition-all duration-500 overflow-hidden flex flex-col justify-between`}
                             >
-                                {/* Gradient Border Wrapper */}
-                                <div className={`relative p-[1px] rounded-3xl bg-gradient-to-br ${service.gradient} opacity-50 group-hover:opacity-100 transition-opacity duration-500`}>
-                                    {/* Card Inner */}
-                                    <div className={`relative bg-card rounded-3xl p-8 h-full min-h-[280px] flex flex-col overflow-hidden transition-all duration-500 shadow-lg group-hover:shadow-xl`}>
-                                        {/* Circuit lines decoration */}
-                                        <div className="absolute top-0 right-0 w-32 h-32 opacity-10 group-hover:opacity-20 transition-opacity">
-                                            <svg viewBox="0 0 100 100" className="w-full h-full">
-                                                <path d="M100 0 L100 30 L70 30 L70 70 L30 70" stroke="currentColor" strokeWidth="1" fill="none" className="text-foreground" />
-                                                <circle cx="30" cy="70" r="4" fill="currentColor" className="text-foreground" />
-                                            </svg>
-                                        </div>
+                                {/* Hover Glow */}
+                                <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-gradient-to-br ${service.gradient}`} />
+                                <div className="absolute -right-12 -top-12 opacity-5 group-hover:opacity-20 transition-opacity duration-500 rotate-12">
+                                    <Icon className="w-64 h-64" />
+                                </div>
 
-                                        {/* Content */}
-                                        <div className="flex-1">
-                                            {/* Icon with glow */}
-                                            <motion.div
-                                                whileHover={{ scale: 1.1, rotate: 5 }}
-                                                className={`mb-6 w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} p-[1px] transition-shadow duration-500`}
-                                            >
-                                                <div className="w-full h-full rounded-2xl bg-card flex items-center justify-center">
-                                                    <IconComponent className={`w-8 h-8 text-${service.color}-500`} />
-                                                </div>
-                                            </motion.div>
-
-                                            {/* Title */}
-                                            <h3 className="text-2xl md:text-3xl font-black mb-4 text-foreground tracking-tight">
-                                                {service.title}
-                                            </h3>
-
-                                            {/* Description */}
-                                            <p className="text-muted-foreground text-base leading-relaxed">
-                                                {service.desc}
-                                            </p>
-                                        </div>
-
-                                        {/* CTA Link */}
-                                        <Link
-                                            href="/services"
-                                            className={`mt-6 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-${service.color}-400 group-hover:text-${service.color}-300 transition-colors`}
-                                        >
-                                            <span className="relative">
-                                                {t("services.discover")}
-                                                <span className={`absolute bottom-0 left-0 w-0 h-[2px] bg-${service.color}-400 group-hover:w-full transition-all duration-300`} />
-                                            </span>
-                                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                        </Link>
-
-                                        {/* Hover gradient overlay */}
-                                        <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500 rounded-3xl pointer-events-none`} />
+                                {/* Content */}
+                                <div className="relative z-10">
+                                    <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-6 shadow-lg shadow-black/20 group-hover:scale-110 transition-transform duration-300`}>
+                                        <Icon className="w-6 h-6 text-white" />
                                     </div>
+                                    <h3 className="font-display font-bold text-2xl uppercase mb-3 text-foreground tracking-wide">
+                                        {service.title}
+                                    </h3>
+                                    <p className="text-muted-foreground font-mono text-sm leading-relaxed">
+                                        {service.desc}
+                                    </p>
+                                </div>
+
+                                <div className="pt-8 relative z-10">
+                                    <Link href="/services" className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-white/40 group-hover:text-primary-neon transition-colors">
+                                        <span>{t("services.discover")}</span>
+                                        <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                                    </Link>
+                                </div>
+
+                                {/* Decor corner */}
+                                <div className="absolute top-4 right-4 text-[10px] font-mono text-white/10 group-hover:text-primary-neon/50 transition-colors">
+                                    0{i + 1}
                                 </div>
                             </motion.div>
                         );
                     })}
                 </div>
-
-                {/* Bottom CTA */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center mt-16"
-                >
-                    <Link
-                        href="/services"
-                        className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-secondary rounded-full font-bold text-white hover:shadow-neon-cyan transition-all hover:scale-105 active:scale-95"
-                    >
-                        {t("services.viewAll")}
-                        <ArrowRight className="w-5 h-5" />
-                    </Link>
-                </motion.div>
             </div>
         </section>
     );

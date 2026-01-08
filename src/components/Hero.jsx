@@ -1,107 +1,127 @@
 "use client";
-import { motion } from "framer-motion";
-import { useEffect, useState, useMemo } from "react";
-import { ArrowRight } from "lucide-react";
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
+import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { useTranslation } from "./LanguageProvider";
 
 export default function Hero() {
-    const { t, locale } = useTranslation();
-    const [textIndex, setTextIndex] = useState(0);
-    const [displayText, setDisplayText] = useState("");
-    const [isDeleting, setIsDeleting] = useState(false);
+    const { t } = useTranslation();
+    const { scrollY } = useScroll();
+    const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+    const y2 = useTransform(scrollY, [0, 500], [0, -150]);
 
-    // Get typewriter texts from translations
-    const typewriterTexts = useMemo(() => {
-        const texts = t("hero.typewriter");
-        return Array.isArray(texts) ? texts : [
-            "un système intelligent.",
-            "une croissance automatisée.",
-            "un futur compétitif."
-        ];
-    }, [t, locale]);
+    // Mouse follower for Aurora effect
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
 
-    // Reset typewriter when language changes
-    useEffect(() => {
-        setTextIndex(0);
-        setDisplayText("");
-        setIsDeleting(false);
-    }, [locale]);
+    const springConfig = { damping: 25, stiffness: 700 };
+    const springX = useSpring(mouseX, springConfig);
+    const springY = useSpring(mouseY, springConfig);
 
     useEffect(() => {
-        const currentText = typewriterTexts[textIndex];
-        const speed = isDeleting ? 50 : 100;
+        const handleMouseMove = (e) => {
+            const { pageX, pageY } = e; // Use page coordinates to account for scroll
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
 
-        const timeout = setTimeout(() => {
-            if (!isDeleting && displayText === currentText) {
-                setTimeout(() => setIsDeleting(true), 2000);
-            } else if (isDeleting && displayText === "") {
-                setIsDeleting(false);
-                setTextIndex((prev) => (prev + 1) % typewriterTexts.length);
-            } else {
-                setDisplayText(
-                    isDeleting
-                        ? currentText.substring(0, displayText.length - 1)
-                        : currentText.substring(0, displayText.length + 1)
-                );
-            }
-        }, speed);
+            // Calculate percentage position needed for gradient/glow effects
+            mouseX.set(pageX);
+            mouseY.set(pageY);
+        };
 
-        return () => clearTimeout(timeout);
-    }, [displayText, isDeleting, textIndex, typewriterTexts]);
+        window.addEventListener("mousemove", handleMouseMove);
+        return () => window.removeEventListener("mousemove", handleMouseMove);
+    }, [mouseX, mouseY]);
 
     return (
-        <section className="relative min-h-screen flex items-center justify-center pt-24 md:pt-32 pb-12 md:pb-20 overflow-hidden">
-            {/* Background Effect - smaller on mobile */}
-            <div className="absolute inset-0 z-0">
-                <div className="absolute top-1/4 left-1/4 w-48 md:w-96 h-48 md:h-96 bg-primary/20 rounded-full blur-[80px] md:blur-[120px] animate-pulse" />
-                <div className="absolute bottom-1/4 right-1/4 w-48 md:w-96 h-48 md:h-96 bg-secondary/20 rounded-full blur-[80px] md:blur-[120px] animate-pulse delay-1000" />
+        <section className="relative h-screen min-h-[800px] flex items-center justify-center overflow-hidden bg-background">
+            {/* Living Grid Background */}
+            <div className="absolute inset-0 z-0 opacity-20">
+                <div
+                    className="absolute inset-0 bg-grid-pattern bg-[length:50px_50px]"
+                    style={{
+                        maskImage: 'linear-gradient(to bottom, black 40%, transparent 100%)',
+                        WebkitMaskImage: 'linear-gradient(to bottom, black 40%, transparent 100%)'
+                    }}
+                />
             </div>
 
-            <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                >
-                    {/* Optimized title for mobile */}
-                    <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-black tracking-tighter mb-4 md:mb-8 leading-tight md:leading-none">
-                        <span className="block">{t("hero.line1")}</span>
-                        <span className="block text-foreground">{t("hero.line2")}</span>
-                        <span className="text-gradient">{t("hero.line3")}</span>
-                        <span className="block text-primary text-2xl sm:text-3xl md:text-5xl lg:text-7xl mt-2">
-                            {displayText}
-                            <span className="animate-pulse">|</span>
+            {/* Aurora Effect */}
+            <motion.div
+                className="absolute z-0 w-[600px] h-[600px] bg-secondary/40 rounded-full blur-[120px] pointer-events-none mix-blend-screen"
+                style={{ x: springX, y: springY, translateX: "-50%", translateY: "-50%" }}
+            />
+            <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-primary/40 rounded-full blur-[120px] animate-pulse-slow z-0" />
+            <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-secondary-neon/30 rounded-full blur-[128px] animate-pulse-slow delay-1000 z-0" />
+
+            <div className="container mx-auto px-4 relative z-10 flex flex-col items-center justify-center h-full">
+
+                {/* Titan Typography */}
+                <div className="relative w-full text-center">
+                    <motion.h1
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 1, ease: "circOut" }}
+                        className="font-display font-bold text-[12vw] leading-[0.85] tracking-tighter text-transparent select-none"
+                        style={{
+                            WebkitTextStroke: '2px var(--text-stroke-color)',
+                            // Removed mixBlendMode to ensure visibility in light mode
+                        }}
+                    >
+                        {t("hero.titleLine1")}
+                        <br />
+                        <span className="relative inline-block">
+                            {t("hero.titleLine2")}
+                            {/* Glitch Overlay */}
+                            <motion.span
+                                className="absolute inset-0 text-primary/80 animate-glitch opacity-50"
+                                style={{ WebkitTextStroke: '0px' }}
+                                aria-hidden="true"
+                            >
+                                {t("hero.titleLine2")}
+                            </motion.span>
                         </span>
-                    </h1>
+                    </motion.h1>
 
-                    <p className="text-muted-foreground text-sm sm:text-base md:text-xl lg:text-2xl max-w-3xl mx-auto mb-8 md:mb-12 px-2">
-                        {t("hero.subtitle")}
-                    </p>
+                    <motion.div
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 1, duration: 0.8 }}
+                        className="mt-12 backdrop-blur-sm bg-background/30 p-6 rounded-2xl border border-white/5 inline-block"
+                    >
+                        <h2 className="text-xl md:text-2xl font-light tracking-wide text-foreground/90 font-mono">
+                            {t("hero.highlightTitle")}
+                        </h2>
+                        <p className="text-muted-foreground mt-2 text-sm md:text-base max-w-lg mx-auto whitespace-pre-line">
+                            {t("hero.description")}
+                        </p>
+                    </motion.div>
+                </div>
 
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-6">
-                        <Link href="/contact" className="group w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 bg-primary rounded-full font-bold text-background text-sm md:text-base transition-all hover:scale-105 active:scale-95 shadow-neon-cyan">
-                            {t("hero.cta1")}
-                            <ArrowRight className="inline-block ml-2 w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
-                        </Link>
-                        <Link href="/services" className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 glass rounded-full font-bold text-foreground text-sm md:text-base transition-all hover:bg-accent active:scale-95">
-                            {t("hero.cta2")}
-                        </Link>
-                    </div>
+                {/* Terminal Prompt CTA */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 2.5, duration: 0.5 }}
+                    className="absolute bottom-20"
+                >
+                    <Link href="/contact" className="group relative inline-flex items-center gap-2 px-8 py-4 bg-black/40 border-2 border-primary text-primary-neon font-mono text-lg rounded-lg transition-all duration-300 hover:scale-105 hover:bg-primary/10 hover:shadow-neon-cyan shadow-[0_0_20px_rgba(6,182,212,0.2)]">
+                        <span className="text-secondary-neon me-2 group-hover:animate-pulse">&gt;</span>
+                        {t("hero.cta")}
+                        <span className="block w-2.5 h-5 bg-primary-neon animate-pulse ml-1 shadow-[0_0_10px_#00f0ff]" />
+                    </Link>
                 </motion.div>
             </div>
 
-            {/* Floating Elements - hidden on mobile */}
+            {/* Scroll Indicator */}
             <motion.div
-                animate={{ y: [0, -20, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-1/3 right-10 md:right-20 hidden lg:block"
+                className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 3 }}
             >
-                <div className="glass p-4 rounded-2xl w-48 shadow-neon-violet">
-                    <div className="h-2 w-12 bg-secondary rounded-full mb-3" />
-                    <div className="h-2 w-full bg-muted rounded-full mb-2" />
-                    <div className="h-2 w-3/4 bg-muted rounded-full" />
-                </div>
+                <span className="text-[10px] text-muted-foreground tracking-[0.2em] uppercase">{t("hero.scroll")}</span>
+                <div className="w-[1px] h-12 bg-gradient-to-b from-primary to-transparent" />
             </motion.div>
         </section>
     );

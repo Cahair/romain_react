@@ -1,143 +1,301 @@
 "use client";
-import { motion } from "framer-motion";
-import { MessageSquare, Zap, Brain, ArrowRight } from "lucide-react";
+import { motion, useMotionValue, useSpring, useScroll, useTransform } from "framer-motion";
+import { MessageSquare, Zap, Target, Database, ArrowRight, Terminal, Cpu, Share2 } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useTranslation } from "@/components/LanguageProvider";
+import { useEffect, useRef } from "react";
 
 export default function ServicesPage() {
     const { t } = useTranslation();
+    const containerRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start end", "end start"]
+    });
+
+    const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
+
+    // Mouse follower for Aurora effect
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
+
+    const springConfig = { damping: 25, stiffness: 700 };
+    const springX = useSpring(mouseX, springConfig);
+    const springY = useSpring(mouseY, springConfig);
+
+    useEffect(() => {
+        const handleMouseMove = (e) => {
+            const { pageX, pageY } = e;
+            mouseX.set(pageX);
+            mouseY.set(pageY);
+        };
+
+        window.addEventListener("mousemove", handleMouseMove);
+        return () => window.removeEventListener("mousemove", handleMouseMove);
+    }, [mouseX, mouseY]);
 
     const services = [
         {
-            icon: <MessageSquare className="w-8 h-8" />,
+            icon: MessageSquare,
             title: t("services.items.chatbot.title"),
-            subtitle: t("services.items.chatbot.subtitle"), // Note: subtitle key assumes existence or string
             description: t("services.items.chatbot.desc"),
             features: [
                 t("services.items.chatbot.features.0"),
                 t("services.items.chatbot.features.1"),
                 t("services.items.chatbot.features.2")
             ],
-            color: "from-cyan-500 to-blue-500"
+            tech: ["LLM", "RAG", "Python"]
         },
         {
-            icon: <Zap className="w-8 h-8" />,
+            icon: Zap,
             title: t("services.items.workflows.title"),
-            subtitle: t("services.subtitle"), // Reusing main subtitle or add specific if needed
             description: t("services.items.workflows.desc"),
             features: [
                 t("services.items.workflows.features.0"),
                 t("services.items.workflows.features.1"),
                 t("services.items.workflows.features.2")
             ],
-            color: "from-violet-500 to-purple-500"
+            tech: ["n8n", "Make", "API"]
         },
         {
-            icon: <Brain className="w-8 h-8" />,
+            icon: Target,
             title: t("services.items.leadgen.title"),
-            subtitle: t("services.subtitle"),
             description: t("services.items.leadgen.desc"),
             features: [
                 t("services.items.leadgen.features.0"),
                 t("services.items.leadgen.features.1"),
                 t("services.items.leadgen.features.2")
             ],
-            color: "from-emerald-500 to-teal-500"
+            tech: ["Scraping", "Enrichment", "CRM"]
+        },
+        {
+            icon: Database,
+            title: t("services.items.data.title"),
+            description: t("services.items.data.desc"),
+            features: [
+                "Data Analysis",
+                "Visualization",
+                "Insights"
+            ],
+            tech: ["SQL", "Pandas", "PowerBI"]
         }
     ];
 
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.2
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 50 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                type: "spring",
+                damping: 20,
+                stiffness: 100
+            }
+        }
+    };
+
     return (
-        <main className="bg-background min-h-screen flex flex-col">
+        <main className="bg-background min-h-screen flex flex-col overflow-x-hidden selection:bg-primary-neon/30 selection:text-white" ref={containerRef}>
             <Navbar />
 
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6 }}
-                className="flex-1 pt-28 pb-8 flex flex-col justify-center"
-            >
-                {/* Hero Section */}
-                <div className="container mx-auto px-6 mb-8">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="text-center max-w-4xl mx-auto"
-                    >
-                        <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-4">
-                            {t("services.title")} <span className="text-gradient">{t("services.titleHighlight")}</span>
-                        </h1>
-                        <p className="text-lg text-gray-400">
-                            {t("services.subtitle")}
-                        </p>
-                    </motion.div>
-                </div>
+            {/* Background Effects */}
+            <div className="fixed inset-0 z-0 pointer-events-none">
+                <div
+                    className="absolute inset-0 bg-grid-pattern bg-[length:50px_50px] opacity-20"
+                    style={{
+                        maskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)',
+                        WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)'
+                    }}
+                />
+                <motion.div
+                    className="absolute w-[800px] h-[800px] bg-primary-neon/10 rounded-full blur-[120px] mix-blend-screen"
+                    style={{ x: springX, y: springY, translateX: "-50%", translateY: "-50%" }}
+                />
+            </div>
 
-                {/* Services Grid */}
-                <div className="container mx-auto px-6 mb-8">
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-                        {services.map((service, index) => (
+            <div className="relative z-10 pt-32 pb-24">
+                <div className="container mx-auto px-6">
+
+                    {/* Hero / Landing Section */}
+                    <div className="min-h-[80vh] flex flex-col justify-center max-w-5xl mx-auto mb-24">
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 1 }}
+                        >
                             <motion.div
-                                key={index}
+                                initial={{ opacity: 0, y: -20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.2 }}
+                                className="flex items-center gap-4 mb-8"
+                            >
+                                <span className="h-[1px] w-12 bg-primary-neon"></span>
+                                <span className="font-mono text-primary-neon text-sm tracking-[0.5em] uppercase">
+                                    // {t("services.badge")}
+                                </span>
+                            </motion.div>
+
+                            <h1 className="font-display font-bold text-7xl md:text-9xl uppercase leading-[0.9] text-foreground mb-12">
+                                <motion.span
+                                    initial={{ filter: "blur(20px)", opacity: 0, scale: 1.1 }}
+                                    animate={{ filter: "blur(0px)", opacity: 1, scale: 1 }}
+                                    transition={{ duration: 0.8, ease: "easeOut" }}
+                                    className="block"
+                                >
+                                    {t("services.title")}
+                                </motion.span>
+                                <motion.span
+                                    className="text-transparent block relative"
+                                    style={{ WebkitTextStroke: '2px var(--text-stroke-color)' }}
+                                    initial={{ x: -100, opacity: 0 }}
+                                    animate={{ x: 0, opacity: 1 }}
+                                    transition={{ duration: 0.8, delay: 0.2, type: "spring", stiffness: 50 }}
+                                >
+                                    {t("services.titleHighlight")}
+                                    {/* Glitch Overlay */}
+                                    <span className="absolute inset-0 text-primary-neon opacity-50 blur-[2px] animate-pulse pointer-events-none" aria-hidden="true">
+                                        {t("services.titleHighlight")}
+                                    </span>
+                                </motion.span>
+                            </h1>
+
+                            <motion.p
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.3 + index * 0.1 }}
-                                className="glass p-5 rounded-2xl hover:bg-white/[0.08] transition-all group"
+                                transition={{ delay: 0.6 }}
+                                className="text-2xl md:text-3xl text-muted-foreground font-light max-w-3xl leading-relaxed border-l-4 border-primary-neon pl-8"
                             >
-                                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                                    {service.icon}
-                                </div>
+                                {t("services.subtitle")}
+                            </motion.p>
+                        </motion.div>
+                    </div>
 
-                                <h2 className="text-xl font-black mb-1">{service.title}</h2>
-                                <p className="text-primary font-bold mb-2 tracking-widest uppercase text-xs">{service.subtitle}</p>
-                                <p className="text-gray-400 text-sm mb-4 leading-relaxed line-clamp-2">{service.description}</p>
+                    {/* Services Grid with Stagger */}
+                    <motion.div
+                        className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-32"
+                        variants={containerVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, margin: "-100px" }}
+                    >
+                        {services.map((service, index) => {
+                            const Icon = service.icon;
+                            return (
+                                <motion.div
+                                    key={index}
+                                    variants={itemVariants}
+                                    className="group relative min-h-[400px] bg-white/[0.02] border border-white/10 backdrop-blur-md p-8 md:p-12 overflow-hidden hover:bg-white/[0.04] transition-colors duration-500 hover:border-primary-neon/30"
+                                >
+                                    {/* Hover Gradient */}
+                                    <div className="absolute inset-0 bg-gradient-to-br from-primary-neon/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                                <ul className="space-y-1.5 mb-4">
-                                    {service.features.map((feature, i) => (
-                                        <li key={i} className="flex items-start gap-2 text-gray-300 text-sm">
-                                            <span className="text-primary text-xs mt-0.5">✦</span>
-                                            <span>{feature}</span>
-                                        </li>
-                                    ))}
-                                </ul>
+                                    {/* Giant Background Icon - Parallax & Rotate */}
+                                    <motion.div
+                                        className="absolute -right-12 -bottom-12 text-white/[0.02] group-hover:text-primary-neon/[0.05] transition-colors duration-500"
+                                        style={{ rotate: -15, y }}
+                                        whileHover={{ scale: 1.1, rotate: -10 }}
+                                        transition={{ duration: 0.5 }}
+                                    >
+                                        <Icon size={300} strokeWidth={1} />
+                                    </motion.div>
 
-                                <Link href="/contact" className="inline-flex items-center gap-2 font-bold text-primary text-sm hover:gap-3 transition-all">
-                                    {t("services.learnMore")} <ArrowRight className="w-4 h-4" />
+                                    {/* Content */}
+                                    <div className="relative z-10 h-full flex flex-col">
+                                        <div className="flex justify-between items-start mb-8">
+                                            <div className="w-16 h-16 bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-primary-neon/50 group-hover:scale-110 transition-all duration-300">
+                                                <Icon className="w-8 h-8 text-white group-hover:text-primary-neon transition-colors" />
+                                            </div>
+                                            <span className="font-mono text-white/20 text-4xl font-bold">0{index + 1}</span>
+                                        </div>
+
+                                        <h2 className="font-display text-3xl md:text-4xl uppercase text-white mb-6 group-hover:text-primary-neon transition-colors duration-300 group-hover:translate-x-2 transform">
+                                            {service.title}
+                                        </h2>
+
+                                        <p className="text-muted-foreground font-light leading-relaxed mb-8 flex-grow group-hover:text-gray-300 transition-colors">
+                                            {service.description}
+                                        </p>
+
+                                        {/* Tech Stack Tags */}
+                                        <div className="flex flex-wrap gap-2 mb-8">
+                                            {service.tech.map((tech, i) => (
+                                                <span key={i} className="px-2 py-1 text-[10px] font-mono uppercase tracking-wider text-primary-neon border border-primary-neon/20 bg-primary-neon/5 hover:bg-primary-neon hover:text-black transition-colors">
+                                                    {tech}
+                                                </span>
+                                            ))}
+                                        </div>
+
+                                        {/* Features List */}
+                                        <ul className="space-y-3 border-t border-white/10 pt-6">
+                                            {service.features.map((feature, i) => (
+                                                <motion.li
+                                                    key={i}
+                                                    className="flex items-center gap-3 text-sm text-gray-400 font-mono"
+                                                    whileHover={{ x: 5 }}
+                                                >
+                                                    <span className="w-1.5 h-1.5 bg-primary-neon rounded-full group-hover:animate-pulse" />
+                                                    {feature}
+                                                </motion.li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    {/* Decorative Corners */}
+                                    <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-white/10 group-hover:border-primary-neon/50 transition-colors" />
+                                    <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-white/10 group-hover:border-primary-neon/50 transition-colors" />
+                                    <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-white/10 group-hover:border-primary-neon/50 transition-colors" />
+                                    <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-white/10 group-hover:border-primary-neon/50 transition-colors" />
+                                </motion.div>
+                            );
+                        })}
+                    </motion.div>
+
+                    {/* CTA Section */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="relative p-12 md:p-20 border border-white/10 bg-white/[0.02] backdrop-blur-xl overflow-hidden text-center group"
+                    >
+                        <div className="absolute inset-0 bg-grid-pattern opacity-10 group-hover:opacity-20 transition-opacity" />
+
+                        <h2 className="relative z-10 font-display text-4xl md:text-6xl uppercase font-bold mb-6">
+                            {t("services.cta.title")} <br />
+                            <span className="text-primary-neon inline-block hover:scale-105 transition-transform duration-300">{t("services.cta.titleHighlight")}</span>
+                        </h2>
+
+                        <p className="relative z-10 text-muted-foreground text-lg max-w-2xl mx-auto mb-12 font-light">
+                            {t("services.cta.subtitle")}
+                        </p>
+
+                        <div className="relative z-10">
+                            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                                <Link
+                                    href="/contact"
+                                    className="inline-flex items-center gap-4 px-8 py-4 bg-white text-black font-display font-bold uppercase tracking-widest hover:bg-primary-neon transition-colors duration-300 shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(0,240,255,0.5)]"
+                                >
+                                    {t("services.cta.button")}
+                                    <ArrowRight className="w-5 h-5" />
                                 </Link>
                             </motion.div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* CTA Section */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.8 }}
-                    className="container mx-auto px-6"
-                >
-                    <div className="glass p-6 md:p-8 rounded-2xl text-center relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 blur-3xl" />
-                        <div className="absolute bottom-0 left-0 w-32 h-32 bg-secondary/10 blur-3xl" />
-
-                        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-4">
-                            <div className="text-left">
-                                <h2 className="text-2xl md:text-3xl font-black mb-1">
-                                    {t("services.cta.title")} <span className="text-gradient">{t("services.cta.titleHighlight")}</span> ?
-                                </h2>
-                                <p className="text-gray-400 text-sm">
-                                    {t("services.cta.subtitle")}
-                                </p>
-                            </div>
-                            <Link href="/contact" className="shrink-0 px-8 py-4 bg-gradient-to-r from-primary to-secondary rounded-xl font-black uppercase tracking-widest hover:scale-105 transition-transform shadow-neon-cyan">
-                                {t("services.cta.button")}
-                            </Link>
                         </div>
-                    </div>
-                </motion.div>
-            </motion.div>
+                    </motion.div>
+
+                </div>
+            </div>
 
             <Footer />
         </main>

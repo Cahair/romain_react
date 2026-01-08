@@ -64,33 +64,36 @@
 
 /* Light mode variables */
 html.light {
-  /* Background & Foreground */
-  --background: #f8fafc;
+  /* Background & Foreground - Warm/Tech White */
+  --background: #f0f4f8;
   --foreground: #0f172a;
 
-  /* Muted colors for subtle elements */
+  /* Muted colors */
   --muted: #e2e8f0;
-  --muted-foreground: #475569;
+  --muted-foreground: #64748b;
 
   /* Card backgrounds */
-  --card: #ffffff;
+  --card: rgba(255, 255, 255, 0.8);
   --card-foreground: #0f172a;
 
-  /* Accent for hover states */
-  --accent: #e2e8f0;
+  /* Accent */
+  --accent: #f1f5f9;
   --accent-foreground: #0f172a;
 
-  /* Borders and inputs */
-  --border: #94a3b8;
+  /* Borders */
+  --border: #cbd5e1;
   --input: #e2e8f0;
   --ring: #0891b2;
 
-  /* Glass effect - solid background for light mode */
-  --glass-bg: #ffffff;
-  --glass-border: #94a3b8;
+  /* Glass - Semi-transparent white for frosted effect */
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.9);
+
+  /* Variables for stroke and effects */
+  --text-stroke-color: rgba(0, 0, 0, 0.1);
 
   /* Legacy */
-  --text-muted: #475569;
+  --text-muted: #64748b;
 }
 
 body {
@@ -99,6 +102,8 @@ body {
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;
+  --text-stroke-color: rgba(255, 255, 255, 0.1);
+  /* Default dark mode stroke */
 }
 
 @layer components {
@@ -120,50 +125,21 @@ body {
 }
 
 /* ============================================== */
-/* LIGHT MODE - EXPLICIT OVERRIDES (WCAG AA+)    */
+/* LIGHT MODE - REFINED OVERRIDES                 */
 /* ============================================== */
 
-/* Force light backgrounds to white/off-white */
-html.light .bg-background {
-  background-color: #f8fafc !important;
+/* Note: we rely on CSS variables for background colors to ensure opacity modifiers (e.g. bg-background/80) work correctly */
+/* html.light .bg-background { background-color: #f0f4f8 !important; }  <-- Removed to allow variable-based opacity */
+
+/* Allow transparency for glass feel */
+html.light .glass {
+  background-color: rgba(255, 255, 255, 0.75) !important;
+  border-color: rgba(255, 255, 255, 0.8) !important;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03) !important;
 }
 
-html.light .bg-card {
-  background-color: #ffffff !important;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
-}
-
-html.light .bg-muted {
-  background-color: #e2e8f0 !important;
-}
-
-html.light .bg-input {
-  background-color: #f1f5f9 !important;
-}
-
-/* Force dark text colors */
 html.light .text-foreground {
   color: #0f172a !important;
-}
-
-html.light .text-muted-foreground {
-  color: #475569 !important;
-}
-
-html.light .text-card-foreground {
-  color: #0f172a !important;
-}
-
-/* Force visible borders */
-html.light .border-border {
-  border-color: #94a3b8 !important;
-}
-
-/* Glass effect in light mode - solid white with shadow */
-html.light .glass {
-  background-color: #ffffff !important;
-  border-color: #94a3b8 !important;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
 }
 
 /* Light mode text adjustments */
@@ -183,6 +159,7 @@ html.light .text-white {
   color: #0f172a;
 }
 
+/* Invert white transparency to black transparency */
 html.light .text-white\/50,
 html.light .text-white\/30 {
   color: rgba(15, 23, 42, 0.6);
@@ -190,14 +167,29 @@ html.light .text-white\/30 {
 
 html.light .bg-white\/5 {
   background-color: rgba(0, 0, 0, 0.05);
+  /* Darken bg */
 }
 
 html.light .bg-white\/10 {
   background-color: rgba(0, 0, 0, 0.08);
 }
 
-html.light .border-white\/10 {
+/* Handle arbitrary values commonly used in code */
+html.light .bg-white\/\[0\.02\] {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+html.light .bg-white\/\[0\.05\] {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+html.light .border-white\/5 {
   border-color: rgba(0, 0, 0, 0.1);
+  /* Visible border */
+}
+
+html.light .border-white\/10 {
+  border-color: rgba(0, 0, 0, 0.15);
 }
 
 html.light .bg-background {

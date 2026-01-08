@@ -6,17 +6,12 @@
         "audit": "GRATIS AUDIT"
     },
     "hero": {
-        "line1": "Erstellen Sie nicht nur",
-        "line2": "eine Website.",
-        "line3": "Erstellen Sie",
-        "typewriter": [
-            "ein intelligentes System.",
-            "automatisiertes Wachstum.",
-            "eine wettbewerbsfähige Zukunft."
-        ],
-        "subtitle": "Die AI Agentur, die Ihr Wachstum automatisiert und Ihre Abläufe in einen autonomen Leistungsmotor verwandelt.",
-        "cta1": "Mein Business prüfen",
-        "cta2": "Unsere Lösungen ansehen"
+        "titleLine1": "JENSEITS VON",
+        "titleLine2": "CHATBOTS",
+        "highlightTitle": "Maßgeschneidertes KI-Engineering.",
+        "description": "Autonome Agenten. Optimierte LLMs. Hochleistungs-RAG.\nTechnische Exzellenz im Dienste des ROI.",
+        "cta": "Start_Collaboration",
+        "scroll": "Scrollen"
     },
     "services": {
         "badge": "KI-Lösungen",

@@ -1,49 +1,127 @@
 "use client";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { useTranslation } from "./LanguageProvider";
 
 export default function Storytelling() {
     const { t } = useTranslation();
+    const containerRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start end", "end start"]
+    });
+
+    const xMove = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]);
+    const xMoveReverse = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
 
     return (
-        <section className="py-12 md:py-24 relative overflow-hidden">
-            <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
+        <section ref={containerRef} className="py-32 relative overflow-hidden bg-background">
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-secondary-neon/20 rounded-full blur-[140px] pointer-events-none z-0" />
 
-            <div className="container mx-auto px-4 md:px-6 relative">
-                <div className="max-w-4xl mx-auto text-center">
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
-                        className="mb-8 md:mb-12"
-                    >
-                        <span className="px-3 md:px-4 py-1.5 md:py-2 rounded-full glass text-[10px] md:text-xs font-black tracking-[0.2em] md:tracking-[0.3em] uppercase mb-6 md:mb-8 inline-block">
-                            {t("storytelling.badge")}
-                        </span>
-                        <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-black tracking-tight mb-4 md:mb-8 italic leading-normal md:leading-relaxed">
-                            {/* First line */}
-                            <span className="block">
-                                {t("storytelling.title")} <span className="text-muted-foreground">{t("storytelling.titleHighlight")}</span> {t("storytelling.titleEnd")}
-                            </span>
-                            {/* Second line */}
-                            <span className="block mt-1 md:mt-2">
-                                {t("storytelling.subtitle1")} <span className="text-gradient border-b-2 md:border-b-[3px] border-primary/30 pb-1 md:pb-2">{t("storytelling.subtitleHighlight")}</span> {t("storytelling.subtitle2")}
-                            </span>
+            <div className="container mx-auto px-4 relative z-10">
+                <div className="flex flex-col gap-24">
+
+                    {/* Part 1: Massive Title */}
+                    <div className="relative">
+                        <motion.span
+                            initial={{ opacity: 0, x: -50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            className="block font-mono text-primary-neon text-sm tracking-[0.5em] mb-4 uppercase"
+                        >
+                             // {t("storytelling.badge")}
+                        </motion.span>
+
+                        <h2 className="font-display font-bold text-[8vw] leading-[0.9] text-foreground uppercase">
+                            <motion.div style={{ x: xMove }} className="whitespace-nowrap">
+                                {t("storytelling.title")} <span className="text-transparent stroke-text">{t("storytelling.titleHighlight")}</span>
+                            </motion.div>
+                            <motion.div style={{ x: xMoveReverse }} className="text-right whitespace-nowrap">
+                                {t("storytelling.titleEnd")}
+                            </motion.div>
                         </h2>
-                    </motion.div>
+                    </div>
 
-                    <motion.p
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.3 }}
-                        className="text-muted-foreground text-sm md:text-lg lg:text-xl leading-relaxed px-2"
-                    >
-                        {t("storytelling.description")}
-                    </motion.p>
+                    {/* Part 2: Statement - AMPLIFIED */}
+                    <div className="relative pt-24 border-t border-white/10">
+                        <motion.div
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: "-100px" }}
+                            variants={{
+                                hidden: {},
+                                visible: {
+                                    transition: {
+                                        staggerChildren: 0.15
+                                    }
+                                }
+                            }}
+                            className="text-center md:text-left"
+                        >
+                            {/* Line 1 */}
+                            <motion.div
+                                className="overflow-hidden"
+                                variants={{
+                                    hidden: { y: "100%", opacity: 0 },
+                                    visible: { y: 0, opacity: 1, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } }
+                                }}
+                            >
+                                <p className="font-display font-bold text-[8vw] leading-[0.8] text-foreground uppercase tracking-tighter">
+                                    {t("storytelling.subtitle1")}
+                                </p>
+                            </motion.div>
+
+                            {/* Highlight Line */}
+                            {/* Highlight Line */}
+                            <motion.div
+                                className="relative z-10 py-2"
+                                variants={{
+                                    hidden: { scale: 0.9, opacity: 0, filter: "blur(10px)" },
+                                    visible: { scale: 1, opacity: 1, filter: "blur(0px)", transition: { duration: 0.8 } }
+                                }}
+                            >
+                                <div className="relative inline-block">
+                                    <span className="font-display font-bold text-[8vw] leading-[0.8] uppercase tracking-tighter text-blue-500 drop-shadow-[0_0_35px_rgba(59,130,246,0.8)]">
+                                        {t("storytelling.subtitleHighlight")}
+                                    </span>
+                                    {/* Back glow */}
+                                    <div className="absolute -inset-4 bg-blue-500/40 blur-3xl opacity-60 -z-10 animate-pulse-slow pointer-events-none" />
+                                </div>
+                            </motion.div>
+
+                            {/* Line 3 */}
+                            <motion.div
+                                className="overflow-hidden"
+                                variants={{
+                                    hidden: { y: "100%", opacity: 0 },
+                                    visible: { y: 0, opacity: 1, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } }
+                                }}
+                            >
+                                <p className="font-display font-bold text-[8vw] leading-[0.8] text-foreground uppercase tracking-tighter">
+                                    {t("storytelling.subtitle2")}
+                                </p>
+                            </motion.div>
+                        </motion.div>
+
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            transition={{ delay: 0.6, duration: 0.8 }}
+                            className="mt-12 md:max-w-xl ml-auto"
+                        >
+                            <p className="font-mono text-lg text-muted-foreground border-l-4 border-primary-neon pl-6 py-2">
+                                {t("storytelling.description")}
+                            </p>
+                        </motion.div>
+                    </div>
                 </div>
             </div>
+
+            <style jsx global>{`
+                .stroke-text {
+                    -webkit-text-stroke: 1px var(--text-stroke-color);
+                }
+            `}</style>
         </section>
     );
 }
