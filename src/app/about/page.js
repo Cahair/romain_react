@@ -252,31 +252,29 @@ export default function AboutPage() {
                                 // {t("about.titleHighlight1")}
                             </motion.span>
 
-                            <h1 className="font-display font-bold text-5xl md:text-8xl uppercase leading-[0.85] tracking-tighter text-foreground mb-8">
-                                <motion.span
-                                    initial={{ filter: "blur(20px)", opacity: 0, scale: 1.1 }}
-                                    animate={{ filter: "blur(0px)", opacity: 1, scale: 1 }}
-                                    transition={{ duration: 0.8, ease: "easeOut" }}
-                                    className="block"
-                                >
-                                    {t("about.title")}
-                                </motion.span>
+                            <motion.h1
+                                initial={{ filter: "blur(20px)", opacity: 0, scale: 1.1 }}
+                                animate={{ filter: "blur(0px)", opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.8, ease: "easeOut" }}
+                                className="block break-words hyphens-auto text-4xl md:text-8xl font-display font-bold uppercase leading-[0.85] tracking-tighter text-foreground mb-8"
+                            >
+                                {t("about.title")}
+                            </motion.h1>
 
-                                <span className="block text-3xl md:text-5xl text-white/50 my-2 font-light tracking-normal">
-                                    {t("about.titleMiddle")}
-                                </span>
+                            <span className="block text-3xl md:text-5xl text-white/50 my-2 font-light tracking-normal">
+                                {t("about.titleMiddle")}
+                            </span>
 
-                                <motion.span
-                                    className="block relative text-blue-500 drop-shadow-[0_0_35px_rgba(59,130,246,0.8)]"
-                                    initial={{ x: -100, opacity: 0 }}
-                                    animate={{ x: 0, opacity: 1 }}
-                                    transition={{ duration: 0.8, delay: 0.3, type: "spring", stiffness: 50 }}
-                                >
-                                    {t("about.titleHighlight2")}
-                                    {/* Back glow */}
-                                    <span className="absolute -inset-4 bg-blue-500/40 blur-3xl opacity-60 -z-10 animate-pulse-slow pointer-events-none" />
-                                </motion.span>
-                            </h1>
+                            <motion.span
+                                className="block relative text-blue-500 drop-shadow-[0_0_35px_rgba(59,130,246,0.8)]"
+                                initial={{ x: -100, opacity: 0 }}
+                                animate={{ x: 0, opacity: 1 }}
+                                transition={{ duration: 0.8, delay: 0.3, type: "spring", stiffness: 50 }}
+                            >
+                                {t("about.titleHighlight2")}
+                                {/* Back glow */}
+                                <span className="absolute -inset-4 bg-blue-500/40 blur-3xl opacity-60 -z-10 animate-pulse-slow pointer-events-none" />
+                            </motion.span>
                         </motion.div>
 
                         {/* RIGHT: Story Card - Industrial Glass with Fade Up */}
@@ -460,7 +458,7 @@ export default function AboutPage() {
             </div>
 
             <Footer />
-        </main>
+        </main >
     );
 }
 

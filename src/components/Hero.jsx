@@ -21,12 +21,9 @@ export default function Hero() {
     useEffect(() => {
         const handleMouseMove = (e) => {
             const { pageX, pageY } = e; // Use page coordinates to account for scroll
-            const windowWidth = window.innerWidth;
-            const windowHeight = window.innerHeight;
-
-            // Calculate percentage position needed for gradient/glow effects
-            mouseX.set(pageX);
-            mouseY.set(pageY);
+            // Center the effect on the mouse (600px / 2 = 300px offset)
+            mouseX.set(pageX - 300);
+            mouseY.set(pageY - 300);
         };
 
         window.addEventListener("mousemove", handleMouseMove);
@@ -51,8 +48,7 @@ export default function Hero() {
                 className="absolute z-0 w-[600px] h-[600px] bg-secondary/40 rounded-full blur-[120px] pointer-events-none mix-blend-screen"
                 style={{ x: springX, y: springY, translateX: "-50%", translateY: "-50%" }}
             />
-            <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-primary/40 rounded-full blur-[120px] animate-pulse-slow z-0" />
-            <div className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-secondary-neon/30 rounded-full blur-[128px] animate-pulse-slow delay-1000 z-0" />
+
 
             <div className="container mx-auto px-4 relative z-10 flex flex-col items-center justify-center min-h-screen py-20">
 

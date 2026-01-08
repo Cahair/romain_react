@@ -25,9 +25,13 @@ const pageVariants = {
 };
 
 export default function PageTransition({ children }) {
-    const pathname = usePathname();
+    // const pathname = usePathname();
 
     return (
+        <>
+            {children}
+        </>
+        /*
         <AnimatePresence mode="wait">
             <motion.div
                 key={pathname}
@@ -39,5 +43,6 @@ export default function PageTransition({ children }) {
                 {children}
             </motion.div>
         </AnimatePresence>
+        */
     );
 }

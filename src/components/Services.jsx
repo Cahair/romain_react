@@ -104,9 +104,9 @@ export default function Services() {
                         <span className="text-primary-neon font-mono text-xs tracking-[0.3em] uppercase mb-4 block">
                             // {t("services.badge")}
                         </span>
-                        <h2 className="font-display font-bold text-5xl md:text-7xl uppercase text-foreground leading-none">
+                        <h2 className="font-display font-bold text-4xl md:text-7xl uppercase text-foreground leading-none break-words">
                             {t("services.title")} <br />
-                            <span className="relative inline-block text-blue-500 drop-shadow-[0_0_35px_rgba(59,130,246,0.8)]">
+                            <span className="relative inline-block text-blue-500 drop-shadow-[0_0_35px_rgba(59,130,246,0.8)] break-words">
                                 {t("services.titleHighlight")}
                                 {/* Back glow */}
                                 <span className="absolute -inset-4 bg-blue-500/40 blur-3xl opacity-60 -z-10 animate-pulse-slow pointer-events-none" />
