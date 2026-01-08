@@ -128,9 +128,12 @@ export default function Navbar() {
                         {pathname === "/contact" ? (
                             <Link
                                 href="/contact"
-                                className="text-sm font-bold tracking-widest uppercase text-primary transition-colors ml-4"
+                                className="text-sm font-bold tracking-widest uppercase text-foreground transition-colors ml-4"
                             >
-                                {t("nav.contact")}
+                                <span className="relative">
+                                    <span className="absolute -left-3 top-1/2 -translate-y-1/2 text-xs text-primary leading-none">&gt;</span>
+                                    {t("nav.contact")}
+                                </span>
                             </Link>
                         ) : (
                             <Link href="/contact" className="ml-4 px-5 py-2 border border-primary/30 bg-primary/5 text-primary-neon rounded text-xs font-mono uppercase tracking-wider hover:bg-primary/20 hover:border-primary/60 transition-all duration-300">

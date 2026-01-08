@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Calendar } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -7,6 +8,40 @@ import { useTranslation } from "@/components/LanguageProvider";
 
 export default function ContactPage() {
     const { t } = useTranslation();
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        project: "",
+        budget: "",
+        message: ""
+    });
+    const [status, setStatus] = useState("idle"); // idle, loading, success, error
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setStatus("loading");
+
+        try {
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
+
+            if (res.ok) {
+                setStatus("success");
+                setFormData({ name: "", email: "", project: "", budget: "", message: "" });
+            } else {
+                setStatus("error");
+            }
+        } catch (error) {
+            setStatus("error");
+        }
+    };
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
 
     return (
         <main className="bg-background min-h-screen flex flex-col">
@@ -111,74 +146,120 @@ export default function ContactPage() {
                         >
                             <div className="glass p-8 rounded-3xl flex-1 flex flex-col">
                                 <h2 className="text-2xl font-black mb-6 uppercase tracking-widest">{t("contact.form.title")}</h2>
-                                <form className="space-y-5 flex-1 flex flex-col">
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div>
+
+                                {status === "success" ? (
+                                    <div className="flex-1 flex flex-col items-center justify-center text-center space-y-4">
+                                        <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center border border-green-500/50">
+                                            <svg className="w-8 h-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                            </svg>
+                                        </div>
+                                        <h3 className="text-xl font-bold text-white">{t("contact.form.success")}</h3>
+                                        <button
+                                            onClick={() => setStatus("idle")}
+                                            className="text-primary hover:underline"
+                                        >
+                                            Nouvelle demande
+                                        </button>
+                                    </div>
+                                ) : (
+                                    <form onSubmit={handleSubmit} className="space-y-5 flex-1 flex flex-col">
+                                        <div className="grid grid-cols-2 gap-4">
+                                            <div>
+                                                <label className="block text-sm font-bold uppercase tracking-wide text-gray-500 mb-2">
+                                                    {t("contact.form.name")}
+                                                </label>
+                                                <input
+                                                    type="text"
+                                                    name="name"
+                                                    value={formData.name}
+                                                    onChange={handleChange}
+                                                    required
+                                                    placeholder={t("contact.form.namePlaceholder")}
+                                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors"
+                                                />
+                                            </div>
+                                            <div>
+                                                <label className="block text-sm font-bold uppercase tracking-wide text-gray-500 mb-2">
+                                                    {t("contact.form.email")}
+                                                </label>
+                                                <input
+                                                    type="email"
+                                                    name="email"
+                                                    value={formData.email}
+                                                    onChange={handleChange}
+                                                    required
+                                                    placeholder={t("contact.form.emailPlaceholder")}
+                                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors"
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="grid grid-cols-2 gap-4">
+                                            <div>
+                                                <label className="block text-sm font-bold uppercase tracking-wide text-gray-500 mb-2">
+                                                    {t("contact.form.project")}
+                                                </label>
+                                                <select
+                                                    name="project"
+                                                    value={formData.project}
+                                                    onChange={handleChange}
+                                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors"
+                                                >
+                                                    <option value="">{t("contact.form.projectOptions.select")}</option>
+                                                    <option value="chatbot">{t("contact.form.projectOptions.chatbot")}</option>
+                                                    <option value="automation">{t("contact.form.projectOptions.automation")}</option>
+                                                    <option value="leadgen">{t("contact.form.projectOptions.leadgen")}</option>
+                                                    <option value="custom">{t("contact.form.projectOptions.custom")}</option>
+                                                    <option value="audit">{t("contact.form.projectOptions.audit")}</option>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <label className="block text-sm font-bold uppercase tracking-wide text-gray-500 mb-2">
+                                                    {t("contact.form.budget")}
+                                                </label>
+                                                <select
+                                                    name="budget"
+                                                    value={formData.budget}
+                                                    onChange={handleChange}
+                                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors"
+                                                >
+                                                    <option value="">{t("contact.form.budgetOptions.select")}</option>
+                                                    <option value="less5k">{t("contact.form.budgetOptions.less5k")}</option>
+                                                    <option value="5k10k">{t("contact.form.budgetOptions.5k10k")}</option>
+                                                    <option value="10k25k">{t("contact.form.budgetOptions.10k25k")}</option>
+                                                    <option value="more25k">{t("contact.form.budgetOptions.more25k")}</option>
+                                                    <option value="tbd">{t("contact.form.budgetOptions.tbd")}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div className="flex-1">
                                             <label className="block text-sm font-bold uppercase tracking-wide text-gray-500 mb-2">
-                                                {t("contact.form.name")}
+                                                {t("contact.form.message")}
                                             </label>
-                                            <input
-                                                type="text"
-                                                placeholder={t("contact.form.namePlaceholder")}
-                                                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors"
+                                            <textarea
+                                                name="message"
+                                                value={formData.message}
+                                                onChange={handleChange}
+                                                required
+                                                rows="4"
+                                                placeholder={t("contact.form.messagePlaceholder")}
+                                                className="w-full h-full min-h-[100px] bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors resize-none"
                                             />
                                         </div>
-                                        <div>
-                                            <label className="block text-sm font-bold uppercase tracking-wide text-gray-500 mb-2">
-                                                {t("contact.form.email")}
-                                            </label>
-                                            <input
-                                                type="email"
-                                                placeholder={t("contact.form.emailPlaceholder")}
-                                                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <label className="block text-sm font-bold uppercase tracking-wide text-gray-500 mb-2">
-                                                {t("contact.form.project")}
-                                            </label>
-                                            <select className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors">
-                                                <option value="">{t("contact.form.projectOptions.select")}</option>
-                                                <option value="chatbot">{t("contact.form.projectOptions.chatbot")}</option>
-                                                <option value="automation">{t("contact.form.projectOptions.automation")}</option>
-                                                <option value="leadgen">{t("contact.form.projectOptions.leadgen")}</option>
-                                                <option value="custom">{t("contact.form.projectOptions.custom")}</option>
-                                                <option value="audit">{t("contact.form.projectOptions.audit")}</option>
-                                            </select>
-                                        </div>
-                                        <div>
-                                            <label className="block text-sm font-bold uppercase tracking-wide text-gray-500 mb-2">
-                                                {t("contact.form.budget")}
-                                            </label>
-                                            <select className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors">
-                                                <option value="">{t("contact.form.budgetOptions.select")}</option>
-                                                <option value="less5k">{t("contact.form.budgetOptions.less5k")}</option>
-                                                <option value="5k10k">{t("contact.form.budgetOptions.5k10k")}</option>
-                                                <option value="10k25k">{t("contact.form.budgetOptions.10k25k")}</option>
-                                                <option value="more25k">{t("contact.form.budgetOptions.more25k")}</option>
-                                                <option value="tbd">{t("contact.form.budgetOptions.tbd")}</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div className="flex-1">
-                                        <label className="block text-sm font-bold uppercase tracking-wide text-gray-500 mb-2">
-                                            {t("contact.form.message")}
-                                        </label>
-                                        <textarea
-                                            rows="4"
-                                            placeholder={t("contact.form.messagePlaceholder")}
-                                            className="w-full h-full min-h-[100px] bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors resize-none"
-                                        />
-                                    </div>
-                                    <button
-                                        type="submit"
-                                        className="w-full py-4 bg-gradient-to-r from-primary to-secondary rounded-xl font-black uppercase tracking-widest hover:scale-[1.02] transition-transform shadow-neon-cyan"
-                                    >
-                                        {t("contact.form.submit")}
-                                    </button>
-                                </form>
+
+                                        {status === "error" && (
+                                            <p className="text-red-500 text-sm">{t("contact.form.error")}</p>
+                                        )}
+
+                                        <button
+                                            type="submit"
+                                            disabled={status === "loading"}
+                                            className="w-full py-4 bg-gradient-to-r from-primary to-secondary rounded-xl font-black uppercase tracking-widest hover:scale-[1.02] transition-transform shadow-neon-cyan disabled:opacity-50 disabled:cursor-not-allowed"
+                                        >
+                                            {status === "loading" ? t("contact.form.sending") : t("contact.form.submit")}
+                                        </button>
+                                    </form>
+                                )}
 
                                 {/* Calendly section */}
                                 <div className="mt-6 pt-6 border-t border-white/10">

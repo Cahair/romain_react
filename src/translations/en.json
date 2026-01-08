@@ -196,7 +196,10 @@
             },
             "message": "Message",
             "messagePlaceholder": "Briefly describe your needs...",
-            "submit": "Send my Request"
+            "submit": "Send my Request",
+            "sending": "Sending...",
+            "success": "Message sent successfully!",
+            "error": "An error occurred. Please try again."
         },
         "calendly": {
             "title": "Or book directly",

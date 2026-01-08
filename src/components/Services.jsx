@@ -88,7 +88,7 @@ export default function Services() {
 
             {/* Aurora Effect */}
             <motion.div
-                className="absolute z-0 w-[500px] h-[500px] bg-secondary/40 rounded-full blur-[120px] pointer-events-none mix-blend-screen"
+                className="hidden md:block absolute z-0 w-[500px] h-[500px] bg-secondary/40 rounded-full blur-[120px] pointer-events-none mix-blend-screen"
                 style={{ x: springX, y: springY, translateX: "-50%", translateY: "-50%" }}
             />
             <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-primary-neon/30 rounded-full blur-[120px] pointer-events-none z-0" />
@@ -143,17 +143,17 @@ export default function Services() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, amount: 0.1 }}
                                 transition={{ duration: 0.5, delay: service.delay, ease: "easeOut" }}
-                                className={`${spanClass} group relative min-h-[320px] p-8 rounded-3xl border border-white/10 bg-white/5 backdrop-blur-md hover:bg-white/10 transition-all duration-500 overflow-hidden flex flex-col justify-between`}
+                                className={`${spanClass} group relative min-h-[320px] p-8 rounded-3xl border border-white/10 bg-[#0a0a0a] md:bg-white/5 md:backdrop-blur-md md:hover:bg-white/10 transition-all duration-500 overflow-hidden flex flex-col justify-between transform-gpu will-change-transform`}
                             >
                                 {/* Hover Glow */}
-                                <div className={`absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500 bg-gradient-to-br ${service.gradient}`} />
-                                <div className="absolute -right-12 -top-12 opacity-5 group-hover:opacity-20 transition-opacity duration-500 rotate-12">
+                                <div className={`absolute inset-0 opacity-0 md:group-hover:opacity-10 transition-opacity duration-500 bg-gradient-to-br ${service.gradient}`} />
+                                <div className="absolute -right-12 -top-12 opacity-5 md:group-hover:opacity-20 transition-opacity duration-500 rotate-12">
                                     <Icon className="w-64 h-64" />
                                 </div>
 
                                 {/* Content */}
                                 <div className="relative z-10">
-                                    <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-6 shadow-lg shadow-black/20 group-hover:scale-110 transition-transform duration-300`}>
+                                    <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${service.gradient} flex items-center justify-center mb-6 shadow-lg shadow-black/20 md:group-hover:scale-110 transition-transform duration-300`}>
                                         <Icon className="w-6 h-6 text-white" />
                                     </div>
                                     <h3 className="font-display font-bold text-2xl uppercase mb-3 text-foreground tracking-wide">
@@ -181,14 +181,14 @@ export default function Services() {
                                 </div>
 
                                 <div className="pt-8 relative z-10">
-                                    <Link href="/services" className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-white/40 group-hover:text-primary-neon transition-colors">
+                                    <Link href="/services" className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-white/40 md:group-hover:text-primary-neon transition-colors">
                                         <span>{t("services.discover")}</span>
-                                        <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                                        <ArrowRight className="w-3 h-3 md:group-hover:translate-x-1 transition-transform" />
                                     </Link>
                                 </div>
 
                                 {/* Decor corner */}
-                                <div className="absolute top-4 right-4 text-[10px] font-mono text-white/10 group-hover:text-primary-neon/50 transition-colors">
+                                <div className="absolute top-4 right-4 text-[10px] font-mono text-white/10 md:group-hover:text-primary-neon/50 transition-colors">
                                     0{i + 1}
                                 </div>
                             </motion.div>
