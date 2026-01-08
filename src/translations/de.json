@@ -19,46 +19,50 @@
         "cta2": "Unsere Lösungen ansehen"
     },
     "services": {
-        "title": "UNSERE",
-        "titleHighlight": "AI SERVICES",
-        "subtitle": "Künstliche Intelligenz-Lösungen, die Ihr Geschäft automatisieren und transformieren.",
-        "chatbot": {
-            "title": "AI Chatbots & Agents",
-            "subtitle": "24/7 Kundenservice",
-            "description": "Intelligente Assistenten, die Ihre Kunden verstehen und qualifizierte Leads generieren.",
-            "features": [
-                "Intelligenter mehrsprachiger Support",
-                "Automatische Lead-Qualifizierung",
-                "CRM & bestehende Tools-Integration"
-            ]
+        "badge": "KI-Lösungen",
+        "title": "UNSERE DIENSTLEISTUNGEN",
+        "titleHighlight": "INTELLIGENT",
+        "subtitle": "Maßgeschneiderte Lösungen, um Ihr Unternehmen in das Zeitalter der intelligenten Automatisierung zu treiben.",
+        "items": {
+            "chatbot": {
+                "title": "Intelligente Chatbots",
+                "desc": "24/7 Kundensupport und automatisierte Lead-Qualifizierung über benutzerdefinierte LLMs.",
+                "features": [
+                    "Intelligenter mehrsprachiger Support",
+                    "Automatische Lead-Qualifizierung",
+                    "CRM & Integration bestehender Tools"
+                ]
+            },
+            "workflows": {
+                "title": "KI-Workflows",
+                "desc": "Vollständige Automatisierung Ihrer Geschäftsprozesse mit Zapier, Make und KI-Skripten.",
+                "features": [
+                    "Automatisierung komplexer Prozesse",
+                    "Multi-Tool-Integrationen",
+                    "Automatisiertes Reporting"
+                ]
+            },
+            "leadgen": {
+                "title": "KI Lead Gen",
+                "desc": "Ultra-gezielte und personalisierte Akquise durch prädiktive Analyse.",
+                "features": [
+                    "Scraping & Datenanreicherung",
+                    "Hochpersonalisierte E-Mails",
+                    "Leistungsverfolgung"
+                ]
+            },
+            "data": {
+                "title": "Datenanalyse",
+                "desc": "Verwandeln Sie Ihre Rohdaten in umsetzbare Erkenntnisse, um Ihr Wachstum voranzutreiben.",
+                "features": [
+                    "Datenvisualisierung",
+                    "KI-Vorhersagen",
+                    "Echtzeit-Dashboards"
+                ]
+            }
         },
-        "automation": {
-            "title": "Business Automation",
-            "subtitle": "Make, Zapier & mehr",
-            "description": "Vollständige Automatisierung Ihrer Workflows. Eliminieren Sie repetitive Aufgaben.",
-            "features": [
-                "Komplexe Prozessautomatisierung",
-                "Multi-Tool-Integrationen",
-                "Automatisiertes Reporting"
-            ]
-        },
-        "custom": {
-            "title": "Custom AI Solutions",
-            "subtitle": "Maßgeschneidert für Ihr Business",
-            "description": "Individuelle AI-Lösungen für Ihre einzigartigen Bedürfnisse.",
-            "features": [
-                "Datenanalyse & Insights",
-                "Maßgeschneiderte interne Tools",
-                "API-Integration (OpenAI, Anthropic)"
-            ]
-        },
-        "learnMore": "Mehr erfahren",
-        "cta": {
-            "title": "Bereit zu",
-            "titleHighlight": "automatisieren",
-            "subtitle": "Buchen Sie ein kostenloses AI-Audit, um Ihre Möglichkeiten zu entdecken.",
-            "button": "Mein Audit buchen"
-        }
+        "discover": "ENTDECKEN",
+        "viewAll": "Alle Dienstleistungen ansehen"
     },
     "about": {
         "title": "DER WEB",
@@ -214,7 +218,12 @@
             "emailPlaceholder": "max@agentur.ai",
             "message": "Nachricht",
             "messagePlaceholder": "Welche Prozesse möchten Sie automatisieren?",
-            "submit": "Senden"
+            "submit": "Senden",
+            "sending": "Senden...",
+            "success": "Nachricht erfolgreich gesendet!",
+            "error": "Ein Fehler ist aufgetreten",
+            "connectionError": "Verbindungsfehler",
+            "loading": "Wird gesendet..."
         },
         "legal": {
             "rights": "ALLE RECHTE VORBEHALTEN",

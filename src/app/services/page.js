@@ -12,37 +12,37 @@ export default function ServicesPage() {
     const services = [
         {
             icon: <MessageSquare className="w-8 h-8" />,
-            title: t("services.chatbot.title"),
-            subtitle: t("services.chatbot.subtitle"),
-            description: t("services.chatbot.description"),
+            title: t("services.items.chatbot.title"),
+            subtitle: t("services.items.chatbot.subtitle"), // Note: subtitle key assumes existence or string
+            description: t("services.items.chatbot.desc"),
             features: [
-                t("services.chatbot.features.0"),
-                t("services.chatbot.features.1"),
-                t("services.chatbot.features.2")
+                t("services.items.chatbot.features.0"),
+                t("services.items.chatbot.features.1"),
+                t("services.items.chatbot.features.2")
             ],
             color: "from-cyan-500 to-blue-500"
         },
         {
             icon: <Zap className="w-8 h-8" />,
-            title: t("services.automation.title"),
-            subtitle: t("services.automation.subtitle"),
-            description: t("services.automation.description"),
+            title: t("services.items.workflows.title"),
+            subtitle: t("services.subtitle"), // Reusing main subtitle or add specific if needed
+            description: t("services.items.workflows.desc"),
             features: [
-                t("services.automation.features.0"),
-                t("services.automation.features.1"),
-                t("services.automation.features.2")
+                t("services.items.workflows.features.0"),
+                t("services.items.workflows.features.1"),
+                t("services.items.workflows.features.2")
             ],
             color: "from-violet-500 to-purple-500"
         },
         {
             icon: <Brain className="w-8 h-8" />,
-            title: t("services.custom.title"),
-            subtitle: t("services.custom.subtitle"),
-            description: t("services.custom.description"),
+            title: t("services.items.leadgen.title"),
+            subtitle: t("services.subtitle"),
+            description: t("services.items.leadgen.desc"),
             features: [
-                t("services.custom.features.0"),
-                t("services.custom.features.1"),
-                t("services.custom.features.2")
+                t("services.items.leadgen.features.0"),
+                t("services.items.leadgen.features.1"),
+                t("services.items.leadgen.features.2")
             ],
             color: "from-emerald-500 to-teal-500"
         }

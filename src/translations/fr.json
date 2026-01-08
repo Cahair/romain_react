@@ -19,46 +19,50 @@
         "cta2": "Voir nos solutions"
     },
     "services": {
-        "title": "NOS",
-        "titleHighlight": "SERVICES IA",
-        "subtitle": "Des solutions d'intelligence artificielle qui automatisent et transforment votre business.",
-        "chatbot": {
-            "title": "AI Chatbots & Agents",
-            "subtitle": "Support Client 24/7",
-            "description": "Assistants intelligents qui comprennent vos clients et génèrent des leads qualifiés.",
-            "features": [
-                "Support multilingue intelligent",
-                "Qualification automatique des leads",
-                "Intégration CRM & outils existants"
-            ]
+        "badge": "Solutions IA",
+        "title": "NOS SERVICES",
+        "titleHighlight": "INTELLIGENTS",
+        "subtitle": "Des solutions sur-mesure pour propulser votre business dans l'ère de l'automatisation intelligente.",
+        "items": {
+            "chatbot": {
+                "title": "Chatbots Intelligents",
+                "desc": "Support client 24/7 et qualification de leads automatisée via LLMs personnalisés.",
+                "features": [
+                    "Support multilingue intelligent",
+                    "Qualification automatique des leads",
+                    "Intégration CRM & outils existants"
+                ]
+            },
+            "workflows": {
+                "title": "Workflows IA",
+                "desc": "Automatisation complète de vos processus métiers avec Zapier, Make et scripts IA.",
+                "features": [
+                    "Automatisation de processus complexes",
+                    "Intégrations multi-outils",
+                    "Reporting automatisé"
+                ]
+            },
+            "leadgen": {
+                "title": "Lead Gen IA",
+                "desc": "Prospection ultra-ciblée et personnalisée grâce à l'analyse prédictive.",
+                "features": [
+                    "Scraping & enrichissement données",
+                    "Emails ultra-personnalisés",
+                    "Suivi de performance"
+                ]
+            },
+            "data": {
+                "title": "Analyse Data",
+                "desc": "Transformez vos données brutes en insights actionnables pour piloter votre croissance.",
+                "features": [
+                    "Visualisation de données",
+                    "Prédictions IA",
+                    "Dashboards temps réel"
+                ]
+            }
         },
-        "automation": {
-            "title": "Business Automation",
-            "subtitle": "Make, Zapier & Beyond",
-            "description": "Automatisation complète de vos workflows. Éliminez les tâches répétitives.",
-            "features": [
-                "Automatisation de processus complexes",
-                "Intégrations multi-outils",
-                "Reporting automatisé"
-            ]
-        },
-        "custom": {
-            "title": "Custom AI Solutions",
-            "subtitle": "Sur-Mesure pour Votre Business",
-            "description": "Solutions AI personnalisées pour vos besoins uniques.",
-            "features": [
-                "Analyse de données & insights",
-                "Outils internes sur-mesure",
-                "Intégration API (OpenAI, Anthropic)"
-            ]
-        },
-        "learnMore": "En savoir plus",
-        "cta": {
-            "title": "Prêt à",
-            "titleHighlight": "automatiser",
-            "subtitle": "Réservez un audit AI gratuit pour découvrir vos opportunités.",
-            "button": "Réserver mon Audit"
-        }
+        "discover": "DÉCOUVRIR",
+        "viewAll": "Voir tous nos services"
     },
     "about": {
         "title": "L'EXPERT",
@@ -205,7 +209,7 @@
     },
     "footer": {
         "title": "PRÊT POUR",
-        "titleHighlight": "L'AUTOMATION ?",
+        "titleHighlight": "L'AUTOMATISATION ?",
         "subtitle": "Ne laissez pas vos concurrents prendre l'avantage. Contactez-nous pour un audit AI gratuit de vos processus business.",
         "form": {
             "name": "Votre Nom",
@@ -214,7 +218,12 @@
             "emailPlaceholder": "romain@agency.ai",
             "message": "Message",
             "messagePlaceholder": "Quels processus voulez-vous automatiser ?",
-            "submit": "Envoyer"
+            "submit": "Envoyer",
+            "sending": "Envoi...",
+            "success": "Message envoyé avec succès !",
+            "error": "Une erreur est survenue",
+            "connectionError": "Erreur de connexion",
+            "loading": "Envoi en cours..."
         },
         "legal": {
             "rights": "TOUS DROITS RÉSERVÉS",

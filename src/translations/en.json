@@ -19,46 +19,50 @@
         "cta2": "View our solutions"
     },
     "services": {
-        "title": "OUR",
-        "titleHighlight": "AI SERVICES",
-        "subtitle": "Artificial intelligence solutions that automate and transform your business.",
-        "chatbot": {
-            "title": "AI Chatbots & Agents",
-            "subtitle": "24/7 Customer Support",
-            "description": "Intelligent assistants that understand your customers and generate qualified leads.",
-            "features": [
-                "Intelligent multilingual support",
-                "Automatic lead qualification",
-                "CRM & existing tools integration"
-            ]
+        "badge": "AI Solutions",
+        "title": "OUR SERVICES",
+        "titleHighlight": "INTELLIGENT",
+        "subtitle": "Tailored solutions to propel your business into the era of intelligent automation.",
+        "items": {
+            "chatbot": {
+                "title": "Intelligent Chatbots",
+                "desc": "24/7 customer support and automated lead qualification via custom LLMs.",
+                "features": [
+                    "Intelligent multilingual support",
+                    "Automatic lead qualification",
+                    "CRM & existing tools integration"
+                ]
+            },
+            "workflows": {
+                "title": "AI Workflows",
+                "desc": "Complete automation of your business processes with Zapier, Make, and AI scripts.",
+                "features": [
+                    "Complex process automation",
+                    "Multi-tool integrations",
+                    "Automated reporting"
+                ]
+            },
+            "leadgen": {
+                "title": "AI Lead Gen",
+                "desc": "Ultra-targeted and personalized prospecting using predictive analysis.",
+                "features": [
+                    "Data scraping & enrichment",
+                    "Highly personalized emails",
+                    "Performance tracking"
+                ]
+            },
+            "data": {
+                "title": "Data Analysis",
+                "desc": "Transform your raw data into actionable insights to drive your growth.",
+                "features": [
+                    "Data visualization",
+                    "AI predictions",
+                    "Real-time dashboards"
+                ]
+            }
         },
-        "automation": {
-            "title": "Business Automation",
-            "subtitle": "Make, Zapier & Beyond",
-            "description": "Complete automation of your workflows. Eliminate repetitive tasks.",
-            "features": [
-                "Complex process automation",
-                "Multi-tool integrations",
-                "Automated reporting"
-            ]
-        },
-        "custom": {
-            "title": "Custom AI Solutions",
-            "subtitle": "Tailored for Your Business",
-            "description": "Custom AI solutions for your unique needs.",
-            "features": [
-                "Data analysis & insights",
-                "Custom internal tools",
-                "API integration (OpenAI, Anthropic)"
-            ]
-        },
-        "learnMore": "Learn more",
-        "cta": {
-            "title": "Ready to",
-            "titleHighlight": "automate",
-            "subtitle": "Book a free AI audit to discover your opportunities.",
-            "button": "Book my Audit"
-        }
+        "discover": "DISCOVER",
+        "viewAll": "View all our services"
     },
     "about": {
         "title": "THE WEB",
@@ -214,7 +218,12 @@
             "emailPlaceholder": "john@agency.ai",
             "message": "Message",
             "messagePlaceholder": "Which processes do you want to automate?",
-            "submit": "Send"
+            "submit": "Send",
+            "sending": "Sending...",
+            "success": "Message sent successfully!",
+            "error": "An error occurred",
+            "connectionError": "Connection error",
+            "loading": "Sending..."
         },
         "legal": {
             "rights": "ALL RIGHTS RESERVED",
