@@ -268,7 +268,7 @@ export default function ServicesPage() {
             <Navbar />
 
             {/* Intro Hero Section */}
-            <section className="h-[100dvh] w-full snap-start flex flex-col items-center justify-center relative overflow-hidden bg-background px-4">
+            <section className="h-[100dvh] w-full snap-start flex flex-col items-center justify-center relative overflow-hidden bg-background px-4 pt-20">
                 {/* Background Effects */}
                 <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]" />
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vh] h-[60vh] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
@@ -311,7 +311,7 @@ export default function ServicesPage() {
             </section>
 
             {/* Section 1: Chatbots */}
-            <section id="chatbots" className="h-[100dvh] w-full snap-start flex items-center justify-center relative overflow-hidden px-4 md:px-8">
+            <section id="chatbots" className="h-[100dvh] w-full snap-start flex items-center justify-center relative overflow-hidden px-4 md:px-8 pt-20">
                 <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full max-h-[90dvh]">
                     <div className="order-2 md:order-1 flex flex-col justify-center gap-4 md:gap-6">
                         <motion.h2
@@ -347,7 +347,7 @@ export default function ServicesPage() {
             </section>
 
             {/* Section 2: Workflows */}
-            <section className="h-[100dvh] w-full snap-start flex items-center justify-center relative overflow-hidden px-4 md:px-8 bg-black/20">
+            <section className="h-[100dvh] w-full snap-start flex items-center justify-center relative overflow-hidden px-4 md:px-8 bg-black/20 pt-20">
                 <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full max-h-[90dvh]">
                     <div className="order-2 md:order-1 flex justify-center items-center h-[35vh] md:h-auto">
                         <WorkflowVisual />
@@ -383,7 +383,7 @@ export default function ServicesPage() {
             </section>
 
             {/* Section 3: Lead Gen */}
-            <section className="h-[100dvh] w-full snap-start flex items-center justify-center relative overflow-hidden px-4 md:px-8">
+            <section className="h-[100dvh] w-full snap-start flex items-center justify-center relative overflow-hidden px-4 md:px-8 pt-20">
                 <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full max-h-[90dvh]">
                     <div className="order-2 md:order-1 flex flex-col justify-center gap-4 md:gap-6">
                         <motion.h2
@@ -419,7 +419,7 @@ export default function ServicesPage() {
             </section>
 
             {/* Section 4: Data */}
-            <section className="h-[100dvh] w-full snap-start flex items-center justify-center relative overflow-hidden px-4 md:px-8 bg-black/20">
+            <section className="h-[100dvh] w-full snap-start flex items-center justify-center relative overflow-hidden px-4 md:px-8 bg-black/20 pt-20">
                 <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full max-h-[90dvh]">
                     <div className="order-2 md:order-1 flex justify-center items-center h-[35vh] md:h-auto">
                         <DataVisual />
