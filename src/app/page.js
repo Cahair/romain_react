@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Storytelling from "../components/Storytelling";
 import ServicesBento from "../components/ServicesBento";
+import WorkflowsSection from "../components/WorkflowsSection";
 import Footer from "../components/Footer";
 import { motion, useScroll, useSpring } from "framer-motion";
 
@@ -28,6 +29,7 @@ export default function Home() {
       <div id="services">
         <ServicesBento />
       </div>
+      <WorkflowsSection />
       <Footer />
     </main>
   );
