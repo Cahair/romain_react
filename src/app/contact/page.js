@@ -51,101 +51,95 @@ export default function ContactPage() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6 }}
-                className="flex-1 pt-32 pb-24 flex flex-col justify-center min-h-[calc(100vh-80px)]"
+                className="flex-1 pt-24 pb-10 flex flex-col justify-center min-h-[calc(100vh-80px)]"
             >
-                {/* Hero */}
-                <div className="container mx-auto px-6 mb-10">
+                {/* Hero - Compact */}
+                <div className="container mx-auto px-4 mb-6 md:mb-8">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
                         className="text-center max-w-4xl mx-auto"
                     >
-                        <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-4">
+                        <h1 className="text-3xl md:text-5xl font-black tracking-tighter mb-2 leading-tight">
                             {t("contact.title")} <span className="text-gradient">{t("contact.titleHighlight")}</span>
                         </h1>
-                        <p className="text-lg text-gray-400">
+                        <p className="text-sm md:text-base text-gray-400 max-w-2xl mx-auto">
                             {t("contact.subtitle")}
                         </p>
                     </motion.div>
                 </div>
 
-                {/* Split Screen Layout */}
-                <div className="container mx-auto px-6 flex-1 flex items-center">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto w-full">
+                {/* Optimized Split Screen Layout */}
+                <div className="container mx-auto px-4 flex-1 flex items-center">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8 max-w-6xl mx-auto w-full h-full">
 
-                        {/* Left: Info */}
+                        {/* Left Column: Why Audit + Contact Info */}
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.3 }}
-                            className="space-y-6 flex flex-col"
+                            className="flex flex-col gap-4 h-full order-2 lg:order-1"
                         >
-                            <div className="glass p-8 rounded-3xl flex-1">
-                                <h2 className="text-2xl font-black mb-6">{t("contact.why.title")}</h2>
-                                <ul className="space-y-4 text-base text-gray-300">
+                            {/* Value Proposition Card */}
+                            <div className="glass p-6 md:p-8 rounded-2xl flex-1 flex flex-col justify-center">
+                                <h2 className="text-xl md:text-2xl font-black mb-4 md:mb-6">{t("contact.why.title")}</h2>
+                                <ul className="space-y-3 text-sm md:text-base text-gray-300">
                                     <li className="flex items-start gap-3">
-                                        <span className="text-primary mt-1">✦</span>
+                                        <span className="text-primary mt-0.5">✦</span>
                                         <span>{t("contact.why.items.0")}</span>
                                     </li>
                                     <li className="flex items-start gap-3">
-                                        <span className="text-primary mt-1">✦</span>
+                                        <span className="text-primary mt-0.5">✦</span>
                                         <span>{t("contact.why.items.1")}</span>
                                     </li>
                                     <li className="flex items-start gap-3">
-                                        <span className="text-primary mt-1">✦</span>
+                                        <span className="text-primary mt-0.5">✦</span>
                                         <span>{t("contact.why.items.2")}</span>
                                     </li>
                                     <li className="flex items-start gap-3">
-                                        <span className="text-primary mt-1">✦</span>
+                                        <span className="text-primary mt-0.5">✦</span>
                                         <span>{t("contact.why.items.3")}</span>
                                     </li>
                                 </ul>
                             </div>
 
-                            <div className="glass p-8 rounded-3xl">
-                                <h3 className="text-lg font-black mb-5 uppercase tracking-widest">{t("contact.contact.title")}</h3>
-                                <div className="space-y-4">
-                                    <div className="flex items-center gap-4">
-                                        <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                                            <Mail className="w-6 h-6 text-primary" />
+                            {/* Contact Details Card */}
+                            <div className="glass p-5 md:p-6 rounded-2xl">
+                                <h3 className="text-sm font-black mb-4 uppercase tracking-widest text-gray-400">{t("contact.contact.title")}</h3>
+                                <div className="space-y-3">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                                            <Mail className="w-5 h-5 text-primary" />
                                         </div>
                                         <div>
-                                            <div className="text-xs text-gray-500 uppercase tracking-wide">{t("contact.contact.email")}</div>
-                                            <div className="text-base font-bold">romain@kantzer.ai</div>
+                                            <div className="text-[10px] text-gray-500 uppercase tracking-wide">{t("contact.contact.email")}</div>
+                                            <div className="text-sm font-bold">romain@kantzer.ai</div>
                                         </div>
                                     </div>
-                                    <div className="flex items-center gap-4">
-                                        <div className="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center">
-                                            <Phone className="w-6 h-6 text-secondary" />
+                                    {/* Phone hidden or kept based on preference, keeping compact */}
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center shrink-0">
+                                            <Phone className="w-5 h-5 text-secondary" />
                                         </div>
                                         <div>
-                                            <div className="text-xs text-gray-500 uppercase tracking-wide">{t("contact.contact.phone")}</div>
-                                            <div className="text-base font-bold">+33 6 XX XX XX XX</div>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center gap-4">
-                                        <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center">
-                                            <MapPin className="w-6 h-6 text-accent" />
-                                        </div>
-                                        <div>
-                                            <div className="text-xs text-gray-500 uppercase tracking-wide">{t("contact.contact.location")}</div>
-                                            <div className="text-base font-bold">{t("contact.contact.locationValue")}</div>
+                                            <div className="text-[10px] text-gray-500 uppercase tracking-wide">{t("contact.contact.phone")}</div>
+                                            <div className="text-sm font-bold">+33 6 XX XX XX XX</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </motion.div>
 
-                        {/* Right: Form */}
+                        {/* Right Column: High Conversion Form */}
                         <motion.div
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.4 }}
-                            className="flex"
+                            className="flex h-full order-1 lg:order-2"
                         >
-                            <div className="glass p-8 rounded-3xl flex-1 flex flex-col">
-                                <h2 className="text-2xl font-black mb-6 uppercase tracking-widest">{t("contact.form.title")}</h2>
+                            <div className="glass p-5 md:p-8 rounded-2xl flex-1 flex flex-col w-full">
+                                <h2 className="text-xl md:text-2xl font-black mb-4 md:mb-6 uppercase tracking-widest">{t("contact.form.title")}</h2>
 
                                 {status === "success" ? (
                                     <div className="flex-1 flex flex-col items-center justify-center text-center space-y-4">
@@ -163,10 +157,10 @@ export default function ContactPage() {
                                         </button>
                                     </div>
                                 ) : (
-                                    <form onSubmit={handleSubmit} className="space-y-5 flex-1 flex flex-col">
-                                        <div className="grid grid-cols-2 gap-4">
+                                    <form onSubmit={handleSubmit} className="space-y-3 md:space-y-4 flex-1 flex flex-col">
+                                        <div className="grid grid-cols-2 gap-3 md:gap-4">
                                             <div>
-                                                <label className="block text-sm font-bold uppercase tracking-wide text-gray-500 mb-2">
+                                                <label className="block text-xs font-bold uppercase tracking-wide text-gray-500 mb-1">
                                                     {t("contact.form.name")}
                                                 </label>
                                                 <input
@@ -175,12 +169,12 @@ export default function ContactPage() {
                                                     value={formData.name}
                                                     onChange={handleChange}
                                                     required
-                                                    placeholder={t("contact.form.namePlaceholder")}
-                                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors"
+                                                    className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-primary transition-colors"
+                                                    placeholder="Votre Nom"
                                                 />
                                             </div>
                                             <div>
-                                                <label className="block text-sm font-bold uppercase tracking-wide text-gray-500 mb-2">
+                                                <label className="block text-xs font-bold uppercase tracking-wide text-gray-500 mb-1">
                                                     {t("contact.form.email")}
                                                 </label>
                                                 <input
@@ -189,21 +183,21 @@ export default function ContactPage() {
                                                     value={formData.email}
                                                     onChange={handleChange}
                                                     required
-                                                    placeholder={t("contact.form.emailPlaceholder")}
-                                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors"
+                                                    className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-primary transition-colors"
+                                                    placeholder="votre@email.com"
                                                 />
                                             </div>
                                         </div>
-                                        <div className="grid grid-cols-2 gap-4">
+                                        <div className="grid grid-cols-2 gap-3 md:gap-4">
                                             <div>
-                                                <label className="block text-sm font-bold uppercase tracking-wide text-gray-500 mb-2">
+                                                <label className="block text-xs font-bold uppercase tracking-wide text-gray-500 mb-1">
                                                     {t("contact.form.project")}
                                                 </label>
                                                 <select
                                                     name="project"
                                                     value={formData.project}
                                                     onChange={handleChange}
-                                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors"
+                                                    className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-primary transition-colors"
                                                 >
                                                     <option value="">{t("contact.form.projectOptions.select")}</option>
                                                     <option value="chatbot">{t("contact.form.projectOptions.chatbot")}</option>
@@ -214,14 +208,14 @@ export default function ContactPage() {
                                                 </select>
                                             </div>
                                             <div>
-                                                <label className="block text-sm font-bold uppercase tracking-wide text-gray-500 mb-2">
+                                                <label className="block text-xs font-bold uppercase tracking-wide text-gray-500 mb-1">
                                                     {t("contact.form.budget")}
                                                 </label>
                                                 <select
                                                     name="budget"
                                                     value={formData.budget}
                                                     onChange={handleChange}
-                                                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors"
+                                                    className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-primary transition-colors"
                                                 >
                                                     <option value="">{t("contact.form.budgetOptions.select")}</option>
                                                     <option value="less5k">{t("contact.form.budgetOptions.less5k")}</option>
@@ -232,8 +226,8 @@ export default function ContactPage() {
                                                 </select>
                                             </div>
                                         </div>
-                                        <div className="flex-1">
-                                            <label className="block text-sm font-bold uppercase tracking-wide text-gray-500 mb-2">
+                                        <div className="flex-1 min-h-[100px]">
+                                            <label className="block text-xs font-bold uppercase tracking-wide text-gray-500 mb-1">
                                                 {t("contact.form.message")}
                                             </label>
                                             <textarea
@@ -241,34 +235,34 @@ export default function ContactPage() {
                                                 value={formData.message}
                                                 onChange={handleChange}
                                                 required
-                                                rows="4"
+                                                rows="3"
+                                                className="w-full h-full bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-primary transition-colors resize-none"
                                                 placeholder={t("contact.form.messagePlaceholder")}
-                                                className="w-full h-full min-h-[100px] bg-white/5 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:border-primary transition-colors resize-none"
                                             />
                                         </div>
 
                                         {status === "error" && (
-                                            <p className="text-red-500 text-sm">{t("contact.form.error")}</p>
+                                            <p className="text-red-500 text-xs">{t("contact.form.error")}</p>
                                         )}
 
                                         <button
                                             type="submit"
                                             disabled={status === "loading"}
-                                            className="w-full py-4 bg-gradient-to-r from-primary to-secondary rounded-xl font-black uppercase tracking-widest hover:scale-[1.02] transition-transform shadow-neon-cyan disabled:opacity-50 disabled:cursor-not-allowed"
+                                            className="w-full py-3 md:py-4 bg-gradient-to-r from-primary to-secondary rounded-xl font-black uppercase tracking-widest hover:scale-[1.02] transition-transform shadow-neon-cyan disabled:opacity-50 disabled:cursor-not-allowed text-sm md:text-base mt-2"
                                         >
                                             {status === "loading" ? t("contact.form.sending") : t("contact.form.submit")}
                                         </button>
                                     </form>
                                 )}
 
-                                {/* Calendly section */}
-                                <div className="mt-6 pt-6 border-t border-white/10">
+                                {/* Compact Calendly section */}
+                                <div className="mt-4 pt-4 border-t border-white/10">
                                     <div className="flex items-center justify-between">
-                                        <div className="flex items-center gap-3">
-                                            <Calendar className="w-5 h-5 text-primary" />
-                                            <span className="text-sm font-bold uppercase tracking-wide">{t("contact.calendly.title")}</span>
+                                        <div className="flex items-center gap-2">
+                                            <Calendar className="w-4 h-4 text-primary" />
+                                            <span className="text-xs font-bold uppercase tracking-wide">{t("contact.calendly.title")}</span>
                                         </div>
-                                        <button className="text-sm text-primary font-bold hover:underline">
+                                        <button className="text-xs text-primary font-bold hover:underline">
                                             {t("contact.calendly.button")}
                                         </button>
                                     </div>
@@ -279,7 +273,7 @@ export default function ContactPage() {
                 </div>
             </motion.div>
 
-            <Footer />
+            {/* Footer removed for Contact page */}
         </main>
     );
 }

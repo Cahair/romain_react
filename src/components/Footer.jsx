@@ -1,5 +1,6 @@
 "use client";
 import { Send, Linkedin, Github } from "lucide-react";
+import Link from "next/link";
 import { useTranslation } from "./LanguageProvider";
 
 export default function Footer() {
@@ -23,8 +24,8 @@ export default function Footer() {
                         {t("footer.titleHighlight")}
                     </h2>
 
-                    <a
-                        href="mailto:romainkantzer10@gmail.com"
+                    <Link
+                        href="/contact"
                         className="mt-16 group relative inline-flex items-center gap-4 px-12 py-6 bg-primary/10 border border-primary/50 rounded-full overflow-hidden hover:bg-primary/20 transition-all duration-500 hover:scale-105"
                     >
                         <span className="font-mono text-xl text-primary-neon uppercase tracking-widest z-10">
@@ -32,7 +33,7 @@ export default function Footer() {
                         </span>
                         <Send className="w-6 h-6 text-primary-neon z-10 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                         <div className="absolute inset-0 bg-primary/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    </a>
+                    </Link>
                 </div>
 
                 {/* Bottom Bar */}
@@ -48,6 +49,10 @@ export default function Footer() {
 
                     <div className="text-muted-foreground text-xs font-mono tracking-widest uppercase">
                         <span suppressHydrationWarning>© {new Date().getFullYear()} KANTZER.AI — {t("footer.legal.rights")}</span>
+                        <span className="mx-2">•</span>
+                        <Link href="/legal" className="hover:text-primary-neon transition-colors">
+                            Mentions Légales
+                        </Link>
                     </div>
                 </div>
             </div>

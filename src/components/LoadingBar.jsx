@@ -45,7 +45,7 @@ export default function LoadingBar() {
                     <motion.div
                         className="h-full"
                         style={{
-                            background: `linear-gradient(90deg, ${accent.primary}, #fff, ${accent.primary})`,
+                            backgroundImage: `linear-gradient(90deg, ${accent.primary}, #fff, ${accent.primary})`,
                             backgroundSize: "200% 100%",
                             boxShadow: `0 0 20px ${accent.primary}, 0 0 40px ${accent.primary}`,
                         }}
