@@ -295,7 +295,7 @@ export default function ServicesPage() {
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 1, duration: 1 }}
-                    className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 cursor-pointer"
+                    className="absolute bottom-16 left-1/2 -translate-x-1/2 z-20 cursor-pointer"
                 >
                     <a href="#chatbots" className="flex flex-col items-center gap-2 group">
                         <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground group-hover:text-primary-neon transition-colors">{t("servicesPage.intro.scroll")}</span>
@@ -310,7 +310,7 @@ export default function ServicesPage() {
             </section>
 
             {/* Section 1: Chatbots */}
-            <section id="chatbots" className="h-screen w-full snap-start flex items-center justify-center relative overflow-hidden px-6 pt-20">
+            <section id="chatbots" className="h-screen w-full snap-start flex items-center justify-center relative overflow-hidden px-6">
                 <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                     <div className="order-2 md:order-1">
                         <motion.h2
@@ -346,7 +346,7 @@ export default function ServicesPage() {
             </section>
 
             {/* Section 2: Workflows */}
-            <section className="h-screen w-full snap-start flex items-center justify-center relative overflow-hidden px-6 pt-20 bg-black/20">
+            <section className="h-screen w-full snap-start flex items-center justify-center relative overflow-hidden px-6 bg-black/20">
                 <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                     <div className="order-2 md:order-1 flex justify-center">
                         <WorkflowVisual />
@@ -382,7 +382,7 @@ export default function ServicesPage() {
             </section>
 
             {/* Section 3: Lead Gen */}
-            <section className="h-screen w-full snap-start flex items-center justify-center relative overflow-hidden px-6 pt-20">
+            <section className="h-screen w-full snap-start flex items-center justify-center relative overflow-hidden px-6">
                 <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                     <div className="order-2 md:order-1">
                         <motion.h2
@@ -418,7 +418,7 @@ export default function ServicesPage() {
             </section>
 
             {/* Section 4: Data */}
-            <section className="h-screen w-full snap-start flex items-center justify-center relative overflow-hidden px-6 pt-20 bg-black/20">
+            <section className="h-screen w-full snap-start flex items-center justify-center relative overflow-hidden px-6 bg-black/20">
                 <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                     <div className="order-2 md:order-1 flex justify-center">
                         <DataVisual />
@@ -454,7 +454,7 @@ export default function ServicesPage() {
             </section>
 
             {/* Footer styled as simple copyright at the end of scroll */}
-            <div className="snap-end">
+            <div className="snap-start w-full">
                 <Footer />
             </div>
         </main>
