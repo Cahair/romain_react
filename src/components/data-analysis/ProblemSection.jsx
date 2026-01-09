@@ -15,7 +15,7 @@ export default function ProblemSection() {
     ];
 
     return (
-        <div className="w-full h-full bg-slate-950 relative overflow-hidden flex items-center justify-center p-8">
+        <div className="w-full h-full bg-slate-950 relative overflow-hidden flex items-center justify-center p-8 pt-24 md:p-8">
             {/* Matrix Background Effect */}
             <div className="absolute inset-0 opacity-20 pointer-events-none">
                 {Array.from({ length: 20 }).map((_, i) => (

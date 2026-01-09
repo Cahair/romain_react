@@ -76,20 +76,20 @@ const WorkflowsSection = () => {
                                     {workflow.title}
                                 </h3>
 
-                                <div className="flex flex-col md:flex-row items-center justify-between gap-6 md:gap-4">
+                                <div className="flex flex-row md:flex-row items-center justify-between gap-2 md:gap-4 overflow-x-auto md:overflow-visible pb-2 md:pb-0">
 
                                     {/* INPUT */}
-                                    <div className="flex-1 w-full md:w-auto p-4 bg-slate-900/50 rounded-lg border border-slate-800/50 flex flex-col items-center text-center hover:border-slate-700 transition">
-                                        <div className="p-3 bg-slate-800 rounded-full mb-3 text-slate-300">
-                                            <workflow.input.icon size={24} />
+                                    <div className="flex-1 w-full md:w-auto p-3 md:p-4 bg-slate-900/50 rounded-lg border border-slate-800/50 flex flex-col items-center text-center hover:border-slate-700 transition min-w-[90px]">
+                                        <div className="p-2 md:p-3 bg-slate-800 rounded-full mb-2 md:mb-3 text-slate-300">
+                                            <workflow.input.icon size={18} className="md:w-6 md:h-6" />
                                         </div>
-                                        <span className="text-sm font-medium text-slate-300">{workflow.input.label}</span>
-                                        <span className="text-xs text-slate-500 mt-1">Input</span>
+                                        <span className="text-[10px] md:text-sm font-medium text-slate-300 leading-tight">{workflow.input.label}</span>
+                                        <span className="hidden md:block text-xs text-slate-500 mt-1">Input</span>
                                     </div>
 
                                     {/* CONNECTOR 1 */}
-                                    <div className="hidden md:flex flex-1 items-center justify-center relative h-12">
-                                        <div className="absolute h-[2px] w-full bg-slate-800 overflow-hidden">
+                                    <div className="flex flex-1 items-center justify-center relative h-12">
+                                        <div className="absolute h-[1px] md:h-[2px] w-full bg-slate-800 overflow-hidden">
                                             <motion.div
                                                 initial={{ x: "-100%" }}
                                                 whileInView={{ x: "100%" }}
@@ -97,28 +97,26 @@ const WorkflowsSection = () => {
                                                 className={`w-1/2 h-full bg-gradient-to-r from-transparent via-white/50 to-transparent`}
                                             />
                                         </div>
-                                        <ArrowRight className="text-slate-600 z-10" />
+                                        <ArrowRight className="text-slate-600 z-10 w-4 h-4 md:w-6 md:h-6" />
                                     </div>
-                                    {/* Mobile Connector */}
-                                    <ArrowRight className="md:hidden text-slate-600 rotate-90 my-2" />
 
                                     {/* BLACK BOX / PROCESS */}
-                                    <div className="flex-1 w-full md:w-auto p-6 relative rounded-lg border border-slate-700 bg-slate-900 flex flex-col items-center text-center shadow-lg group-hover:shadow-blue-900/10 transition">
+                                    <div className="flex-1 w-full md:w-auto p-3 md:p-6 relative rounded-lg border border-slate-700 bg-slate-900 flex flex-col items-center text-center shadow-lg group-hover:shadow-blue-900/10 transition min-w-[100px]">
                                         <div className={`absolute inset-0 bg-gradient-to-br ${workflow.gradient} opacity-5 rounded-lg`}></div>
                                         <motion.div
                                             animate={{ scale: [1, 1.1, 1] }}
                                             transition={{ duration: 2, repeat: Infinity }}
-                                            className="p-4 bg-black rounded-full mb-3 text-white border border-slate-700 shadow-inner z-10"
+                                            className="p-2 md:p-4 bg-black rounded-full mb-2 md:mb-3 text-white border border-slate-700 shadow-inner z-10"
                                         >
-                                            <workflow.process.icon size={28} />
+                                            <workflow.process.icon size={20} className="md:w-7 md:h-7" />
                                         </motion.div>
-                                        <span className="text-sm font-bold text-white z-10">{workflow.process.label}</span>
-                                        <span className="text-xs text-blue-400 mt-1 z-10">Processing...</span>
+                                        <span className="text-[10px] md:text-sm font-bold text-white z-10 leading-tight">{workflow.process.label}</span>
+                                        <span className="hidden md:block text-xs text-blue-400 mt-1 z-10">Processing...</span>
                                     </div>
 
                                     {/* CONNECTOR 2 */}
-                                    <div className="hidden md:flex flex-1 items-center justify-center relative h-12">
-                                        <div className="absolute h-[2px] w-full bg-slate-800 overflow-hidden">
+                                    <div className="flex flex-1 items-center justify-center relative h-12">
+                                        <div className="absolute h-[1px] md:h-[2px] w-full bg-slate-800 overflow-hidden">
                                             <motion.div
                                                 initial={{ x: "-100%" }}
                                                 whileInView={{ x: "100%" }}
@@ -126,18 +124,16 @@ const WorkflowsSection = () => {
                                                 className={`w-1/2 h-full bg-gradient-to-r from-transparent via-white/50 to-transparent`}
                                             />
                                         </div>
-                                        <ArrowRight className="text-slate-600 z-10" />
+                                        <ArrowRight className="text-slate-600 z-10 w-4 h-4 md:w-6 md:h-6" />
                                     </div>
-                                    {/* Mobile Connector */}
-                                    <ArrowRight className="md:hidden text-slate-600 rotate-90 my-2" />
 
                                     {/* OUTPUT */}
-                                    <div className="flex-1 w-full md:w-auto p-4 bg-slate-900/50 rounded-lg border border-slate-800/50 flex flex-col items-center text-center hover:border-green-900/30 transition">
-                                        <div className={`p-3 bg-gradient-to-br ${workflow.gradient} rounded-full mb-3 text-white shadow-lg`}>
-                                            <workflow.output.icon size={24} />
+                                    <div className="flex-1 w-full md:w-auto p-3 md:p-4 bg-slate-900/50 rounded-lg border border-slate-800/50 flex flex-col items-center text-center hover:border-green-900/30 transition min-w-[90px]">
+                                        <div className={`p-2 md:p-3 bg-gradient-to-br ${workflow.gradient} rounded-full mb-2 md:mb-3 text-white shadow-lg`}>
+                                            <workflow.output.icon size={18} className="md:w-6 md:h-6" />
                                         </div>
-                                        <span className="text-sm font-medium text-white">{workflow.output.label}</span>
-                                        <span className="text-xs text-slate-500 mt-1">Output</span>
+                                        <span className="text-[10px] md:text-sm font-medium text-white leading-tight">{workflow.output.label}</span>
+                                        <span className="hidden md:block text-xs text-slate-500 mt-1">Output</span>
                                     </div>
 
                                 </div>

@@ -12,6 +12,9 @@ export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenu, setMobileMenu] = useState(false);
     const [langMenu, setLangMenu] = useState(false);
+    const [hoveredPath, setHoveredPath] = useState(null);
+    const [expandedMobile, setExpandedMobile] = useState(null);
+
     const pathname = usePathname();
     const accent = usePageAccent();
     const { theme, toggleTheme } = useTheme();
@@ -19,7 +22,16 @@ export default function Navbar() {
 
     const navItems = [
         { name: t("nav.home"), path: "/" },
-        { name: t("nav.services"), path: "/services" },
+        {
+            name: t("nav.services"),
+            path: "/services",
+            subItems: [
+                { name: "Agents IA", path: "/services/agents" },
+                { name: "Workflows IA", path: "/services/workflows" },
+                { name: "Lead Gen IA", path: "/services/lead-gen" },
+                { name: "Data Analysis", path: "/services/data" },
+            ]
+        },
         { name: t("nav.about"), path: "/about" }
     ];
 
@@ -31,12 +43,15 @@ export default function Navbar() {
 
     // Close language menu when clicking outside
     useEffect(() => {
-        const handleClick = () => setLangMenu(false);
-        if (langMenu) {
+        const handleClick = () => {
+            setLangMenu(false);
+            setHoveredPath(null);
+        };
+        if (langMenu || hoveredPath) {
             document.addEventListener("click", handleClick);
             return () => document.removeEventListener("click", handleClick);
         }
-    }, [langMenu]);
+    }, [langMenu, hoveredPath]);
 
     const currentLocale = availableLocales.find(l => l.code === locale);
 
@@ -44,7 +59,7 @@ export default function Navbar() {
         <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? "py-2 md:py-4" : "py-2 md:py-8"}`}>
             <div className="container mx-auto px-4 md:px-6">
                 <div
-                    className={`px-6 py-3 rounded-full flex items-center justify-between transition-all duration-500 border ${scrolled
+                    className={`px-6 py-3 rounded-full flex items-center justify-between transition-all duration-500 border relative ${scrolled
                         ? "bg-background/95 backdrop-blur-xl shadow-xl shadow-black/40 border-white/20"
                         : "bg-background/40 backdrop-blur-sm border-white/5"
                         }`}
@@ -62,21 +77,62 @@ export default function Navbar() {
                         </div>
                     </Link>
 
+                    {/* DESKTOP MENU */}
                     <div className="hidden md:flex items-center gap-8">
                         {navItems.map((item) => (
-                            <Link
+                            <div
                                 key={item.path}
-                                href={item.path}
-                                className={`text-sm font-mono tracking-widest uppercase transition-all duration-300 hover:text-primary-neon ${pathname === item.path ? "text-primary-neon" : "text-muted-foreground"
-                                    }`}
+                                className="relative"
+                                onMouseEnter={() => setHoveredPath(item.path)}
+                                onMouseLeave={() => setHoveredPath(null)}
                             >
-                                <span className="relative">
-                                    {pathname === item.path && (
-                                        <span className="absolute -left-3 top-1/2 -translate-y-1/2 text-xs text-primary leading-none">&gt;</span>
+                                <Link
+                                    href={item.path}
+                                    className={`text-sm font-mono tracking-widest uppercase transition-all duration-300 hover:text-primary-neon ${pathname.startsWith(item.path) && item.path !== "/"
+                                        ? "text-primary-neon"
+                                        : pathname === item.path ? "text-primary-neon" : "text-muted-foreground"
+                                        }`}
+                                >
+                                    <span className="relative flex items-center gap-1">
+                                        {pathname === item.path && (
+                                            <span className="absolute -left-3 top-1/2 -translate-y-1/2 text-xs text-primary leading-none">&gt;</span>
+                                        )}
+                                        {item.name}
+                                        {item.subItems && (
+                                            <ChevronDown size={12} className={`transition-transform duration-300 ${hoveredPath === item.path ? "rotate-180" : ""}`} />
+                                        )}
+                                    </span>
+                                </Link>
+
+                                {/* Dropdown Menu */}
+                                <AnimatePresence>
+                                    {item.subItems && hoveredPath === item.path && (
+                                        <motion.div
+                                            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                                            exit={{ opacity: 0, y: 5, scale: 0.95 }}
+                                            transition={{ duration: 0.2 }}
+                                            className="absolute top-full left-1/2 -translate-x-1/2 pt-6 w-56 transform z-50"
+                                        >
+                                            <div className="bg-[#0a0a0a] border border-white/10 rounded-xl overflow-hidden shadow-2xl backdrop-blur-xl p-2 flex flex-col gap-1 ring-1 ring-white/5">
+                                                {/* Decorative top arrow */}
+                                                <div className="absolute -top-[5px] left-1/2 -translate-x-1/2 w-3 h-3 bg-[#0a0a0a] border-t border-l border-white/10 rotate-45 transform" />
+
+                                                {item.subItems.map((sub) => (
+                                                    <Link
+                                                        key={sub.path}
+                                                        href={sub.path}
+                                                        className={`block px-4 py-3 rounded-lg text-xs font-mono uppercase transition-all duration-200 hover:bg-white/5 ${pathname === sub.path ? "text-primary-neon bg-white/5" : "text-muted-foreground hover:text-foreground"
+                                                            }`}
+                                                    >
+                                                        {sub.name}
+                                                    </Link>
+                                                ))}
+                                            </div>
+                                        </motion.div>
                                     )}
-                                    {item.name}
-                                </span>
-                            </Link>
+                                </AnimatePresence>
+                            </div>
                         ))}
 
                         {/* Language Selector */}
@@ -111,20 +167,6 @@ export default function Navbar() {
                             </AnimatePresence>
                         </div>
 
-                        {/* Theme Toggle - DISABLED TEMPORARILY
-                        <button
-                            onClick={toggleTheme}
-                            className="p-2 rounded-full hover:bg-white/5 transition-all text-muted-foreground hover:text-primary-neon"
-                            aria-label="Toggle theme"
-                        >
-                            {theme === "dark" ? (
-                                <Sun className="w-5 h-5" />
-                            ) : (
-                                <Moon className="w-5 h-5" />
-                            )}
-                        </button>
-                        */}
-
                         {pathname === "/contact" ? (
                             <Link
                                 href="/contact"
@@ -148,50 +190,71 @@ export default function Navbar() {
                 </div>
             </div>
 
+            {/* MOBILE MENU */}
             <AnimatePresence>
                 {mobileMenu && (
                     <motion.div
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
-                        className="absolute top-20 left-4 right-4 bg-[#0a0a0a]/95 backdrop-blur-xl border border-white/10 rounded-3xl p-6 flex flex-col gap-6 md:hidden shadow-2xl z-50"
+                        className="absolute top-20 left-4 right-4 bg-[#0a0a0a]/95 backdrop-blur-xl border border-white/10 rounded-3xl p-6 flex flex-col gap-6 md:hidden shadow-2xl z-50 overflow-hidden"
                     >
                         {navItems.map((item) => (
-                            <Link
-                                key={item.path}
-                                href={item.path}
-                                className={`text-lg font-mono font-bold uppercase tracking-widest ${pathname === item.path ? "text-primary-neon" : "text-foreground"
-                                    }`}
-                                onClick={() => setMobileMenu(false)}
-                            >
-                                <span className="flex items-center gap-2">
-                                    {pathname === item.path && <span className="text-secondary-neon">&gt;</span>}
-                                    {item.name}
-                                </span>
-                            </Link>
+                            <div key={item.path} className="flex flex-col">
+                                <div className="flex items-center justify-between">
+                                    <Link
+                                        href={item.path}
+                                        className={`text-lg font-mono font-bold uppercase tracking-widest ${pathname.startsWith(item.path) && item.path !== "/"
+                                            ? "text-primary-neon"
+                                            : pathname === item.path ? "text-primary-neon" : "text-foreground"
+                                            }`}
+                                        onClick={() => !item.subItems && setMobileMenu(false)}
+                                    >
+                                        <span className="flex items-center gap-2">
+                                            {pathname === item.path && <span className="text-secondary-neon">&gt;</span>}
+                                            {item.name}
+                                        </span>
+                                    </Link>
+                                    {item.subItems && (
+                                        <button
+                                            onClick={() => setExpandedMobile(expandedMobile === item.path ? null : item.path)}
+                                            className="p-2 text-muted-foreground"
+                                        >
+                                            <ChevronDown className={`transition-transform duration-300 ${expandedMobile === item.path ? "rotate-180" : ""}`} />
+                                        </button>
+                                    )}
+                                </div>
+
+                                {/* Mobile Submenu */}
+                                <AnimatePresence>
+                                    {item.subItems && expandedMobile === item.path && (
+                                        <motion.div
+                                            initial={{ height: 0, opacity: 0 }}
+                                            animate={{ height: "auto", opacity: 1 }}
+                                            exit={{ height: 0, opacity: 0 }}
+                                            className="overflow-hidden"
+                                        >
+                                            <div className="flex flex-col gap-3 pl-6 pt-3 border-l border-white/10 ml-2 mt-2">
+                                                {item.subItems.map(sub => (
+                                                    <Link
+                                                        key={sub.path}
+                                                        href={sub.path}
+                                                        className={`text-sm font-mono uppercase tracking-wider ${pathname === sub.path ? "text-primary-neon" : "text-muted-foreground"
+                                                            }`}
+                                                        onClick={() => setMobileMenu(false)}
+                                                    >
+                                                        {sub.name}
+                                                    </Link>
+                                                ))}
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
                         ))}
 
                         {/* Mobile Footer Actions */}
                         <div className="flex items-center justify-between pt-4 border-t border-white/10">
-                            {/* Mobile Theme Toggle - DISABLED TEMPORARILY
-                            <button
-                                onClick={toggleTheme}
-                                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 text-foreground font-mono uppercase text-sm"
-                            >
-                                {theme === "dark" ? (
-                                    <>
-                                        <Sun className="w-4 h-4" />
-                                        <span>Light</span>
-                                    </>
-                                ) : (
-                                    <>
-                                        <Moon className="w-4 h-4" />
-                                        <span>Dark</span>
-                                    </>
-                                )}
-                            </button>
-                            */}
-
                             {/* Mobile Language Selector */}
                             <div className="flex gap-2">
                                 {availableLocales.map((lang) => (

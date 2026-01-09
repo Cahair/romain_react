@@ -35,7 +35,7 @@ export default function AgentCard({ agent, isActive, onClick }) {
         <motion.div
             layout
             onClick={onClick}
-            className={`relative group cursor-pointer overflow-hidden rounded-2xl border ${style.border} bg-gradient-to-br ${style.gradient} backdrop-blur-xl transition-all duration-500 ${isSelected ? `flex-[2] ${style.glow}` : "flex-1 opacity-80 hover:opacity-100"}`}
+            className={`relative group cursor-pointer overflow-hidden rounded-2xl border ${style.border} bg-gradient-to-br ${style.gradient} backdrop-blur-xl transition-[opacity,border-color,box-shadow] duration-500 ${isSelected ? `flex-[2] ${style.glow}` : "flex-1 opacity-80 hover:opacity-100"}`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             whileHover={!isSelected ? { scale: 1.02 } : {}}
@@ -53,8 +53,14 @@ export default function AgentCard({ agent, isActive, onClick }) {
                 </div>
 
                 {/* Visual Representation Placeholder */}
-                <div className={`w-full aspect-square mb-6 rounded-xl bg-gradient-to-br ${style.gradient} opacity-50 flex items-center justify-center border ${style.border}`}>
-                    <span className={`${style.accent} opacity-50 text-sm`}>Visual Interface Loading...</span>
+                {/* Visual Representation */}
+                {/* Visual Representation */}
+                <div className={`w-full h-auto mb-6 rounded-xl overflow-hidden relative border ${style.border} group-hover:scale-[1.02] transition-transform duration-500 bg-black/20`}>
+                    <img
+                        src={`/images/agents/${agent.id}.png`}
+                        alt={`${agent.name} Avatar`}
+                        className="w-full h-auto block"
+                    />
                 </div>
 
                 <div className="mt-auto space-y-4">
@@ -63,22 +69,35 @@ export default function AgentCard({ agent, isActive, onClick }) {
                         animate={{ height: isSelected ? "auto" : 0, opacity: isSelected ? 1 : 0 }}
                         className="overflow-hidden"
                     >
-                        <p className={`text-lg italic font-light leading-relaxed ${style.text} opacity-90`}>
-                            &quot;{agent.bio}&quot;
-                        </p>
+                        <ul className="space-y-2 mb-2">
+                            {agent.tasks.map((task, i) => (
+                                <li key={i} className={`flex items-center gap-3 ${style.text} opacity-90`}>
+                                    <div className={`w-1.5 h-1.5 rounded-full ${style.accent.replace('text-', 'bg-')}`} />
+                                    <span className="text-sm font-medium tracking-wide">{task}</span>
+                                </li>
+                            ))}
+                        </ul>
                     </motion.div>
 
-                    <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className={`w-full py-3 px-4 rounded-lg font-medium text-sm uppercase tracking-wide transition-colors ${isSelected
-                                ? `bg-white/10 hover:bg-white/20 text-white border border-white/20`
-                                : `bg-transparent border border-white/5 text-transparent`
-                            }`}
-                        disabled={!isSelected}
+                    <motion.div
+                        className="relative"
                     >
-                        {isSelected ? agent.cta : ""}
-                    </motion.button>
+                        {isSelected ? (
+                            <motion.button
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className={`w-full py-3 px-4 rounded-lg font-medium text-sm uppercase tracking-wide transition-colors bg-white/10 hover:bg-white/20 text-white border border-white/20`}
+                            >
+                                {agent.cta}
+                            </motion.button>
+                        ) : (
+                            <div className="md:hidden w-full py-2 px-4 rounded-lg font-medium text-xs uppercase tracking-wide text-center border border-white/10 text-white/50 bg-black/20 backdrop-blur-sm">
+                                Voir
+                            </div>
+                        )}
+                    </motion.div>
                 </div>
             </div>
         </motion.div>

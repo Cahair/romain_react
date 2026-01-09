@@ -1,22 +1,71 @@
 "use client";
-import React from "react";
-import Navbar from "../../../components/Navbar";
-import Footer from "../../../components/Footer";
 
-export default function DataPage() {
+import ProblemSection from '@/components/data-analysis/ProblemSection';
+import SolutionSection from '@/components/data-analysis/SolutionSection';
+import ProcessingIcon from '@/components/data-analysis/ProcessingIcon';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import { motion } from 'framer-motion';
+
+export default function DataAnalysisPage() {
     return (
-        <main className="bg-background min-h-screen flex flex-col">
+        <div className="flex flex-col min-h-screen">
             <Navbar />
-            <div className="flex-1 flex flex-col items-center justify-center pt-32 pb-20 px-6 text-center">
-                <h1 className="text-4xl md:text-6xl font-black mb-6 uppercase">Analyse <span className="text-emerald-500">Data</span></h1>
-                <p className="text-gray-400 max-w-2xl mb-8">
-                    Transformez vos données brutes en tableaux de bord actionnables pour piloter votre croissance.
-                </p>
-                <div className="p-4 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-emerald-500 font-mono text-sm">
-                    Page en construction - Détails à venir
+
+            <main className="flex-1 w-full flex flex-col md:flex-row relative">
+
+                {/* Left/Top Side - PROBLEM */}
+                <section className="basis-1/2 min-h-[50vh] md:min-h-screen relative z-0">
+                    <ProblemSection />
+
+                    {/* Overlay Text for Problem */}
+                    <div className="absolute bottom-8 left-8 z-20 md:top-32 md:left-12 md:bottom-auto">
+                        <h2 className="text-3xl font-bold text-slate-200 tracking-tight font-heading">
+                            Des Données <br />
+                            <span className="text-slate-500">Illisibles</span>
+                        </h2>
+                    </div>
+                </section>
+
+                {/* Center Processing Unit */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 pointer-events-none hidden md:block">
+                    <ProcessingIcon />
                 </div>
-            </div>
+                {/* Mobile Icon */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 pointer-events-none md:hidden">
+                    <ProcessingIcon />
+                </div>
+
+                {/* Right/Bottom Side - SOLUTION */}
+                <section className="basis-1/2 min-h-[50vh] md:min-h-screen relative z-0">
+                    <SolutionSection />
+
+                    {/* Overlay Text for Solution */}
+                    <div className="absolute top-28 right-8 z-20 md:top-32 md:right-12 text-right">
+                        <h2 className="text-3xl font-bold text-slate-800 tracking-tight font-heading">
+                            Une Vision <br />
+                            <span className="text-cyan-500">Claire</span>
+                        </h2>
+                    </div>
+                </section>
+
+                {/* Floating Message */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1.5, duration: 0.8 }}
+                    className="absolute bottom-12 left-1/2 -translate-x-1/2 z-40 w-full text-center pointer-events-none"
+                >
+                    <div className="inline-block bg-black/80 backdrop-blur-md px-6 py-3 rounded-full border border-white/10 shadow-2xl">
+                        <p className="text-white font-medium text-sm md:text-base">
+                            Ne lisez plus vos données. <span className="text-cyan-400 font-bold">Comprenez-les.</span>
+                        </p>
+                    </div>
+                </motion.div>
+
+            </main>
+
             <Footer />
-        </main>
+        </div>
     );
 }

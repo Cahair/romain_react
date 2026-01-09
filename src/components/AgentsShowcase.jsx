@@ -7,23 +7,23 @@ const agents = [
     {
         id: "axiom",
         name: "AXIOM",
-        role: "DATA STRATEGIST",
-        bio: "Le chaos n'est qu'une équation non résolue. Je structure vos données pour révéler le chemin critique vers votre succès.",
-        cta: "Analyser ma stratégie",
+        role: "SUPPORT & SERVICE CLIENT",
+        tasks: ["Gestion autonome de vos emails entrants 24/7", "Qualification et résolution immédiate des tickets", "Parcours de fidélisation qualitatif et personnalisé"],
+        cta: "Déléguer mon support",
     },
     {
         id: "lumina",
         name: "LUMINA",
-        role: "CREATIVE MUSE",
-        bio: "Chaque marque a une âme. Je suis le souffle qui transforme votre message en une histoire inoubliable pour votre audience.",
-        cta: "Créer une campagne",
+        role: "SOCIAL MEDIA MANAGER",
+        tasks: ["Conception de contenus visuels et textuels engageants", "Orchestration complète de votre calendrier éditorial", "Animation active et croissance de votre audience"],
+        cta: "Automatiser mes posts",
     },
     {
         id: "kairo",
         name: "KAIRO",
-        role: "FLOW GUARDIAN",
-        bio: "Votre temps est votre ressource la plus rare. Je tisse la toile de votre agenda pour que vous ne perdiez jamais le fil de l'essentiel.",
-        cta: "Organiser mon flux",
+        role: "RESPONSABLE OPÉRATIONS",
+        tasks: ["Pilotage centralisé de vos projets stratégiques", "Synchronisation fluide de vos différentes équipes", "Contrôle proactif des échéances et livrables"],
+        cta: "Optimiser mes opérations",
     },
 ];
 

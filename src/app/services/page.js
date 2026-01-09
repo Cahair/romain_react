@@ -334,7 +334,7 @@ export default function ServicesPage() {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.4 }}
                         >
-                            <Link href="/services/chatbots" className="inline-flex items-center gap-3 px-6 py-3 bg-primary/10 border border-primary/50 rounded-full hover:bg-primary/20 transition-all group">
+                            <Link href="/services/agents" className="inline-flex items-center gap-3 px-6 py-3 bg-primary/10 border border-primary/50 rounded-full hover:bg-primary/20 transition-all group">
                                 <span className="uppercase tracking-widest font-bold text-sm text-primary-neon">{t("servicesPage.chatbots.button")}</span>
                                 <ArrowRight className="w-4 h-4 text-primary-neon group-hover:translate-x-1 transition-transform" />
                             </Link>
