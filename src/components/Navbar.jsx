@@ -41,7 +41,7 @@ export default function Navbar() {
     const currentLocale = availableLocales.find(l => l.code === locale);
 
     return (
-        <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? "py-2 md:py-4" : "py-4 md:py-8"}`}>
+        <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? "py-2 md:py-4" : "py-2 md:py-8"}`}>
             <div className="container mx-auto px-4 md:px-6">
                 <div
                     className={`px-6 py-3 rounded-full flex items-center justify-between transition-all duration-500 border ${scrolled
