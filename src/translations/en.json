@@ -8,10 +8,10 @@
     },
     "hero": {
         "titleLine1": "BEYOND",
-        "titleLine2": "AI AGENTS",
+        "titleLine2": "CHATBOTS",
         "highlightTitle": "Bespoke AI Engineering.",
         "description": "Autonomous agents. Optimized LLMs. High-performance RAG.\nTechnical excellence serving ROI.",
-        "cta": "Start_Collaboration",
+        "cta": "Start Collaboration",
         "scroll": "Scroll"
     },
     "services": {

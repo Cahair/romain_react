@@ -8,10 +8,10 @@
     },
     "hero": {
         "titleLine1": "AU-DELÀ DES",
-        "titleLine2": "AGENTS IA",
+        "titleLine2": "CHATBOTS",
         "highlightTitle": "Ingénierie IA sur-mesure.",
         "description": "Agents autonomes. LLMs optimisés. RAG haute performance.\nL'excellence technique au service du ROI.",
-        "cta": "Start_Collaboration",
+        "cta": "Démarrer la collaboration",
         "scroll": "Scroll"
     },
     "services": {
