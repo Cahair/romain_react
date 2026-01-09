@@ -11,7 +11,7 @@ import { useTranslation } from "../../components/LanguageProvider";
 
 const ChatbotVisual = () => {
     return (
-        <div className="relative w-full max-h-[40vh] aspect-square flex flex-col justify-center items-center">
+        <div className="relative w-full max-h-[35vh] aspect-square flex flex-col justify-center items-center">
             {/* Floating Messages */}
             <motion.div
                 initial={{ opacity: 0, x: -30, y: 10 }}
@@ -50,7 +50,7 @@ const ChatbotVisual = () => {
 
 const WorkflowVisual = () => {
     return (
-        <div className="w-full max-h-[40vh] flex items-center justify-center relative">
+        <div className="w-full max-h-[35vh] flex items-center justify-center relative">
             <svg className="w-full max-w-xl overflow-visible" viewBox="0 0 500 300" preserveAspectRatio="xMidYMid meet">
                 {/* Connecting Lines */}
                 {/* Path 1: Trigger -> Split */}
@@ -177,7 +177,7 @@ const WorkflowVisual = () => {
 
 const LeadGenVisual = () => {
     return (
-        <div className="w-full max-h-[40vh] max-w-sm mx-auto aspect-square relative flex items-center justify-center">
+        <div className="w-full max-h-[35vh] max-w-sm mx-auto aspect-square relative flex items-center justify-center">
             {/* Radar Circles */}
             <div className="absolute inset-0 border border-pink-500/20 rounded-full"></div>
             <div className="absolute inset-8 border border-pink-500/20 rounded-full"></div>
@@ -217,7 +217,7 @@ const LeadGenVisual = () => {
 
 const DataVisual = () => {
     return (
-        <div className="w-full max-h-[40vh] max-w-lg mx-auto aspect-video perspective-1000 relative">
+        <div className="w-full max-h-[35vh] max-w-lg mx-auto aspect-video perspective-1000 relative">
             <motion.div
                 className="w-full h-full bg-black/40 backdrop-blur-xl border border-emerald-500/30 rounded-xl p-4 shadow-2xl"
                 initial={{ rotateX: 20, rotateY: -20, opacity: 0, y: 50 }}
@@ -264,11 +264,11 @@ export default function ServicesPage() {
     const { t } = useTranslation();
 
     return (
-        <main className="h-screen w-full overflow-y-scroll snap-y snap-mandatory bg-background text-foreground scroll-smooth overflow-x-hidden">
+        <main className="h-[100dvh] w-full overflow-y-scroll snap-y snap-mandatory bg-background text-foreground scroll-smooth overflow-x-hidden">
             <Navbar />
 
             {/* Intro Hero Section */}
-            <section className="h-screen w-full snap-start flex flex-col items-center justify-center relative overflow-hidden bg-background px-4">
+            <section className="h-[100dvh] w-full snap-start flex flex-col items-center justify-center relative overflow-hidden bg-background px-4">
                 {/* Background Effects */}
                 <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]" />
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vh] h-[60vh] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
@@ -311,8 +311,8 @@ export default function ServicesPage() {
             </section>
 
             {/* Section 1: Chatbots */}
-            <section id="chatbots" className="h-screen w-full snap-start flex items-center justify-center relative overflow-hidden px-4 md:px-8">
-                <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full max-h-[90vh]">
+            <section id="chatbots" className="h-[100dvh] w-full snap-start flex items-center justify-center relative overflow-hidden px-4 md:px-8">
+                <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full max-h-[90dvh]">
                     <div className="order-2 md:order-1 flex flex-col justify-center gap-4 md:gap-6">
                         <motion.h2
                             initial={{ opacity: 0, x: -30 }}
@@ -340,16 +340,16 @@ export default function ServicesPage() {
                             </Link>
                         </motion.div>
                     </div>
-                    <div className="order-1 md:order-2 flex justify-center items-center h-[40vh] md:h-auto">
+                    <div className="order-1 md:order-2 flex justify-center items-center h-[35vh] md:h-auto">
                         <ChatbotVisual />
                     </div>
                 </div>
             </section>
 
             {/* Section 2: Workflows */}
-            <section className="h-screen w-full snap-start flex items-center justify-center relative overflow-hidden px-4 md:px-8 bg-black/20">
-                <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full max-h-[90vh]">
-                    <div className="order-2 md:order-1 flex justify-center items-center h-[40vh] md:h-auto">
+            <section className="h-[100dvh] w-full snap-start flex items-center justify-center relative overflow-hidden px-4 md:px-8 bg-black/20">
+                <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full max-h-[90dvh]">
+                    <div className="order-2 md:order-1 flex justify-center items-center h-[35vh] md:h-auto">
                         <WorkflowVisual />
                     </div>
                     <div className="order-1 md:order-2 text-right md:text-left flex flex-col justify-center gap-4 md:gap-6 items-end md:items-start">
@@ -383,8 +383,8 @@ export default function ServicesPage() {
             </section>
 
             {/* Section 3: Lead Gen */}
-            <section className="h-screen w-full snap-start flex items-center justify-center relative overflow-hidden px-4 md:px-8">
-                <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full max-h-[90vh]">
+            <section className="h-[100dvh] w-full snap-start flex items-center justify-center relative overflow-hidden px-4 md:px-8">
+                <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full max-h-[90dvh]">
                     <div className="order-2 md:order-1 flex flex-col justify-center gap-4 md:gap-6">
                         <motion.h2
                             initial={{ opacity: 0, x: -30 }}
@@ -412,16 +412,16 @@ export default function ServicesPage() {
                             </Link>
                         </motion.div>
                     </div>
-                    <div className="order-1 md:order-2 flex justify-center items-center h-[40vh] md:h-auto">
+                    <div className="order-1 md:order-2 flex justify-center items-center h-[35vh] md:h-auto">
                         <LeadGenVisual />
                     </div>
                 </div>
             </section>
 
             {/* Section 4: Data */}
-            <section className="h-screen w-full snap-start flex items-center justify-center relative overflow-hidden px-4 md:px-8 bg-black/20">
-                <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full max-h-[90vh]">
-                    <div className="order-2 md:order-1 flex justify-center items-center h-[40vh] md:h-auto">
+            <section className="h-[100dvh] w-full snap-start flex items-center justify-center relative overflow-hidden px-4 md:px-8 bg-black/20">
+                <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full max-h-[90dvh]">
+                    <div className="order-2 md:order-1 flex justify-center items-center h-[35vh] md:h-auto">
                         <DataVisual />
                     </div>
                     <div className="order-1 md:order-2 text-right md:text-left flex flex-col justify-center gap-4 md:gap-6 items-end md:items-start">
