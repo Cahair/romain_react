@@ -1,9 +1,9 @@
 "use client";
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import Storytelling from "@/components/Storytelling";
-import Services from "@/components/Services";
-import Footer from "@/components/Footer";
+import Navbar from "../components/Navbar";
+import Hero from "../components/Hero";
+import Storytelling from "../components/Storytelling";
+import ServicesBento from "../components/ServicesBento";
+import Footer from "../components/Footer";
 import { motion, useScroll, useSpring } from "framer-motion";
 
 export default function Home() {
@@ -26,7 +26,7 @@ export default function Home() {
       <Hero />
       <Storytelling />
       <div id="services">
-        <Services />
+        <ServicesBento />
       </div>
       <Footer />
     </main>

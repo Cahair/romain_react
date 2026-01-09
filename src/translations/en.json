@@ -8,7 +8,7 @@
     },
     "hero": {
         "titleLine1": "BEYOND",
-        "titleLine2": "CHATBOTS",
+        "titleLine2": "AI AGENTS",
         "highlightTitle": "Bespoke AI Engineering.",
         "description": "Autonomous agents. Optimized LLMs. High-performance RAG.\nTechnical excellence serving ROI.",
         "cta": "Start_Collaboration",
@@ -21,7 +21,7 @@
         "subtitle": "Tailored solutions to propel your business into the era of intelligent automation.",
         "items": {
             "chatbot": {
-                "title": "Intelligent <highlight>Chatbots</highlight>",
+                "title": "<highlight>AI Agents</highlight>",
                 "desc": "24/7 customer support and automated lead qualification via custom LLMs.",
                 "features": [
                     "Intelligent multilingual support",
@@ -95,7 +95,7 @@
                         "year": "2026 - Present",
                         "role": "Founder & AI Architect",
                         "company": "Kantzer.ai",
-                        "description": "Creating automation and generative AI solutions for businesses. Specializing in Chatbots, LLMs, and autonomous workflows."
+                        "description": "Creating automation and generative AI solutions for businesses. Specializing in AI Agents, LLMs, and autonomous workflows."
                     },
                     {
                         "year": "2024 - 2026",
@@ -179,7 +179,7 @@
             "project": "Project Type",
             "projectOptions": {
                 "select": "Select...",
-                "chatbot": "AI Chatbot",
+                "chatbot": "AI Agent",
                 "automation": "Automation",
                 "leadgen": "AI Lead Gen",
                 "custom": "Custom solution",
@@ -206,6 +206,73 @@
             "button": "Open Calendly →"
         }
     },
+    "storytelling": {
+        "badge": "EVOLUTION IN PROGRESS",
+        "title": "We don't",
+        "titleHighlight": "replace",
+        "titleEnd": "humans.",
+        "subtitle1": "We",
+        "subtitleHighlight": "amplify",
+        "subtitle2": "your capabilities.",
+        "description": "Welcome to the era of integrated intelligence."
+    },
+    "servicesBento": {
+        "titlePrefix": "Our",
+        "titleSuffix": "Services",
+        "subtitle": "A complete suite of solutions to automate your growth.",
+        "popular": "Popular",
+        "explore": "Explore",
+        "items": {
+            "agents": {
+                "title": "AI Agents",
+                "desc": "Custom conversational assistants to engage prospects and support customers 24/7."
+            },
+            "workflows": {
+                "title": "Workflows",
+                "desc": "End-to-end automation of your business processes."
+            },
+            "leadGen": {
+                "title": "Lead Gen",
+                "desc": "Targeted acquisition and data enrichment."
+            },
+            "dataViz": {
+                "title": "Data Viz",
+                "desc": "Interactive dashboards to drive your business."
+            }
+        }
+    },
+    "servicesPage": {
+        "intro": {
+            "titlePrefix": "Our",
+            "titleHighlight": "Expertise",
+            "subtitle": "A holistic approach to automation. <br /> <span class=\"text-primary-neon\">4 pillars</span> to transform your business.",
+            "scroll": "Scroll"
+        },
+        "chatbots": {
+            "titlePrefix": "AI",
+            "titleHighlight": "Agents",
+            "desc": "Offer exceptional 24/7 customer experience. Our AI agents understand context, qualify leads, and integrate perfectly with your CRM.",
+            "button": "Discover AI Agents"
+        },
+        "workflows": {
+            "titlePrefix": "AI",
+            "titleHighlight": "Workflows",
+            "desc": "Connect your tools. Automate tasks. Unleash your potential. From invoicing to reporting, let AI handle operations.",
+            "button": "Discover Workflows"
+        },
+        "leadGen": {
+            "titlePrefix": "AI",
+            "titleHighlight": "Lead Gen",
+            "desc": "Target with precision. Our algorithms identify ideal prospects and engage conversation with surgical relevance.",
+            "button": "Discover Lead Gen"
+        },
+        "data": {
+            "titlePrefix": "Data",
+            "titleHighlight": "Analysis",
+            "desc": "Stop navigating blindly. Transform raw data into strategic intelligence with our predictive dashboards.",
+            "button": "Discover Data"
+        }
+    },
     "footer": {
         "title": "READY FOR",
         "titleHighlight": "AUTOMATION?",
@@ -216,17 +283,8 @@
         "legal": {
             "rights": "ALL RIGHTS RESERVED",
             "privacy": "Privacy Policy",
-            "terms": "Terms"
+            "terms": "Terms",
+            "mentions": "Legal Mentions"
         }
-    },
-    "storytelling": {
-        "badge": "EVOLUTION IN PROGRESS",
-        "title": "We don't",
-        "titleHighlight": "replace",
-        "titleEnd": "humans.",
-        "subtitle1": "We",
-        "subtitleHighlight": "amplify",
-        "subtitle2": "your capabilities.",
-        "description": "Welcome to the era of integrated intelligence."
     }
 }

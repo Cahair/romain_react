@@ -1,328 +1,462 @@
 "use client";
-import { motion, useMotionValue, useSpring, useScroll, useTransform } from "framer-motion";
-import { MessageSquare, Zap, Target, Database, ArrowRight, Terminal, Cpu, Share2 } from "lucide-react";
+import { useRef, useEffect } from "react";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { MessageSquare, Zap, Target, Database, ArrowRight, Bot, Share2, Search, BarChart3, Mail, Bell, Cpu } from "lucide-react";
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import { useTranslation } from "@/components/LanguageProvider";
-import { useEffect, useRef } from "react";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import { useTranslation } from "../../components/LanguageProvider";
+
+// --- Visual Components ---
+
+const ChatbotVisual = () => {
+    return (
+        <div className="relative w-full max-w-md mx-auto aspect-square flex flex-col justify-center">
+            {/* Floating Messages */}
+            <motion.div
+                initial={{ opacity: 0, x: -50, y: 20 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="bg-white/10 backdrop-blur-md border border-white/10 p-4 rounded-2xl rounded-tl-none self-start mb-4 max-w-[80%]"
+            >
+                <div className="h-2 w-24 bg-white/20 rounded-full mb-2"></div>
+                <div className="h-2 w-32 bg-white/10 rounded-full"></div>
+            </motion.div>
+
+            <motion.div
+                initial={{ opacity: 0, x: 50, y: 20 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.8 }}
+                className="bg-primary/20 backdrop-blur-md border border-primary/30 p-4 rounded-2xl rounded-tr-none self-end mb-4 max-w-[80%]"
+            >
+                <div className="h-2 w-40 bg-primary-neon/40 rounded-full mb-2"></div>
+                <div className="h-2 w-20 bg-primary-neon/20 rounded-full"></div>
+            </motion.div>
+
+            <motion.div
+                initial={{ opacity: 0, x: -50, y: 20 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ duration: 0.5, delay: 1.4 }}
+                className="bg-white/10 backdrop-blur-md border border-white/10 p-4 rounded-2xl rounded-tl-none self-start max-w-[80%]"
+            >
+                <div className="h-2 w-32 bg-white/20 rounded-full"></div>
+            </motion.div>
+
+            {/* Central Bot Icon Pulsing */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-primary-neon/10 rounded-full blur-3xl animate-pulse-slow pointer-events-none"></div>
+        </div>
+    );
+};
+
+const WorkflowVisual = () => {
+    return (
+        <div className="w-full h-full flex items-center justify-center relative">
+            <svg className="w-full max-w-2xl overflow-visible" viewBox="0 0 500 300">
+                {/* Connecting Lines */}
+                {/* Path 1: Trigger -> Split */}
+                <motion.path
+                    d="M 60 150 L 140 150"
+                    fill="none"
+                    stroke="#8b5cf6"
+                    strokeWidth="2"
+                    initial={{ pathLength: 0 }}
+                    whileInView={{ pathLength: 1 }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                />
+
+                {/* Path 2: Split -> Top Branch */}
+                <motion.path
+                    d="M 140 150 L 170 150 L 170 80 L 220 80"
+                    fill="none"
+                    stroke="#8b5cf6"
+                    strokeWidth="2"
+                    initial={{ pathLength: 0 }}
+                    whileInView={{ pathLength: 1 }}
+                    transition={{ duration: 0.8, ease: "easeInOut", delay: 0.5 }}
+                />
+
+                {/* Path 3: Split -> Bottom Branch */}
+                <motion.path
+                    d="M 140 150 L 170 150 L 170 220 L 220 220"
+                    fill="none"
+                    stroke="#8b5cf6"
+                    strokeWidth="2"
+                    initial={{ pathLength: 0 }}
+                    whileInView={{ pathLength: 1 }}
+                    transition={{ duration: 0.8, ease: "easeInOut", delay: 0.5 }}
+                />
+
+                {/* Path 4: Top Branch -> Final Top */}
+                <motion.path
+                    d="M 280 80 L 360 80"
+                    fill="none"
+                    stroke="#8b5cf6"
+                    strokeWidth="2"
+                    initial={{ pathLength: 0 }}
+                    whileInView={{ pathLength: 1 }}
+                    transition={{ duration: 0.5, ease: "easeInOut", delay: 1.5 }}
+                />
+
+                {/* Path 5: Bottom Branch -> Final Bottom */}
+                <motion.path
+                    d="M 280 220 L 360 220"
+                    fill="none"
+                    stroke="#8b5cf6"
+                    strokeWidth="2"
+                    initial={{ pathLength: 0 }}
+                    whileInView={{ pathLength: 1 }}
+                    transition={{ duration: 0.5, ease: "easeInOut", delay: 1.8 }}
+                />
+
+
+                {/* Nodes */}
+                {/* 1. Trigger */}
+                <g transform="translate(60, 150)">
+                    <circle r="24" fill="#1e1b4b" stroke="#8b5cf6" strokeWidth="2" />
+                    <Zap size={20} x="-10" y="-10" className="text-secondary-neon" />
+                </g>
+
+                {/* 2. Processing (Splitter) */}
+                <motion.g
+                    transform="translate(140, 150)"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: 0.4 }}
+                >
+                    <rect x="-24" y="-24" width="48" height="48" rx="8" fill="#1e1b4b" stroke="#8b5cf6" strokeWidth="2" />
+                    <Cpu size={20} x="-10" y="-10" className="text-secondary-neon" />
+                </motion.g>
+
+                {/* 3. Action Top (Bot) */}
+                <motion.g
+                    transform="translate(250, 80)"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: 0.8 }}
+                >
+                    <rect x="-30" y="-30" width="60" height="60" rx="10" fill="#1e1b4b" stroke="#8b5cf6" strokeWidth="2" />
+                    <Bot size={24} x="-12" y="-12" className="text-secondary-neon" />
+                </motion.g>
+
+                {/* 4. Action Bottom (Email) */}
+                <motion.g
+                    transform="translate(250, 220)"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: 0.8 }}
+                >
+                    <rect x="-30" y="-30" width="60" height="60" rx="10" fill="#1e1b4b" stroke="#8b5cf6" strokeWidth="2" />
+                    <Mail size={24} x="-12" y="-12" className="text-secondary-neon" />
+                </motion.g>
+
+                {/* 5. Final Top (Database) */}
+                <motion.g
+                    transform="translate(390, 80)"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: 1.2 }}
+                >
+                    <rect x="-30" y="-30" width="60" height="60" rx="10" fill="#1e1b4b" stroke="#8b5cf6" strokeWidth="2" />
+                    <Database size={24} x="-12" y="-12" className="text-secondary-neon" />
+                </motion.g>
+
+                {/* 6. Final Bottom (Notify) */}
+                <motion.g
+                    transform="translate(390, 220)"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: 1.4 }}
+                >
+                    <rect x="-30" y="-30" width="60" height="60" rx="10" fill="#1e1b4b" stroke="#8b5cf6" strokeWidth="2" />
+                    <Bell size={24} x="-12" y="-12" className="text-secondary-neon" />
+                </motion.g>
+            </svg>
+        </div>
+    );
+};
+
+const LeadGenVisual = () => {
+    return (
+        <div className="w-full max-w-md mx-auto aspect-square relative flex items-center justify-center">
+            {/* Radar Circles */}
+            <div className="absolute inset-0 border border-pink-500/20 rounded-full"></div>
+            <div className="absolute inset-8 border border-pink-500/20 rounded-full"></div>
+            <div className="absolute inset-16 border border-pink-500/20 rounded-full"></div>
+            <div className="absolute inset-1/2 w-2 h-2 bg-pink-500 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+
+            {/* Scanning Line */}
+            <motion.div
+                className="absolute inset-0 rounded-full border-r border-transparent"
+                style={{
+                    background: "conic-gradient(from 0deg, transparent 0deg, rgba(236, 72, 153, 0.3) 60deg, transparent 60deg)",
+                }}
+                animate={{ rotate: 360 }}
+                transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+            />
+
+            {/* Detected Avatars */}
+            <motion.div
+                className="absolute top-1/4 left-1/4 w-8 h-8 rounded-full bg-pink-500/20 border border-pink-500 flex items-center justify-center"
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: [0, 1, 0] }}
+                transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
+            >
+                <div className="w-2 h-2 bg-pink-500 rounded-full"></div>
+            </motion.div>
+            <motion.div
+                className="absolute bottom-1/3 right-1/4 w-8 h-8 rounded-full bg-pink-500/20 border border-pink-500 flex items-center justify-center"
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: [0, 1, 0] }}
+                transition={{ duration: 4, repeat: Infinity, delay: 2.5 }}
+            >
+                <div className="w-2 h-2 bg-pink-500 rounded-full"></div>
+            </motion.div>
+        </div>
+    );
+};
+
+const DataVisual = () => {
+    return (
+        <div className="w-full max-w-lg mx-auto aspect-video perspective-1000 relative">
+            <motion.div
+                className="w-full h-full bg-black/40 backdrop-blur-xl border border-emerald-500/30 rounded-xl p-6 shadow-2xl"
+                initial={{ rotateX: 20, rotateY: -20, opacity: 0, y: 50 }}
+                whileInView={{ rotateX: 10, rotateY: -10, opacity: 1, y: 0 }}
+                transition={{ duration: 1 }}
+                style={{ transformStyle: "preserve-3d" }}
+            >
+                <div className="flex justify-between items-center mb-6">
+                    <div className="h-4 w-32 bg-emerald-500/20 rounded"></div>
+                    <div className="h-8 w-8 bg-emerald-500/10 rounded-full"></div>
+                </div>
+
+                <div className="flex gap-4 h-32 items-end mb-6">
+                    {[40, 70, 50, 90, 60, 80].map((h, i) => (
+                        <motion.div
+                            key={i}
+                            className="flex-1 bg-gradient-to-t from-emerald-500/10 to-emerald-500/60 rounded-t-md"
+                            initial={{ height: 0 }}
+                            whileInView={{ height: `${h}%` }}
+                            transition={{ duration: 1, delay: i * 0.1 }}
+                        />
+                    ))}
+                </div>
+
+                {/* Floating Elements */}
+                <motion.div
+                    className="absolute -right-8 top-12 bg-black/80 border border-emerald-500/50 p-3 rounded-lg shadow-xl"
+                    initial={{ x: 20, opacity: 0 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    transition={{ delay: 1 }}
+                    style={{ transform: "translateZ(30px)" }}
+                >
+                    <div className="text-emerald-400 font-mono font-bold text-xl">+125%</div>
+                </motion.div>
+            </motion.div>
+        </div>
+    );
+};
+
+
+// --- Main Page Component ---
 
 export default function ServicesPage() {
     const { t } = useTranslation();
-    const containerRef = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start end", "end start"]
-    });
-
-    const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
-
-    // Mouse follower for Aurora effect
-    const mouseX = useMotionValue(0);
-    const mouseY = useMotionValue(0);
-
-    const springConfig = { damping: 25, stiffness: 700 };
-    const springX = useSpring(mouseX, springConfig);
-    const springY = useSpring(mouseY, springConfig);
-
-    useEffect(() => {
-        const handleMouseMove = (e) => {
-            const { clientX, clientY } = e;
-            mouseX.set(clientX);
-            mouseY.set(clientY);
-        };
-
-        window.addEventListener("mousemove", handleMouseMove);
-        return () => window.removeEventListener("mousemove", handleMouseMove);
-    }, [mouseX, mouseY]);
-
-    const services = [
-        {
-            icon: MessageSquare,
-            title: t("services.items.chatbot.title"),
-            description: t("services.items.chatbot.desc"),
-            features: [
-                t("services.items.chatbot.features.0"),
-                t("services.items.chatbot.features.1"),
-                t("services.items.chatbot.features.2")
-            ],
-            tech: ["LLM", "RAG", "Python"],
-            highlightColor: "text-blue-400",
-            shadowColor: "drop-shadow-[0_0_35px_rgba(96,165,250,0.8)]",
-            glowColor: "bg-blue-500/40"
-        },
-        {
-            icon: Zap,
-            title: t("services.items.workflows.title"),
-            description: t("services.items.workflows.desc"),
-            features: [
-                t("services.items.workflows.features.0"),
-                t("services.items.workflows.features.1"),
-                t("services.items.workflows.features.2")
-            ],
-            tech: ["n8n", "Make", "API"],
-            highlightColor: "text-purple-400",
-            shadowColor: "drop-shadow-[0_0_35px_rgba(192,132,252,0.8)]",
-            glowColor: "bg-purple-500/40"
-        },
-        {
-            icon: Target,
-            title: t("services.items.leadgen.title"),
-            description: t("services.items.leadgen.desc"),
-            features: [
-                t("services.items.leadgen.features.0"),
-                t("services.items.leadgen.features.1"),
-                t("services.items.leadgen.features.2")
-            ],
-            tech: ["Scraping", "Enrichment", "CRM"],
-            highlightColor: "text-pink-400",
-            shadowColor: "drop-shadow-[0_0_35px_rgba(244,114,182,0.8)]",
-            glowColor: "bg-pink-500/40"
-        },
-        {
-            icon: Database,
-            title: t("services.items.data.title"),
-            description: t("services.items.data.desc"),
-            features: [
-                "Data Analysis",
-                "Visualization",
-                "Insights"
-            ],
-            tech: ["SQL", "Pandas", "PowerBI"],
-            highlightColor: "text-emerald-400",
-            shadowColor: "drop-shadow-[0_0_35px_rgba(52,211,153,0.8)]",
-            glowColor: "bg-emerald-500/40"
-        }
-    ];
-
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.2
-            }
-        }
-    };
-
-    const itemVariants = {
-        hidden: { opacity: 0, y: 50 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                type: "spring",
-                damping: 20,
-                stiffness: 100
-            }
-        }
-    };
 
     return (
-        <main className="bg-background min-h-screen flex flex-col overflow-x-hidden selection:bg-primary-neon/30 selection:text-white" ref={containerRef}>
+        <main className="h-screen w-full overflow-y-scroll snap-y snap-mandatory bg-background text-foreground scroll-smooth">
             <Navbar />
 
-            {/* Background Effects */}
-            <div className="fixed inset-0 z-0 pointer-events-none">
-                <div
-                    className="absolute inset-0 bg-grid-pattern bg-[length:50px_50px] opacity-20"
-                    style={{
-                        maskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)',
-                        WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)'
-                    }}
-                />
-                <motion.div
-                    className="absolute w-[800px] h-[800px] bg-primary-neon/10 rounded-full blur-[120px] mix-blend-screen"
-                    style={{ x: springX, y: springY, translateX: "-50%", translateY: "-50%" }}
-                />
-            </div>
+            {/* Intro Hero Section */}
+            <section className="h-screen w-full snap-start flex flex-col items-center justify-center relative overflow-hidden bg-background">
+                {/* Background Effects */}
+                <div className="absolute inset-0 bg-grid-pattern opacity-[0.03]" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl pointer-events-none" />
 
-            <div className="relative z-10 pt-32 pb-24">
-                <div className="container mx-auto px-6">
-
-                    {/* Hero / Landing Section */}
-                    <div className="min-h-[80vh] flex flex-col justify-center max-w-5xl mx-auto mb-24">
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ duration: 1 }}
-                        >
-                            <motion.div
-                                initial={{ opacity: 0, y: -20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.2 }}
-                                className="flex items-center gap-4 mb-8"
-                            >
-                                <span className="h-[1px] w-12 bg-primary-neon"></span>
-                                <span className="font-mono text-primary-neon text-sm tracking-[0.5em] uppercase">
-                                    // {t("services.badge")}
-                                </span>
-                            </motion.div>
-
-                            <h1 className="font-display font-bold text-5xl md:text-9xl uppercase leading-[0.9] text-foreground mb-12 break-words hyphens-auto text-left">
-                                <motion.span
-                                    initial={{ filter: "blur(20px)", opacity: 0, scale: 1.1 }}
-                                    animate={{ filter: "blur(0px)", opacity: 1, scale: 1 }}
-                                    transition={{ duration: 0.8, ease: "easeOut" }}
-                                    className="block"
-                                >
-                                    {t("services.title")}
-                                </motion.span>
-                                <motion.span
-                                    className="block relative text-blue-500 drop-shadow-[0_0_35px_rgba(59,130,246,0.8)] decoration-clone"
-                                    initial={{ x: -100, opacity: 0 }}
-                                    animate={{ x: 0, opacity: 1 }}
-                                    transition={{ duration: 0.8, delay: 0.2, type: "spring", stiffness: 50 }}
-                                >
-                                    {t("services.titleHighlight")}
-                                    {/* Back glow */}
-                                    <span className="absolute -inset-4 bg-blue-500/40 blur-3xl opacity-60 -z-10 animate-pulse-slow pointer-events-none" />
-                                </motion.span>
-                            </h1>
-
-                            <motion.p
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.6 }}
-                                className="text-2xl md:text-3xl text-muted-foreground font-light max-w-3xl leading-relaxed text-left border-l-4 border-primary-neon pl-8"
-                            >
-                                {t("services.subtitle")}
-                            </motion.p>
-                        </motion.div>
-                    </div>
-
-                    {/* Services Grid with Stagger */}
+                <div className="container mx-auto px-6 text-center relative z-10">
                     <motion.div
-                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12"
-                        variants={containerVariants}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, margin: "-100px" }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
                     >
-                        {services.map((service, index) => {
-                            const Icon = service.icon;
-                            return (
-                                <motion.div
-                                    key={index}
-                                    variants={itemVariants}
-                                    className="group relative min-h-[320px] bg-white/[0.02] border border-white/10 backdrop-blur-md p-6 overflow-hidden hover:bg-white/[0.04] transition-colors duration-500 hover:border-primary-neon/30"
-                                >
-                                    {/* Hover Gradient */}
-                                    <div className="absolute inset-0 bg-gradient-to-br from-primary-neon/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                                    {/* Giant Background Icon - Parallax & Rotate */}
-                                    <motion.div
-                                        className="absolute -right-12 -bottom-12 text-white/[0.02] group-hover:text-primary-neon/[0.05] transition-colors duration-500"
-                                        style={{ rotate: -15, y }}
-                                        whileHover={{ scale: 1.1, rotate: -10 }}
-                                        transition={{ duration: 0.5 }}
-                                    >
-                                        <Icon size={180} strokeWidth={1} />
-                                    </motion.div>
-
-                                    {/* Content */}
-                                    <div className="relative z-10 h-full flex flex-col">
-                                        <div className="flex justify-between items-start mb-8">
-                                            <div className="w-16 h-16 bg-white/5 border border-white/10 flex items-center justify-center group-hover:border-primary-neon/50 group-hover:scale-110 transition-all duration-300">
-                                                <Icon className="w-8 h-8 text-white group-hover:text-primary-neon transition-colors" />
-                                            </div>
-                                            <span className="font-mono text-white/20 text-2xl font-bold">0{index + 1}</span>
-                                        </div>
-
-                                        <h2 className="font-display text-xl md:text-2xl uppercase text-white mb-4 group-hover:text-primary-neon transition-colors duration-300 group-hover:translate-x-2 transform">
-                                            {/* Parse title for highlight tags */}
-                                            {(() => {
-                                                const parts = service.title.split(/(<highlight>.*?<\/highlight>)/);
-                                                return parts.map((part, index) => {
-                                                    if (part.startsWith('<highlight>') && part.endsWith('</highlight>')) {
-                                                        const content = part.replace(/<\/?highlight>/g, '');
-                                                        return (
-                                                            <span key={index} className={`relative inline-block ${service.highlightColor} ${service.shadowColor} mx-2`}>
-                                                                {content}
-                                                                {/* Back glow */}
-                                                                <span className={`absolute -inset-4 ${service.glowColor} blur-3xl opacity-60 -z-10 animate-pulse-slow pointer-events-none`} />
-                                                            </span>
-                                                        );
-                                                    }
-                                                    return part;
-                                                });
-                                            })()}
-                                        </h2>
-
-                                        <p className="text-muted-foreground font-light leading-relaxed mb-8 flex-grow group-hover:text-gray-300 transition-colors">
-                                            {service.description}
-                                        </p>
-
-                                        {/* Tech Stack Tags */}
-                                        <div className="flex flex-wrap gap-2 mb-8">
-                                            {service.tech.map((tech, i) => (
-                                                <span key={i} className="px-2 py-1 text-[10px] font-mono uppercase tracking-wider text-primary-neon border border-primary-neon/20 bg-primary-neon/5 hover:bg-primary-neon hover:text-black transition-colors">
-                                                    {tech}
-                                                </span>
-                                            ))}
-                                        </div>
-
-                                        {/* Features List */}
-                                        <ul className="space-y-3 border-t border-white/10 pt-6">
-                                            {service.features.map((feature, i) => (
-                                                <motion.li
-                                                    key={i}
-                                                    className="flex items-center gap-3 text-sm text-gray-400 font-mono"
-                                                    whileHover={{ x: 5 }}
-                                                >
-                                                    <span className="w-1.5 h-1.5 bg-primary-neon rounded-full group-hover:animate-pulse" />
-                                                    {feature}
-                                                </motion.li>
-                                            ))}
-                                        </ul>
-                                    </div>
-
-                                    {/* Decorative Corners */}
-                                    <div className="absolute top-0 left-0 w-4 h-4 border-t border-l border-white/10 group-hover:border-primary-neon/50 transition-colors" />
-                                    <div className="absolute top-0 right-0 w-4 h-4 border-t border-r border-white/10 group-hover:border-primary-neon/50 transition-colors" />
-                                    <div className="absolute bottom-0 left-0 w-4 h-4 border-b border-l border-white/10 group-hover:border-primary-neon/50 transition-colors" />
-                                    <div className="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-white/10 group-hover:border-primary-neon/50 transition-colors" />
-                                </motion.div>
-                            );
-                        })}
-                    </motion.div>
-
-                    {/* CTA Section */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="relative p-12 md:p-20 border border-white/10 bg-white/[0.02] backdrop-blur-xl overflow-hidden text-center group"
-                    >
-                        <div className="absolute inset-0 bg-grid-pattern opacity-10 group-hover:opacity-20 transition-opacity" />
-
-                        <h2 className="relative z-10 font-display text-4xl md:text-6xl uppercase font-bold mb-6">
-                            {t("services.cta.title")} <br />
-                            <span className="text-primary-neon inline-block hover:scale-105 transition-transform duration-300">{t("services.cta.titleHighlight")}</span>
-                        </h2>
-
-                        <p className="relative z-10 text-muted-foreground text-lg max-w-2xl mx-auto mb-12 font-light">
-                            {t("services.cta.subtitle")}
-                        </p>
-
-                        <div className="relative z-10">
-                            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                                <Link
-                                    href="/contact"
-                                    className="inline-flex items-center gap-4 px-8 py-4 bg-white text-black font-display font-bold uppercase tracking-widest hover:bg-primary-neon transition-colors duration-300 shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(0,240,255,0.5)]"
-                                >
-                                    {t("services.cta.button")}
-                                    <ArrowRight className="w-5 h-5" />
-                                </Link>
-                            </motion.div>
-                        </div>
+                        <h1 className="font-display font-black text-6xl md:text-8xl uppercase tracking-tighter mb-6">
+                            {t("servicesPage.intro.titlePrefix")} <span className="text-transparent stroke-text">{t("servicesPage.intro.titleHighlight")}</span>
+                        </h1>
+                        <p
+                            className="text-xl md:text-2xl text-muted-foreground font-light max-w-3xl mx-auto leading-relaxed mb-12"
+                            dangerouslySetInnerHTML={{ __html: t("servicesPage.intro.subtitle") }}
+                        />
                     </motion.div>
 
                 </div>
-            </div>
 
-            <Footer />
+                {/* Scroll Indicator - Moved outside container to stick to viewport bottom */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: 1, duration: 1 }}
+                    className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 cursor-pointer"
+                >
+                    <a href="#chatbots" className="flex flex-col items-center gap-2 group">
+                        <span className="text-xs font-mono uppercase tracking-widest text-muted-foreground group-hover:text-primary-neon transition-colors">{t("servicesPage.intro.scroll")}</span>
+                        <motion.div
+                            animate={{ y: [0, 10, 0] }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                        >
+                            <ArrowRight className="rotate-90 text-primary-neon w-6 h-6 group-hover:scale-125 transition-transform" />
+                        </motion.div>
+                    </a>
+                </motion.div>
+            </section>
+
+            {/* Section 1: Chatbots */}
+            <section id="chatbots" className="h-screen w-full snap-start flex items-center justify-center relative overflow-hidden px-6 pt-20">
+                <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div className="order-2 md:order-1">
+                        <motion.h2
+                            initial={{ opacity: 0, x: -50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            className="text-4xl md:text-6xl font-black mb-6 uppercase"
+                        >
+                            {t("servicesPage.chatbots.titlePrefix")} <span className="text-primary-neon">{t("servicesPage.chatbots.titleHighlight")}</span>
+                        </motion.h2>
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            transition={{ delay: 0.2 }}
+                            className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-xl"
+                        >
+                            {t("servicesPage.chatbots.desc")}
+                        </motion.p>
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.4 }}
+                        >
+                            <Link href="/services/chatbots" className="inline-flex items-center gap-3 px-8 py-4 bg-primary/10 border border-primary/50 rounded-full hover:bg-primary/20 transition-all group">
+                                <span className="uppercase tracking-widest font-bold text-primary-neon">{t("servicesPage.chatbots.button")}</span>
+                                <ArrowRight className="w-5 h-5 text-primary-neon group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                        </motion.div>
+                    </div>
+                    <div className="order-1 md:order-2">
+                        <ChatbotVisual />
+                    </div>
+                </div>
+            </section>
+
+            {/* Section 2: Workflows */}
+            <section className="h-screen w-full snap-start flex items-center justify-center relative overflow-hidden px-6 pt-20 bg-black/20">
+                <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div className="order-2 md:order-1 flex justify-center">
+                        <WorkflowVisual />
+                    </div>
+                    <div className="order-1 md:order-2 text-right md:text-left">
+                        <motion.h2
+                            initial={{ opacity: 0, x: 50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            className="text-4xl md:text-6xl font-black mb-6 uppercase"
+                        >
+                            {t("servicesPage.workflows.titlePrefix")} <span className="text-secondary-neon">{t("servicesPage.workflows.titleHighlight")}</span>
+                        </motion.h2>
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            transition={{ delay: 0.2 }}
+                            className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-xl ml-auto md:ml-0"
+                        >
+                            {t("servicesPage.workflows.desc")}
+                        </motion.p>
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.4 }}
+                        >
+                            <Link href="/services/workflows" className="inline-flex items-center gap-3 px-8 py-4 bg-secondary/10 border border-secondary/50 rounded-full hover:bg-secondary/20 transition-all group">
+                                <span className="uppercase tracking-widest font-bold text-secondary-neon">{t("servicesPage.workflows.button")}</span>
+                                <ArrowRight className="w-5 h-5 text-secondary-neon group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                        </motion.div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Section 3: Lead Gen */}
+            <section className="h-screen w-full snap-start flex items-center justify-center relative overflow-hidden px-6 pt-20">
+                <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div className="order-2 md:order-1">
+                        <motion.h2
+                            initial={{ opacity: 0, x: -50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            className="text-4xl md:text-6xl font-black mb-6 uppercase"
+                        >
+                            {t("servicesPage.leadGen.titlePrefix")} <span className="text-pink-500">{t("servicesPage.leadGen.titleHighlight")}</span>
+                        </motion.h2>
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            transition={{ delay: 0.2 }}
+                            className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-xl"
+                        >
+                            {t("servicesPage.leadGen.desc")}
+                        </motion.p>
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.4 }}
+                        >
+                            <Link href="/services/lead-gen" className="inline-flex items-center gap-3 px-8 py-4 bg-pink-500/10 border border-pink-500/50 rounded-full hover:bg-pink-500/20 transition-all group">
+                                <span className="uppercase tracking-widest font-bold text-pink-500">{t("servicesPage.leadGen.button")}</span>
+                                <ArrowRight className="w-5 h-5 text-pink-500 group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                        </motion.div>
+                    </div>
+                    <div className="order-1 md:order-2">
+                        <LeadGenVisual />
+                    </div>
+                </div>
+            </section>
+
+            {/* Section 4: Data */}
+            <section className="h-screen w-full snap-start flex items-center justify-center relative overflow-hidden px-6 pt-20 bg-black/20">
+                <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div className="order-2 md:order-1 flex justify-center">
+                        <DataVisual />
+                    </div>
+                    <div className="order-1 md:order-2 text-right md:text-left">
+                        <motion.h2
+                            initial={{ opacity: 0, x: 50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            className="text-4xl md:text-6xl font-black mb-6 uppercase"
+                        >
+                            {t("servicesPage.data.titlePrefix")} <span className="text-emerald-500">{t("servicesPage.data.titleHighlight")}</span>
+                        </motion.h2>
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            transition={{ delay: 0.2 }}
+                            className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-xl ml-auto md:ml-0"
+                        >
+                            {t("servicesPage.data.desc")}
+                        </motion.p>
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.4 }}
+                        >
+                            <Link href="/services/data" className="inline-flex items-center gap-3 px-8 py-4 bg-emerald-500/10 border border-emerald-500/50 rounded-full hover:bg-emerald-500/20 transition-all group">
+                                <span className="uppercase tracking-widest font-bold text-emerald-500">{t("servicesPage.data.button")}</span>
+                                <ArrowRight className="w-5 h-5 text-emerald-500 group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                        </motion.div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Footer styled as simple copyright at the end of scroll */}
+            <div className="snap-end">
+                <Footer />
+            </div>
         </main>
     );
 }

@@ -1,8 +1,8 @@
 "use client";
 import { motion } from "framer-motion";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import { useTranslation } from "@/components/LanguageProvider";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import { useTranslation } from "../../components/LanguageProvider";
 
 export default function LegalPage() {
     const { t } = useTranslation();

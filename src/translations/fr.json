@@ -8,7 +8,7 @@
     },
     "hero": {
         "titleLine1": "AU-DELÀ DES",
-        "titleLine2": "CHATBOTS",
+        "titleLine2": "AGENTS IA",
         "highlightTitle": "Ingénierie IA sur-mesure.",
         "description": "Agents autonomes. LLMs optimisés. RAG haute performance.\nL'excellence technique au service du ROI.",
         "cta": "Start_Collaboration",
@@ -21,7 +21,7 @@
         "subtitle": "Des solutions sur-mesure pour propulser votre business dans l'ère de l'automatisation intelligente.",
         "items": {
             "chatbot": {
-                "title": "<highlight>Chatbots</highlight> Intelligents",
+                "title": "<highlight>Agents</highlight> IA",
                 "desc": "Support client 24/7 et qualification de leads automatisée via LLMs personnalisés.",
                 "features": [
                     "Support multilingue intelligent",
@@ -101,7 +101,7 @@
                         "year": "2026 - Présent",
                         "role": "Fondateur & AI Architect",
                         "company": "Kantzer.ai",
-                        "description": "Création de solutions d'automatisation et d'IA générative pour les entreprises. Spécialisation en Chatbots, LLMs et workflows autonomes."
+                        "description": "Création de solutions d'automatisation et d'IA générative pour les entreprises. Spécialisation en Agents IA, LLMs et workflows autonomes."
                     },
                     {
                         "year": "2024 - 2026",
@@ -185,7 +185,7 @@
             "project": "Type de Projet",
             "projectOptions": {
                 "select": "Sélectionnez...",
-                "chatbot": "Chatbot AI",
+                "chatbot": "Agent IA",
                 "automation": "Automatisation",
                 "leadgen": "Lead Gen AI",
                 "custom": "Solution sur-mesure",
@@ -212,6 +212,73 @@
             "button": "Ouvrir Calendly →"
         }
     },
+    "storytelling": {
+        "badge": "L'ÉVOLUTION EN MARCHE",
+        "title": "Nous ne",
+        "titleHighlight": "remplaçons",
+        "titleEnd": "pas l'humain.",
+        "subtitle1": "Nous",
+        "subtitleHighlight": "amplifions",
+        "subtitle2": "vos capacités.",
+        "description": "Bienvenue dans l'ère de l'intelligence intégrée."
+    },
+    "servicesBento": {
+        "titlePrefix": "Nos",
+        "titleSuffix": "Services",
+        "subtitle": "Une suite complète de solutions pour automatiser votre croissance.",
+        "popular": "Populaire",
+        "explore": "Explorer",
+        "items": {
+            "agents": {
+                "title": "Agents IA",
+                "desc": "Des assistants conversationnels sur-mesure pour engager vos prospects et supporter vos clients 24/7."
+            },
+            "workflows": {
+                "title": "Workflows",
+                "desc": "Automatisation end-to-end de vos processus métiers."
+            },
+            "leadGen": {
+                "title": "Lead Gen",
+                "desc": "Acquisition ciblée et enrichissement de données."
+            },
+            "dataViz": {
+                "title": "Data Viz",
+                "desc": "Dashboards interactifs pour piloter votre activité."
+            }
+        }
+    },
+    "servicesPage": {
+        "intro": {
+            "titlePrefix": "Nos",
+            "titleHighlight": "Expertises",
+            "subtitle": "Une approche holistique de l'automatisation. <br /> <span class=\"text-primary-neon\">4 piliers</span> pour transformer votre business.",
+            "scroll": "Scroll"
+        },
+        "chatbots": {
+            "titlePrefix": "Agents",
+            "titleHighlight": "IA",
+            "desc": "Offrez une expérience client exceptionnelle 24/7. Nos agents IA comprennent le contexte, qualifient vos leads et s'intègrent parfaitement à votre CRM.",
+            "button": "Découvrir les Agents IA"
+        },
+        "workflows": {
+            "titlePrefix": "Workflows",
+            "titleHighlight": "IA",
+            "desc": "Connectez vos outils. Automatisez vos tâches. Libérez votre potentiel. De la facturation au reporting, laissez l'IA gérer l'opérationnel.",
+            "button": "Découvrir les Workflows"
+        },
+        "leadGen": {
+            "titlePrefix": "Lead Gen",
+            "titleHighlight": "IA",
+            "desc": "Ciblez avec précision. Nos algorithmes identifient vos prospects idéaux et engagent la conversation avec une pertinence chirurgicale.",
+            "button": "Découvrir la Lead Gen"
+        },
+        "data": {
+            "titlePrefix": "Analyse",
+            "titleHighlight": "Data",
+            "desc": "Ne naviguez plus à vue. Transformez vos données brutes en intelligence stratégique grâce à nos dashboards prédictifs.",
+            "button": "Découvrir la Data"
+        }
+    },
     "footer": {
         "title": "PRÊT POUR",
         "titleHighlight": "L'AUTOMATISATION ?",
@@ -222,17 +289,8 @@
         "legal": {
             "rights": "TOUS DROITS RÉSERVÉS",
             "privacy": "Politique Privée",
-            "terms": "Termes"
+            "terms": "Termes",
+            "mentions": "Mentions Légales"
         }
-    },
-    "storytelling": {
-        "badge": "L'ÉVOLUTION EN MARCHE",
-        "title": "Nous ne",
-        "titleHighlight": "remplaçons",
-        "titleEnd": "pas l'humain.",
-        "subtitle1": "Nous",
-        "subtitleHighlight": "amplifions",
-        "subtitle2": "vos capacités.",
-        "description": "Bienvenue dans l'ère de l'intelligence intégrée."
     }
 }

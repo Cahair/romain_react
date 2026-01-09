@@ -1,9 +1,9 @@
 "use client";
 import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
 import { ArrowDown, Briefcase, GraduationCap, Code, Cpu, Globe, Zap, Database, Terminal, Factory, ChevronDown, Calendar, MapPin } from "lucide-react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import { useTranslation } from "@/components/LanguageProvider";
+import Navbar from "../../components/Navbar";
+import Footer from "../../components/Footer";
+import { useTranslation } from "../../components/LanguageProvider";
 import { useEffect, useRef, useState } from "react";
 
 const ContinuousPipeline = () => (

@@ -1,11 +1,11 @@
 import { Inter, Oswald } from "next/font/google";
 import { Suspense } from "react";
 import "./globals.css";
-import PageTransition from "@/components/PageTransition";
-import { PageAccentProvider, PageAccentIndicator } from "@/components/PageAccent";
-import LoadingBar from "@/components/LoadingBar";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import { LanguageProvider } from "@/components/LanguageProvider";
+import PageTransition from "../components/PageTransition";
+import { PageAccentProvider, PageAccentIndicator } from "../components/PageAccent";
+import LoadingBar from "../components/LoadingBar";
+import { ThemeProvider } from "../components/ThemeProvider";
+import { LanguageProvider } from "../components/LanguageProvider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const oswald = Oswald({ subsets: ["latin"], variable: "--font-oswald" });

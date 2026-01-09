@@ -2,9 +2,9 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
 // Import translations
-import fr from "@/translations/fr.json";
-import en from "@/translations/en.json";
-import de from "@/translations/de.json";
+import fr from "../translations/fr.json";
+import en from "../translations/en.json";
+import de from "../translations/de.json";
 
 const translations = { fr, en, de };
 

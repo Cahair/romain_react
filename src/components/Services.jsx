@@ -9,7 +9,26 @@ export default function Services() {
     const { t } = useTranslation();
     const sectionRef = useRef(null);
 
-    // Removed mouse follower logic as requested
+    // Mouse follower for Aurora effect
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
+
+    const springConfig = { damping: 25, stiffness: 700 };
+    const springX = useSpring(mouseX, springConfig);
+    const springY = useSpring(mouseY, springConfig);
+
+    useEffect(() => {
+        const handleMouseMove = (e) => {
+            if (!sectionRef.current) return;
+            const { clientX, clientY } = e;
+            const rect = sectionRef.current.getBoundingClientRect();
+            mouseX.set(clientX - rect.left);
+            mouseY.set(clientY - rect.top);
+        };
+
+        window.addEventListener("mousemove", handleMouseMove);
+        return () => window.removeEventListener("mousemove", handleMouseMove);
+    }, [mouseX, mouseY]);
 
     const services = [
         {
@@ -17,6 +36,7 @@ export default function Services() {
             desc: t("services.items.chatbot.desc"),
             icon: MessageSquare,
             gradient: "from-primary to-primary-neon",
+            delay: 0,
             highlightColor: "text-blue-400",
             shadowColor: "drop-shadow-[0_0_35px_rgba(96,165,250,0.8)]",
             glowColor: "bg-blue-500/40"
@@ -26,6 +46,7 @@ export default function Services() {
             desc: t("services.items.workflows.desc"),
             icon: Zap,
             gradient: "from-secondary to-secondary-neon",
+            delay: 0.1,
             highlightColor: "text-purple-400",
             shadowColor: "drop-shadow-[0_0_35px_rgba(192,132,252,0.8)]",
             glowColor: "bg-purple-500/40"
@@ -35,6 +56,7 @@ export default function Services() {
             desc: t("services.items.leadgen.desc"),
             icon: Target,
             gradient: "from-pink-500 to-rose-500",
+            delay: 0.2,
             highlightColor: "text-pink-400",
             shadowColor: "drop-shadow-[0_0_35px_rgba(244,114,182,0.8)]",
             glowColor: "bg-pink-500/40"
@@ -44,35 +66,12 @@ export default function Services() {
             desc: t("services.items.data.desc"),
             icon: Database,
             gradient: "from-emerald-400 to-cyan-500",
+            delay: 0.3,
             highlightColor: "text-emerald-400",
             shadowColor: "drop-shadow-[0_0_35px_rgba(52,211,153,0.8)]",
             glowColor: "bg-emerald-500/40"
         }
     ];
-
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        show: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.2
-            }
-        }
-    };
-
-    const itemVariants = {
-        hidden: { opacity: 0, y: 50, scale: 0.95 },
-        show: {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            transition: {
-                type: "spring",
-                stiffness: 100,
-                damping: 20
-            }
-        }
-    };
 
     return (
         <section ref={sectionRef} id="services" className="py-16 md:py-32 bg-background relative overflow-hidden">
@@ -87,7 +86,11 @@ export default function Services() {
                 />
             </div>
 
-            {/* Aurora Effect Removed */}
+            {/* Aurora Effect */}
+            <motion.div
+                className="hidden md:block absolute z-0 w-[500px] h-[500px] bg-secondary/40 rounded-full blur-[120px] pointer-events-none mix-blend-screen"
+                style={{ x: springX, y: springY, translateX: "-50%", translateY: "-50%" }}
+            />
             <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-primary-neon/30 rounded-full blur-[120px] pointer-events-none z-0" />
 
             <div className="container mx-auto px-4 relative z-10">
@@ -125,21 +128,21 @@ export default function Services() {
                 </div>
 
                 {/* Bento Grid */}
-                <motion.div
-                    variants={containerVariants}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={{ once: true, amount: 0.1 }}
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-                >
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {services.map((service, i) => {
                         const Icon = service.icon;
+                        // Mosaic Layout (Zig-Zag): 
+                        // Row 1: [Large (2/3)] [Small (1/3)] = 2 items
+                        // Row 2: [Small (1/3)] [Large (2/3)] = 2 items
                         const spanClass = i === 0 || i === 3 ? "md:col-span-2" : "md:col-span-1";
 
                         return (
                             <motion.div
                                 key={i}
-                                variants={itemVariants}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, amount: 0.1 }}
+                                transition={{ duration: 0.5, delay: service.delay, ease: "easeOut" }}
                                 className={`${spanClass} group relative min-h-[320px] p-8 rounded-3xl border border-white/10 bg-[#0a0a0a] md:bg-white/5 md:backdrop-blur-md md:hover:bg-white/10 transition-all duration-500 overflow-hidden flex flex-col justify-between transform-gpu will-change-transform`}
                             >
                                 {/* Hover Glow */}
@@ -191,7 +194,7 @@ export default function Services() {
                             </motion.div>
                         );
                     })}
-                </motion.div>
+                </div>
             </div>
         </section>
     );

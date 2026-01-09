@@ -7,7 +7,7 @@
     },
     "hero": {
         "titleLine1": "JENSEITS VON",
-        "titleLine2": "CHATBOTS",
+        "titleLine2": "KI-AGENTEN",
         "highlightTitle": "Maßgeschneidertes KI-Engineering.",
         "description": "Autonome Agenten. Optimierte LLMs. Hochleistungs-RAG.\nTechnische Exzellenz im Dienste des ROI.",
         "cta": "Start_Collaboration",
@@ -20,7 +20,7 @@
         "subtitle": "Maßgeschneiderte Lösungen, um Ihr Unternehmen in das Zeitalter der intelligenten Automatisierung zu treiben.",
         "items": {
             "chatbot": {
-                "title": "Intelligente <highlight>Chatbots</highlight>",
+                "title": "<highlight>KI-Agenten</highlight>",
                 "desc": "24/7 Kundensupport und automatisierte Lead-Qualifizierung über benutzerdefinierte LLMs.",
                 "features": [
                     "Intelligenter mehrsprachiger Support",
@@ -94,7 +94,7 @@
                         "year": "2026 - Heute",
                         "role": "Gründer & AI Architect",
                         "company": "Kantzer.ai",
-                        "description": "Erstellung von Automatisierungs- und generativen KI-Lösungen für Unternehmen. Spezialisierung auf Chatbots, LLMs und autonome Workflows."
+                        "description": "Erstellung von Automatisierungs- und generativen KI-Lösungen für Unternehmen. Spezialisierung auf KI-Agenten, LLMs und autonome Workflows."
                     },
                     {
                         "year": "2024 - 2026",
@@ -178,7 +178,7 @@
             "project": "Projekttyp",
             "projectOptions": {
                 "select": "Auswählen...",
-                "chatbot": "AI Chatbot",
+                "chatbot": "KI-Agent",
                 "automation": "Automatisierung",
                 "leadgen": "AI Lead Gen",
                 "custom": "Individuelle Lösung",
@@ -202,6 +202,73 @@
             "button": "Calendly öffnen →"
         }
     },
+    "storytelling": {
+        "badge": "EVOLUTION IN AKTION",
+        "title": "Wir ersetzen",
+        "titleHighlight": "keine",
+        "titleEnd": "Menschen.",
+        "subtitle1": "Wir",
+        "subtitleHighlight": "verstärken",
+        "subtitle2": "Ihre Fähigkeiten.",
+        "description": "Willkommen in der Ära der integrierten Intelligenz."
+    },
+    "servicesBento": {
+        "titlePrefix": "Unsere",
+        "titleSuffix": "Dienstleistungen",
+        "subtitle": "Eine komplette Suite von Lösungen zur Automatisierung Ihres Wachstums.",
+        "popular": "Beliebt",
+        "explore": "Entdecken",
+        "items": {
+            "agents": {
+                "title": "KI-Agenten",
+                "desc": "Maßgeschneiderte Konversationsassistenten zur Einbindung von Interessenten und Support rund um die Uhr."
+            },
+            "workflows": {
+                "title": "Workflows",
+                "desc": "End-to-End-Automatisierung Ihrer Geschäftsprozesse."
+            },
+            "leadGen": {
+                "title": "Lead Gen",
+                "desc": "Gezielte Akquise und Datenanreicherung."
+            },
+            "dataViz": {
+                "title": "Data Viz",
+                "desc": "Interaktive Dashboards zur Steuerung Ihrer Aktivitäten."
+            }
+        }
+    },
+    "servicesPage": {
+        "intro": {
+            "titlePrefix": "Unsere",
+            "titleHighlight": "Expertise",
+            "subtitle": "Ein ganzheitlicher Ansatz zur Automatisierung. <br /> <span class=\"text-primary-neon\">4 Säulen</span>, um Ihr Geschäft zu transformieren.",
+            "scroll": "Scrollen"
+        },
+        "chatbots": {
+            "titlePrefix": "KI-",
+            "titleHighlight": "Agenten",
+            "desc": "Bieten Sie ein außergewöhnliches 24/7-Kundenerlebnis. Unsere KI-Agenten verstehen Kontext, qualifizieren Leads und integrieren sich perfekt in Ihr CRM.",
+            "button": "KI-Agenten entdecken"
+        },
+        "workflows": {
+            "titlePrefix": "KI",
+            "titleHighlight": "Workflows",
+            "desc": "Verbinden Sie Ihre Tools. Automatisieren Sie Aufgaben. Entfalten Sie Ihr Potenzial. Von der Rechnungsstellung bis zum Reporting – lassen Sie KI den Betrieb übernehmen.",
+            "button": "Workflows entdecken"
+        },
+        "leadGen": {
+            "titlePrefix": "KI",
+            "titleHighlight": "Lead Gen",
+            "desc": "Zielen Sie präzise. Unsere Algorithmen identifizieren ideale Interessenten und initiieren chirurgisch relevante Gespräche.",
+            "button": "Lead Gen entdecken"
+        },
+        "data": {
+            "titlePrefix": "Daten",
+            "titleHighlight": "Analyse",
+            "desc": "Navigieren Sie nicht mehr blind. Verwandeln Sie Rohdaten in strategische Intelligenz mit unseren prädiktiven Dashboards.",
+            "button": "Daten entdecken"
+        }
+    },
     "footer": {
         "title": "BEREIT FÜR",
         "titleHighlight": "AUTOMATISIERUNG?",
@@ -212,17 +279,8 @@
         "legal": {
             "rights": "ALLE RECHTE VORBEHALTEN",
             "privacy": "Datenschutz",
-            "terms": "AGB"
+            "terms": "AGB",
+            "mentions": "Impressum"
         }
-    },
-    "storytelling": {
-        "badge": "EVOLUTION IN AKTION",
-        "title": "Wir ersetzen",
-        "titleHighlight": "keine",
-        "titleEnd": "Menschen.",
-        "subtitle1": "Wir",
-        "subtitleHighlight": "verstärken",
-        "subtitle2": "Ihre Fähigkeiten.",
-        "description": "Willkommen in der Ära der integrierten Intelligenz."
     }
 }

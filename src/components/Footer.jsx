@@ -51,7 +51,7 @@ export default function Footer() {
                         <span suppressHydrationWarning>© {new Date().getFullYear()} KANTZER.AI — {t("footer.legal.rights")}</span>
                         <span className="mx-2">•</span>
                         <Link href="/legal" className="hover:text-primary-neon transition-colors">
-                            Mentions Légales
+                            {t("footer.legal.mentions")}
                         </Link>
                     </div>
                 </div>

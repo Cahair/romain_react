@@ -3,101 +3,153 @@ import { motion } from "framer-motion";
 
 export default function ImpactCharts() {
     return (
-        <div className="relative w-full h-[400px] md:h-[500px] perspective-1000">
-            {/* Background Glow */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-secondary/10 rounded-3xl blur-2xl" />
-
-            {/* Main Glass Container */}
+        <section className="w-full py-12">
             <motion.div
-                initial={{ opacity: 0, rotateX: 10, y: 50 }}
-                whileInView={{ opacity: 1, rotateX: 0, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                viewport={{ once: true, margin: "-100px" }}
-                className="relative w-full h-full bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-8 overflow-hidden shadow-2xl"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="grid grid-cols-1 md:grid-cols-3 gap-6 h-full"
             >
-                {/* Grid Lines */}
-                <div className="absolute inset-0 grid grid-cols-6 grid-rows-6 gap-4 opacity-10 pointer-events-none">
-                    {[...Array(36)].map((_, i) => (
-                        <div key={i} className="border-[0.5px] border-white/20" />
-                    ))}
+                {/* 1. ROI Line Chart */}
+                <div className="glass p-6 rounded-2xl flex flex-col justify-between min-h-[300px] relative overflow-hidden group">
+                    <div className="relative z-10">
+                        <h3 className="text-gray-400 text-sm font-mono uppercase tracking-widest mb-1">Retour sur Investissement</h3>
+                        <div className="text-3xl font-bold text-white flex items-baseline gap-2">
+                            +300% <span className="text-sm text-primary-neon font-normal">/ an</span>
+                        </div>
+                    </div>
+
+                    {/* Chart Viz */}
+                    <div className="relative h-48 w-full mt-4">
+                        {/* Grid Lines */}
+                        <div className="absolute inset-0 flex flex-col justify-between opacity-20">
+                            <div className="border-t border-dashed border-white/50 w-full h-0"></div>
+                            <div className="border-t border-dashed border-white/50 w-full h-0"></div>
+                            <div className="border-t border-dashed border-white/50 w-full h-0"></div>
+                        </div>
+
+                        <svg className="absolute inset-0 w-full h-full overflow-visible">
+                            <defs>
+                                <linearGradient id="line-gradient" x1="0" y1="0" x2="1" y2="0">
+                                    <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.2" />
+                                    <stop offset="100%" stopColor="#06b6d4" stopOpacity="1" />
+                                </linearGradient>
+                                <linearGradient id="area-gradient" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.2" />
+                                    <stop offset="100%" stopColor="#06b6d4" stopOpacity="0" />
+                                </linearGradient>
+                            </defs>
+                            {/* Area */}
+                            <motion.path
+                                d="M0,150 C50,140 100,100 150,110 S250,50 350,20 L350,200 L0,200 Z"
+                                fill="url(#area-gradient)"
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
+                                transition={{ duration: 1, delay: 0.5 }}
+                            />
+                            {/* Line */}
+                            <motion.path
+                                d="M0,150 C50,140 100,100 150,110 S250,50 350,20"
+                                fill="none"
+                                stroke="url(#line-gradient)"
+                                strokeWidth="3"
+                                strokeLinecap="round"
+                                initial={{ pathLength: 0 }}
+                                whileInView={{ pathLength: 1 }}
+                                transition={{ duration: 2, ease: "easeInOut" }}
+                            />
+                            {/* Points */}
+                            <motion.circle
+                                cx="350" cy="20" r="4"
+                                fill="#fff"
+                                initial={{ scale: 0 }}
+                                whileInView={{ scale: 1 }}
+                                transition={{ delay: 2, type: "spring" }}
+                            />
+                        </svg>
+                    </div>
                 </div>
 
-                {/* Content Container */}
-                <div className="relative h-full flex flex-col justify-end z-10">
+                {/* 2. Automation Rate Radial */}
+                <div className="glass p-6 rounded-2xl flex flex-col items-center justify-center min-h-[300px] relative group">
+                    <div className="relative w-48 h-48 flex items-center justify-center">
+                        {/* Background Circle */}
+                        <svg className="w-full h-full rotate-[-90deg]">
+                            <circle
+                                cx="96" cy="96" r="80"
+                                fill="none"
+                                stroke="rgba(255,255,255,0.05)"
+                                strokeWidth="12"
+                                strokeLinecap="round"
+                            />
+                            {/* Progress Circle */}
+                            <motion.circle
+                                cx="96" cy="96" r="80"
+                                fill="none"
+                                stroke="url(#radial-gradient)"
+                                strokeWidth="12"
+                                strokeLinecap="round"
+                                strokeDasharray="502" // 2 * pi * 80
+                                strokeDashoffset="502"
+                                initial={{ strokeDashoffset: 502 }}
+                                whileInView={{ strokeDashoffset: 502 - (502 * 0.85) }} // 85%
+                                transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
+                            />
+                            <defs>
+                                <linearGradient id="radial-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stopColor="#8b5cf6" />
+                                    <stop offset="100%" stopColor="#ec4899" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <div className="absolute flex flex-col items-center">
+                            <span className="text-4xl font-black text-white">85%</span>
+                            <span className="text-xs text-gray-400 uppercase tracking-widest mt-1">Automatisation</span>
+                        </div>
+                    </div>
+                    <div className="text-center mt-6 max-w-[80%]">
+                        <p className="text-sm text-gray-400">des tâches répétitives traitées sans intervention humaine.</p>
+                    </div>
+                </div>
 
-                    {/* Chart 1: Growth Bars */}
-                    <div className="flex items-end justify-between gap-4 h-1/2 mb-8 px-4">
-                        {[30, 50, 40, 70, 60, 90, 85].map((height, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ height: "0%" }}
-                                whileInView={{ height: `${height}%` }}
-                                transition={{ duration: 1, delay: i * 0.1, ease: "backOut" }}
-                                viewport={{ once: true }}
-                                className="w-full bg-gradient-to-t from-primary/20 to-primary-neon rounded-t-lg relative group"
-                            >
-                                <div className="absolute top-0 left-0 right-0 h-[2px] bg-white/50 shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
-                                {/* Hover Effect */}
-                                <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity" />
-                            </motion.div>
-                        ))}
+                {/* 3. Speed Comparison Bar Chart */}
+                <div className="glass p-6 rounded-2xl flex flex-col justify-between min-h-[300px] relative">
+                    <div className="mb-4">
+                        <h3 className="text-gray-400 text-sm font-mono uppercase tracking-widest mb-1">Vitesse de Traitement</h3>
+                        <div className="text-3xl font-bold text-white">x120</div>
                     </div>
 
-                    {/* Chart 2: Floating Metrics */}
-                    <div className="absolute top-8 right-8 flex flex-col gap-4">
-                        <motion.div
-                            initial={{ x: 50, opacity: 0 }}
-                            whileInView={{ x: 0, opacity: 1 }}
-                            transition={{ delay: 0.5, duration: 0.5 }}
-                        >
+                    <div className="flex-1 flex items-end justify-center gap-8 pb-4">
+                        {/* Manual Bar */}
+                        <div className="flex flex-col items-center gap-2 group">
                             <motion.div
-                                animate={{ y: [0, -10, 0] }}
-                                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", delay: 1 }}
-                                className="bg-black/80 backdrop-blur border border-primary-neon/50 px-4 py-2 rounded-lg shadow-[0_0_15px_rgba(6,182,212,0.3)]"
+                                initial={{ height: 0 }}
+                                whileInView={{ height: 40 }}
+                                transition={{ duration: 0.5, delay: 0.2 }}
+                                className="w-16 bg-white/10 rounded-t-lg border border-white/5 relative"
                             >
-                                <div className="text-xs text-gray-400 uppercase tracking-widest">Efficiency</div>
-                                <div className="text-xl font-mono font-bold text-primary-neon">+300%</div>
+                                <div className="absolute -top-6 w-full text-center text-xs text-gray-500 font-mono">2h</div>
                             </motion.div>
-                        </motion.div>
+                            <span className="text-xs font-bold text-gray-500 uppercase tracking-wide">Humain</span>
+                        </div>
 
-                        <motion.div
-                            initial={{ x: 50, opacity: 0 }}
-                            whileInView={{ x: 0, opacity: 1 }}
-                            transition={{ delay: 0.7, duration: 0.5 }}
-                        >
+                        {/* AI Bar */}
+                        <div className="flex flex-col items-center gap-2">
                             <motion.div
-                                animate={{ y: [0, -8, 0] }}
-                                transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1.5 }}
-                                className="bg-black/80 backdrop-blur border border-secondary-neon/50 px-4 py-2 rounded-lg shadow-[0_0_15px_rgba(139,92,246,0.3)]"
+                                initial={{ height: 0 }}
+                                whileInView={{ height: 180 }}
+                                transition={{ duration: 0.8, delay: 0.4, type: "spring" }}
+                                className="w-16 bg-gradient-to-t from-primary/20 to-primary-neon rounded-t-lg border-t border-x border-primary-neon/50 relative shadow-[0_0_20px_rgba(6,182,212,0.2)]"
                             >
-                                <div className="text-xs text-gray-400 uppercase tracking-widest">Errors</div>
-                                <div className="text-xl font-mono font-bold text-secondary-neon">0.01%</div>
+                                <div className="absolute -top-6 w-full text-center text-xs text-primary-neon font-bold font-mono">1min</div>
+                                <div className="absolute inset-0 bg-white/20 animate-pulse-slow"></div>
                             </motion.div>
-                        </motion.div>
+                            <span className="text-xs font-bold text-white uppercase tracking-wide">IA</span>
+                        </div>
                     </div>
-
-                    {/* Decorative Line Path (Cyberpunk Line) */}
-                    <svg className="absolute inset-0 w-full h-full pointer-events-none z-0" style={{ opacity: 0.5 }}>
-                        <motion.path
-                            d="M0,350 C100,340 150,200 250,220 S350,100 500,80"
-                            fill="none"
-                            stroke="url(#gradient-line)"
-                            strokeWidth="4"
-                            initial={{ pathLength: 0 }}
-                            whileInView={{ pathLength: 1 }}
-                            transition={{ duration: 2, ease: "easeInOut" }}
-                            viewport={{ once: true }}
-                        />
-                        <defs>
-                            <linearGradient id="gradient-line" x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="0%" stopColor="#06b6d4" stopOpacity="0" />
-                                <stop offset="50%" stopColor="#06b6d4" />
-                                <stop offset="100%" stopColor="#8b5cf6" />
-                            </linearGradient>
-                        </defs>
-                    </svg>
+                    <p className="text-xs text-center text-gray-500 mt-2">Comparatif sur un dataset de 10k lignes</p>
                 </div>
             </motion.div>
-        </div>
+        </section>
     );
 }
