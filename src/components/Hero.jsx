@@ -51,7 +51,7 @@ export default function Hero() {
             />
 
 
-            <div className="container mx-auto px-4 relative z-10 flex flex-col items-center justify-center min-h-[100dvh] py-20">
+            <div className="container mx-auto px-4 relative z-10 flex flex-col items-center justify-center min-h-[100dvh] pt-20 pb-32 md:py-20">
 
                 {/* Titan Typography */}
                 <div className="relative w-full text-center flex flex-col items-center justify-center flex-grow">
@@ -59,7 +59,7 @@ export default function Hero() {
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 1, ease: "circOut" }}
-                        className="font-display font-bold text-4xl sm:text-6xl md:text-[12vw] leading-[1.1] md:leading-[0.85] tracking-tighter text-transparent select-none pt-20 md:pt-0"
+                        className="font-display font-bold text-5xl sm:text-6xl md:text-[12vw] leading-[1.1] md:leading-[0.85] tracking-tighter text-transparent select-none pt-20 md:pt-0"
                         style={{
                             WebkitTextStroke: '2px var(--text-stroke-color)',
                             // Removed mixBlendMode to ensure visibility in light mode
@@ -104,7 +104,7 @@ export default function Hero() {
                                 transition={{ delay: 1.3, duration: 0.8 }}
                                 className="flex-shrink-0"
                             >
-                                <AICore size="default" />
+                                <AICore size="landing" />
                             </motion.div>
                         </div>
                     </motion.div>

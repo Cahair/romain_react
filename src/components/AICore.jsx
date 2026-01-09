@@ -18,6 +18,12 @@ export default function AICore({ size = "default" }) {
             core: "w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32",
             particle: "w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24"
         },
+        landing: {
+            // Further reduced for mobile to avoid crowding
+            container: "w-28 h-28 md:w-40 md:h-40 lg:w-48 lg:h-48",
+            core: "w-12 h-12 md:w-20 md:h-20 lg:w-22 lg:h-22",
+            particle: "w-8 h-8 md:w-14 md:h-14 lg:w-16 lg:h-16"
+        },
         large: {
             container: "w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80",
             core: "w-32 h-32 md:w-36 md:h-36 lg:w-40 lg:h-40",
