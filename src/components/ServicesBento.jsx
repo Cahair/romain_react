@@ -49,10 +49,10 @@ export default function ServicesBento() {
                     </motion.p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[300px]">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[280px]">
 
                     {/* 1. Main Card: Agent IA (Span 2 cols) */}
-                    <Card href="/services/chatbots" className="md:col-span-2 group border-primary-neon/20 hover:border-primary-neon/50">
+                    <Card href="/services/agents" className="md:col-span-2 group border-primary-neon/20 hover:border-primary-neon/50">
                         <div className="flex justify-between items-start mb-4">
                             <div className="p-3 rounded-xl bg-primary-neon/10 text-primary-neon">
                                 <Bot size={32} />
@@ -164,6 +164,42 @@ export default function ServicesBento() {
                             <motion.div className="w-2 bg-emerald-500 rounded-t" animate={{ height: [10, 30, 20] }} transition={{ duration: 2, repeat: Infinity }} />
                             <motion.div className="w-2 bg-emerald-500 rounded-t" animate={{ height: [20, 40, 25] }} transition={{ duration: 2, repeat: Infinity, delay: 0.2 }} />
                             <motion.div className="w-2 bg-emerald-500 rounded-t" animate={{ height: [15, 35, 20] }} transition={{ duration: 2, repeat: Infinity, delay: 0.4 }} />
+                        </div>
+                    </Card>
+
+                    {/* 5. NEW Full-Width Card: Web Development (Foundation) */}
+                    <Card href="/services/web-dev" className="md:col-span-3 border-blue-500/20 hover:border-blue-500/50" delay={0.5}>
+                        <div className="flex flex-col md:flex-row items-start md:items-center justify-between h-full gap-6">
+                            <div className="flex items-start gap-6 flex-1">
+                                <div className="p-3 rounded-xl bg-blue-500/10 text-blue-400 w-fit flex-shrink-0">
+                                    <Database size={32} />
+                                </div>
+                                <div className="flex-1">
+                                    <h3 className="text-2xl md:text-3xl font-display font-bold uppercase mb-2 text-white group-hover:text-blue-400 transition-colors">
+                                        {t("servicesBento.items.webDev.title")}
+                                    </h3>
+                                    <p className="text-gray-400 text-sm md:text-base max-w-3xl">
+                                        {t("servicesBento.items.webDev.desc")}
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Foundation Visual */}
+                            <div className="flex items-center gap-3 opacity-40 group-hover:opacity-70 transition-opacity">
+                                <div className="flex flex-col gap-2">
+                                    <div className="w-16 h-12 rounded-lg border border-blue-500/30 bg-blue-500/5 flex items-center justify-center">
+                                        <div className="text-blue-400 text-xs font-mono">WEB</div>
+                                    </div>
+                                    <div className="w-16 h-1 bg-gradient-to-r from-blue-500/50 to-transparent rounded"></div>
+                                </div>
+                                <div className="text-blue-500/50">→</div>
+                                <div className="flex flex-col gap-2">
+                                    <div className="w-16 h-12 rounded-lg border border-primary-neon/30 bg-primary-neon/5 flex items-center justify-center shadow-[0_0_10px_rgba(0,255,255,0.1)]">
+                                        <div className="text-primary-neon text-xs font-mono">AI</div>
+                                    </div>
+                                    <div className="w-16 h-1 bg-gradient-to-r from-primary-neon/50 to-transparent rounded"></div>
+                                </div>
+                            </div>
                         </div>
                     </Card>
 

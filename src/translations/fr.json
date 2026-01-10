@@ -244,6 +244,10 @@
             "dataViz": {
                 "title": "Data Viz",
                 "desc": "Dashboards interactifs pour piloter votre activité."
+            },
+            "webDev": {
+                "title": "Infrastructure Web & Intégration",
+                "desc": "Création du socle digital (Sites, Apps, Dashboards) indispensable pour déployer et exploiter votre IA."
             }
         }
     },

@@ -234,6 +234,10 @@
             "dataViz": {
                 "title": "Data Viz",
                 "desc": "Interaktive Dashboards zur Steuerung Ihrer Aktivitäten."
+            },
+            "webDev": {
+                "title": "Web-Infrastruktur & Integration",
+                "desc": "Aufbau der digitalen Grundlage (Sites, Apps, Dashboards), die für den Einsatz und die Nutzung Ihrer KI unerlässlich ist."
             }
         }
     },

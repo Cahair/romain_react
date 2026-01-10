@@ -30,6 +30,7 @@ export default function Navbar() {
                 { name: "Workflows IA", path: "/services/workflows" },
                 { name: "Lead Gen IA", path: "/services/lead-gen" },
                 { name: "Data Analysis", path: "/services/data" },
+                { name: "Développement Web", path: "/services/web-dev" },
             ]
         },
         { name: t("nav.about"), path: "/about" }

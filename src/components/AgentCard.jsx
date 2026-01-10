@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import AgentVideoPlayer from "./AgentVideoPlayer";
 
 export default function AgentCard({ agent, isActive, onClick }) {
     const isSelected = isActive;
@@ -56,10 +57,10 @@ export default function AgentCard({ agent, isActive, onClick }) {
                 {/* Visual Representation */}
                 {/* Visual Representation */}
                 <div className={`w-full h-auto mb-6 rounded-xl overflow-hidden relative border ${style.border} group-hover:scale-[1.02] transition-transform duration-500 bg-black/20`}>
-                    <img
-                        src={`/images/agents/${agent.id}.png`}
-                        alt={`${agent.name} Avatar`}
-                        className="w-full h-auto block"
+                    <AgentVideoPlayer
+                        videoSrc={`/videos/${agent.id === 'axiom' ? 'support_client.mp4' : agent.id === 'lumina' ? 'reseaux_sociaux.mp4' : 'blog.mp4'}`}
+                        agentName={agent.name}
+                        style={style}
                     />
                 </div>
 
@@ -69,12 +70,33 @@ export default function AgentCard({ agent, isActive, onClick }) {
                         animate={{ height: isSelected ? "auto" : 0, opacity: isSelected ? 1 : 0 }}
                         className="overflow-hidden"
                     >
-                        <ul className="space-y-2 mb-2">
+                        <ul className="space-y-3 mb-4">
                             {agent.tasks.map((task, i) => (
-                                <li key={i} className={`flex items-center gap-3 ${style.text} opacity-90`}>
-                                    <div className={`w-1.5 h-1.5 rounded-full ${style.accent.replace('text-', 'bg-')}`} />
-                                    <span className="text-sm font-medium tracking-wide">{task}</span>
-                                </li>
+                                <motion.li
+                                    key={i}
+                                    initial={{ opacity: 0, x: -10 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: i * 0.1 }}
+                                    className={`flex items-start gap-3 ${style.text} group/task`}
+                                >
+                                    <div className={`relative flex-shrink-0 mt-0.5`}>
+                                        {/* Icône de check avec bordure et glow */}
+                                        <div className={`w-5 h-5 rounded-md border-2 ${style.border} ${style.accent.replace('text-', 'bg-')}/20 backdrop-blur-sm flex items-center justify-center transition-all duration-300 group-hover/task:scale-110 group-hover/task:${style.accent.replace('text-', 'bg-')}/30`}>
+                                            <svg
+                                                className={`w-3 h-3 ${style.accent}`}
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                                strokeWidth="3"
+                                            >
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                            </svg>
+                                        </div>
+                                        {/* Glow effect */}
+                                        <div className={`absolute inset-0 rounded-md ${style.accent.replace('text-', 'bg-')}/20 blur-sm -z-10`} />
+                                    </div>
+                                    <span className="text-sm font-medium tracking-wide leading-relaxed flex-1">{task}</span>
+                                </motion.li>
                             ))}
                         </ul>
                     </motion.div>

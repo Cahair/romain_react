@@ -6,21 +6,21 @@ import { motion } from "framer-motion";
 const agents = [
     {
         id: "axiom",
-        name: "AXIOM",
+        name: "Emma",
         role: "SUPPORT & SERVICE CLIENT",
         tasks: ["Gestion autonome de vos emails entrants 24/7", "Qualification et résolution immédiate des tickets", "Parcours de fidélisation qualitatif et personnalisé"],
         cta: "Déléguer mon support",
     },
     {
         id: "lumina",
-        name: "LUMINA",
+        name: "Luna",
         role: "SOCIAL MEDIA MANAGER",
         tasks: ["Conception de contenus visuels et textuels engageants", "Orchestration complète de votre calendrier éditorial", "Animation active et croissance de votre audience"],
         cta: "Automatiser mes posts",
     },
     {
         id: "kairo",
-        name: "KAIRO",
+        name: "Maya",
         role: "RESPONSABLE OPÉRATIONS",
         tasks: ["Pilotage centralisé de vos projets stratégiques", "Synchronisation fluide de vos différentes équipes", "Contrôle proactif des échéances et livrables"],
         cta: "Optimiser mes opérations",
@@ -31,7 +31,7 @@ export default function AgentsShowcase() {
     const [activeAgent, setActiveAgent] = useState("lumina"); // Default open
 
     return (
-        <div className="w-full max-w-7xl mx-auto px-4 py-20">
+        <div className="w-full max-w-7xl mx-auto px-4 py-8 md:py-20">
             <div className="text-center mb-16 space-y-4">
                 <motion.h2
                     initial={{ opacity: 0, y: 20 }}

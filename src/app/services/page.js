@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
-import { MessageSquare, Zap, Target, Database, ArrowRight, Bot, Share2, Search, BarChart3, Mail, Bell, Cpu } from "lucide-react";
+import { MessageSquare, Zap, Target, Database, ArrowRight, Bot, Share2, Search, BarChart3, Mail, Bell, Cpu, Layout, Rocket } from "lucide-react";
 import Link from "next/link";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
@@ -449,6 +449,186 @@ export default function ServicesPage() {
                                 <span className="uppercase tracking-widest font-bold text-sm text-emerald-500">{t("servicesPage.data.button")}</span>
                                 <ArrowRight className="w-4 h-4 text-emerald-500 group-hover:translate-x-1 transition-transform" />
                             </Link>
+                        </motion.div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Section 5: Web Development (Simplified) */}
+            <section className="h-[100dvh] w-full snap-start flex items-center justify-center relative overflow-hidden px-4 md:px-8 pt-20">
+                <div className="container mx-auto h-full max-h-[90dvh] grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+
+                    {/* Left Column: Content */}
+                    <div className="flex flex-col justify-center gap-6 order-2 md:order-1">
+                        <motion.h2
+                            initial={{ opacity: 0, x: -30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            className="text-[clamp(2.5rem,6vw,5rem)] font-black uppercase leading-none"
+                        >
+                            <span className="text-blue-400">Développement</span>
+                            <br />
+                            <span className="text-white">Web</span>
+                        </motion.h2>
+
+                        {/* Dynamic Subtitle with Text Animation */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            transition={{ delay: 0.2 }}
+                            className="flex items-center gap-2 text-[clamp(1.125rem,2vw,1.5rem)] text-muted-foreground"
+                        >
+                            <span>Je conçois vos :</span>
+                            <span className="relative inline-block min-w-[280px] h-[1.5em]">
+                                <motion.span
+                                    className="text-blue-400 font-bold absolute left-0 top-0"
+                                    animate={{
+                                        opacity: [1, 1, 0],
+                                    }}
+                                    transition={{
+                                        duration: 3,
+                                        repeat: Infinity,
+                                        repeatDelay: 6,
+                                    }}
+                                >
+                                    Sites Corporate
+                                </motion.span>
+                                <motion.span
+                                    className="text-blue-400 font-bold absolute left-0 top-0"
+                                    animate={{
+                                        opacity: [0, 0, 1, 1, 0],
+                                    }}
+                                    transition={{
+                                        duration: 9,
+                                        repeat: Infinity,
+                                        times: [0, 0.3, 0.33, 0.63, 0.66],
+                                        delay: 3,
+                                    }}
+                                >
+                                    Applications SaaS
+                                </motion.span>
+                                <motion.span
+                                    className="text-blue-400 font-bold absolute left-0 top-0"
+                                    animate={{
+                                        opacity: [0, 0, 1, 1, 0],
+                                    }}
+                                    transition={{
+                                        duration: 9,
+                                        repeat: Infinity,
+                                        times: [0, 0.63, 0.66, 0.96, 1],
+                                        delay: 6,
+                                    }}
+                                >
+                                    Dashboards IA
+                                </motion.span>
+                            </span>
+                        </motion.div>
+
+                        {/* Static Description */}
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            transition={{ delay: 0.4 }}
+                            className="text-sm md:text-base text-gray-400 leading-relaxed max-w-lg"
+                        >
+                            Du code propre (React/Vue), optimisé pour le SEO et prêt à accueillir votre IA.
+                        </motion.p>
+
+                        {/* CTA Button */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.6 }}
+                        >
+                            <Link
+                                href="/contact"
+                                className="inline-flex items-center gap-3 px-6 py-3 bg-blue-500/10 border border-blue-500/50 rounded-full hover:bg-blue-500/20 transition-all group"
+                            >
+                                <span className="uppercase tracking-widest font-bold text-sm text-blue-400">Discuter de mon projet</span>
+                                <ArrowRight className="w-4 h-4 text-blue-400 group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                        </motion.div>
+                    </div>
+
+                    {/* Right Column: Visual Placeholder */}
+                    <div className="flex justify-center items-center order-1 md:order-2 h-[40vh] md:h-auto">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.8 }}
+                            className="relative w-full max-w-md aspect-square flex items-center justify-center"
+                        >
+                            {/* Animated Gradient Background */}
+                            <motion.div
+                                className="absolute inset-0 rounded-3xl opacity-20"
+                                style={{
+                                    background: "linear-gradient(135deg, #3b82f6 0%, #1e40af 50%, #2563eb 100%)",
+                                }}
+                                animate={{
+                                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                                }}
+                                transition={{
+                                    duration: 8,
+                                    repeat: Infinity,
+                                    ease: "linear",
+                                }}
+                            />
+
+                            {/* Floating Code Symbol */}
+                            <motion.div
+                                className="relative z-10 flex flex-col items-center gap-8"
+                                animate={{ y: [0, -10, 0] }}
+                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                            >
+                                {/* Opening Tag */}
+                                <motion.div
+                                    className="text-6xl md:text-8xl font-mono text-blue-400/80"
+                                    animate={{ opacity: [0.6, 1, 0.6] }}
+                                    transition={{ duration: 3, repeat: Infinity }}
+                                >
+                                    &lt;/&gt;
+                                </motion.div>
+
+                                {/* Decorative Lines */}
+                                <div className="flex gap-2">
+                                    {[...Array(3)].map((_, i) => (
+                                        <motion.div
+                                            key={i}
+                                            className="h-1 bg-blue-400/40 rounded-full"
+                                            initial={{ width: 0 }}
+                                            whileInView={{ width: [0, 60, 40][i] }}
+                                            transition={{ delay: 0.8 + i * 0.1, duration: 0.6 }}
+                                        />
+                                    ))}
+                                </div>
+                            </motion.div>
+
+                            {/* Orbiting Elements */}
+                            <motion.div
+                                className="absolute top-1/4 right-1/4 w-3 h-3 rounded-full bg-blue-400/50"
+                                animate={{
+                                    x: [0, 20, 0],
+                                    y: [0, -20, 0],
+                                }}
+                                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                            />
+                            <motion.div
+                                className="absolute bottom-1/4 left-1/4 w-2 h-2 rounded-full bg-blue-500/50"
+                                animate={{
+                                    x: [0, -15, 0],
+                                    y: [0, 15, 0],
+                                }}
+                                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                            />
+
+                            {/* Pulsing Ring */}
+                            <motion.div
+                                className="absolute inset-0 border-2 border-blue-400/20 rounded-full"
+                                animate={{
+                                    scale: [1, 1.1, 1],
+                                    opacity: [0.2, 0.5, 0.2],
+                                }}
+                                transition={{ duration: 4, repeat: Infinity }}
+                            />
                         </motion.div>
                     </div>
                 </div>

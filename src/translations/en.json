@@ -238,6 +238,10 @@
             "dataViz": {
                 "title": "Data Viz",
                 "desc": "Interactive dashboards to drive your business."
+            },
+            "webDev": {
+                "title": "Web Infrastructure & Integration",
+                "desc": "Building the digital foundation (Sites, Apps, Dashboards) essential for deploying and leveraging your AI."
             }
         }
     },
