@@ -95,31 +95,7 @@ export default function AgentVideoPlayer({ videoSrc, agentName, style }) {
                 )}
             </AnimatePresence>
 
-            {/* Pause Overlay (appears briefly when clicking on playing video) */}
-            <AnimatePresence>
-                {isPlaying && isHovered && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="absolute inset-0 flex items-center justify-center bg-black/20"
-                    >
-                        <motion.div
-                            whileHover={{ scale: 1.1 }}
-                            className={`w-16 h-16 rounded-full ${style.accent.replace('text-', 'bg-')}/30 backdrop-blur-md border ${style.border} flex items-center justify-center`}
-                        >
-                            {/* Pause Icon */}
-                            <svg
-                                className={`w-8 h-8 ${style.accent}`}
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
-                            </svg>
-                        </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+
         </div>
     );
 }

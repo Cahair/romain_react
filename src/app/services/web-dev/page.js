@@ -18,7 +18,7 @@ export default function WebDevPage() {
                 </div>
 
                 {/* SECTION 1: HERO - Full Screen Browser Mockup */}
-                <section className="relative min-h-screen flex flex-col justify-center items-center px-4 md:px-8 py-8 pt-24">
+                <section className="relative min-h-screen flex flex-col justify-center items-center px-4 md:px-8 py-8 pt-32 md:pt-24">
                     {/* Ambient Glow */}
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 blur-3xl opacity-40" />
 
@@ -27,7 +27,7 @@ export default function WebDevPage() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 1, ease: "easeOut" }}
-                        className="relative w-full max-w-[95vw] h-[82vh] z-10"
+                        className="relative w-full max-w-[95vw] h-[75vh] md:h-[82vh] z-10"
                     >
                         {/* Browser Chrome */}
                         <div className="relative w-full h-full backdrop-blur-md bg-black/70 border border-blue-500/40 rounded-xl overflow-hidden shadow-[0_0_80px_rgba(59,130,246,0.4)]">
@@ -37,23 +37,23 @@ export default function WebDevPage() {
                                 initial={{ y: -20, opacity: 0 }}
                                 animate={{ y: 0, opacity: 1 }}
                                 transition={{ delay: 0.3, duration: 0.6 }}
-                                className="bg-black/90 border-b border-white/10 px-4 md:px-6 py-3 md:py-4 flex items-center gap-3"
+                                className="bg-black/90 border-b border-white/10 px-3 md:px-6 py-2 md:py-4 flex items-center gap-2 md:gap-3"
                             >
                                 {/* Traffic Lights */}
-                                <div className="flex gap-2">
-                                    <div className="w-3 h-3 md:w-3.5 md:h-3.5 rounded-full bg-red-500" />
-                                    <div className="w-3 h-3 md:w-3.5 md:h-3.5 rounded-full bg-yellow-500" />
-                                    <div className="w-3 h-3 md:w-3.5 md:h-3.5 rounded-full bg-green-500" />
+                                <div className="flex gap-1.5 md:gap-2">
+                                    <div className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 rounded-full bg-red-500" />
+                                    <div className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 rounded-full bg-yellow-500" />
+                                    <div className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 rounded-full bg-green-500" />
                                 </div>
                                 {/* Address Bar */}
-                                <div className="flex-1 ml-4 bg-white/5 rounded-lg px-4 py-2 text-xs md:text-sm font-mono text-gray-400 flex items-center gap-2">
-                                    <Globe className="w-4 h-4 text-blue-400" />
-                                    <span>https://votre-projet-sur-mesure.com</span>
+                                <div className="flex-1 ml-2 md:ml-4 bg-white/5 rounded-lg px-2 md:px-4 py-1.5 md:py-2 text-[10px] md:text-sm font-mono text-gray-400 flex items-center gap-1 md:gap-2">
+                                    <Globe className="w-3 h-3 md:w-4 md:h-4 text-blue-400 hidden sm:block" />
+                                    <span className="truncate">votre-projet-sur-mesure.com</span>
                                 </div>
                             </motion.div>
 
                             {/* Browser Content - Hero Content Inside */}
-                            <div className="relative h-[calc(100%-60px)] bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 overflow-hidden">
+                            <div className="relative h-[calc(100%-48px)] md:h-[calc(100%-60px)] bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 overflow-hidden">
                                 {/* Grid Pattern Background */}
                                 <div className="absolute inset-0 opacity-[0.03]">
                                     <div className="absolute inset-0 bg-[linear-gradient(to_right,#3b82f620_1px,transparent_1px),linear-gradient(to_bottom,#3b82f620_1px,transparent_1px)] bg-[size:4rem_4rem]" />
@@ -78,14 +78,14 @@ export default function WebDevPage() {
                                 />
 
                                 {/* Main Content Container - Centered */}
-                                <div className="relative h-full flex flex-col items-center justify-center px-6 md:px-12 lg:px-20 text-center">
+                                <div className="relative h-full flex flex-col items-center justify-center px-4 sm:px-6 md:px-12 lg:px-20 text-center py-8 md:py-0">
 
                                     {/* Overline */}
                                     <motion.span
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.6, delay: 0.5 }}
-                                        className="inline-block font-mono text-blue-400 text-xs md:text-sm tracking-[0.3em] uppercase mb-6 md:mb-8"
+                                        className="inline-block font-mono text-blue-400 text-[9px] sm:text-xs md:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-4 md:mb-8"
                                     >
                                         // Développement Web Sur-Mesure
                                     </motion.span>
@@ -95,14 +95,14 @@ export default function WebDevPage() {
                                         initial={{ opacity: 0, y: 30 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.8, delay: 0.7 }}
-                                        className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold uppercase leading-[0.95] tracking-tight mb-6 md:mb-8 max-w-5xl"
+                                        className="font-display text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-bold uppercase leading-[0.95] tracking-tight mb-4 sm:mb-6 md:mb-8 max-w-5xl"
                                     >
                                         Développez Votre{" "}
-                                        <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 drop-shadow-[0_0_60px_rgba(59,130,246,0.8)]">
+                                        <span className="block mt-1 md:mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 drop-shadow-[0_0_30px_rgba(59,130,246,0.6)] md:drop-shadow-[0_0_60px_rgba(59,130,246,0.8)]">
                                             Interface
                                         </span>
-                                        <span className="block mt-2">
-                                            selon vos <span className="text-blue-400 drop-shadow-[0_0_40px_rgba(59,130,246,0.6)]">GOÛTS</span>
+                                        <span className="block mt-1 md:mt-2">
+                                            selon vos <span className="text-blue-400 drop-shadow-[0_0_20px_rgba(59,130,246,0.4)] md:drop-shadow-[0_0_40px_rgba(59,130,246,0.6)]">GOÛTS</span>
                                         </span>
                                     </motion.h1>
 
@@ -111,7 +111,7 @@ export default function WebDevPage() {
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.6, delay: 0.9 }}
-                                        className="text-base md:text-lg lg:text-xl text-gray-400 max-w-3xl mb-10 md:mb-12 leading-relaxed font-light"
+                                        className="text-xs sm:text-sm md:text-lg lg:text-xl text-gray-400 max-w-3xl mb-6 md:mb-12 leading-relaxed font-light px-2"
                                     >
                                         Des interfaces web sur-mesure pensées pour votre métier. Du design à la production,
                                         nous codons l'expérience parfaite pour vos utilisateurs.
@@ -125,10 +125,10 @@ export default function WebDevPage() {
                                     >
                                         <Link
                                             href="/contact"
-                                            className="group inline-flex items-center gap-3 px-8 md:px-10 py-4 md:py-5 bg-blue-500 hover:bg-blue-600 text-white font-bold uppercase tracking-widest text-sm md:text-base transition-all duration-300 shadow-[0_0_40px_rgba(59,130,246,0.5)] hover:shadow-[0_0_60px_rgba(59,130,246,0.7)] hover:scale-105"
+                                            className="group inline-flex items-center gap-2 md:gap-3 px-6 sm:px-8 md:px-10 py-3 md:py-5 bg-blue-500 hover:bg-blue-600 text-white font-bold uppercase tracking-widest text-xs md:text-base transition-all duration-300 shadow-[0_0_30px_rgba(59,130,246,0.4)] md:shadow-[0_0_40px_rgba(59,130,246,0.5)] hover:shadow-[0_0_50px_rgba(59,130,246,0.6)] md:hover:shadow-[0_0_60px_rgba(59,130,246,0.7)] hover:scale-105"
                                         >
                                             Discuter de mon projet
-                                            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                            <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
                                         </Link>
                                     </motion.div>
 
