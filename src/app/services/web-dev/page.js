@@ -18,7 +18,7 @@ export default function WebDevPage() {
                 </div>
 
                 {/* SECTION 1: HERO - Full Screen Browser Mockup */}
-                <section className="relative min-h-screen flex flex-col justify-center items-center px-4 md:px-8 py-8 pt-32 md:pt-24">
+                <section className="relative min-h-screen flex flex-col justify-center items-center px-4 md:px-8 py-8 pt-24">
                     {/* Ambient Glow */}
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 blur-3xl opacity-40" />
 
