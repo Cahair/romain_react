@@ -199,7 +199,7 @@ export default function WebDevPage() {
                 </section>
 
                 {/* SECTION 2: PHILOSOPHIE */}
-                <section className="relative py-20 px-6">
+                <section className="relative py-12 md:py-20 px-6">
                     <div className="container mx-auto max-w-3xl text-center relative z-10">
                         <motion.div
                             initial={{ opacity: 0, y: 30 }}
@@ -209,7 +209,7 @@ export default function WebDevPage() {
                             className="backdrop-blur-md bg-white/[0.02] border border-white/10 p-8 md:p-12"
                         >
                             <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-blue-400 to-transparent mx-auto mb-6" />
-                            <p className="text-lg md:text-xl text-gray-300 leading-relaxed font-light">
+                            <p className="text-sm md:text-lg lg:text-xl text-gray-300 leading-relaxed font-light">
                                 Un site web n'est plus une simple vitrine. C'est le{" "}
                                 <span className="text-blue-400 font-medium">système nerveux</span> de votre entreprise.{" "}
                                 Nous refusons les templates obsolètes pour coder des solutions{" "}
@@ -221,7 +221,7 @@ export default function WebDevPage() {
                 </section>
 
                 {/* SECTION 3: LE CŒUR DE L'OFFRE - ZIG-ZAG LAYOUT */}
-                <section className="relative py-32 px-6">
+                <section className="relative py-16 md:py-32 px-6">
                     <div className="container mx-auto max-w-7xl relative z-10">
                         {/* Header */}
                         <motion.div
@@ -230,15 +230,15 @@ export default function WebDevPage() {
                             viewport={{ once: true }}
                             className="mb-20 text-center"
                         >
-                            <span className="font-mono text-blue-400 text-sm tracking-[0.3em] uppercase block mb-4">
+                            <span className="font-mono text-blue-400 text-xs md:text-sm tracking-[0.3em] uppercase block mb-3 md:mb-4">
                                 // Notre Expertise
                             </span>
-                            <h2 className="font-display text-4xl md:text-6xl font-bold uppercase tracking-tight">
+                            <h2 className="font-display text-3xl md:text-6xl font-bold uppercase tracking-tight">
                                 Le Cœur de <span className="text-blue-400">l'Offre</span>
                             </h2>
                         </motion.div>
 
-                        <div className="space-y-32">
+                        <div className="space-y-16 md:space-y-32">
                             {/* BLOC 1: Sites Web & Corporate - Visual Left / Text Right */}
                             <motion.div
                                 initial={{ opacity: 0, y: 40 }}
@@ -250,7 +250,7 @@ export default function WebDevPage() {
                                 {/* Visual Left */}
                                 <div className="relative group order-2 lg:order-1">
                                     <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 blur-3xl opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
-                                    <div className="relative aspect-square bg-black/40 backdrop-blur-md border border-blue-500/20 p-12 flex items-center justify-center group-hover:border-blue-400/40 transition-all duration-500">
+                                    <div className="relative aspect-square bg-black/40 backdrop-blur-md border border-blue-500/20 p-8 md:p-12 flex items-center justify-center group-hover:border-blue-400/40 transition-all duration-500">
                                         {/* Website Icon Animation */}
                                         <motion.div
                                             animate={{
@@ -260,7 +260,7 @@ export default function WebDevPage() {
                                             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                                             className="relative"
                                         >
-                                            <Globe className="w-32 h-32 text-blue-400/60" strokeWidth={1} />
+                                            <Globe className="w-24 h-24 md:w-32 md:h-32 text-blue-400/60" strokeWidth={1} />
                                             <motion.div
                                                 animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
                                                 transition={{ duration: 3, repeat: Infinity }}
@@ -272,18 +272,18 @@ export default function WebDevPage() {
 
                                 {/* Text Right */}
                                 <div className="order-1 lg:order-2">
-                                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/30 text-blue-400 text-xs font-mono uppercase tracking-wider mb-6">
+                                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/30 text-blue-400 text-xs font-mono uppercase tracking-wider mb-4 md:mb-6">
                                         <Globe className="w-3 h-3" />
                                         Vitrine Digitale
                                     </div>
-                                    <h3 className="font-display text-3xl md:text-5xl font-bold uppercase mb-6 text-white">
+                                    <h3 className="font-display text-2xl md:text-5xl font-bold uppercase mb-4 md:mb-6 text-white">
                                         Vitesse, SEO & <span className="text-blue-400">Conversion</span>
                                     </h3>
-                                    <p className="text-gray-400 text-lg leading-relaxed font-light">
+                                    <p className="text-gray-400 text-sm md:text-lg leading-relaxed font-light">
                                         Des sites vitrines qui chargent instantanément et captent vos prospects. Une architecture
                                         technique pensée pour le référencement naturel dès la première ligne de code.
                                     </p>
-                                    <div className="mt-8 flex flex-wrap gap-2">
+                                    <div className="mt-6 md:mt-8 flex flex-wrap gap-2">
                                         <span className="px-3 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono uppercase">Next.js</span>
                                         <span className="px-3 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono uppercase">React</span>
                                         <span className="px-3 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono uppercase">Tailwind</span>
@@ -416,7 +416,7 @@ export default function WebDevPage() {
                 </section>
 
                 {/* SECTION 4: STACK TECHNIQUE */}
-                <section className="relative py-20 px-6">
+                <section className="relative py-12 md:py-20 px-6">
                     <div className="container mx-auto max-w-6xl relative z-10">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
@@ -424,10 +424,10 @@ export default function WebDevPage() {
                             viewport={{ once: true }}
                             className="text-center mb-12"
                         >
-                            <span className="font-mono text-blue-400 text-sm tracking-[0.3em] uppercase block mb-4">
+                            <span className="font-mono text-blue-400 text-xs md:text-sm tracking-[0.3em] uppercase block mb-3 md:mb-4">
                                 // Technologies Maîtrisées
                             </span>
-                            <h2 className="font-display text-3xl md:text-5xl font-bold uppercase tracking-tight">
+                            <h2 className="font-display text-2xl md:text-5xl font-bold uppercase tracking-tight">
                                 Stack <span className="text-blue-400">Technique</span>
                             </h2>
                         </motion.div>
@@ -470,7 +470,7 @@ export default function WebDevPage() {
                 </section>
 
                 {/* SECTION 5: CTA FINALE */}
-                <section className="relative py-32 px-6">
+                <section className="relative py-16 md:py-32 px-6">
                     <div className="container mx-auto max-w-5xl relative z-10">
                         <motion.div
                             initial={{ opacity: 0, y: 40 }}
@@ -497,16 +497,16 @@ export default function WebDevPage() {
 
                             {/* Content */}
                             <div className="relative z-10">
-                                <span className="font-mono text-blue-400 text-sm tracking-[0.3em] uppercase block mb-6">
+                                <span className="font-mono text-blue-400 text-xs md:text-sm tracking-[0.3em] uppercase block mb-4 md:mb-6">
                                     // Prêt à construire ?
                                 </span>
-                                <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-bold uppercase mb-6 tracking-tight">
+                                <h2 className="font-display text-2xl md:text-4xl lg:text-6xl font-bold uppercase mb-4 md:mb-6 tracking-tight">
                                     Prêt à construire votre{" "}
                                     <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
                                         Infrastructure ?
                                     </span>
                                 </h2>
-                                <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-10 font-light">
+                                <p className="text-gray-400 text-sm md:text-lg max-w-2xl mx-auto mb-8 md:mb-10 font-light">
                                     Discutons de votre projet et bâtissons ensemble l'architecture web qui transformera votre
                                     vision en réalité.
                                 </p>
@@ -515,7 +515,7 @@ export default function WebDevPage() {
                                     className="group inline-flex items-center gap-3 px-10 py-5 bg-blue-500 hover:bg-blue-600 text-white font-bold uppercase tracking-widest text-sm transition-all duration-300 shadow-[0_0_30px_rgba(59,130,246,0.4)] hover:shadow-[0_0_50px_rgba(59,130,246,0.6)] hover:scale-105"
                                 >
                                     Démarrer le Projet
-                                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                    <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
                                 </Link>
                             </div>
                         </motion.div>
