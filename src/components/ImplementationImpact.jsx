@@ -83,14 +83,7 @@ export default function ImplementationImpact() {
 
             {/* PARTIE A: Timeline des 4 Étapes */}
             <div className="mb-32">
-                <motion.h3
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-2xl md:text-3xl font-bold text-center mb-16 text-cyan-400"
-                >
-                    Le Processus d'Intégration
-                </motion.h3>
+
 
                 {/* Desktop Timeline */}
                 <div className="hidden md:block relative">
@@ -169,14 +162,7 @@ export default function ImplementationImpact() {
 
             {/* PARTIE B: Grille des 3 Bénéfices */}
             <div>
-                <motion.h3
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-2xl md:text-3xl font-bold text-center mb-16 text-cyan-400"
-                >
-                    Les Bénéfices Concrets
-                </motion.h3>
+
 
                 <div className="grid md:grid-cols-3 gap-8">
                     {benefits.map((benefit, index) => (

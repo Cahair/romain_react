@@ -1,5 +1,4 @@
 import AgentsShowcase from "@/components/AgentsShowcase";
-import ImplementationImpact from "@/components/ImplementationImpact";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -17,7 +16,6 @@ export default function AgentsPage() {
 
                 <div className="relative z-10">
                     <AgentsShowcase />
-                    <ImplementationImpact />
                 </div>
             </main>
 

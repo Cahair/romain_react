@@ -3,7 +3,9 @@
         "home": "Startseite",
         "services": "Dienstleistungen",
         "about": "Über uns",
-        "audit": "GRATIS AUDIT"
+        "audit": "GRATIS AUDIT",
+        "agents": "KI-Agenten",
+        "webDev": "Webentwicklung"
     },
     "hero": {
         "titleLine1": "JENSEITS VON",

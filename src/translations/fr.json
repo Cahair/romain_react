@@ -4,7 +4,9 @@
         "services": "Services",
         "about": "À Propos",
         "contact": "Contact",
-        "audit": "AUDIT GRATUIT"
+        "audit": "AUDIT GRATUIT",
+        "agents": "Agents IA",
+        "webDev": "Développement Web"
     },
     "hero": {
         "titleLine1": "AU-DELÀ DES",

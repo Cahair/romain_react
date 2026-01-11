@@ -4,7 +4,9 @@
         "services": "Services",
         "about": "About",
         "contact": "Contact",
-        "audit": "FREE AUDIT"
+        "audit": "FREE AUDIT",
+        "agents": "AI Agents",
+        "webDev": "Web Dev"
     },
     "hero": {
         "titleLine1": "BEYOND",
