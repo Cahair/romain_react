@@ -22,11 +22,11 @@ export default function WebDevPage() {
                     {/* Ambient Glow */}
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 blur-3xl opacity-40" />
 
-                    {/* Giant Browser Window - Takes 90% of viewport with navbar clearance */}
+                    {/* Giant Browser Window - Optimized animations for mobile */}
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 1, ease: "easeOut" }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
                         className="relative w-full max-w-[95vw] h-[75vh] md:h-[82vh] z-10"
                     >
                         {/* Browser Chrome */}
@@ -34,9 +34,9 @@ export default function WebDevPage() {
 
                             {/* Browser Header */}
                             <motion.div
-                                initial={{ y: -20, opacity: 0 }}
-                                animate={{ y: 0, opacity: 1 }}
-                                transition={{ delay: 0.3, duration: 0.6 }}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.2, duration: 0.4 }}
                                 className="bg-black/90 border-b border-white/10 px-3 md:px-6 py-2 md:py-4 flex items-center gap-2 md:gap-3"
                             >
                                 {/* Traffic Lights */}
@@ -59,32 +59,18 @@ export default function WebDevPage() {
                                     <div className="absolute inset-0 bg-[linear-gradient(to_right,#3b82f620_1px,transparent_1px),linear-gradient(to_bottom,#3b82f620_1px,transparent_1px)] bg-[size:4rem_4rem]" />
                                 </div>
 
-                                {/* Decorative Elements */}
-                                <motion.div
-                                    animate={{
-                                        scale: [1, 1.1, 1],
-                                        opacity: [0.1, 0.15, 0.1],
-                                    }}
-                                    transition={{ duration: 8, repeat: Infinity }}
-                                    className="absolute top-20 right-20 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"
-                                />
-                                <motion.div
-                                    animate={{
-                                        scale: [1, 1.2, 1],
-                                        opacity: [0.1, 0.15, 0.1],
-                                    }}
-                                    transition={{ duration: 10, repeat: Infinity, delay: 1 }}
-                                    className="absolute bottom-20 left-20 w-96 h-96 bg-cyan-500/20 rounded-full blur-3xl"
-                                />
+                                {/* Decorative Elements - Static on mobile for performance */}
+                                <div className="absolute top-20 right-20 w-96 h-96 bg-blue-500/10 md:bg-blue-500/20 rounded-full blur-3xl opacity-50" />
+                                <div className="absolute bottom-20 left-20 w-96 h-96 bg-cyan-500/10 md:bg-cyan-500/20 rounded-full blur-3xl opacity-50" />
 
                                 {/* Main Content Container - Centered */}
                                 <div className="relative h-full flex flex-col items-center justify-center px-4 sm:px-6 md:px-12 lg:px-20 text-center py-8 md:py-0">
 
                                     {/* Overline */}
                                     <motion.span
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.6, delay: 0.5 }}
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        transition={{ duration: 0.4, delay: 0.3 }}
                                         className="inline-block font-mono text-blue-400 text-[9px] sm:text-xs md:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-4 md:mb-8"
                                     >
                                         // Développement Web Sur-Mesure
@@ -92,25 +78,25 @@ export default function WebDevPage() {
 
                                     {/* Main Title */}
                                     <motion.h1
-                                        initial={{ opacity: 0, y: 30 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.8, delay: 0.7 }}
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        transition={{ duration: 0.5, delay: 0.4 }}
                                         className="font-display text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-bold uppercase leading-[0.95] tracking-tight mb-4 sm:mb-6 md:mb-8 max-w-5xl"
                                     >
                                         Développez Votre{" "}
-                                        <span className="block mt-1 md:mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 drop-shadow-[0_0_30px_rgba(59,130,246,0.6)] md:drop-shadow-[0_0_60px_rgba(59,130,246,0.8)]">
+                                        <span className="block mt-1 md:mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 md:drop-shadow-[0_0_40px_rgba(59,130,246,0.6)]">
                                             Interface
                                         </span>
                                         <span className="block mt-1 md:mt-2">
-                                            selon vos <span className="text-blue-400 drop-shadow-[0_0_20px_rgba(59,130,246,0.4)] md:drop-shadow-[0_0_40px_rgba(59,130,246,0.6)]">GOÛTS</span>
+                                            selon vos <span className="text-blue-400 md:drop-shadow-[0_0_30px_rgba(59,130,246,0.5)]">GOÛTS</span>
                                         </span>
                                     </motion.h1>
 
                                     {/* Subtitle */}
                                     <motion.p
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.6, delay: 0.9 }}
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        transition={{ duration: 0.4, delay: 0.5 }}
                                         className="text-xs sm:text-sm md:text-lg lg:text-xl text-gray-400 max-w-3xl mb-6 md:mb-12 leading-relaxed font-light px-2"
                                     >
                                         Des interfaces web sur-mesure pensées pour votre métier. Du design à la production,
@@ -119,9 +105,9 @@ export default function WebDevPage() {
 
                                     {/* CTA Button */}
                                     <motion.div
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        transition={{ duration: 0.6, delay: 1.1 }}
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        transition={{ duration: 0.4, delay: 0.6 }}
                                     >
                                         <Link
                                             href="/contact"
