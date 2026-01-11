@@ -27,7 +27,7 @@ export default function WebDevPage() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="relative w-full max-w-[95vw] h-[75vh] md:h-[82vh] z-10"
+                        className="relative w-full max-w-[95vw] h-[70vh] md:h-[82vh] z-10"
                     >
                         {/* Browser Chrome */}
                         <div className="relative w-full h-full backdrop-blur-md bg-black/70 border border-blue-500/40 rounded-xl overflow-hidden shadow-[0_0_80px_rgba(59,130,246,0.4)]">
