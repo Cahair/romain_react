@@ -250,7 +250,7 @@ export default function WebDevPage() {
                                 {/* Visual Left */}
                                 <div className="relative group order-2 lg:order-1">
                                     <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 blur-3xl opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
-                                    <div className="relative aspect-square bg-black/40 backdrop-blur-md border border-blue-500/20 p-8 md:p-12 flex items-center justify-center group-hover:border-blue-400/40 transition-all duration-500">
+                                    <div className="relative aspect-square bg-black/40 backdrop-blur-md border border-blue-500/20 p-6 md:p-12 flex items-center justify-center group-hover:border-blue-400/40 transition-all duration-500">
                                         {/* Website Icon Animation */}
                                         <motion.div
                                             animate={{
@@ -260,7 +260,7 @@ export default function WebDevPage() {
                                             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
                                             className="relative"
                                         >
-                                            <Globe className="w-24 h-24 md:w-32 md:h-32 text-blue-400/60" strokeWidth={1} />
+                                            <Globe className="w-16 h-16 md:w-32 md:h-32 text-blue-400/60" strokeWidth={1} />
                                             <motion.div
                                                 animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
                                                 transition={{ duration: 3, repeat: Infinity }}
@@ -322,13 +322,13 @@ export default function WebDevPage() {
                                 {/* Visual Right */}
                                 <div className="relative group">
                                     <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-blue-500/20 blur-3xl opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
-                                    <div className="relative aspect-square bg-black/40 backdrop-blur-md border border-cyan-500/20 p-12 flex items-center justify-center group-hover:border-cyan-400/40 transition-all duration-500">
+                                    <div className="relative aspect-square bg-black/40 backdrop-blur-md border border-cyan-500/20 p-6 md:p-12 flex items-center justify-center group-hover:border-cyan-400/40 transition-all duration-500">
                                         {/* App Layers Animation */}
                                         <div className="relative w-full h-full flex items-center justify-center">
                                             <motion.div
                                                 animate={{ y: [0, -10, 0] }}
                                                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                                                className="absolute w-32 h-24 border-2 border-cyan-400/60 bg-cyan-500/5 backdrop-blur-sm"
+                                                className="absolute w-20 h-16 md:w-32 md:h-24 border-2 border-cyan-400/60 bg-cyan-500/5 backdrop-blur-sm"
                                             >
                                                 <div className="p-3 space-y-2">
                                                     <div className="h-1 w-16 bg-cyan-400/40 rounded" />
@@ -339,7 +339,7 @@ export default function WebDevPage() {
                                             <motion.div
                                                 animate={{ y: [0, 10, 0] }}
                                                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
-                                                className="absolute w-32 h-24 border-2 border-cyan-400/40 bg-cyan-500/5 backdrop-blur-sm translate-y-8 translate-x-8"
+                                                className="absolute w-20 h-16 md:w-32 md:h-24 border-2 border-cyan-400/40 bg-cyan-500/5 backdrop-blur-sm translate-y-4 translate-x-4 md:translate-y-8 md:translate-x-8"
                                             >
                                                 <div className="p-3 space-y-2">
                                                     <div className="h-1 w-12 bg-cyan-400/30 rounded" />
@@ -362,27 +362,27 @@ export default function WebDevPage() {
                                 {/* Visual Left */}
                                 <div className="relative group order-2 lg:order-1">
                                     <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 blur-3xl opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
-                                    <div className="relative aspect-square bg-black/40 backdrop-blur-md border border-blue-500/20 p-12 flex items-center justify-center group-hover:border-blue-400/40 transition-all duration-500">
+                                    <div className="relative aspect-square bg-black/40 backdrop-blur-md border border-blue-500/20 p-6 md:p-12 flex items-center justify-center group-hover:border-blue-400/40 transition-all duration-500">
                                         {/* Dashboard Chart Animation */}
                                         <div className="relative w-full h-full flex items-center justify-center">
-                                            <BarChart3 className="w-32 h-32 text-blue-400/60" strokeWidth={1} />
+                                            <BarChart3 className="w-16 h-16 md:w-32 md:h-32 text-blue-400/60" strokeWidth={1} />
                                             <motion.div
-                                                className="absolute bottom-8 left-8 flex gap-2 items-end h-20"
+                                                className="absolute bottom-4 left-4 md:bottom-8 md:left-8 flex gap-1 md:gap-2 items-end h-10 md:h-20"
                                                 initial={{ opacity: 0 }}
                                                 animate={{ opacity: 0.6 }}
                                             >
                                                 <motion.div
-                                                    className="w-3 bg-blue-400/60 rounded-t"
+                                                    className="w-1.5 md:w-3 bg-blue-400/60 rounded-t"
                                                     animate={{ height: ["30%", "60%", "40%"] }}
                                                     transition={{ duration: 3, repeat: Infinity }}
                                                 />
                                                 <motion.div
-                                                    className="w-3 bg-cyan-400/60 rounded-t"
+                                                    className="w-1.5 md:w-3 bg-cyan-400/60 rounded-t"
                                                     animate={{ height: ["50%", "80%", "60%"] }}
                                                     transition={{ duration: 3, repeat: Infinity, delay: 0.3 }}
                                                 />
                                                 <motion.div
-                                                    className="w-3 bg-blue-400/60 rounded-t"
+                                                    className="w-1.5 md:w-3 bg-blue-400/60 rounded-t"
                                                     animate={{ height: ["40%", "70%", "50%"] }}
                                                     transition={{ duration: 3, repeat: Infinity, delay: 0.6 }}
                                                 />
