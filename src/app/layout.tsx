@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: "Romain Kantzer | Expert en Automatisation IA & Développement Web",
         // 👇 MODIFICATION POUR FACEBOOK / LINKEDIN
-        description: "Expert en Ingénierie IA & Développement Web. Conception d'agents autonomes, LLMs optimisés et workflows sur-mesure pour maximiser votre ROI et votre productivité.",
+        description: "Expert en Ingénierie IA et Développement Web. Conception d'agents autonomes, LLMs optimisés et workflows sur-mesure pour maximiser votre ROI et votre productivité.",
         url: "https://romain-kantzer.com",
         siteName: "Romain Kantzer",
         locale: "fr_FR",
