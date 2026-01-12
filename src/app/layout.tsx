@@ -39,6 +39,9 @@ export const metadata: Metadata = {
             },
         ],
     },
+    verification: {
+        google: "AL6RMl4Tf0BsMnPep86cLA2cDGERf0zBoono8-ETqYc",
+    },
     twitter: {
         card: "summary_large_image",
         title: "Romain Kantzer | Expert en Automatisation IA",
