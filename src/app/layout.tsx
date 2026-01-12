@@ -13,15 +13,19 @@ const oswald = Oswald({ subsets: ["latin"], variable: "--font-oswald" });
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://romain-kantzer.com"),
-    keywords: ["Romain Kantzer", "Développeur Web", "Expert IA", "Next.js", "React", "Automatisation", "Freelance Tech"],
+    // J'ai ajouté des mots-clés issus de votre fr.json (LLMs, RAG, Agents)
+    keywords: ["Romain Kantzer", "Développeur Web", "Expert IA", "Next.js", "React", "Automatisation", "Agents IA", "LLMs", "RAG", "Freelance Tech"],
     title: {
         default: "Romain Kantzer | Expert en Automatisation IA & Développement Web",
         template: "%s | Romain Kantzer",
     },
-    description: "Portfolio et services de Romain Kantzer. Expert en création de sites web performants, design et stratégie digitale. Solutions d'IA pour votre business.",
+    // 👇 MODIFICATION POUR GOOGLE
+    description: "Expert en Ingénierie IA & Développement Web. Conception d'agents autonomes, LLMs optimisés et workflows sur-mesure pour maximiser votre ROI et votre productivité.",
+    
     openGraph: {
         title: "Romain Kantzer | Expert en Automatisation IA & Développement Web",
-        description: "Portfolio et services de Romain Kantzer. Expert en création de sites web performants, design et stratégie digitale.",
+        // 👇 MODIFICATION POUR FACEBOOK / LINKEDIN
+        description: "Expert en Ingénierie IA & Développement Web. Conception d'agents autonomes, LLMs optimisés et workflows sur-mesure pour maximiser votre ROI et votre productivité.",
         url: "https://romain-kantzer.com",
         siteName: "Romain Kantzer",
         locale: "fr_FR",
@@ -38,7 +42,8 @@ export const metadata: Metadata = {
     twitter: {
         card: "summary_large_image",
         title: "Romain Kantzer | Expert en Automatisation IA",
-        description: "Portfolio et services de Romain Kantzer. Expert en création de sites web performants, design et stratégie digitale.",
+        // 👇 MODIFICATION POUR TWITTER
+        description: "Expert en Ingénierie IA & Développement Web. Conception d'agents autonomes, LLMs optimisés et workflows sur-mesure pour maximiser votre ROI et votre productivité.",
         images: ["/og-image.jpg"],
     },
     robots: {
