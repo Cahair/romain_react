@@ -25,12 +25,6 @@ export default function Navbar() {
         {
             name: t("nav.agents"),
             path: "/services/agents",
-            subItems: [
-                { name: "Découvrir nos agents", path: "/services/agents" },
-                { name: "Workflows IA", path: "/services/workflows" },
-                { name: "Lead Gen IA", path: "/services/lead-gen" },
-                { name: "Data Analysis", path: "/services/data" },
-            ]
         },
         { name: t("nav.webDev"), path: "/services/web-dev" },
         { name: t("nav.about"), path: "/about" }
