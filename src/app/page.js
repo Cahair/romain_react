@@ -22,6 +22,7 @@ export default function Home() {
     url: 'https://romain-kantzer.com',
     jobTitle: 'Expert en Automatisation IA & Développement Web',
     description: 'Expert Senior en Next.js et solutions d\'IA pour l\'automatisation des entreprises.',
+    image: 'https://romain-kantzer.com/romain-profile.png',
     sameAs: [
       'https://www.linkedin.com/in/romain-kantzer', // Remplacer par le vrai lien si différent
       'https://github.com/romainkantzer' // Remplacer par le vrai lien si différent

@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     },
     // 👇 MODIFICATION POUR GOOGLE
     description: "Expert en Ingénierie IA & Développement Web. Conception d'agents autonomes, LLMs optimisés et workflows sur-mesure pour maximiser votre ROI et votre productivité.",
-    
+
     openGraph: {
         title: "Romain Kantzer | Expert en Automatisation IA & Développement Web",
         // 👇 MODIFICATION POUR FACEBOOK / LINKEDIN
@@ -70,7 +70,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         "url": "https://romain-kantzer.com",
         "jobTitle": "Développeur Web & Expert IA",
         "description": "Créateur de sites web rapides et optimisés. Expert en solutions d'intelligence artificielle.",
-        "image": "https://romain-kantzer.com/og-image.jpg",
+        "image": "https://romain-kantzer.com/romain-profile.png",
         "sameAs": [
             "https://www.linkedin.com/in/romain-kantzer", // Modifiez avec votre vrai lien
             "https://github.com/romainkantzer" // Modifiez avec votre vrai lien
