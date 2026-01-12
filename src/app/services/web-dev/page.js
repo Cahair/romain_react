@@ -4,8 +4,17 @@ import { ArrowRight, Globe, Zap, BarChart3, Code, Layers, Database, Server, Smar
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import { useTranslation } from "@/components/LanguageProvider";
 
 export default function WebDevPage() {
+    const { t } = useTranslation();
+    const webDevData = t("webDevPage");
+
+    // Guard clause to prevent crashes if translation is missing or provider is not wrapped
+    if (!webDevData || typeof webDevData !== 'object' || !webDevData.hero) return null;
+
+    const { hero, philosophy, services, stack, cta: ctaBottom } = webDevData;
+
     return (
         <div className="min-h-screen bg-background text-foreground selection:bg-blue-500/30 selection:text-white">
             <Navbar />
@@ -73,7 +82,7 @@ export default function WebDevPage() {
                                         transition={{ duration: 0.4, delay: 0.3 }}
                                         className="inline-block font-mono text-blue-400 text-[9px] sm:text-xs md:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase mb-4 md:mb-8"
                                     >
-                                        // Développement Web Sur-Mesure
+                                        {hero.overline}
                                     </motion.span>
 
                                     {/* Main Title */}
@@ -83,12 +92,12 @@ export default function WebDevPage() {
                                         transition={{ duration: 0.5, delay: 0.4 }}
                                         className="font-display text-2xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-8xl font-bold uppercase leading-[0.95] tracking-tight mb-4 sm:mb-6 md:mb-8 max-w-5xl"
                                     >
-                                        Développez Votre{" "}
+                                        {hero.titleStart}{" "}
                                         <span className="block mt-1 md:mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 md:drop-shadow-[0_0_40px_rgba(59,130,246,0.6)]">
-                                            Interface
+                                            {hero.titleHighlight}
                                         </span>
                                         <span className="block mt-1 md:mt-2">
-                                            selon vos <span className="text-blue-400 md:drop-shadow-[0_0_30px_rgba(59,130,246,0.5)]">GOÛTS</span>
+                                            {hero.titleMiddle} <span className="text-blue-400 md:drop-shadow-[0_0_30px_rgba(59,130,246,0.5)]">{hero.titleEnd}</span>
                                         </span>
                                     </motion.h1>
 
@@ -99,8 +108,7 @@ export default function WebDevPage() {
                                         transition={{ duration: 0.4, delay: 0.5 }}
                                         className="text-xs sm:text-sm md:text-lg lg:text-xl text-gray-400 max-w-3xl mb-6 md:mb-12 leading-relaxed font-light px-2"
                                     >
-                                        Des interfaces web sur-mesure pensées pour votre métier. Du design à la production,
-                                        nous codons l'expérience parfaite pour vos utilisateurs.
+                                        {hero.subtitle}
                                     </motion.p>
 
                                     {/* CTA Button */}
@@ -113,7 +121,7 @@ export default function WebDevPage() {
                                             href="/contact"
                                             className="group inline-flex items-center gap-2 md:gap-3 px-6 sm:px-8 md:px-10 py-3 md:py-5 bg-blue-500 hover:bg-blue-600 text-white font-bold uppercase tracking-widest text-xs md:text-base transition-all duration-300 shadow-[0_0_30px_rgba(59,130,246,0.4)] md:shadow-[0_0_40px_rgba(59,130,246,0.5)] hover:shadow-[0_0_50px_rgba(59,130,246,0.6)] md:hover:shadow-[0_0_60px_rgba(59,130,246,0.7)] hover:scale-105"
                                         >
-                                            Discuter de mon projet
+                                            {hero.cta}
                                             <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
                                         </Link>
                                     </motion.div>
@@ -189,7 +197,7 @@ export default function WebDevPage() {
                                             <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center">
                                                 <Zap className="w-4 h-4 text-white" />
                                             </div>
-                                            <div className="text-xs text-gray-300 font-mono">Performance optimale</div>
+                                            <div className="text-xs text-gray-300 font-mono">{hero.badge}</div>
                                         </div>
                                     </motion.div>
                                 </div>
@@ -210,10 +218,10 @@ export default function WebDevPage() {
                         >
                             <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-blue-400 to-transparent mx-auto mb-6" />
                             <p className="text-sm md:text-lg lg:text-xl text-gray-300 leading-relaxed font-light">
-                                Un site web n'est plus une simple vitrine. C'est le{" "}
-                                <span className="text-blue-400 font-medium">système nerveux</span> de votre entreprise.{" "}
-                                Nous refusons les templates obsolètes pour coder des solutions{" "}
-                                <span className="text-cyan-400 font-medium">sur-mesure</span>, rapides et évolutives.
+                                {philosophy.textPart1}{" "}
+                                <span className="text-blue-400 font-medium">{philosophy.highlight1}</span> {philosophy.textPart2}{" "}
+                                <span className="text-cyan-400 font-medium">{philosophy.highlight2}</span>
+                                {philosophy.textPart3}
                             </p>
                             <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-blue-400 to-transparent mx-auto mt-6" />
                         </motion.div>
@@ -231,10 +239,10 @@ export default function WebDevPage() {
                             className="mb-20 text-center"
                         >
                             <span className="font-mono text-blue-400 text-xs md:text-sm tracking-[0.3em] uppercase block mb-3 md:mb-4">
-                                // Notre Expertise
+                                {services.overline}
                             </span>
                             <h2 className="font-display text-3xl md:text-6xl font-bold uppercase tracking-tight">
-                                Le Cœur de <span className="text-blue-400">l'Offre</span>
+                                {services.title} <span className="text-blue-400">{services.titleHighlight}</span>
                             </h2>
                         </motion.div>
 
@@ -274,14 +282,13 @@ export default function WebDevPage() {
                                 <div className="order-1 lg:order-2">
                                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/30 text-blue-400 text-xs font-mono uppercase tracking-wider mb-4 md:mb-6">
                                         <Globe className="w-3 h-3" />
-                                        Vitrine Digitale
+                                        {services.items.website.tag}
                                     </div>
                                     <h3 className="font-display text-2xl md:text-5xl font-bold uppercase mb-4 md:mb-6 text-white">
-                                        Vitesse, SEO & <span className="text-blue-400">Conversion</span>
+                                        {services.items.website.title} <span className="text-blue-400">{services.items.website.titleHighlight}</span>
                                     </h3>
                                     <p className="text-gray-400 text-sm md:text-lg leading-relaxed font-light">
-                                        Des sites vitrines qui chargent instantanément et captent vos prospects. Une architecture
-                                        technique pensée pour le référencement naturel dès la première ligne de code.
+                                        {services.items.website.desc}
                                     </p>
                                     <div className="mt-6 md:mt-8 flex flex-wrap gap-2">
                                         <span className="px-3 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono uppercase">Next.js</span>
@@ -303,14 +310,13 @@ export default function WebDevPage() {
                                 <div>
                                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyan-500/30 text-cyan-400 text-xs font-mono uppercase tracking-wider mb-6">
                                         <Code className="w-3 h-3" />
-                                        Applications Métier
+                                        {services.items.webapp.tag}
                                     </div>
                                     <h3 className="font-display text-3xl md:text-5xl font-bold uppercase mb-6 text-white">
-                                        Applications Métier <span className="text-cyan-400">Sur-Mesure</span>
+                                        {services.items.webapp.title} <span className="text-cyan-400">{services.items.webapp.titleHighlight}</span>
                                     </h3>
                                     <p className="text-gray-400 text-lg leading-relaxed font-light">
-                                        Transformez vos processus complexes en interfaces fluides (React/Vue). Des outils internes
-                                        sécurisés pour faire gagner du temps à vos équipes.
+                                        {services.items.webapp.desc}
                                     </p>
                                     <div className="mt-8 flex flex-wrap gap-2">
                                         <span className="px-3 py-1 bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-mono uppercase">React</span>
@@ -395,14 +401,13 @@ export default function WebDevPage() {
                                 <div className="order-1 lg:order-2">
                                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-blue-500/30 text-blue-400 text-xs font-mono uppercase tracking-wider mb-6">
                                         <BarChart3 className="w-3 h-3" />
-                                        Intelligence Visuelle
+                                        {services.items.dashboard.tag}
                                     </div>
                                     <h3 className="font-display text-3xl md:text-5xl font-bold uppercase mb-6 text-white">
-                                        Pilotage de <span className="text-blue-400">l'IA</span> & Data
+                                        {services.items.dashboard.title} <span className="text-blue-400">{services.items.dashboard.titleHighlight}</span>
                                     </h3>
                                     <p className="text-gray-400 text-lg leading-relaxed font-light">
-                                        L'interface de contrôle de vos agents IA. Visualisez vos données en temps réel et
-                                        interagissez avec vos modèles via des tableaux de bord dynamiques.
+                                        {services.items.dashboard.desc}
                                     </p>
                                     <div className="mt-8 flex flex-wrap gap-2">
                                         <span className="px-3 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono uppercase">Chart.js</span>
@@ -425,10 +430,10 @@ export default function WebDevPage() {
                             className="text-center mb-12"
                         >
                             <span className="font-mono text-blue-400 text-xs md:text-sm tracking-[0.3em] uppercase block mb-3 md:mb-4">
-                                // Technologies Maîtrisées
+                                {stack.overline}
                             </span>
                             <h2 className="font-display text-2xl md:text-5xl font-bold uppercase tracking-tight">
-                                Stack <span className="text-blue-400">Technique</span>
+                                {stack.title} <span className="text-blue-400">{stack.titleHighlight}</span>
                             </h2>
                         </motion.div>
 
@@ -498,23 +503,22 @@ export default function WebDevPage() {
                             {/* Content */}
                             <div className="relative z-10">
                                 <span className="font-mono text-blue-400 text-xs md:text-sm tracking-[0.3em] uppercase block mb-4 md:mb-6">
-                                    // Prêt à construire ?
+                                    {ctaBottom.overline}
                                 </span>
                                 <h2 className="font-display text-2xl md:text-4xl lg:text-6xl font-bold uppercase mb-4 md:mb-6 tracking-tight">
-                                    Prêt à construire votre{" "}
+                                    {ctaBottom.title}{" "}
                                     <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
-                                        Infrastructure ?
+                                        {ctaBottom.titleHighlight}
                                     </span>
                                 </h2>
                                 <p className="text-gray-400 text-sm md:text-lg max-w-2xl mx-auto mb-8 md:mb-10 font-light">
-                                    Discutons de votre projet et bâtissons ensemble l'architecture web qui transformera votre
-                                    vision en réalité.
+                                    {ctaBottom.subtitle}
                                 </p>
                                 <Link
                                     href="/contact"
                                     className="group inline-flex items-center gap-3 px-10 py-5 bg-blue-500 hover:bg-blue-600 text-white font-bold uppercase tracking-widest text-sm transition-all duration-300 shadow-[0_0_30px_rgba(59,130,246,0.4)] hover:shadow-[0_0_50px_rgba(59,130,246,0.6)] hover:scale-105"
                                 >
-                                    Démarrer le Projet
+                                    {ctaBottom.button}
                                     <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" />
                                 </Link>
                             </div>

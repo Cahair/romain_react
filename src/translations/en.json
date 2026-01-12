@@ -279,6 +279,118 @@
             "button": "Discover Data"
         }
     },
+    "webDevPage": {
+        "hero": {
+            "overline": "// Bespoke Web Development",
+            "titleStart": "Develop Your",
+            "titleHighlight": "Interface",
+            "titleMiddle": "according to your",
+            "titleEnd": "TASTES",
+            "subtitle": "Custom web interfaces designed for your business. From design to production, we code the perfect experience for your users.",
+            "cta": "Discuss my project",
+            "badge": "Optimal Performance"
+        },
+        "philosophy": {
+            "textPart1": "A website is no longer just a showcase. It is the",
+            "highlight1": "nervous system",
+            "textPart2": "of your company. We refuse obsolete templates to code",
+            "highlight2": "custom",
+            "textPart3": ", fast, and scalable solutions."
+        },
+        "services": {
+            "overline": "// Our Expertise",
+            "title": "The Core of",
+            "titleHighlight": "the Offer",
+            "items": {
+                "website": {
+                    "tag": "Digital Showcase",
+                    "title": "Speed, SEO &",
+                    "titleHighlight": "Conversion",
+                    "desc": "Showcase sites that load instantly and capture your prospects. Technical architecture designed for SEO from the first line of code."
+                },
+                "webapp": {
+                    "tag": "Business Apps",
+                    "title": "Business Apps",
+                    "titleHighlight": "Custom-Made",
+                    "desc": "Transform your complex processes into fluid interfaces (React/Vue). Secure internal tools to save your teams time."
+                },
+                "dashboard": {
+                    "tag": "Visual Intelligence",
+                    "title": "Steering",
+                    "titleHighlight": "AI & Data",
+                    "desc": "The control interface for your AI agents. Visualize your data in real-time and interact with your models via dynamic dashboards."
+                }
+            }
+        },
+        "stack": {
+            "overline": "// Mastered Technologies",
+            "title": "Tech",
+            "titleHighlight": "Stack"
+        },
+        "cta": {
+            "overline": "// Ready to build?",
+            "title": "Ready to build your",
+            "titleHighlight": "Infrastructure?",
+            "subtitle": "Let's discuss your project and build together the web architecture that will turn your vision into reality.",
+            "button": "Start the Project"
+        }
+    },
+    "agentsPage": {
+        "hero": {
+            "overline": "// Embedded Artificial Intelligence",
+            "titleStart": "Recruit Your",
+            "titleHighlight": "AI Agents",
+            "titleMiddle": "for",
+            "titleEnd": "GROWTH",
+            "subtitle": "Virtual assistants working 24/7. Customer support, lead qualification, or administrative tasks: delegate operations to AI.",
+            "cta": "Create my Agent",
+            "badge": "24/7 Availability"
+        },
+        "philosophy": {
+            "textPart1": "Classic automation is rigid. AI brings",
+            "highlight1": "understanding",
+            "textPart2": ". We create agents capable of",
+            "highlight2": "reasoning",
+            "textPart3": " and making autonomous decisions for your business."
+        },
+        "services": {
+            "overline": "// Use Cases",
+            "title": "Your New",
+            "titleHighlight": "Employees",
+            "items": {
+                "support": {
+                    "tag": "Customer Service",
+                    "title": "Instant",
+                    "titleHighlight": "Support",
+                    "desc": "No more waiting times. An agent that responds instantly, in all languages, and resolves 80% of level 1 requests."
+                },
+                "sales": {
+                    "tag": "Sales Force",
+                    "title": "Autonomous",
+                    "titleHighlight": "SDR",
+                    "desc": "A hunter that never sleeps. It engages your visitors, qualifies needs, and books appointments directly into your calendar."
+                },
+                "ops": {
+                    "tag": "Operations",
+                    "title": "Administrative",
+                    "titleHighlight": "Assistant",
+                    "desc": "Document processing, data entry, email sorting. Free your teams from repetitive low-value tasks."
+                }
+            }
+        },
+        "stack": {
+            "overline": "// Brains & Tools",
+            "title": "Connected",
+            "titleHighlight": "Intelligence"
+        },
+        "cta": {
+            "overline": "// Ready to delegate?",
+            "title": "Configure your",
+            "titleHighlight": "First Agent",
+            "subtitle": "Let's define together the scope of action for your future digital workforce.",
+            "button": "Start Integration"
+        }
+    },
     "footer": {
         "title": "READY FOR",
         "titleHighlight": "AUTOMATION?",

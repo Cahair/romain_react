@@ -68,8 +68,8 @@ export function LanguageProvider({ children }) {
             }
         }
 
-        // Return value if it's a string or array, otherwise return key
-        if (typeof value === "string" || Array.isArray(value)) {
+        // Return value if found (string, array, or object), otherwise return key
+        if (value !== undefined) {
             return value;
         }
         return key;

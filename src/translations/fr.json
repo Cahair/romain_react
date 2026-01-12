@@ -285,6 +285,118 @@
             "button": "Découvrir la Data"
         }
     },
+    "webDevPage": {
+        "hero": {
+            "overline": "// Développement Web Sur-Mesure",
+            "titleStart": "Développez Votre",
+            "titleHighlight": "Interface",
+            "titleMiddle": "selon vos",
+            "titleEnd": "GOÛTS",
+            "subtitle": "Des interfaces web sur-mesure pensées pour votre métier. Du design à la production, nous codons l'expérience parfaite pour vos utilisateurs.",
+            "cta": "Discuter de mon projet",
+            "badge": "Performance optimale"
+        },
+        "philosophy": {
+            "textPart1": "Un site web n'est plus une simple vitrine. C'est le",
+            "highlight1": "système nerveux",
+            "textPart2": "de votre entreprise. Nous refusons les templates obsolètes pour coder des solutions",
+            "highlight2": "sur-mesure",
+            "textPart3": ", rapides et évolutives."
+        },
+        "services": {
+            "overline": "// Notre Expertise",
+            "title": "Le Cœur de",
+            "titleHighlight": "l'Offre",
+            "items": {
+                "website": {
+                    "tag": "Vitrine Digitale",
+                    "title": "Vitesse, SEO &",
+                    "titleHighlight": "Conversion",
+                    "desc": "Des sites vitrines qui chargent instantanément et captent vos prospects. Une architecture technique pensée pour le référencement naturel dès la première ligne de code."
+                },
+                "webapp": {
+                    "tag": "Applications Métier",
+                    "title": "Applications Métier",
+                    "titleHighlight": "Sur-Mesure",
+                    "desc": "Transformez vos processus complexes en interfaces fluides (React/Vue). Des outils internes sécurisés pour faire gagner du temps à vos équipes."
+                },
+                "dashboard": {
+                    "tag": "Intelligence Visuelle",
+                    "title": "Pilotage de",
+                    "titleHighlight": "l'IA & Data",
+                    "desc": "L'interface de contrôle de vos agents IA. Visualisez vos données en temps réel et interagissez avec vos modèles via des tableaux de bord dynamiques."
+                }
+            }
+        },
+        "stack": {
+            "overline": "// Technologies Maîtrisées",
+            "title": "Stack",
+            "titleHighlight": "Technique"
+        },
+        "cta": {
+            "overline": "// Prêt à construire ?",
+            "title": "Prêt à construire votre",
+            "titleHighlight": "Infrastructure ?",
+            "subtitle": "Discutons de votre projet et bâtissons ensemble l'architecture web qui transformera votre vision en réalité.",
+            "button": "Démarrer le Projet"
+        }
+    },
+    "agentsPage": {
+        "hero": {
+            "overline": "// Intelligence Artificielle Embarquée",
+            "titleStart": "Recrutez Vos",
+            "titleHighlight": "Agents IA",
+            "titleMiddle": "pour une",
+            "titleEnd": "CROISSANCE",
+            "subtitle": "Des assistants virtuels qui travaillent 24/7. Support client, qualification de leads ou tâches administratives : déléguez l'opérationnel à l'IA.",
+            "cta": "Créer mon Agent",
+            "badge": "Disponibilité 24/7"
+        },
+        "philosophy": {
+            "textPart1": "L'automatisation classique est rigide. L'IA apporte la",
+            "highlight1": "compréhension",
+            "textPart2": ". Nous créons des agents capables de",
+            "highlight2": "raisonner",
+            "textPart3": " et de prendre des décisions autonomes pour votre business."
+        },
+        "services": {
+            "overline": "// Cas d'Usage",
+            "title": "Vos Nouveaux",
+            "titleHighlight": "Employés",
+            "items": {
+                "support": {
+                    "tag": "Service Client",
+                    "title": "Support",
+                    "titleHighlight": "Instantané",
+                    "desc": "Fini les temps d'attente. Un agent qui répond instantanément, dans toutes les langues, et résout 80% des requêtes de niveau 1."
+                },
+                "sales": {
+                    "tag": "Force de Vente",
+                    "title": "SDR",
+                    "titleHighlight": "Autonome",
+                    "desc": "Un chasseur qui ne dort jamais. Il engage vos visiteurs, qualifie le besoin et booke les rendez-vous directement dans votre agenda."
+                },
+                "ops": {
+                    "tag": "Opérations",
+                    "title": "Assistant",
+                    "titleHighlight": "Administratif",
+                    "desc": "Traitement de documents, saisie de données, tri d'emails. Libérez vos équipes des tâches répétitives à faible valeur ajoutée."
+                }
+            }
+        },
+        "stack": {
+            "overline": "// Cerveaux & Outils",
+            "title": "Intelligence",
+            "titleHighlight": "Connectée"
+        },
+        "cta": {
+            "overline": "// Prêt à déléguer ?",
+            "title": "Configurez votre",
+            "titleHighlight": "Premier Agent",
+            "subtitle": "Définissons ensemble le périmètre d'action de votre future main d'œuvre numérique.",
+            "button": "Lancer l'Intégration"
+        }
+    },
     "footer": {
         "title": "PRÊT POUR",
         "titleHighlight": "L'AUTOMATISATION ?",

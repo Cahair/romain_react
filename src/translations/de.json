@@ -275,6 +275,118 @@
             "button": "Daten entdecken"
         }
     },
+    "webDevPage": {
+        "hero": {
+            "overline": "// Maßgeschneiderte Webentwicklung",
+            "titleStart": "Entwickeln Sie Ihre",
+            "titleHighlight": "Schnittstelle",
+            "titleMiddle": "nach Ihrem",
+            "titleEnd": "GESCHMACK",
+            "subtitle": "Maßgeschneiderte Web-Interfaces, für Ihr Geschäft konzipiert. Vom Design bis zur Produktion codieren wir das perfekte Erlebnis für Ihre Nutzer.",
+            "cta": "Mein Projekt besprechen",
+            "badge": "Optimale Leistung"
+        },
+        "philosophy": {
+            "textPart1": "Eine Website ist nicht mehr nur ein Schaufenster. Sie ist das",
+            "highlight1": "Nervensystem",
+            "textPart2": "Ihres Unternehmens. Wir lehnen veraltete Vorlagen ab, um",
+            "highlight2": "maßgeschneiderte",
+            "textPart3": ", schnelle und skalierbare Lösungen zu codieren."
+        },
+        "services": {
+            "overline": "// Unsere Expertise",
+            "title": "Der Kern des",
+            "titleHighlight": "Angebots",
+            "items": {
+                "website": {
+                    "tag": "Digitales Schaufenster",
+                    "title": "Geschwindigkeit, SEO &",
+                    "titleHighlight": "Konversion",
+                    "desc": "Schaufenster-Websites, die sofort laden und Ihre Interessenten fesseln. Technische Architektur, die von der ersten Zeile an für SEO konzipiert ist."
+                },
+                "webapp": {
+                    "tag": "Geschäftsanwendungen",
+                    "title": "Geschäftsanwendungen",
+                    "titleHighlight": "Nach Maß",
+                    "desc": "Verwandeln Sie Ihre komplexen Prozesse in flüssige Schnittstellen (React/Vue). Sichere interne Tools, um Ihren Teams Zeit zu sparen."
+                },
+                "dashboard": {
+                    "tag": "Visuelle Intelligenz",
+                    "title": "Steuerung von",
+                    "titleHighlight": "KI & Daten",
+                    "desc": "Die Steuerschnittstelle für Ihre KI-Agenten. Visualisieren Sie Ihre Daten in Echtzeit und interagieren Sie mit Ihren Modellen über dynamische Dashboards."
+                }
+            }
+        },
+        "stack": {
+            "overline": "// Beherrschte Technologien",
+            "title": "Tech",
+            "titleHighlight": "Stack"
+        },
+        "cta": {
+            "overline": "// Bereit zu bauen?",
+            "title": "Bereit, Ihre",
+            "titleHighlight": "Infrastruktur zu bauen?",
+            "subtitle": "Lassen Sie uns über Ihr Projekt sprechen und gemeinsam die Web-Architektur aufbauen, die Ihre Vision in die Realität umsetzt.",
+            "button": "Projekt starten"
+        }
+    },
+    "agentsPage": {
+        "hero": {
+            "overline": "// Eingebettete Künstliche Intelligenz",
+            "titleStart": "Rekrutieren Sie Ihre",
+            "titleHighlight": "KI-Agenten",
+            "titleMiddle": "für",
+            "titleEnd": "WACHSTUM",
+            "subtitle": "Virtuelle Assistenten, die 24/7 arbeiten. Kundensupport, Lead-Qualifizierung oder administrative Aufgaben: Delegieren Sie den Betrieb an die KI.",
+            "cta": "Meinen Agenten erstellen",
+            "badge": "24/7 Verfügbarkeit"
+        },
+        "philosophy": {
+            "textPart1": "Klassische Automatisierung ist starr. KI bringt",
+            "highlight1": "Verständnis",
+            "textPart2": ". Wir erstellen Agenten, die fähig sind zu",
+            "highlight2": "denken",
+            "textPart3": " und autonome Entscheidungen für Ihr Unternehmen zu treffen."
+        },
+        "services": {
+            "overline": "// Anwendungsfälle",
+            "title": "Ihre Neuen",
+            "titleHighlight": "Mitarbeiter",
+            "items": {
+                "support": {
+                    "tag": "Kundenservice",
+                    "title": "Sofortiger",
+                    "titleHighlight": "Support",
+                    "desc": "Keine Wartezeiten mehr. Ein Agent, der sofort in allen Sprachen antwortet und 80% der Level-1-Anfragen löst."
+                },
+                "sales": {
+                    "tag": "Vertrieb",
+                    "title": "Autonomer",
+                    "titleHighlight": "SDR",
+                    "desc": "Ein Jäger, der nie schläft. Er bindet Ihre Besucher ein, qualifiziert Bedürfnisse und bucht Termine direkt in Ihren Kalender."
+                },
+                "ops": {
+                    "tag": "Operationen",
+                    "title": "Administrativer",
+                    "titleHighlight": "Assistent",
+                    "desc": "Dokumentenverarbeitung, Dateneingabe, E-Mail-Sortierung. Befreien Sie Ihre Teams von repetitiven Aufgaben mit geringem Mehrwert."
+                }
+            }
+        },
+        "stack": {
+            "overline": "// Gehirne & Tools",
+            "title": "Verbundene",
+            "titleHighlight": "Intelligenz"
+        },
+        "cta": {
+            "overline": "// Bereit zu delegieren?",
+            "title": "Konfigurieren Sie Ihren",
+            "titleHighlight": "Ersten Agenten",
+            "subtitle": "Lassen Sie uns gemeinsam den Aktionsradius Ihrer zukünftigen digitalen Arbeitskraft definieren.",
+            "button": "Integration starten"
+        }
+    },
     "footer": {
         "title": "BEREIT FÜR",
         "titleHighlight": "AUTOMATISIERUNG?",
