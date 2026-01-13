@@ -5,7 +5,6 @@ import { Mail, Phone, MapPin, Calendar } from "lucide-react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { useTranslation } from "../../components/LanguageProvider";
-import Chatbot from "../../components/Chatbot";
 
 export default function ContactPage() {
     const { t } = useTranslation();
@@ -274,8 +273,8 @@ export default function ContactPage() {
                 </div>
             </motion.div>
 
-            {/* Footer removed for Contact page */}
-            <Chatbot />
+            {/* Footer */}
+            <Footer />
         </main>
     );
 }

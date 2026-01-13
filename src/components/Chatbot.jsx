@@ -5,6 +5,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageSquare, X, Send, Cpu, User, Loader2, Sparkles, Terminal } from "lucide-react";
 import { useTranslation } from "./LanguageProvider";
+import { usePathname } from "next/navigation";
 
 export default function Chatbot() {
     const [isOpen, setIsOpen] = useState(false);
@@ -13,12 +14,30 @@ export default function Chatbot() {
     ]);
     const [input, setInput] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [showButton, setShowButton] = useState(false);
     const messagesEndRef = useRef(null);
     const inputRef = useRef(null);
+    const pathname = usePathname();
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     };
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (pathname === "/") {
+                setShowButton(window.scrollY > 100);
+            } else {
+                setShowButton(true);
+            }
+        };
+
+        // Initial check
+        handleScroll();
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [pathname]);
 
     useEffect(() => {
         scrollToBottom();
@@ -92,10 +111,10 @@ export default function Chatbot() {
             {/* Floating Toggle Button */}
             <motion.button
                 onClick={() => setIsOpen(true)}
-                className={`fixed bottom-6 right-6 z-50 p-4 rounded-full bg-black/80 backdrop-blur-md border border-primary-neon/50 shadow-[0_0_20px_rgba(0,240,255,0.3)] group hover:scale-110 transition-all duration-300 ${isOpen ? 'hidden' : 'flex'}`}
+                className={`fixed bottom-6 right-6 z-50 p-4 rounded-full bg-black/80 backdrop-blur-md border border-primary-neon/50 shadow-[0_0_20px_rgba(0,240,255,0.3)] group hover:scale-110 transition-all duration-300 ${isOpen ? 'hidden' : (showButton ? 'flex' : 'hidden')}`}
                 whileHover={{ rotate: 5 }}
                 initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
+                animate={{ scale: showButton ? 1 : 0 }}
             >
                 <div className="absolute inset-0 rounded-full border border-white/10" />
                 <div className="absolute inset-0 rounded-full bg-primary-neon/10 animate-pulse-slow" />

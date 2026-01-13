@@ -6,6 +6,7 @@ import { PageAccentProvider, PageAccentIndicator } from "../components/PageAccen
 import LoadingBar from "../components/LoadingBar";
 import { ThemeProvider } from "../components/ThemeProvider";
 import { LanguageProvider } from "../components/LanguageProvider";
+import Chatbot from "../components/Chatbot";
 import type { Metadata } from "next";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -96,6 +97,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                             <PageTransition>
                                 {children}
                             </PageTransition>
+                            <Chatbot />
                         </PageAccentProvider>
                     </LanguageProvider>
                 </ThemeProvider>
