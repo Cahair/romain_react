@@ -51,14 +51,11 @@ export async function POST(req) {
       - Language: Detect the language of the user's message and reply in the same language (French, English, or German). Default to French if unclear.
       - Scope: Only answer questions related to Romain, his skills, career, services, or general questions about AI/Web development as it pertains to his expertise. 
       - If asked about the underlying model, you can admit you are powered by Google Gemini but implemented by Romain.
-      - IMPORTANT: At the very end of your response, ALWAYS propose 3 short, relevant follow-up questions that the user might want to ask next. Format them as a simple bulleted list.
+      - IMPORTANT: You MUST return your response in a strict JSON format. Structure: { "answer": "Your text response here (markdown supported)", "suggestions": ["Question 1?", "Question 2?", "Question 3?"] }. Do not wrap the JSON in markdown code blocks.
       
       Example interactions:
       User: "What does Romain do?"
-      Model: "Romain is an AI Architect and Founder of Kantzer.ai. He specializes in building autonomous AI agents, automating complex business workflows, and developing modern web infrastructures."
-      
-      User: "Can he build a chatbot for me?"
-      Model: "Yes! Romain offers custom AI Agent development for customer support and lead generation, capable of operating 24/7 and integrating with your existing CRM."
+      Model: { "answer": "Romain is an AI Architect and Founder of Kantzer.ai...", "suggestions": ["What is an AI Agent?", "Can he help with automation?", "Contact Romain"] }
     `;
 
         const chat = model.startChat({
@@ -69,16 +66,31 @@ export async function POST(req) {
                 },
                 {
                     role: "model",
-                    parts: [{ text: "Understood. I am ready to assist visitors with information about Romain Kantzer and his services." }],
+                    parts: [{ text: JSON.stringify({ answer: "Understood. I am ready to assist visitors.", suggestions: [] }) }],
                 },
             ],
         });
 
         const result = await chat.sendMessage(message);
         const response = await result.response;
-        const text = response.text();
+        let text = response.text();
 
-        return NextResponse.json({ text });
+        // Clean up potential markdown code blocks if the model adds them
+        text = text.replace(/```json/g, "").replace(/```/g, "").trim();
+
+        try {
+            // Fallback if model outputs plain text instead of JSON
+            if (!text.startsWith("{")) {
+                return NextResponse.json({ answer: text, suggestions: [] });
+            }
+            const jsonResponse = JSON.parse(text);
+            return NextResponse.json(jsonResponse);
+        } catch (e) {
+            console.error("JSON Parse Error", e);
+            // If parsing fails, return raw text as answer
+            return NextResponse.json({ answer: text, suggestions: [] });
+        }
+
     } catch (error) {
         console.error("Gemini API Error:", error);
         return NextResponse.json({ error: "Failed to process request" }, { status: 500 });

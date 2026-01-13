@@ -5,10 +5,41 @@ import { MessageSquare, Zap, Target, Database, ArrowRight, Bot, Share2, Search, 
 import Link from "next/link";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
-import AgentsShowcase from "../../../components/AgentsShowcase";
-import { useTranslation } from "../../../components/LanguageProvider";
+import AgentCard from "../../../components/AgentCard";
+
+const agents = [
+    {
+        id: "axiom",
+        name: "Emma",
+        role: "SUPPORT & SERVICE CLIENT",
+        tasks: ["Gestion autonome de vos emails entrants 24/7", "Qualification et résolution immédiate des tickets", "Parcours de fidélisation qualitatif et personnalisé"],
+        cta: "Déléguer mon support",
+    },
+    {
+        id: "lumina",
+        name: "Luna",
+        role: "SOCIAL MEDIA MANAGER",
+        tasks: ["Conception de contenus visuels et textuels engageants", "Orchestration complète de votre calendrier éditorial", "Animation active et croissance de votre audience"],
+        cta: "Automatiser mes posts",
+    },
+    {
+        id: "kairo",
+        name: "Maya",
+        role: "RESPONSABLE OPÉRATIONS",
+        tasks: ["Pilotage centralisé de vos projets stratégiques", "Synchronisation fluide de vos différentes équipes", "Contrôle proactif des échéances et livrables"],
+        cta: "Optimiser mes opérations",
+    },
+];
 
 // --- Visual Components (Constrained Height) ---
+// ... (Visual components remain unchanged, but we'll include them implicitly by not replacing them if possible, but replace_file_content needs contiguous block. 
+// Since the instruction allows replacing a block, I will target the imports and the main component body, keeping the Visual Components helper functions if I can skip them, 
+// but the file structure has them in the middle. I will redefine the component to include the new layout.)
+
+// Actually, to avoid re-writing the helper components (ChatbotVisual, etc.) which are lines 13-261, 
+// I will just replace the Imports and then the Main Component. 
+// Step 1: Update Imports to include AgentCard and remove AgentsShowcase
+
 
 const ChatbotVisual = () => {
     return (
@@ -268,7 +299,7 @@ export default function AgentsPage() {
         <main className="h-[100dvh] w-full overflow-y-scroll snap-y snap-mandatory bg-black text-white selection:bg-purple-900 selection:text-white scroll-smooth">
             <Navbar />
 
-            {/* Intro / Showcase Section */}
+            {/* Title Section */}
             <section className="h-[100dvh] w-full snap-start flex flex-col items-center justify-center relative overflow-hidden pt-20">
                 {/* Background Elements */}
                 <div className="absolute inset-0 z-0 pointer-events-none">
@@ -276,8 +307,17 @@ export default function AgentsPage() {
                     <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-900/10 rounded-full blur-[120px] mix-blend-screen" />
                 </div>
 
-                <div className="relative z-10 w-full flex items-center justify-center h-full">
-                    <AgentsShowcase />
+                <div className="text-center space-y-4 z-10 px-4">
+                    <motion.h2
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        className="text-4xl md:text-6xl font-black uppercase tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-orange-400"
+                    >
+                        Assemblez<br />Votre Équipe
+                    </motion.h2>
+                    <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto font-light">
+                        Trois entités uniques. Une synergie parfaite pour propulser votre business.
+                    </p>
                 </div>
 
                 {/* Scroll Indicator */}
@@ -298,6 +338,27 @@ export default function AgentsPage() {
                     </div>
                 </motion.div>
             </section>
+
+            {/* Agent Sections */}
+            {agents.map((agent) => (
+                <section key={agent.id} className="h-[100dvh] w-full snap-start flex items-center justify-center overflow-hidden px-4 py-20 relative">
+                    {/* Dynamic Background based on agent */}
+                    <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+                        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[150px] mix-blend-screen ${agent.id === 'axiom' ? 'bg-cyan-900/40' :
+                            agent.id === 'lumina' ? 'bg-orange-900/40' :
+                                'bg-emerald-900/40'
+                            }`} />
+                    </div>
+
+                    <div className="w-full max-w-4xl z-10 h-full max-h-[80vh] flex items-center justify-center">
+                        <AgentCard
+                            agent={agent}
+                            isActive={true}
+                            onClick={() => { }} // No interaction needed as it's static full screen
+                        />
+                    </div>
+                </section>
+            ))}
 
             {/* Section 1: Chatbots */}
             <section id="chatbots" className="h-[100dvh] w-full snap-start flex items-center justify-center relative overflow-hidden px-4 md:px-8">
