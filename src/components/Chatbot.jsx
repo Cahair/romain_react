@@ -128,8 +128,8 @@ export default function Chatbot() {
                                     </div>
                                     <div
                                         className={`p-3 rounded-2xl max-w-[80%] text-sm leading-relaxed ${msg.role === 'user'
-                                                ? 'bg-white/10 text-white rounded-tr-sm'
-                                                : 'bg-primary-neon/5 border border-primary-neon/10 text-gray-200 rounded-tl-sm shadow-[0_0_15px_rgba(0,240,255,0.05)]'
+                                            ? 'bg-white/10 text-white rounded-tr-sm'
+                                            : 'bg-primary-neon/5 border border-primary-neon/10 text-gray-200 rounded-tl-sm shadow-[0_0_15px_rgba(0,240,255,0.05)]'
                                             }`}
                                     >
                                         {msg.content}
@@ -167,9 +167,6 @@ export default function Chatbot() {
                                 >
                                     <Send className="w-4 h-4" />
                                 </button>
-                            </div>
-                            <div className="text-[10px] text-center text-gray-600 mt-2 font-mono">
-                                Propulsé par Google Gemini 1.5 Pro
                             </div>
                         </form>
                     </motion.div>
