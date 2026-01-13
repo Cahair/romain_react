@@ -4,6 +4,7 @@ import { ArrowDown, Briefcase, GraduationCap, Code, Cpu, Globe, Zap, Database, T
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { useTranslation } from "../../components/LanguageProvider";
+import Chatbot from "../../components/Chatbot";
 import { useEffect, useRef, useState } from "react";
 
 const ContinuousPipeline = () => (
@@ -491,6 +492,7 @@ export default function AboutPage() {
             </div>
 
             <Footer />
+            <Chatbot />
         </main >
     );
 }
