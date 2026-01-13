@@ -111,7 +111,7 @@ export default function Chatbot() {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 50, scale: 0.9 }}
                         transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                        className="fixed bottom-6 right-6 z-50 w-[90vw] md:w-[400px] max-h-[600px] h-[70vh] flex flex-col rounded-2xl overflow-hidden backdrop-blur-xl bg-black/90 border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)]"
+                        className="fixed bottom-6 right-6 z-50 w-[90vw] md:w-[400px] max-h-[600px] h-[70vh] flex flex-col rounded-2xl overflow-hidden backdrop-blur-xl bg-zinc-900/95 border border-white/20 shadow-[0_0_50px_rgba(0,0,0,0.5)]"
                     >
                         {/* Header */}
                         <div className="p-4 border-b border-white/10 bg-white/5 flex items-center justify-between relative overflow-hidden">
@@ -170,7 +170,7 @@ export default function Chatbot() {
                                                 <button
                                                     key={idx}
                                                     onClick={() => sendMessage(suggestion)}
-                                                    className="text-xs px-3 py-1.5 rounded-full border border-primary-neon/30 bg-primary-neon/5 text-primary-neon hover:bg-primary-neon/20 transition-colors text-left"
+                                                    className="text-xs px-3 py-1.5 rounded-full border border-primary-neon/50 bg-primary-neon/20 text-primary-neon hover:bg-primary-neon/30 transition-colors text-left"
                                                 >
                                                     {suggestion}
                                                 </button>

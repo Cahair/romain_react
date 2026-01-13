@@ -5,20 +5,19 @@ import { NextResponse } from "next/server";
 export async function POST(req) {
     try {
         const { message } = await req.json();
-        // In a production environment, use process.env.GEMINI_API_KEY
-        const apiKey = "AIzaSyCpfGrXEm2VRlSoTwnIlVEtpyKsha5d6pg";
+        const apiKey = process.env.GEMINI_API_KEY || "AIzaSyCpfGrXEm2VRlSoTwnIlVEtpyKsha5d6pg";
 
         if (!apiKey) {
             return NextResponse.json({ error: "API key missing" }, { status: 500 });
         }
 
         const genAI = new GoogleGenerativeAI(apiKey);
-        // Using gemini-1.5-pro as it's the current advanced model appropriate for "intelligent" responses.
-        const model = genAI.getGenerativeModel({ model: "gemini-2.5-pro" });
+        // Using gemini-1.5-flash for faster response times
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
         const systemInstruction = `
       You are an intelligent AI assistant for Romain Kantzer's portfolio website.
-      Your goal is to answer visitor questions about Romain's professional profile, skills, and services professionally and concisely.
+      Your goal is to answer visitor questions about Romain's professional profile, skills, and services professionally and concisely (Max 2-3 sentences).
       
       Here is Romain's profile data (Context):
       - Identity: Romain Kantzer, Founder & AI Architect at "Kantzer.ai" (2026-Present). 
@@ -52,10 +51,11 @@ export async function POST(req) {
       - Scope: Only answer questions related to Romain, his skills, career, services, or general questions about AI/Web development as it pertains to his expertise. 
       - If asked about the underlying model, you can admit you are powered by Google Gemini but implemented by Romain.
       - IMPORTANT: You MUST return your response in a strict JSON format. Structure: { "answer": "Your text response here (markdown supported)", "suggestions": ["Question 1?", "Question 2?", "Question 3?"] }. Do not wrap the JSON in markdown code blocks.
+      - CRITICAL: Keep answers SHORT. Maximum 3 sentences. Be direct.
       
       Example interactions:
       User: "What does Romain do?"
-      Model: { "answer": "Romain is an AI Architect and Founder of Kantzer.ai...", "suggestions": ["What is an AI Agent?", "Can he help with automation?", "Contact Romain"] }
+      Model: { "answer": "Romain is an AI Architect and Founder of Kantzer.ai, specializing in automation and intelligent systems.", "suggestions": ["What is an AI Agent?", "Can he help with automation?", "Contact Romain"] }
     `;
 
         const chat = model.startChat({
@@ -66,7 +66,7 @@ export async function POST(req) {
                 },
                 {
                     role: "model",
-                    parts: [{ text: JSON.stringify({ answer: "Understood. I am ready to assist visitors.", suggestions: [] }) }],
+                    parts: [{ text: JSON.stringify({ answer: "Understood. I will be concise.", suggestions: [] }) }],
                 },
             ],
         });
