@@ -6,6 +6,7 @@ import Link from "next/link";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
 import AgentCard from "../../../components/AgentCard";
+import { useTranslation } from "../../../components/LanguageProvider";
 
 const agents = [
     {
