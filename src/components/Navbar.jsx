@@ -248,8 +248,14 @@ export default function Navbar() {
                             </div>
                         ))}
 
+                        <div className="flex flex-col gap-4 pt-4 border-t border-white/10">
+                            <Link href="/contact" onClick={() => setMobileMenu(false)} className="w-full text-center px-5 py-3 border border-primary/30 bg-primary/5 text-primary-neon rounded-xl text-sm font-mono uppercase tracking-wider hover:bg-primary/20 hover:border-primary/60 transition-all duration-300 shadow-neon-cyan">
+                                {t("nav.audit")}
+                            </Link>
+                        </div>
+
                         {/* Mobile Footer Actions */}
-                        <div className="flex items-center justify-between pt-4 border-t border-white/10">
+                        <div className="flex items-center justify-between pt-0">
                             {/* Mobile Language Selector */}
                             <div className="flex gap-2">
                                 {availableLocales.map((lang) => (

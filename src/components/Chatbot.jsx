@@ -28,6 +28,17 @@ export default function Chatbot() {
         if (isOpen && inputRef.current) {
             inputRef.current.focus();
         }
+
+        // Lock scroll on body when chatbot is open
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
     }, [isOpen]);
 
     const handleSubmit = async (e) => {
