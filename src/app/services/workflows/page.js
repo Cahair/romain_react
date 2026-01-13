@@ -8,10 +8,10 @@ import { Database, Mail, MessageSquare, Zap, Cpu, Bell, CheckCircle2, User, Glob
 
 // --- Components for the Complex Visualization ---
 
-const Node = ({ icon: Icon, label, color, x, y, delay = 0 }) => (
+const Node = ({ icon: Icon, label, color, x, y, delay = 0, isMobile = false }) => (
     <motion.div
-        className={`absolute p-4 rounded-2xl border border-${color}-500/30 bg-black/80 backdrop-blur-xl flex flex-col items-center gap-2 shadow-[0_0_30px_-5px_rgba(0,0,0,0.5)] z-20`}
-        style={{ left: x, top: y }}
+        className={`${isMobile ? 'relative w-full max-w-[200px]' : 'absolute'} p-4 rounded-2xl border border-${color}-500/30 bg-black/80 backdrop-blur-xl flex flex-col items-center gap-2 shadow-[0_0_30px_-5px_rgba(0,0,0,0.5)] z-20`}
+        style={isMobile ? {} : { left: x, top: y }}
         initial={{ opacity: 0, scale: 0.8 }}
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ delay, duration: 0.5 }}
@@ -19,7 +19,7 @@ const Node = ({ icon: Icon, label, color, x, y, delay = 0 }) => (
         <div className={`p-3 rounded-xl bg-${color}-500/20 text-${color}-400`}>
             <Icon size={24} />
         </div>
-        <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground">{label}</span>
+        <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground text-center">{label}</span>
     </motion.div>
 );
 
@@ -58,106 +58,170 @@ const PulsingPacket = ({ path, delay = 0, color = "#fff" }) => {
     );
 };
 
+const MobileArrow = ({ color = "text-gray-600" }) => (
+    <div className={`flex justify-center my-4 ${color}`}>
+        <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+        >
+            <ArrowRight className="rotate-90" size={24} />
+        </motion.div>
+    </div>
+);
+
 
 const ComplexWorkflowVisual = () => {
     return (
-        <div className="relative w-full h-[800px] bg-grid-pattern overflow-hidden rounded-3xl border border-white/10 my-20">
-            {/* Background Glows */}
-            <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px]" />
-            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[100px]" />
+        <div className="w-full my-10 md:my-20">
+            {/* Mobile View */}
+            <div className="md:hidden flex flex-col items-center w-full space-y-2">
 
-            <div className="absolute inset-0 flex items-center justify-center">
-                <svg className="w-full h-full absolute inset-0 pointer-events-none">
-                    {/* Define Paths for Animation */}
-                    <defs>
-                        <path id="path1" d="M 150 400 C 250 400, 350 400, 450 400" /> {/* Ingest -> Enrich */}
-                        <path id="path2" d="M 550 400 C 650 400, 750 400, 850 400" /> {/* Enrich -> AI */}
-                        <path id="path3" d="M 950 400 C 1050 400, 1050 200, 1150 200" /> {/* AI -> Hot */}
-                        <path id="path4" d="M 950 400 C 1050 400, 1050 600, 1150 600" /> {/* AI -> Cold */}
-                    </defs>
+                {/* 1. Ingestion */}
+                <Node isMobile icon={Globe} label="Webhook / API" color="blue" />
 
-                    {/* Visual Connections */}
-                    <Connection start={{ x: 150, y: 400 }} end={{ x: 450, y: 400 }} color="rgba(59, 130, 246, 0.5)" delay={0.2} />
-                    <Connection start={{ x: 550, y: 400 }} end={{ x: 850, y: 400 }} color="rgba(168, 85, 247, 0.5)" delay={0.4} />
-                    <Connection start={{ x: 950, y: 400 }} end={{ x: 1150, y: 200 }} color="rgba(34, 197, 94, 0.5)" delay={0.6} />
-                    <Connection start={{ x: 950, y: 400 }} end={{ x: 1150, y: 600 }} color="rgba(239, 68, 68, 0.5)" delay={0.6} />
-                </svg>
+                <MobileArrow color="text-blue-500/50" />
 
-                {/* Animated Packets along paths - Note: offset-path support in React via style string needs specific handling or just visual simulation */}
-                {/* For reliability, we'll use simple Framer Motion translate animations simulating flow */}
-
-                {/* Flow 1: Ingest */}
-                <motion.div
-                    className="absolute w-3 h-3 bg-blue-400 rounded-full blur-[2px]"
-                    initial={{ left: 150, top: 400, opacity: 0 }}
-                    animate={{ left: 450, opacity: [0, 1, 1, 0] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                />
-
-                {/* Flow 2: Enrich */}
-                <motion.div
-                    className="absolute w-3 h-3 bg-purple-400 rounded-full blur-[2px]"
-                    initial={{ left: 550, top: 400, opacity: 0 }}
-                    animate={{ left: 850, opacity: [0, 1, 1, 0] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                />
-
-                {/* Flow 3: Hot Leads */}
-                <motion.div
-                    className="absolute w-3 h-3 bg-emerald-400 rounded-full blur-[2px]"
-                    initial={{ left: 950, top: 400, opacity: 0 }}
-                    animate={{ left: 1150, top: 200, opacity: [0, 1, 1, 0] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                />
-
-                {/* Flow 4: Cold Leads */}
-                <motion.div
-                    className="absolute w-3 h-3 bg-red-400 rounded-full blur-[2px]"
-                    initial={{ left: 950, top: 400, opacity: 0 }}
-                    animate={{ left: 1150, top: 600, opacity: [0, 1, 1, 0] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 2.5 }}
-                />
-            </div>
-
-            {/* Nodes Positioned Absolute */}
-            {/* 1. Ingestion */}
-            <div className="absolute top-1/2 left-[10%] -translate-y-1/2 -translate-x-1/2">
-                <Node icon={Globe} label="Webhook / API" color="blue" x={0} y={0} delay={0} />
-            </div>
-
-            {/* 2. Data Enrichment */}
-            <div className="absolute top-1/2 left-[35%] -translate-y-1/2 -translate-x-1/2">
-                <Node icon={Database} label="Enrichissement" color="purple" x={0} y={0} delay={0.2} />
-                <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs text-gray-500">
-                    + LinkedIn, Email, Company Data
+                {/* 2. Enrichment */}
+                <div className="flex flex-col items-center w-full">
+                    <Node isMobile icon={Database} label="Enrichissement" color="purple" />
+                    <div className="mt-2 text-xs text-gray-400 text-center bg-gray-900/50 px-3 py-1 rounded-full border border-gray-800">
+                        + LinkedIn, Email
+                    </div>
                 </div>
-            </div>
 
-            {/* 3. AI Analysis */}
-            <div className="absolute top-1/2 left-[60%] -translate-y-1/2 -translate-x-1/2">
-                <Node icon={Cpu} label="Qualif. IA" color="pink" x={0} y={0} delay={0.4} />
-                <div className="absolute -top-12 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs text-pink-500 font-bold border border-pink-500/30 px-2 py-1 rounded bg-pink-500/10">
-                    Scoring & Intent
+                <MobileArrow color="text-purple-500/50" />
+
+                {/* 3. AI Analysis */}
+                <div className="flex flex-col items-center w-full">
+                    <Node isMobile icon={Cpu} label="Qualif. IA" color="pink" />
+                    <div className="mt-2 text-xs text-pink-500 font-bold border border-pink-500/30 px-2 py-1 rounded bg-pink-500/10">
+                        Scoring & Intent
+                    </div>
                 </div>
-            </div>
 
-            {/* 4. Branches */}
-            {/* Hot Lead */}
-            <div className="absolute top-[25%] right-[10%] -translate-y-1/2 -translate-x-1/2">
-                <Node icon={Zap} label="Priorité Haute" color="emerald" x={0} y={0} delay={0.6} />
-                <div className="flex flex-col gap-2 mt-4 ml-8">
-                    <span className="flex items-center gap-2 text-xs text-emerald-400"><CheckCircle2 size={12} /> Création Deal CRM</span>
-                    <span className="flex items-center gap-2 text-xs text-emerald-400"><MessageSquare size={12} /> Slack Alert Sales</span>
-                    <span className="flex items-center gap-2 text-xs text-emerald-400"><Mail size={12} /> Email Personnalisé</span>
+                <div className="w-full grid grid-cols-2 gap-4 mt-8">
+                    {/* Branch Left: Hot */}
+                    <div className="flex flex-col items-center">
+                        <div className="h-8 w-0.5 bg-gradient-to-b from-pink-500/50 to-emerald-500/50 mb-2"></div>
+                        <Node isMobile icon={Zap} label="Priorité Haute" color="emerald" />
+                        <div className="flex flex-col gap-2 mt-4 items-center">
+                            <span className="flex items-center gap-2 text-[10px] text-emerald-400"><CheckCircle2 size={10} /> Deal CRM</span>
+                            <span className="flex items-center gap-2 text-[10px] text-emerald-400"><MessageSquare size={10} /> Slack</span>
+                        </div>
+                    </div>
+
+                    {/* Branch Right: Cold */}
+                    <div className="flex flex-col items-center">
+                        <div className="h-8 w-0.5 bg-gradient-to-b from-pink-500/50 to-red-500/50 mb-2"></div>
+                        <Node isMobile icon={Filter} label="Nurturing" color="red" />
+                        <div className="flex flex-col gap-2 mt-4 items-center">
+                            <span className="flex items-center gap-2 text-[10px] text-gray-400"><User size={10} /> Newsletter</span>
+                        </div>
+                    </div>
                 </div>
+
             </div>
 
-            {/* Cold Lead */}
-            <div className="absolute bottom-[25%] right-[10%] translate-y-1/2 -translate-x-1/2">
-                <Node icon={Filter} label="Nurturing" color="red" x={0} y={0} delay={0.6} />
-                <div className="flex flex-col gap-2 mt-4 ml-8">
-                    <span className="flex items-center gap-2 text-xs text-gray-400"><User size={12} /> Ajout Newsletter</span>
-                    <span className="flex items-center gap-2 text-xs text-gray-400"><Server size={12} /> Update Database</span>
+            {/* Desktop View */}
+            <div className="hidden md:block relative w-full h-[800px] bg-grid-pattern overflow-hidden rounded-3xl border border-white/10">
+                {/* Background Glows */}
+                <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px]" />
+                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[100px]" />
+
+                <div className="absolute inset-0 flex items-center justify-center">
+                    <svg className="w-full h-full absolute inset-0 pointer-events-none">
+                        {/* Define Paths for Animation */}
+                        <defs>
+                            <path id="path1" d="M 150 400 C 250 400, 350 400, 450 400" /> {/* Ingest -> Enrich */}
+                            <path id="path2" d="M 550 400 C 650 400, 750 400, 850 400" /> {/* Enrich -> AI */}
+                            <path id="path3" d="M 950 400 C 1050 400, 1050 200, 1150 200" /> {/* AI -> Hot */}
+                            <path id="path4" d="M 950 400 C 1050 400, 1050 600, 1150 600" /> {/* AI -> Cold */}
+                        </defs>
+
+                        {/* Visual Connections */}
+                        <Connection start={{ x: 150, y: 400 }} end={{ x: 450, y: 400 }} color="rgba(59, 130, 246, 0.5)" delay={0.2} />
+                        <Connection start={{ x: 550, y: 400 }} end={{ x: 850, y: 400 }} color="rgba(168, 85, 247, 0.5)" delay={0.4} />
+                        <Connection start={{ x: 950, y: 400 }} end={{ x: 1150, y: 200 }} color="rgba(34, 197, 94, 0.5)" delay={0.6} />
+                        <Connection start={{ x: 950, y: 400 }} end={{ x: 1150, y: 600 }} color="rgba(239, 68, 68, 0.5)" delay={0.6} />
+                    </svg>
+
+                    {/* Animated Packets along paths - Note: offset-path support in React via style string needs specific handling or just visual simulation */}
+                    {/* For reliability, we'll use simple Framer Motion translate animations simulating flow */}
+
+                    {/* Flow 1: Ingest */}
+                    <motion.div
+                        className="absolute w-3 h-3 bg-blue-400 rounded-full blur-[2px]"
+                        initial={{ left: 150, top: 400, opacity: 0 }}
+                        animate={{ left: 450, opacity: [0, 1, 1, 0] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    />
+
+                    {/* Flow 2: Enrich */}
+                    <motion.div
+                        className="absolute w-3 h-3 bg-purple-400 rounded-full blur-[2px]"
+                        initial={{ left: 550, top: 400, opacity: 0 }}
+                        animate={{ left: 850, opacity: [0, 1, 1, 0] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                    />
+
+                    {/* Flow 3: Hot Leads */}
+                    <motion.div
+                        className="absolute w-3 h-3 bg-emerald-400 rounded-full blur-[2px]"
+                        initial={{ left: 950, top: 400, opacity: 0 }}
+                        animate={{ left: 1150, top: 200, opacity: [0, 1, 1, 0] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                    />
+
+                    {/* Flow 4: Cold Leads */}
+                    <motion.div
+                        className="absolute w-3 h-3 bg-red-400 rounded-full blur-[2px]"
+                        initial={{ left: 950, top: 400, opacity: 0 }}
+                        animate={{ left: 1150, top: 600, opacity: [0, 1, 1, 0] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 2.5 }}
+                    />
+                </div>
+
+                {/* Nodes Positioned Absolute */}
+                {/* 1. Ingestion */}
+                <div className="absolute top-1/2 left-[10%] -translate-y-1/2 -translate-x-1/2">
+                    <Node icon={Globe} label="Webhook / API" color="blue" x={0} y={0} delay={0} />
+                </div>
+
+                {/* 2. Data Enrichment */}
+                <div className="absolute top-1/2 left-[35%] -translate-y-1/2 -translate-x-1/2">
+                    <Node icon={Database} label="Enrichissement" color="purple" x={0} y={0} delay={0.2} />
+                    <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs text-gray-500">
+                        + LinkedIn, Email, Company Data
+                    </div>
+                </div>
+
+                {/* 3. AI Analysis */}
+                <div className="absolute top-1/2 left-[60%] -translate-y-1/2 -translate-x-1/2">
+                    <Node icon={Cpu} label="Qualif. IA" color="pink" x={0} y={0} delay={0.4} />
+                    <div className="absolute -top-12 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs text-pink-500 font-bold border border-pink-500/30 px-2 py-1 rounded bg-pink-500/10">
+                        Scoring & Intent
+                    </div>
+                </div>
+
+                {/* 4. Branches */}
+                {/* Hot Lead */}
+                <div className="absolute top-[25%] right-[10%] -translate-y-1/2 -translate-x-1/2">
+                    <Node icon={Zap} label="Priorité Haute" color="emerald" x={0} y={0} delay={0.6} />
+                    <div className="flex flex-col gap-2 mt-4 ml-8">
+                        <span className="flex items-center gap-2 text-xs text-emerald-400"><CheckCircle2 size={12} /> Création Deal CRM</span>
+                        <span className="flex items-center gap-2 text-xs text-emerald-400"><MessageSquare size={12} /> Slack Alert Sales</span>
+                        <span className="flex items-center gap-2 text-xs text-emerald-400"><Mail size={12} /> Email Personnalisé</span>
+                    </div>
+                </div>
+
+                {/* Cold Lead */}
+                <div className="absolute bottom-[25%] right-[10%] translate-y-1/2 -translate-x-1/2">
+                    <Node icon={Filter} label="Nurturing" color="red" x={0} y={0} delay={0.6} />
+                    <div className="flex flex-col gap-2 mt-4 ml-8">
+                        <span className="flex items-center gap-2 text-xs text-gray-400"><User size={12} /> Ajout Newsletter</span>
+                        <span className="flex items-center gap-2 text-xs text-gray-400"><Server size={12} /> Update Database</span>
+                    </div>
                 </div>
             </div>
         </div>
