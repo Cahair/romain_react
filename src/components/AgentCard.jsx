@@ -43,12 +43,12 @@ export default function AgentCard({ agent, isActive, onClick }) {
         >
             <div className="absolute inset-0 bg-black/40" />
 
-            <div className="relative h-full flex flex-col p-6 md:p-8 z-10">
-                <div className="flex items-start justify-between mb-4">
-                    <h3 className={`text-3xl font-bold tracking-tighter ${style.text}`}>
+            <div className="relative h-full flex flex-col p-5 md:p-8 z-10">
+                <div className="flex items-start justify-between mb-3 md:mb-4">
+                    <h3 className={`text-2xl md:text-3xl font-bold tracking-tighter ${style.text}`}>
                         {agent.name}
                     </h3>
-                    <span className={`text-xs font-mono uppercase tracking-widest border px-2 py-1 rounded-full ${style.border} ${style.accent}`}>
+                    <span className={`text-[10px] md:text-xs font-mono uppercase tracking-widest border px-2 py-1 rounded-full ${style.border} ${style.accent}`}>
                         {agent.role}
                     </span>
                 </div>
@@ -56,7 +56,7 @@ export default function AgentCard({ agent, isActive, onClick }) {
                 {/* Visual Representation Placeholder */}
                 {/* Visual Representation */}
                 {/* Visual Representation */}
-                <div className={`w-full h-auto mb-6 rounded-xl overflow-hidden relative border ${style.border} group-hover:scale-[1.02] transition-transform duration-500 bg-black/20`}>
+                <div className={`w-full h-auto mb-4 md:mb-6 rounded-xl overflow-hidden relative border ${style.border} group-hover:scale-[1.02] transition-transform duration-500 bg-black/20`}>
                     <AgentVideoPlayer
                         videoSrc={`/videos/${agent.id === 'axiom' ? 'support_client.mp4' : agent.id === 'lumina' ? 'reseaux_sociaux.mp4' : 'blog.mp4'}`}
                         agentName={agent.name}
@@ -64,7 +64,7 @@ export default function AgentCard({ agent, isActive, onClick }) {
                     />
                 </div>
 
-                <div className="mt-auto space-y-4">
+                <div className="mt-auto space-y-3 md:space-y-4">
                     <motion.div
                         initial={false}
                         animate={{ height: isSelected ? "auto" : 0, opacity: isSelected ? 1 : 0 }}

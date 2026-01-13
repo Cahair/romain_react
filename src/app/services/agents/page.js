@@ -341,7 +341,7 @@ export default function AgentsPage() {
 
             {/* Agent Sections */}
             {agents.map((agent) => (
-                <section key={agent.id} className="h-[100dvh] w-full snap-start flex items-center justify-center overflow-hidden px-4 py-20 relative">
+                <section key={agent.id} className="h-[100dvh] w-full snap-start flex items-center justify-center overflow-hidden px-4 py-4 md:py-20 relative">
                     {/* Dynamic Background based on agent */}
                     <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
                         <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[150px] mix-blend-screen ${agent.id === 'axiom' ? 'bg-cyan-900/40' :
@@ -350,7 +350,7 @@ export default function AgentsPage() {
                             }`} />
                     </div>
 
-                    <div className="w-full max-w-4xl z-10 h-full max-h-[80vh] flex items-center justify-center">
+                    <div className="w-full max-w-4xl z-10 h-full md:max-h-[80vh] flex items-center justify-center">
                         <AgentCard
                             agent={agent}
                             isActive={true}
