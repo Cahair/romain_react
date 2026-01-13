@@ -13,7 +13,7 @@ export async function POST(req) {
 
         const genAI = new GoogleGenerativeAI(apiKey);
         // Using gemini-1.5-flash for faster response times
-        const model = genAI.getGenerativeModel({ model: "gemini-3.0-flash-preview" });
+        const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
         const systemInstruction = `
       You are an intelligent AI assistant for Romain Kantzer's portfolio website.
