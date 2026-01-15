@@ -114,7 +114,7 @@ export default function ContactPage() {
                                         </div>
                                         <div>
                                             <div className="text-[10px] text-gray-500 uppercase tracking-wide">{t("contact.contact.email")}</div>
-                                            <div className="text-sm font-bold">romain@kantzer.ai</div>
+                                            <div className="text-sm font-bold">romainkantzer@gmail.com</div>
                                         </div>
                                     </div>
                                     {/* Phone hidden or kept based on preference, keeping compact */}
@@ -124,7 +124,7 @@ export default function ContactPage() {
                                         </div>
                                         <div>
                                             <div className="text-[10px] text-gray-500 uppercase tracking-wide">{t("contact.contact.phone")}</div>
-                                            <div className="text-sm font-bold">+33 6 XX XX XX XX</div>
+                                            <div className="text-sm font-bold">07 69 60 37 60</div>
                                         </div>
                                     </div>
                                 </div>
