@@ -67,14 +67,44 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "Person",
+        "@id": "https://romain-kantzer.com/#person",
         "name": "Romain Kantzer",
+        "givenName": "Romain",
+        "familyName": "Kantzer",
         "url": "https://romain-kantzer.com",
-        "jobTitle": "Développeur Web & Expert IA",
-        "description": "Créateur de sites web rapides et optimisés. Expert en solutions d'intelligence artificielle.",
-        "image": "https://romain-kantzer.com/romain-profile.png",
+        "jobTitle": "AI Architect & Web Developer",
+        "description": "Expert en Ingénierie IA & Développement Web. Conception d'agents autonomes, LLMs optimisés et workflows sur-mesure.",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://romain-kantzer.com/romain-profile.png",
+            "width": 400,
+            "height": 400
+        },
+        "email": "romainkantzer@gmail.com",
+        "telephone": "+33769603760",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "FR"
+        },
+        "worksFor": {
+            "@type": "Organization",
+            "name": "RK.ai",
+            "url": "https://romain-kantzer.com"
+        },
+        "alumniOf": [
+            {
+                "@type": "EducationalOrganization",
+                "name": "Icam Strasbourg-Europe"
+            },
+            {
+                "@type": "EducationalOrganization",
+                "name": "IUT de Haguenau"
+            }
+        ],
+        "knowsAbout": ["Artificial Intelligence", "Web Development", "AI Agents", "LLMs", "RAG", "Next.js", "React", "Automation"],
         "sameAs": [
-            "https://www.linkedin.com/in/romain-kantzer", // Modifiez avec votre vrai lien
-            "https://github.com/romainkantzer" // Modifiez avec votre vrai lien
+            "https://www.linkedin.com/in/romain-kantzer",
+            "https://github.com/romainkantzer"
         ]
     };
 
