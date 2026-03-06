@@ -14,19 +14,19 @@ const oswald = Oswald({ subsets: ["latin"], variable: "--font-oswald" });
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://romain-kantzer.com"),
-    // J'ai ajouté des mots-clés issus de votre fr.json (LLMs, RAG, Agents)
-    keywords: ["Romain Kantzer", "Développeur Web", "Expert IA", "Next.js", "React", "Automatisation", "Agents IA", "LLMs", "RAG", "Freelance Tech"],
+    // Mots-clés : Web Development en priorité, puis IA comme différenciateur
+    keywords: ["Romain Kantzer", "Développeur Web", "Création de site", "Next.js", "React", "Site vitrine", "Expert IA", "Automatisation", "Agents IA", "LLMs", "RAG", "Freelance Tech"],
     title: {
-        default: "Romain Kantzer | Expert en Automatisation IA & Développement Web",
+        default: "Romain Kantzer | Expert en Développement Web & Automatisation IA",
         template: "%s | Romain Kantzer",
     },
     // 👇 MODIFICATION POUR GOOGLE
-    description: "Expert en Ingénierie IA & Développement Web. Conception d'agents autonomes, LLMs optimisés et workflows sur-mesure pour maximiser votre ROI et votre productivité.",
+    description: "Expert en Développement Web & Ingénierie IA. Création de sites web performants et sur-mesure avec Next.js & React, amplifiés par l'intelligence artificielle pour maximiser votre ROI.",
 
     openGraph: {
-        title: "Romain Kantzer | Expert en Automatisation IA & Développement Web",
+        title: "Romain Kantzer | Expert en Développement Web & Automatisation IA",
         // 👇 MODIFICATION POUR FACEBOOK / LINKEDIN
-        description: "Expert en Ingénierie IA et Développement Web. Conception d'agents autonomes, LLMs optimisés et workflows sur-mesure pour maximiser votre ROI et votre productivité.",
+        description: "Expert en Développement Web & Ingénierie IA. Création de sites web performants et sur-mesure avec Next.js & React, amplifiés par l'intelligence artificielle pour maximiser votre ROI.",
         url: "https://romain-kantzer.com",
         siteName: "Romain Kantzer",
         locale: "fr_FR",
@@ -45,9 +45,9 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "Romain Kantzer | Expert en Automatisation IA",
+        title: "Romain Kantzer | Expert en Développement Web & IA",
         // 👇 MODIFICATION POUR TWITTER
-        description: "Expert en Ingénierie IA & Développement Web. Conception d'agents autonomes, LLMs optimisés et workflows sur-mesure pour maximiser votre ROI et votre productivité.",
+        description: "Expert en Développement Web & Ingénierie IA. Création de sites web performants et sur-mesure avec Next.js & React, amplifiés par l'intelligence artificielle pour maximiser votre ROI.",
         images: ["/og-image.jpg"],
     },
     robots: {
@@ -72,8 +72,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         "givenName": "Romain",
         "familyName": "Kantzer",
         "url": "https://romain-kantzer.com",
-        "jobTitle": "AI Architect & Web Developer",
-        "description": "Expert en Ingénierie IA & Développement Web. Conception d'agents autonomes, LLMs optimisés et workflows sur-mesure.",
+        "jobTitle": "Web Developer & AI Engineer",
+        "description": "Expert en Développement Web & Ingénierie IA. Création de sites web performants et sur-mesure, amplifiés par l'intelligence artificielle.",
         "image": {
             "@type": "ImageObject",
             "url": "https://romain-kantzer.com/romain-profile.png",

@@ -9,11 +9,11 @@
         "webDev": "Développement Web"
     },
     "hero": {
-        "titleLine1": "AU-DELÀ DES",
-        "titleLine2": "CHATBOTS",
-        "highlightTitle": "Ingénierie IA sur-mesure.",
-        "description": "Agents autonomes. LLMs optimisés. RAG haute performance.\nL'excellence technique au service du ROI.",
-        "cta": "Démarrer la collaboration",
+        "titleLine1": "SITES WEB",
+        "titleLine2": "PREMIUM",
+        "highlightTitle": "Développement Web sur-mesure.",
+        "description": "Sites performants. Design premium. SEO optimisé.\nPropulsés par l'Intelligence Artificielle.",
+        "cta": "Démarrer mon projet",
         "scroll": "Scroll"
     },
     "services": {
@@ -215,19 +215,19 @@
         }
     },
     "storytelling": {
-        "badge": "L'ÉVOLUTION EN MARCHE",
-        "title": "Nous ne",
-        "titleHighlight": "remplaçons",
-        "titleEnd": "pas l'humain.",
-        "subtitle1": "Nous",
-        "subtitleHighlight": "amplifions",
-        "subtitle2": "vos capacités.",
-        "description": "Bienvenue dans l'ère de l'intelligence intégrée."
+        "badge": "VOTRE PRÉSENCE DIGITALE",
+        "title": "Pas de simples",
+        "titleHighlight": "sites.",
+        "titleEnd": "Des machines à convertir.",
+        "subtitle1": "Le web",
+        "subtitleHighlight": "propulsé",
+        "subtitle2": "par l'IA.",
+        "description": "Des sites web modernes et performants, amplifiés par l'intelligence artificielle."
     },
     "servicesBento": {
         "titlePrefix": "Nos",
         "titleSuffix": "Services",
-        "subtitle": "Une suite complète de solutions pour automatiser votre croissance.",
+        "subtitle": "Une suite complète de solutions web et IA pour accélérer votre croissance.",
         "popular": "Populaire",
         "explore": "Explorer",
         "items": {
@@ -248,8 +248,8 @@
                 "desc": "Dashboards interactifs pour piloter votre activité."
             },
             "webDev": {
-                "title": "Infrastructure Web & Intégration",
-                "desc": "Création du socle digital (Sites, Apps, Dashboards) indispensable pour déployer et exploiter votre IA."
+                "title": "Développement Web Premium",
+                "desc": "Sites vitrines, applications web et e-commerce sur-mesure. Design premium, performances optimales et SEO intégré dès la première ligne de code."
             }
         }
     },
@@ -287,57 +287,73 @@
     },
     "webDevPage": {
         "hero": {
-            "overline": "// Développement Web Sur-Mesure",
-            "titleStart": "Développez Votre",
-            "titleHighlight": "Interface",
-            "titleMiddle": "selon vos",
-            "titleEnd": "GOÛTS",
-            "subtitle": "Des interfaces web sur-mesure pensées pour votre métier. Du design à la production, nous codons l'expérience parfaite pour vos utilisateurs.",
-            "cta": "Discuter de mon projet",
-            "badge": "Performance optimale"
+            "overline": "// Développement Web Premium",
+            "title": "Des expériences web qui marquent les esprits",
+            "cta": "Discuter de mon projet"
         },
-        "philosophy": {
-            "textPart1": "Un site web n'est plus une simple vitrine. C'est le",
-            "highlight1": "système nerveux",
-            "textPart2": "de votre entreprise. Nous refusons les templates obsolètes pour coder des solutions",
-            "highlight2": "sur-mesure",
-            "textPart3": ", rapides et évolutives."
-        },
-        "services": {
-            "overline": "// Notre Expertise",
-            "title": "Le Cœur de",
-            "titleHighlight": "l'Offre",
-            "items": {
-                "website": {
-                    "tag": "Vitrine Digitale",
-                    "title": "Vitesse, SEO &",
-                    "titleHighlight": "Conversion",
-                    "desc": "Des sites vitrines qui chargent instantanément et captent vos prospects. Une architecture technique pensée pour le référencement naturel dès la première ligne de code."
+        "metrics": {
+            "overline": "// La Preuve par les Chiffres",
+            "title": "Performances",
+            "titleHighlight": "Lighthouse",
+            "items": [
+                {
+                    "label": "SEO",
+                    "value": 100,
+                    "suffix": "/100"
                 },
-                "webapp": {
-                    "tag": "Applications Métier",
-                    "title": "Applications Métier",
-                    "titleHighlight": "Sur-Mesure",
-                    "desc": "Transformez vos processus complexes en interfaces fluides (React/Vue). Des outils internes sécurisés pour faire gagner du temps à vos équipes."
+                {
+                    "label": "Performance",
+                    "value": 99,
+                    "suffix": "/100"
                 },
-                "dashboard": {
-                    "tag": "Intelligence Visuelle",
-                    "title": "Pilotage de",
-                    "titleHighlight": "l'IA & Data",
-                    "desc": "L'interface de contrôle de vos agents IA. Visualisez vos données en temps réel et interagissez avec vos modèles via des tableaux de bord dynamiques."
+                {
+                    "label": "Accessibilité",
+                    "value": 100,
+                    "suffix": "/100"
+                },
+                {
+                    "label": "Bonnes Pratiques",
+                    "value": 100,
+                    "suffix": "/100"
                 }
-            }
+            ]
         },
-        "stack": {
-            "overline": "// Technologies Maîtrisées",
+        "tech": {
+            "overline": "// L'Écosystème",
             "title": "Stack",
             "titleHighlight": "Technique"
         },
+        "process": {
+            "overline": "// Notre Méthodologie",
+            "title": "Du concept au",
+            "titleHighlight": "lancement",
+            "steps": [
+                {
+                    "num": "01",
+                    "title": "Stratégie",
+                    "desc": "Audit de votre marché, analyse concurrentielle et définition des objectifs. Nous cartographions l'architecture idéale pour votre projet."
+                },
+                {
+                    "num": "02",
+                    "title": "Design",
+                    "desc": "Wireframes, prototypes interactifs et direction artistique. Chaque pixel est pensé pour convertir et engager."
+                },
+                {
+                    "num": "03",
+                    "title": "Développement",
+                    "desc": "Code propre, performant et maintenable. Next.js, React, Tailwind CSS — les meilleurs outils pour des résultats exceptionnels."
+                },
+                {
+                    "num": "04",
+                    "title": "Lancement",
+                    "desc": "Déploiement, monitoring et optimisation. Votre site est en ligne, rapide et prêt à dominer les résultats de recherche."
+                }
+            ]
+        },
         "cta": {
-            "overline": "// Prêt à construire ?",
-            "title": "Prêt à construire votre",
-            "titleHighlight": "Infrastructure ?",
-            "subtitle": "Discutons de votre projet et bâtissons ensemble l'architecture web qui transformera votre vision en réalité.",
+            "title": "Prêt à dominer",
+            "titleHighlight": "le web ?",
+            "subtitle": "Transformons votre vision en une expérience digitale qui marque les esprits.",
             "button": "Démarrer le Projet"
         }
     },

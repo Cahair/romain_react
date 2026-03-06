@@ -8,11 +8,11 @@
         "webDev": "Webentwicklung"
     },
     "hero": {
-        "titleLine1": "JENSEITS VON",
-        "titleLine2": "CHATBOTS",
-        "highlightTitle": "Maßgeschneidertes KI-Engineering.",
-        "description": "Autonome Agenten. Optimierte LLMs. Hochleistungs-RAG.\nTechnische Exzellenz im Dienste des ROI.",
-        "cta": "Zusammenarbeit starten",
+        "titleLine1": "PREMIUM",
+        "titleLine2": "WEBSITES",
+        "highlightTitle": "Maßgeschneiderte Webentwicklung.",
+        "description": "Leistungsstarke Websites. Premium-Design. Optimiertes SEO.\nAngetrieben von Künstlicher Intelligenz.",
+        "cta": "Mein Projekt starten",
         "scroll": "Scrollen"
     },
     "services": {
@@ -205,19 +205,19 @@
         }
     },
     "storytelling": {
-        "badge": "EVOLUTION IN AKTION",
-        "title": "Wir ersetzen",
-        "titleHighlight": "keine",
-        "titleEnd": "Menschen.",
-        "subtitle1": "Wir",
-        "subtitleHighlight": "verstärken",
-        "subtitle2": "Ihre Fähigkeiten.",
-        "description": "Willkommen in der Ära der integrierten Intelligenz."
+        "badge": "IHRE DIGITALE PRÄSENZ",
+        "title": "Nicht nur",
+        "titleHighlight": "Websites.",
+        "titleEnd": "Konversionsmaschinen.",
+        "subtitle1": "Das Web",
+        "subtitleHighlight": "angetrieben",
+        "subtitle2": "durch KI.",
+        "description": "Moderne, leistungsstarke Websites, verstärkt durch Künstliche Intelligenz."
     },
     "servicesBento": {
         "titlePrefix": "Unsere",
         "titleSuffix": "Dienstleistungen",
-        "subtitle": "Eine komplette Suite von Lösungen zur Automatisierung Ihres Wachstums.",
+        "subtitle": "Eine komplette Suite von Web- und KI-Lösungen, um Ihr Wachstum zu beschleunigen.",
         "popular": "Beliebt",
         "explore": "Entdecken",
         "items": {
@@ -238,8 +238,8 @@
                 "desc": "Interaktive Dashboards zur Steuerung Ihrer Aktivitäten."
             },
             "webDev": {
-                "title": "Web-Infrastruktur & Integration",
-                "desc": "Aufbau der digitalen Grundlage (Sites, Apps, Dashboards), die für den Einsatz und die Nutzung Ihrer KI unerlässlich ist."
+                "title": "Premium-Webentwicklung",
+                "desc": "Schaufenster-Websites, Webanwendungen und maßgeschneiderter E-Commerce. Premium-Design, optimale Leistung und SEO von der ersten Codezeile an."
             }
         }
     },
@@ -277,57 +277,73 @@
     },
     "webDevPage": {
         "hero": {
-            "overline": "// Maßgeschneiderte Webentwicklung",
-            "titleStart": "Entwickeln Sie Ihre",
-            "titleHighlight": "Schnittstelle",
-            "titleMiddle": "nach Ihrem",
-            "titleEnd": "GESCHMACK",
-            "subtitle": "Maßgeschneiderte Web-Interfaces, für Ihr Geschäft konzipiert. Vom Design bis zur Produktion codieren wir das perfekte Erlebnis für Ihre Nutzer.",
-            "cta": "Mein Projekt besprechen",
-            "badge": "Optimale Leistung"
+            "overline": "// Premium-Webentwicklung",
+            "title": "Web-Erlebnisse, die Eindruck hinterlassen",
+            "cta": "Mein Projekt besprechen"
         },
-        "philosophy": {
-            "textPart1": "Eine Website ist nicht mehr nur ein Schaufenster. Sie ist das",
-            "highlight1": "Nervensystem",
-            "textPart2": "Ihres Unternehmens. Wir lehnen veraltete Vorlagen ab, um",
-            "highlight2": "maßgeschneiderte",
-            "textPart3": ", schnelle und skalierbare Lösungen zu codieren."
-        },
-        "services": {
-            "overline": "// Unsere Expertise",
-            "title": "Der Kern des",
-            "titleHighlight": "Angebots",
-            "items": {
-                "website": {
-                    "tag": "Digitales Schaufenster",
-                    "title": "Geschwindigkeit, SEO &",
-                    "titleHighlight": "Konversion",
-                    "desc": "Schaufenster-Websites, die sofort laden und Ihre Interessenten fesseln. Technische Architektur, die von der ersten Zeile an für SEO konzipiert ist."
+        "metrics": {
+            "overline": "// Beweis in Zahlen",
+            "title": "Lighthouse",
+            "titleHighlight": "Scores",
+            "items": [
+                {
+                    "label": "SEO",
+                    "value": 100,
+                    "suffix": "/100"
                 },
-                "webapp": {
-                    "tag": "Geschäftsanwendungen",
-                    "title": "Geschäftsanwendungen",
-                    "titleHighlight": "Nach Maß",
-                    "desc": "Verwandeln Sie Ihre komplexen Prozesse in flüssige Schnittstellen (React/Vue). Sichere interne Tools, um Ihren Teams Zeit zu sparen."
+                {
+                    "label": "Leistung",
+                    "value": 99,
+                    "suffix": "/100"
                 },
-                "dashboard": {
-                    "tag": "Visuelle Intelligenz",
-                    "title": "Steuerung von",
-                    "titleHighlight": "KI & Daten",
-                    "desc": "Die Steuerschnittstelle für Ihre KI-Agenten. Visualisieren Sie Ihre Daten in Echtzeit und interagieren Sie mit Ihren Modellen über dynamische Dashboards."
+                {
+                    "label": "Barrierefreiheit",
+                    "value": 100,
+                    "suffix": "/100"
+                },
+                {
+                    "label": "Best Practices",
+                    "value": 100,
+                    "suffix": "/100"
                 }
-            }
+            ]
         },
-        "stack": {
-            "overline": "// Beherrschte Technologien",
+        "tech": {
+            "overline": "// Das Ökosystem",
             "title": "Tech",
             "titleHighlight": "Stack"
         },
+        "process": {
+            "overline": "// Unsere Methodik",
+            "title": "Vom Konzept zum",
+            "titleHighlight": "Launch",
+            "steps": [
+                {
+                    "num": "01",
+                    "title": "Strategie",
+                    "desc": "Marktaudit, Wettbewerbsanalyse und Zielsetzung. Wir entwerfen die ideale Architektur für Ihr Projekt."
+                },
+                {
+                    "num": "02",
+                    "title": "Design",
+                    "desc": "Wireframes, interaktive Prototypen und Art Direction. Jeder Pixel ist darauf ausgelegt, zu konvertieren und zu begeistern."
+                },
+                {
+                    "num": "03",
+                    "title": "Entwicklung",
+                    "desc": "Sauberer, performanter und wartbarer Code. Next.js, React, Tailwind CSS — die besten Tools für außergewöhnliche Ergebnisse."
+                },
+                {
+                    "num": "04",
+                    "title": "Launch",
+                    "desc": "Deployment, Monitoring und Optimierung. Ihre Website ist online, schnell und bereit, die Suchergebnisse zu dominieren."
+                }
+            ]
+        },
         "cta": {
-            "overline": "// Bereit zu bauen?",
-            "title": "Bereit, Ihre",
-            "titleHighlight": "Infrastruktur zu bauen?",
-            "subtitle": "Lassen Sie uns über Ihr Projekt sprechen und gemeinsam die Web-Architektur aufbauen, die Ihre Vision in die Realität umsetzt.",
+            "title": "Bereit, das Web zu",
+            "titleHighlight": "dominieren?",
+            "subtitle": "Verwandeln wir Ihre Vision in ein digitales Erlebnis, das Eindruck hinterlässt.",
             "button": "Projekt starten"
         }
     },

@@ -122,6 +122,54 @@ body {
     background-size: 200% auto;
     animation: gradient 6s linear infinite;
   }
+
+  /* Shiny Text Effect — animated gradient sweep */
+  .shiny-text {
+    background: linear-gradient(120deg,
+        var(--foreground) 0%,
+        var(--foreground) 35%,
+        #06b6d4 42%,
+        #8b5cf6 48%,
+        #06b6d4 54%,
+        var(--foreground) 61%,
+        var(--foreground) 100%);
+    background-size: 300% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: shimmer 4s ease-in-out infinite;
+  }
+}
+
+/* Shimmer keyframes */
+@keyframes shimmer {
+  0% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: -100% 50%;
+  }
+}
+
+/* Infinite Logo Ticker */
+.ticker-track {
+  animation: ticker 30s linear infinite;
+  width: max-content;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 /* ============================================== */

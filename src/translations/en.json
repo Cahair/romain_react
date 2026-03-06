@@ -9,11 +9,11 @@
         "webDev": "Web Dev"
     },
     "hero": {
-        "titleLine1": "BEYOND",
-        "titleLine2": "CHATBOTS",
-        "highlightTitle": "Bespoke AI Engineering.",
-        "description": "Autonomous agents. Optimized LLMs. High-performance RAG.\nTechnical excellence serving ROI.",
-        "cta": "Start Collaboration",
+        "titleLine1": "PREMIUM",
+        "titleLine2": "WEBSITES",
+        "highlightTitle": "Bespoke Web Development.",
+        "description": "High-performance sites. Premium design. Optimized SEO.\nPowered by Artificial Intelligence.",
+        "cta": "Start my project",
         "scroll": "Scroll"
     },
     "services": {
@@ -209,19 +209,19 @@
         }
     },
     "storytelling": {
-        "badge": "EVOLUTION IN PROGRESS",
-        "title": "We don't",
-        "titleHighlight": "replace",
-        "titleEnd": "humans.",
-        "subtitle1": "We",
-        "subtitleHighlight": "amplify",
-        "subtitle2": "your capabilities.",
-        "description": "Welcome to the era of integrated intelligence."
+        "badge": "YOUR DIGITAL PRESENCE",
+        "title": "Not just",
+        "titleHighlight": "websites.",
+        "titleEnd": "Conversion machines.",
+        "subtitle1": "The web",
+        "subtitleHighlight": "powered",
+        "subtitle2": "by AI.",
+        "description": "Modern, high-performance websites amplified by artificial intelligence."
     },
     "servicesBento": {
         "titlePrefix": "Our",
         "titleSuffix": "Services",
-        "subtitle": "A complete suite of solutions to automate your growth.",
+        "subtitle": "A complete suite of web and AI solutions to accelerate your growth.",
         "popular": "Popular",
         "explore": "Explore",
         "items": {
@@ -242,8 +242,8 @@
                 "desc": "Interactive dashboards to drive your business."
             },
             "webDev": {
-                "title": "Web Infrastructure & Integration",
-                "desc": "Building the digital foundation (Sites, Apps, Dashboards) essential for deploying and leveraging your AI."
+                "title": "Premium Web Development",
+                "desc": "Showcase sites, web applications and bespoke e-commerce. Premium design, optimal performance and SEO built in from the first line of code."
             }
         }
     },
@@ -281,57 +281,73 @@
     },
     "webDevPage": {
         "hero": {
-            "overline": "// Bespoke Web Development",
-            "titleStart": "Develop Your",
-            "titleHighlight": "Interface",
-            "titleMiddle": "according to your",
-            "titleEnd": "TASTES",
-            "subtitle": "Custom web interfaces designed for your business. From design to production, we code the perfect experience for your users.",
-            "cta": "Discuss my project",
-            "badge": "Optimal Performance"
+            "overline": "// Premium Web Development",
+            "title": "Web experiences that leave a lasting impression",
+            "cta": "Discuss my project"
         },
-        "philosophy": {
-            "textPart1": "A website is no longer just a showcase. It is the",
-            "highlight1": "nervous system",
-            "textPart2": "of your company. We refuse obsolete templates to code",
-            "highlight2": "custom",
-            "textPart3": ", fast, and scalable solutions."
-        },
-        "services": {
-            "overline": "// Our Expertise",
-            "title": "The Core of",
-            "titleHighlight": "the Offer",
-            "items": {
-                "website": {
-                    "tag": "Digital Showcase",
-                    "title": "Speed, SEO &",
-                    "titleHighlight": "Conversion",
-                    "desc": "Showcase sites that load instantly and capture your prospects. Technical architecture designed for SEO from the first line of code."
+        "metrics": {
+            "overline": "// Proof in Numbers",
+            "title": "Lighthouse",
+            "titleHighlight": "Scores",
+            "items": [
+                {
+                    "label": "SEO",
+                    "value": 100,
+                    "suffix": "/100"
                 },
-                "webapp": {
-                    "tag": "Business Apps",
-                    "title": "Business Apps",
-                    "titleHighlight": "Custom-Made",
-                    "desc": "Transform your complex processes into fluid interfaces (React/Vue). Secure internal tools to save your teams time."
+                {
+                    "label": "Performance",
+                    "value": 99,
+                    "suffix": "/100"
                 },
-                "dashboard": {
-                    "tag": "Visual Intelligence",
-                    "title": "Steering",
-                    "titleHighlight": "AI & Data",
-                    "desc": "The control interface for your AI agents. Visualize your data in real-time and interact with your models via dynamic dashboards."
+                {
+                    "label": "Accessibility",
+                    "value": 100,
+                    "suffix": "/100"
+                },
+                {
+                    "label": "Best Practices",
+                    "value": 100,
+                    "suffix": "/100"
                 }
-            }
+            ]
         },
-        "stack": {
-            "overline": "// Mastered Technologies",
+        "tech": {
+            "overline": "// The Ecosystem",
             "title": "Tech",
             "titleHighlight": "Stack"
         },
+        "process": {
+            "overline": "// Our Methodology",
+            "title": "From concept to",
+            "titleHighlight": "launch",
+            "steps": [
+                {
+                    "num": "01",
+                    "title": "Strategy",
+                    "desc": "Market audit, competitive analysis and goal setting. We map out the ideal architecture for your project."
+                },
+                {
+                    "num": "02",
+                    "title": "Design",
+                    "desc": "Wireframes, interactive prototypes and art direction. Every pixel is designed to convert and engage."
+                },
+                {
+                    "num": "03",
+                    "title": "Development",
+                    "desc": "Clean, performant and maintainable code. Next.js, React, Tailwind CSS — the best tools for exceptional results."
+                },
+                {
+                    "num": "04",
+                    "title": "Launch",
+                    "desc": "Deployment, monitoring and optimization. Your site is live, fast and ready to dominate search results."
+                }
+            ]
+        },
         "cta": {
-            "overline": "// Ready to build?",
-            "title": "Ready to build your",
-            "titleHighlight": "Infrastructure?",
-            "subtitle": "Let's discuss your project and build together the web architecture that will turn your vision into reality.",
+            "title": "Ready to dominate",
+            "titleHighlight": "the web?",
+            "subtitle": "Let's turn your vision into a digital experience that leaves a lasting impression.",
             "button": "Start the Project"
         }
     },
