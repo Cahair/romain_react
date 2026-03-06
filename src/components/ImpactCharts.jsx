@@ -14,7 +14,7 @@ export default function ImpactCharts() {
                 <div className="glass p-6 rounded-2xl flex flex-col justify-between min-h-[300px] relative overflow-hidden group">
                     <div className="relative z-10">
                         <h3 className="text-gray-400 text-sm font-mono uppercase tracking-widest mb-1">Retour sur Investissement</h3>
-                        <div className="text-3xl font-bold text-white flex items-baseline gap-2">
+                        <div className="text-3xl font-bold text-foreground flex items-baseline gap-2">
                             +300% <span className="text-sm text-primary-neon font-normal">/ an</span>
                         </div>
                     </div>
@@ -103,7 +103,7 @@ export default function ImpactCharts() {
                             </defs>
                         </svg>
                         <div className="absolute flex flex-col items-center">
-                            <span className="text-4xl font-black text-white">85%</span>
+                            <span className="text-4xl font-black text-foreground">85%</span>
                             <span className="text-xs text-gray-400 uppercase tracking-widest mt-1">Automatisation</span>
                         </div>
                     </div>
@@ -116,7 +116,7 @@ export default function ImpactCharts() {
                 <div className="glass p-6 rounded-2xl flex flex-col justify-between min-h-[300px] relative">
                     <div className="mb-4">
                         <h3 className="text-gray-400 text-sm font-mono uppercase tracking-widest mb-1">Vitesse de Traitement</h3>
-                        <div className="text-3xl font-bold text-white">x120</div>
+                        <div className="text-3xl font-bold text-foreground">x120</div>
                     </div>
 
                     <div className="flex-1 flex items-end justify-center gap-8 pb-4">
@@ -144,7 +144,7 @@ export default function ImpactCharts() {
                                 <div className="absolute -top-6 w-full text-center text-xs text-primary-neon font-bold font-mono">1min</div>
                                 <div className="absolute inset-0 bg-white/20 animate-pulse-slow"></div>
                             </motion.div>
-                            <span className="text-xs font-bold text-white uppercase tracking-wide">IA</span>
+                            <span className="text-xs font-bold text-foreground uppercase tracking-wide">IA</span>
                         </div>
                     </div>
                     <p className="text-xs text-center text-gray-500 mt-2">Comparatif sur un dataset de 10k lignes</p>

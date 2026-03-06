@@ -1,16 +1,27 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #020617;
-  --color-foreground: #f8fafc;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
 
   --color-primary: #06b6d4;
   --color-primary-dark: #0891b2;
 
   --color-secondary: #8b5cf6;
   --color-secondary-dark: #7c3aed;
-
-  --color-accent: #22d3ee;
 
   --shadow-neon-cyan: 0 0 15px rgba(6, 182, 212, 0.5);
   --shadow-neon-violet: 0 0 15px rgba(139, 92, 246, 0.5);
@@ -60,6 +71,9 @@
 
   /* Legacy */
   --text-muted: #94a3b8;
+
+  /* Stroke */
+  --text-stroke-color: rgba(255, 255, 255, 0.4);
 }
 
 /* Light mode variables */
@@ -94,6 +108,9 @@ html.light {
 
   /* Legacy */
   --text-muted: #64748b;
+
+  /* Stroke */
+  --text-stroke-color: rgba(15, 23, 42, 0.25);
 }
 
 body {
@@ -102,8 +119,6 @@ body {
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;
-  --text-stroke-color: rgba(255, 255, 255, 0.1);
-  /* Default dark mode stroke */
 }
 
 @layer components {
@@ -242,6 +257,16 @@ html.light .border-white\/10 {
 
 html.light .bg-background {
   background-color: var(--background);
+}
+
+/* Card transparency in light mode */
+html.light [class*="bg-card"] {
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Navbar shadow in light mode */
+html.light .shadow-black\/40 {
+  --tw-shadow-color: rgba(0, 0, 0, 0.08);
 }
 
 

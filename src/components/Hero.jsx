@@ -195,7 +195,7 @@ export default function Hero() {
                                     <AnimatedWord key={i}>
                                         <span
                                             className="text-transparent select-none"
-                                            style={{ WebkitTextStroke: '2px rgba(255,255,255,0.4)' }}
+                                            style={{ WebkitTextStroke: '2px var(--text-stroke-color)' }}
                                         >
                                             {word}
                                         </span>

@@ -10,7 +10,7 @@ const Card = ({ className, children, href, delay = 0 }) => (
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay }}
-        className={`group relative overflow-hidden rounded-3xl bg-black/40 backdrop-blur-md border border-white/10 hover:border-white/20 transition-all duration-500 ${className}`}
+        className={`group relative overflow-hidden rounded-3xl bg-card/80 backdrop-blur-md border border-border hover:border-foreground/20 transition-all duration-500 ${className}`}
     >
         <Link href={href} className="absolute inset-0 z-20" />
         <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -63,7 +63,7 @@ export default function ServicesBento() {
                         </div>
 
                         <div className="mt-auto">
-                            <h3 className="text-3xl font-display font-bold uppercase mb-2 text-white group-hover:text-blue-400 transition-colors">
+                            <h3 className="text-3xl font-display font-bold uppercase mb-2 text-foreground group-hover:text-blue-400 transition-colors">
                                 {t("servicesBento.items.webDev.title")}
                             </h3>
                             <p className="text-gray-400 max-w-md text-sm mb-6">
@@ -119,7 +119,7 @@ export default function ServicesBento() {
                             </div>
 
                             <div className="mt-auto">
-                                <h3 className="text-2xl font-display font-bold uppercase mb-2 text-white group-hover:text-purple-400 transition-colors">
+                                <h3 className="text-2xl font-display font-bold uppercase mb-2 text-foreground group-hover:text-purple-400 transition-colors">
                                     {t("servicesBento.items.workflows.title")}
                                 </h3>
                                 <p className="text-gray-400 text-sm mb-4">
@@ -137,7 +137,7 @@ export default function ServicesBento() {
                         <div className="p-3 rounded-xl bg-primary-neon/10 text-primary-neon w-fit mb-4">
                             <Bot size={32} />
                         </div>
-                        <h3 className="text-xl font-display font-bold uppercase mb-2 text-white group-hover:text-primary-neon transition-colors">
+                        <h3 className="text-xl font-display font-bold uppercase mb-2 text-foreground group-hover:text-primary-neon transition-colors">
                             {t("servicesBento.items.agents.title")}
                         </h3>
                         <p className="text-gray-400 text-sm mb-4 line-clamp-2">
@@ -154,7 +154,7 @@ export default function ServicesBento() {
                         <div className="p-3 rounded-xl bg-pink-500/10 text-pink-500 w-fit mb-4">
                             <Target size={32} />
                         </div>
-                        <h3 className="text-xl font-display font-bold uppercase mb-2 text-white group-hover:text-pink-500 transition-colors">
+                        <h3 className="text-xl font-display font-bold uppercase mb-2 text-foreground group-hover:text-pink-500 transition-colors">
                             {t("servicesBento.items.leadGen.title")}
                         </h3>
                         <p className="text-gray-400 text-sm mb-4 line-clamp-2">
@@ -174,7 +174,7 @@ export default function ServicesBento() {
                                     <BarChart3 size={32} />
                                 </div>
                                 <div className="flex-1">
-                                    <h3 className="text-2xl md:text-3xl font-display font-bold uppercase mb-2 text-white group-hover:text-emerald-500 transition-colors">
+                                    <h3 className="text-2xl md:text-3xl font-display font-bold uppercase mb-2 text-foreground group-hover:text-emerald-500 transition-colors">
                                         {t("servicesBento.items.dataViz.title")}
                                     </h3>
                                     <p className="text-gray-400 text-sm md:text-base max-w-3xl">

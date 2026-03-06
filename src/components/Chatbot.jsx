@@ -111,7 +111,7 @@ export default function Chatbot() {
             {/* Floating Toggle Button */}
             <motion.button
                 onClick={() => setIsOpen(true)}
-                className={`fixed bottom-6 right-6 z-50 p-4 rounded-full bg-black/80 backdrop-blur-md border border-primary-neon/50 shadow-[0_0_20px_rgba(0,240,255,0.3)] group hover:scale-110 transition-all duration-300 ${isOpen ? 'hidden' : (showButton ? 'flex' : 'hidden')}`}
+                className={`fixed bottom-6 right-6 z-50 p-4 rounded-full bg-card/80 backdrop-blur-md border border-primary-neon/50 shadow-[0_0_20px_rgba(0,240,255,0.3)] group hover:scale-110 transition-all duration-300 ${isOpen ? 'hidden' : (showButton ? 'flex' : 'hidden')}`}
                 whileHover={{ rotate: 5 }}
                 initial={{ scale: 0 }}
                 animate={{ scale: showButton ? 1 : 0 }}
@@ -130,17 +130,17 @@ export default function Chatbot() {
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 50, scale: 0.9 }}
                         transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                        className="fixed bottom-6 right-6 z-50 w-[90vw] md:w-[400px] max-h-[600px] h-[70vh] flex flex-col rounded-2xl overflow-hidden backdrop-blur-xl bg-zinc-900/95 border border-white/20 shadow-[0_0_50px_rgba(0,0,0,0.5)]"
+                        className="fixed bottom-6 right-6 z-50 w-[90vw] md:w-[400px] max-h-[600px] h-[70vh] flex flex-col rounded-2xl overflow-hidden backdrop-blur-xl bg-card/95 border border-border shadow-[0_0_50px_rgba(0,0,0,0.5)]"
                     >
                         {/* Header */}
-                        <div className="p-4 border-b border-white/10 bg-white/5 flex items-center justify-between relative overflow-hidden">
+                        <div className="p-4 border-b border-border bg-accent/50 flex items-center justify-between relative overflow-hidden">
                             <div className="absolute inset-0 bg-gradient-to-r from-primary-neon/10 to-transparent opacity-50" />
                             <div className="flex items-center gap-3 relative z-10">
                                 <div className="w-10 h-10 rounded-full bg-primary-neon/20 flex items-center justify-center border border-primary-neon/50">
                                     <Sparkles className="w-5 h-5 text-primary-neon" />
                                 </div>
                                 <div>
-                                    <h3 className="text-white font-display font-bold tracking-wide">Assistant IA</h3>
+                                    <h3 className="text-foreground font-display font-bold tracking-wide">Assistant IA</h3>
                                     <div className="flex items-center gap-1.5">
                                         <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                                         <span className="text-xs text-muted-foreground font-mono">En ligne</span>
@@ -149,7 +149,7 @@ export default function Chatbot() {
                             </div>
                             <button
                                 onClick={() => setIsOpen(false)}
-                                className="p-2 hover:bg-white/10 rounded-full transition-colors relative z-10 text-gray-400 hover:text-white"
+                                className="p-2 hover:bg-accent rounded-full transition-colors relative z-10 text-muted-foreground hover:text-foreground"
                             >
                                 <X className="w-5 h-5" />
                             </button>
@@ -165,17 +165,17 @@ export default function Chatbot() {
                                     className={`flex flex-col gap-2 ${msg.role === 'user' ? 'items-end' : 'items-start'}`}
                                 >
                                     <div className={`flex items-start gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}>
-                                        <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 border ${msg.role === 'user' ? 'bg-white/10 border-white/20' : 'bg-primary-neon/10 border-primary-neon/30'}`}>
+                                        <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 border ${msg.role === 'user' ? 'bg-accent border-border' : 'bg-primary-neon/10 border-primary-neon/30'}`}>
                                             {msg.role === 'user' ? (
-                                                <User className="w-4 h-4 text-white" />
+                                                <User className="w-4 h-4 text-foreground" />
                                             ) : (
                                                 <Terminal className="w-4 h-4 text-primary-neon" />
                                             )}
                                         </div>
                                         <div
                                             className={`p-3 rounded-2xl max-w-[85%] text-sm leading-relaxed ${msg.role === 'user'
-                                                ? 'bg-white/10 text-white rounded-tr-sm'
-                                                : 'bg-primary-neon/5 border border-primary-neon/10 text-gray-200 rounded-tl-sm shadow-[0_0_15px_rgba(0,240,255,0.05)]'
+                                                ? 'bg-accent text-foreground rounded-tr-sm'
+                                                : 'bg-primary-neon/5 border border-primary-neon/10 text-muted-foreground rounded-tl-sm shadow-[0_0_15px_rgba(0,240,255,0.05)]'
                                                 }`}
                                         >
                                             {msg.content}
@@ -212,7 +212,7 @@ export default function Chatbot() {
                         </div>
 
                         {/* Input Area */}
-                        <form onSubmit={handleSubmit} className="p-4 border-t border-white/10 bg-white/5 backdrop-blur-md">
+                        <form onSubmit={handleSubmit} className="p-4 border-t border-border bg-accent/50 backdrop-blur-md">
                             <div className="relative flex items-center gap-2">
                                 <input
                                     ref={inputRef}
@@ -220,7 +220,7 @@ export default function Chatbot() {
                                     value={input}
                                     onChange={(e) => setInput(e.target.value)}
                                     placeholder="Posez votre question..."
-                                    className="w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 pr-12 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-primary-neon/50 focus:ring-1 focus:ring-primary-neon/50 transition-all font-light"
+                                    className="w-full bg-muted border border-border rounded-xl px-4 py-3 pr-12 text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary-neon/50 focus:ring-1 focus:ring-primary-neon/50 transition-all font-light"
                                 />
                                 <button
                                     type="submit"

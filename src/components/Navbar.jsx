@@ -55,8 +55,8 @@ export default function Navbar() {
             <div className="container mx-auto px-4 md:px-6">
                 <div
                     className={`px-6 py-3 rounded-full flex items-center justify-between transition-all duration-500 border relative ${scrolled
-                        ? "bg-background/95 backdrop-blur-xl shadow-xl shadow-black/40 border-white/20"
-                        : "bg-background/40 backdrop-blur-sm border-white/5"
+                        ? "bg-background/95 backdrop-blur-xl shadow-xl shadow-black/10 border-border"
+                        : "bg-background/40 backdrop-blur-sm border-border/50"
                         }`}
                 >
                     <Link href="/" className="flex items-center gap-3 group">
@@ -109,15 +109,15 @@ export default function Navbar() {
                                             transition={{ duration: 0.2 }}
                                             className="absolute top-full left-1/2 -translate-x-1/2 pt-6 w-56 transform z-50"
                                         >
-                                            <div className="bg-[#0a0a0a] border border-white/10 rounded-xl overflow-hidden shadow-2xl backdrop-blur-xl p-2 flex flex-col gap-1 ring-1 ring-white/5">
+                                            <div className="bg-card border border-border rounded-xl overflow-hidden shadow-2xl backdrop-blur-xl p-2 flex flex-col gap-1 ring-1 ring-border">
                                                 {/* Decorative top arrow */}
-                                                <div className="absolute -top-[5px] left-1/2 -translate-x-1/2 w-3 h-3 bg-[#0a0a0a] border-t border-l border-white/10 rotate-45 transform" />
+                                                <div className="absolute -top-[5px] left-1/2 -translate-x-1/2 w-3 h-3 bg-card border-t border-l border-border rotate-45 transform" />
 
                                                 {item.subItems.map((sub) => (
                                                     <Link
                                                         key={sub.path}
                                                         href={sub.path}
-                                                        className={`block px-4 py-3 rounded-lg text-xs font-mono uppercase transition-all duration-200 hover:bg-white/5 ${pathname === sub.path ? "text-primary-neon bg-white/5" : "text-muted-foreground hover:text-foreground"
+                                                        className={`block px-4 py-3 rounded-lg text-xs font-mono uppercase transition-all duration-200 hover:bg-accent ${pathname === sub.path ? "text-primary-neon bg-accent" : "text-muted-foreground hover:text-foreground"
                                                             }`}
                                                     >
                                                         {sub.name}
@@ -131,7 +131,7 @@ export default function Navbar() {
                         ))}
 
                         {/* Language Selector */}
-                        <div className="relative border-l border-white/10 pl-6 ml-2">
+                        <div className="relative border-l border-border pl-6 ml-2">
                             <button
                                 onClick={(e) => { e.stopPropagation(); setLangMenu(!langMenu); }}
                                 className="flex items-center gap-2 p-1 rounded hover:bg-white/5 transition-all text-xs font-mono text-muted-foreground uppercase"
@@ -146,13 +146,13 @@ export default function Navbar() {
                                         initial={{ opacity: 0, y: 5, scale: 0.95 }}
                                         animate={{ opacity: 1, y: 0, scale: 1 }}
                                         exit={{ opacity: 0, y: 5, scale: 0.95 }}
-                                        className="absolute top-full right-0 mt-4 bg-[#0a0a0a] border border-white/10 rounded-lg overflow-hidden min-w-[100px] shadow-xl z-50"
+                                        className="absolute top-full right-0 mt-4 bg-card border border-border rounded-lg overflow-hidden min-w-[100px] shadow-xl z-50"
                                     >
                                         {availableLocales.map((lang) => (
                                             <button
                                                 key={lang.code}
                                                 onClick={() => { setLocale(lang.code); setLangMenu(false); }}
-                                                className={`w-full px-4 py-2 flex items-center gap-3 hover:bg-white/5 transition-colors text-left font-mono text-xs uppercase ${locale === lang.code ? "text-primary-neon" : "text-muted-foreground"}`}
+                                                className={`w-full px-4 py-2 flex items-center gap-3 hover:bg-accent transition-colors text-left font-mono text-xs uppercase ${locale === lang.code ? "text-primary-neon" : "text-muted-foreground"}`}
                                             >
                                                 <span>{lang.name}</span>
                                             </button>
@@ -161,6 +161,25 @@ export default function Navbar() {
                                 )}
                             </AnimatePresence>
                         </div>
+
+                        {/* Theme Toggle */}
+                        <button
+                            onClick={toggleTheme}
+                            className="p-2 rounded-full hover:bg-accent transition-all duration-300 text-muted-foreground hover:text-foreground"
+                            aria-label="Toggle theme"
+                        >
+                            <AnimatePresence mode="wait" initial={false}>
+                                <motion.div
+                                    key={theme}
+                                    initial={{ y: -10, opacity: 0, rotate: -90 }}
+                                    animate={{ y: 0, opacity: 1, rotate: 0 }}
+                                    exit={{ y: 10, opacity: 0, rotate: 90 }}
+                                    transition={{ duration: 0.2 }}
+                                >
+                                    {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
+                                </motion.div>
+                            </AnimatePresence>
+                        </button>
 
                         {pathname === "/contact" ? (
                             <Link
@@ -192,7 +211,7 @@ export default function Navbar() {
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
-                        className="absolute top-20 left-4 right-4 bg-[#0a0a0a]/95 backdrop-blur-xl border border-white/10 rounded-3xl p-6 flex flex-col gap-6 md:hidden shadow-2xl z-50 overflow-hidden"
+                        className="absolute top-20 left-4 right-4 bg-card/95 backdrop-blur-xl border border-border rounded-3xl p-6 flex flex-col gap-6 md:hidden shadow-2xl z-50 overflow-hidden"
                     >
                         {navItems.map((item) => (
                             <div key={item.path} className="flex flex-col">
@@ -229,7 +248,7 @@ export default function Navbar() {
                                             exit={{ height: 0, opacity: 0 }}
                                             className="overflow-hidden"
                                         >
-                                            <div className="flex flex-col gap-3 pl-6 pt-3 border-l border-white/10 ml-2 mt-2">
+                                            <div className="flex flex-col gap-3 pl-6 pt-3 border-l border-border ml-2 mt-2">
                                                 {item.subItems.map(sub => (
                                                     <Link
                                                         key={sub.path}
@@ -248,7 +267,7 @@ export default function Navbar() {
                             </div>
                         ))}
 
-                        <div className="flex flex-col gap-4 pt-4 border-t border-white/10">
+                        <div className="flex flex-col gap-4 pt-4 border-t border-border">
                             <Link href="/contact" onClick={() => setMobileMenu(false)} className="w-full text-center px-5 py-3 border border-primary/30 bg-primary/5 text-primary-neon rounded-xl text-sm font-mono uppercase tracking-wider hover:bg-primary/20 hover:border-primary/60 transition-all duration-300 shadow-neon-cyan">
                                 {t("nav.audit")}
                             </Link>
@@ -262,13 +281,22 @@ export default function Navbar() {
                                     <button
                                         key={lang.code}
                                         onClick={() => setLocale(lang.code)}
-                                        className={`px-3 py-2 rounded-lg text-sm font-mono uppercase ${locale === lang.code ? "bg-primary/20 text-primary-neon" : "text-muted-foreground hover:bg-white/5"}`}
+                                        className={`px-3 py-2 rounded-lg text-sm font-mono uppercase ${locale === lang.code ? "bg-primary/20 text-primary-neon" : "text-muted-foreground hover:bg-accent"}`}
                                     >
                                         <span className="text-lg me-2">{lang.flag}</span>
                                         {lang.code}
                                     </button>
                                 ))}
                             </div>
+
+                            {/* Mobile Theme Toggle */}
+                            <button
+                                onClick={toggleTheme}
+                                className="p-3 rounded-xl bg-accent text-foreground transition-all duration-300"
+                                aria-label="Toggle theme"
+                            >
+                                {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+                            </button>
                         </div>
                     </motion.div>
                 )}

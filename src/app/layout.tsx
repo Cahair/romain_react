@@ -112,6 +112,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <html lang="fr" className="scroll-smooth" suppressHydrationWarning>
             <head>
                 <script
+                    dangerouslySetInnerHTML={{
+                        __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='light')document.documentElement.classList.add('light')}catch(e){}})()`
+                    }}
+                />
+                <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
                 />

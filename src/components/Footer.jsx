@@ -7,7 +7,7 @@ export default function Footer() {
     const { t } = useTranslation();
 
     return (
-        <footer id="contact" className="py-16 md:py-32 bg-background border-t border-white/5 relative overflow-hidden">
+        <footer id="contact" className="py-16 md:py-32 bg-background border-t border-border relative overflow-hidden">
             {/* Top Glow Line */}
             <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary-neon/50 to-transparent" />
 
@@ -37,7 +37,7 @@ export default function Footer() {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className="mt-32 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+                <div className="mt-32 pt-12 border-t border-border flex flex-col md:flex-row justify-between items-center gap-8">
                     <div className="flex gap-8">
                         <a href="https://www.linkedin.com/in/romain-kantzer-9323b920a/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary-neon transition-colors">
                             <Linkedin className="w-6 h-6" />
@@ -59,7 +59,7 @@ export default function Footer() {
 
             <style jsx global>{`
                 .stroke-text {
-                    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.8);
+                    -webkit-text-stroke: 2px var(--text-stroke-color);
                 }
             `}</style>
         </footer>
