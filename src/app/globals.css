@@ -269,6 +269,56 @@ html.light .shadow-black\/40 {
   --tw-shadow-color: rgba(0, 0, 0, 0.08);
 }
 
+/* Agents page — soften dark gradients in light mode */
+html.light .from-blue-900 {
+  --tw-gradient-from: #dbeafe;
+}
+
+html.light .via-cyan-900 {
+  --tw-gradient-via: #cffafe;
+}
+
+html.light .from-orange-900 {
+  --tw-gradient-from: #ffedd5;
+}
+
+html.light .via-fuchsia-900 {
+  --tw-gradient-via: #fae8ff;
+}
+
+html.light .from-emerald-900 {
+  --tw-gradient-from: #d1fae5;
+}
+
+html.light .via-slate-900 {
+  --tw-gradient-via: #e2e8f0;
+}
+
+/* Agents page — darken light-colored text for readability */
+html.light .text-cyan-100 {
+  color: #164e63;
+}
+
+html.light .text-orange-100 {
+  color: #7c2d12;
+}
+
+html.light .text-emerald-100 {
+  color: #064e3b;
+}
+
+html.light .text-cyan-400 {
+  color: #0e7490;
+}
+
+html.light .text-orange-400 {
+  color: #c2410c;
+}
+
+html.light .text-emerald-400 {
+  color: #047857;
+}
+
 
 
 ::selection {

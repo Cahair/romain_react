@@ -129,7 +129,7 @@ export default function Hero() {
     const titleLine2Words = t("hero.titleLine2").split(" ");
 
     return (
-        <section ref={containerRef} className="relative h-screen min-h-[100dvh] overflow-hidden bg-background">
+        <section ref={containerRef} className="relative min-h-screen min-h-[100dvh] overflow-x-hidden bg-background">
 
             {/* ═══ BACKGROUND LAYER ═══ */}
 
@@ -171,7 +171,7 @@ export default function Hero() {
             />
 
             {/* ═══ CONTENT ═══ */}
-            <div className="container mx-auto px-4 relative z-10 h-full flex flex-col justify-center items-center">
+            <div className="container mx-auto px-4 relative z-10 h-full flex flex-col justify-center items-center pt-32 md:pt-40 pb-8">
 
                 <div className="flex flex-col items-center gap-8 md:gap-12 max-w-6xl w-full">
 

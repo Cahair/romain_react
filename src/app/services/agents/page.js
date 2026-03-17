@@ -145,7 +145,7 @@ const WorkflowVisual = () => {
                 {/* Nodes */}
                 {/* 1. Trigger */}
                 <g transform="translate(60, 150)">
-                    <circle r="20" fill="#1e1b4b" stroke="#8b5cf6" strokeWidth="2" />
+                    <circle r="20" fill="var(--card)" stroke="#8b5cf6" strokeWidth="2" />
                     <Zap size={16} x="-8" y="-8" className="text-secondary-neon" />
                 </g>
 
@@ -156,7 +156,7 @@ const WorkflowVisual = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 0.4 }}
                 >
-                    <rect x="-20" y="-20" width="40" height="40" rx="6" fill="#1e1b4b" stroke="#8b5cf6" strokeWidth="2" />
+                    <rect x="-20" y="-20" width="40" height="40" rx="6" fill="var(--card)" stroke="#8b5cf6" strokeWidth="2" />
                     <Cpu size={16} x="-8" y="-8" className="text-secondary-neon" />
                 </motion.g>
 
@@ -167,7 +167,7 @@ const WorkflowVisual = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 0.8 }}
                 >
-                    <rect x="-24" y="-24" width="48" height="48" rx="8" fill="#1e1b4b" stroke="#8b5cf6" strokeWidth="2" />
+                    <rect x="-24" y="-24" width="48" height="48" rx="8" fill="var(--card)" stroke="#8b5cf6" strokeWidth="2" />
                     <Bot size={20} x="-10" y="-10" className="text-secondary-neon" />
                 </motion.g>
 
@@ -178,7 +178,7 @@ const WorkflowVisual = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 0.8 }}
                 >
-                    <rect x="-24" y="-24" width="48" height="48" rx="8" fill="#1e1b4b" stroke="#8b5cf6" strokeWidth="2" />
+                    <rect x="-24" y="-24" width="48" height="48" rx="8" fill="var(--card)" stroke="#8b5cf6" strokeWidth="2" />
                     <Mail size={20} x="-10" y="-10" className="text-secondary-neon" />
                 </motion.g>
 
@@ -189,7 +189,7 @@ const WorkflowVisual = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 1.2 }}
                 >
-                    <rect x="-24" y="-24" width="48" height="48" rx="8" fill="#1e1b4b" stroke="#8b5cf6" strokeWidth="2" />
+                    <rect x="-24" y="-24" width="48" height="48" rx="8" fill="var(--card)" stroke="#8b5cf6" strokeWidth="2" />
                     <Database size={20} x="-10" y="-10" className="text-secondary-neon" />
                 </motion.g>
 
@@ -200,7 +200,7 @@ const WorkflowVisual = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 1.4 }}
                 >
-                    <rect x="-24" y="-24" width="48" height="48" rx="8" fill="#1e1b4b" stroke="#8b5cf6" strokeWidth="2" />
+                    <rect x="-24" y="-24" width="48" height="48" rx="8" fill="var(--card)" stroke="#8b5cf6" strokeWidth="2" />
                     <Bell size={20} x="-10" y="-10" className="text-secondary-neon" />
                 </motion.g>
             </svg>
@@ -252,7 +252,7 @@ const DataVisual = () => {
     return (
         <div className="w-full max-h-[35vh] max-w-lg mx-auto aspect-video perspective-1000 relative">
             <motion.div
-                className="w-full h-full bg-black/40 backdrop-blur-xl border border-emerald-500/30 rounded-xl p-4 shadow-2xl"
+                className="w-full h-full bg-background/80 backdrop-blur-xl border border-emerald-500/30 rounded-xl p-4 shadow-2xl"
                 initial={{ rotateX: 20, rotateY: -20, opacity: 0, y: 50 }}
                 whileInView={{ rotateX: 10, rotateY: -10, opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}
@@ -277,7 +277,7 @@ const DataVisual = () => {
 
                 {/* Floating Elements */}
                 <motion.div
-                    className="absolute -right-6 top-8 bg-black/80 border border-emerald-500/50 p-2 rounded-lg shadow-xl"
+                    className="absolute -right-6 top-8 bg-background/80 border border-emerald-500/50 p-2 rounded-lg shadow-xl"
                     initial={{ x: 20, opacity: 0 }}
                     whileInView={{ x: 0, opacity: 1 }}
                     transition={{ delay: 1 }}
@@ -297,15 +297,15 @@ export default function AgentsPage() {
     const { t } = useTranslation();
 
     return (
-        <main className="h-[100dvh] w-full overflow-y-scroll snap-y snap-mandatory bg-black text-white selection:bg-purple-900 selection:text-white scroll-smooth">
+        <main className="h-[100dvh] w-full overflow-y-scroll snap-y snap-mandatory bg-background text-foreground selection:bg-purple-900/30 selection:text-foreground scroll-smooth">
             <Navbar />
 
             {/* Title Section */}
             <section className="h-[100dvh] w-full snap-start flex flex-col items-center justify-center relative overflow-hidden pt-20">
                 {/* Background Elements */}
                 <div className="absolute inset-0 z-0 pointer-events-none">
-                    <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-900/20 rounded-full blur-[120px] mix-blend-screen animate-pulse" />
-                    <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-900/10 rounded-full blur-[120px] mix-blend-screen" />
+                    <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-900/20 rounded-full blur-[120px] animate-pulse" />
+                    <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-900/10 rounded-full blur-[120px]" />
                 </div>
 
                 <div className="text-center space-y-4 z-10 px-4">
@@ -342,10 +342,10 @@ export default function AgentsPage() {
 
             {/* Agent Sections */}
             {agents.map((agent) => (
-                <section key={agent.id} className="h-[100dvh] w-full snap-start flex items-center justify-center overflow-hidden px-4 py-4 md:py-20 relative">
+                <section key={agent.id} className="h-[100dvh] w-full snap-start flex items-center justify-center overflow-hidden px-4 py-4 md:py-20 relative bg-background">
                     {/* Dynamic Background based on agent */}
                     <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
-                        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[150px] mix-blend-screen ${agent.id === 'axiom' ? 'bg-cyan-900/40' :
+                        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[150px] ${agent.id === 'axiom' ? 'bg-cyan-900/40' :
                             agent.id === 'lumina' ? 'bg-orange-900/40' :
                                 'bg-emerald-900/40'
                             }`} />
@@ -362,7 +362,7 @@ export default function AgentsPage() {
             ))}
 
             {/* Section 1: Chatbots */}
-            <section id="chatbots" className="h-[100dvh] w-full snap-start flex items-center justify-center relative overflow-hidden px-4 md:px-8">
+            <section id="chatbots" className="h-[100dvh] w-full snap-start flex items-center justify-center relative overflow-hidden px-4 md:px-8 bg-background">
                 <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full max-h-[90dvh]">
                     <div className="order-2 md:order-1 flex flex-col justify-center gap-4 md:gap-6">
                         <motion.h2
@@ -398,7 +398,7 @@ export default function AgentsPage() {
             </section>
 
             {/* Section 2: Workflows */}
-            <section className="h-[100dvh] w-full snap-start flex items-center justify-center relative overflow-hidden px-4 md:px-8 bg-black/20">
+            <section className="h-[100dvh] w-full snap-start flex items-center justify-center relative overflow-hidden px-4 md:px-8 bg-background">
                 <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full max-h-[90dvh]">
                     <div className="order-2 md:order-1 flex justify-center items-center h-[35vh] md:h-auto">
                         <WorkflowVisual />
@@ -434,7 +434,7 @@ export default function AgentsPage() {
             </section>
 
             {/* Section 3: Lead Gen */}
-            <section className="h-[100dvh] w-full snap-start flex items-center justify-center relative overflow-hidden px-4 md:px-8">
+            <section className="h-[100dvh] w-full snap-start flex items-center justify-center relative overflow-hidden px-4 md:px-8 bg-background">
                 <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full max-h-[90dvh]">
                     <div className="order-2 md:order-1 flex flex-col justify-center gap-4 md:gap-6">
                         <motion.h2
@@ -470,7 +470,7 @@ export default function AgentsPage() {
             </section>
 
             {/* Section 4: Data */}
-            <section className="h-[100dvh] w-full snap-start flex items-center justify-center relative overflow-hidden px-4 md:px-8 bg-black/20">
+            <section className="h-[100dvh] w-full snap-start flex items-center justify-center relative overflow-hidden px-4 md:px-8 bg-background">
                 <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full max-h-[90dvh]">
                     <div className="order-2 md:order-1 flex justify-center items-center h-[35vh] md:h-auto">
                         <DataVisual />

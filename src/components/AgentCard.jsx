@@ -8,21 +8,21 @@ export default function AgentCard({ agent, isActive, onClick }) {
     // Visual styles based on agent type
     const styles = {
         axiom: {
-            gradient: "from-blue-900 via-cyan-900 to-black",
+            gradient: "from-blue-900 via-cyan-900 to-background",
             border: "border-cyan-500/30 hover:border-cyan-400/60",
             text: "text-cyan-100",
             accent: "text-cyan-400",
             glow: "shadow-[0_0_30px_rgba(34,211,238,0.15)]",
         },
         lumina: {
-            gradient: "from-orange-900 via-fuchsia-900 to-black",
+            gradient: "from-orange-900 via-fuchsia-900 to-background",
             border: "border-fuchsia-500/30 hover:border-orange-400/60",
             text: "text-orange-100",
             accent: "text-orange-400",
             glow: "shadow-[0_0_30px_rgba(249,115,22,0.15)]",
         },
         kairo: {
-            gradient: "from-emerald-900 via-slate-900 to-black",
+            gradient: "from-emerald-900 via-slate-900 to-background",
             border: "border-emerald-500/30 hover:border-emerald-400/60",
             text: "text-emerald-100",
             accent: "text-emerald-400",
@@ -41,7 +41,7 @@ export default function AgentCard({ agent, isActive, onClick }) {
             animate={{ opacity: 1, y: 0 }}
             whileHover={!isSelected ? { scale: 1.02 } : {}}
         >
-            <div className="absolute inset-0 bg-black/40" />
+            <div className="absolute inset-0 bg-background/40" />
 
             <div className="relative h-full flex flex-col p-5 md:p-8 z-10">
                 <div className="flex items-start justify-between mb-3 md:mb-4">
@@ -56,7 +56,7 @@ export default function AgentCard({ agent, isActive, onClick }) {
                 {/* Visual Representation Placeholder */}
                 {/* Visual Representation */}
                 {/* Visual Representation */}
-                <div className={`w-full h-auto mb-4 md:mb-6 rounded-xl overflow-hidden relative border ${style.border} group-hover:scale-[1.02] transition-transform duration-500 bg-black/20`}>
+                <div className={`w-full h-auto mb-4 md:mb-6 rounded-xl overflow-hidden relative border ${style.border} group-hover:scale-[1.02] transition-transform duration-500 bg-background/20`}>
                     <AgentVideoPlayer
                         videoSrc={`/videos/${agent.id === 'axiom' ? 'support_client.mp4' : agent.id === 'lumina' ? 'reseaux_sociaux.mp4' : 'blog.mp4'}`}
                         agentName={agent.name}
@@ -110,12 +110,12 @@ export default function AgentCard({ agent, isActive, onClick }) {
                                 animate={{ opacity: 1 }}
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className={`w-full py-3 px-4 rounded-lg font-medium text-sm uppercase tracking-wide transition-colors bg-white/10 hover:bg-white/20 text-white border border-white/20`}
+                                className={`w-full py-3 px-4 rounded-lg font-medium text-sm uppercase tracking-wide transition-colors bg-foreground/10 hover:bg-foreground/20 text-foreground border border-foreground/20`}
                             >
                                 {agent.cta}
                             </motion.button>
                         ) : (
-                            <div className="md:hidden w-full py-2 px-4 rounded-lg font-medium text-xs uppercase tracking-wide text-center border border-white/10 text-white/50 bg-black/20 backdrop-blur-sm">
+                            <div className="md:hidden w-full py-2 px-4 rounded-lg font-medium text-xs uppercase tracking-wide text-center border border-foreground/10 text-foreground/50 bg-background/20 backdrop-blur-sm">
                                 Voir
                             </div>
                         )}

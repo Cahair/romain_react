@@ -140,7 +140,7 @@ function VisualStepCard({ step, visual, index }) {
 
 export default function ProcessTimeline({ process: processData }) {
     return (
-        <section className="relative h-screen min-h-[700px] px-6 bg-background overflow-hidden flex flex-col justify-center">
+        <section className="relative py-24 md:py-32 px-6 bg-background overflow-hidden flex flex-col justify-center">
             {/* Background accents */}
             <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[140px] pointer-events-none" />
             <div className="absolute bottom-1/4 right-0 w-[400px] h-[400px] bg-violet-500/5 rounded-full blur-[140px] pointer-events-none" />
