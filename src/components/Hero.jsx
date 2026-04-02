@@ -129,7 +129,7 @@ export default function Hero() {
     const titleLine2Words = t("hero.titleLine2").split(" ");
 
     return (
-        <section ref={containerRef} className="relative min-h-screen min-h-[100dvh] bg-background">
+        <section ref={containerRef} className="relative min-h-screen min-h-[100dvh] overflow-hidden bg-background">
 
             {/* ═══ BACKGROUND LAYER ═══ */}
 
