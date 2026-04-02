@@ -2,24 +2,46 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 
+function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function sanitizeText(str) {
+    if (typeof str !== 'string') return '';
+    return str.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
 export async function POST(request) {
     try {
+        if (!process.env.RESEND_API_KEY) {
+            return NextResponse.json({ error: "Configuration serveur manquante." }, { status: 500 });
+        }
+
         const resend = new Resend(process.env.RESEND_API_KEY);
         const body = await request.json();
         const { name, email, project, budget, message } = body;
 
-        console.log('=== CONTACT FORM SUBMISSION ===');
-        console.log('Data:', body);
-
-        if (!process.env.RESEND_API_KEY) {
-            throw new Error("RESEND_API_KEY manquante");
+        if (!name || typeof name !== 'string' || name.trim().length === 0) {
+            return NextResponse.json({ error: 'Nom invalide.' }, { status: 400 });
         }
+        if (!email || !isValidEmail(email)) {
+            return NextResponse.json({ error: 'Email invalide.' }, { status: 400 });
+        }
+        if (!message || typeof message !== 'string' || message.trim().length === 0) {
+            return NextResponse.json({ error: 'Message invalide.' }, { status: 400 });
+        }
+
+        const safeName = sanitizeText(name.trim());
+        const safeEmail = sanitizeText(email.trim());
+        const safeProject = sanitizeText((project || 'Non spécifié').trim());
+        const safeBudget = sanitizeText((budget || 'Non spécifié').trim());
+        const safeMessage = sanitizeText(message.trim());
 
         const data = await resend.emails.send({
             from: 'Contact Form <onboarding@resend.dev>',
             to: [process.env.CONTACT_EMAIL || 'romainkantzer10@gmail.com'],
-            reply_to: email,
-            subject: `Nouveau contact de ${name} - Projet ${project || 'Non spécifié'}`,
+            reply_to: safeEmail,
+            subject: `Nouveau contact de ${safeName} - Projet ${safeProject}`,
             html: `
                 <!DOCTYPE html>
                 <html>
@@ -29,7 +51,7 @@ export async function POST(request) {
                 </head>
                 <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f4f4f5; margin: 0; padding: 40px 0;">
                     <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08); border: 1px solid #e2e8f0;">
-                        
+
                         <!-- Header -->
                         <div style="background-color: #0f172a; padding: 32px; text-align: center;">
                             <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -0.5px;">Nouvelle Demande</h1>
@@ -38,12 +60,12 @@ export async function POST(request) {
 
                         <!-- Content -->
                         <div style="padding: 32px 40px;">
-                            
+
                             <!-- User Info -->
                             <div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #f1f5f9;">
                                 <div style="font-size: 12px; color: #64748b; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 8px;">De la part de</div>
-                                <div style="font-size: 18px; color: #1e293b; font-weight: 600;">${name}</div>
-                                <a href="mailto:${email}" style="color: #3b82f6; text-decoration: none; font-size: 15px;">${email}</a>
+                                <div style="font-size: 18px; color: #1e293b; font-weight: 600;">${safeName}</div>
+                                <a href="mailto:${safeEmail}" style="color: #3b82f6; text-decoration: none; font-size: 15px;">${safeEmail}</a>
                             </div>
 
                             <!-- Project Details Grid -->
@@ -52,13 +74,13 @@ export async function POST(request) {
                                     <td width="50%" style="vertical-align: top; padding-right: 16px;">
                                         <div style="font-size: 12px; color: #64748b; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 8px;">Type de Projet</div>
                                         <div style="display: inline-block; background-color: #f0f9ff; color: #0369a1; padding: 6px 12px; border-radius: 6px; font-size: 14px; font-weight: 600; border: 1px solid #e0f2fe;">
-                                            ${project || 'Non spécifié'}
+                                            ${safeProject}
                                         </div>
                                     </td>
                                     <td width="50%" style="vertical-align: top; padding-left: 16px;">
                                         <div style="font-size: 12px; color: #64748b; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 8px;">Budget</div>
                                         <div style="font-size: 16px; color: #334155; font-weight: 500;">
-                                            ${budget || 'Non spécifié'}
+                                            ${safeBudget}
                                         </div>
                                     </td>
                                 </tr>
@@ -67,7 +89,7 @@ export async function POST(request) {
                             <!-- Message -->
                             <div>
                                 <div style="font-size: 12px; color: #64748b; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 12px;">Message</div>
-                                <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; color: #334155; line-height: 1.6; font-size: 15px; white-space: pre-wrap;">${message}</div>
+                                <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; color: #334155; line-height: 1.6; font-size: 15px; white-space: pre-wrap;">${safeMessage}</div>
                             </div>
 
                         </div>
@@ -84,10 +106,7 @@ export async function POST(request) {
             `,
         });
 
-        console.log('Resend Response:', data);
-
         if (data.error) {
-            console.error('Resend Error:', data.error);
             return NextResponse.json(
                 { error: 'Erreur lors de l\'envoi de l\'email.' },
                 { status: 500 }
@@ -95,12 +114,11 @@ export async function POST(request) {
         }
 
         return NextResponse.json(
-            { success: true, message: 'Email envoyé avec succès', data },
+            { success: true, message: 'Email envoyé avec succès' },
             { status: 200 }
         );
 
     } catch (error) {
-        console.error('Error in contact route:', error);
         return NextResponse.json(
             { error: 'Erreur interne du serveur.' },
             { status: 500 }

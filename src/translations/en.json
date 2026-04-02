@@ -69,7 +69,7 @@
         "titleHighlight2": "AI ARCHITECT",
         "story": {
             "title": "Romain Kantzer",
-            "text": "Web expert turned AI architect. I design intelligent systems that automate and increase your company's value.",
+            "text": "From industrial automation — PLCs, SCADA supervision, connected systems — I pivoted to web development before merging both expertises into AI architecture. This dual technical background taught me to think in systems: building robust, scalable, results-driven solutions.",
             "highlight": "The web is the foundation, AI is the engine."
         },
         "vision": {
@@ -277,6 +277,16 @@
             "titleHighlight": "Analysis",
             "desc": "Stop navigating blindly. Transform raw data into strategic intelligence with our predictive dashboards.",
             "button": "Discover Data"
+        },
+        "webDev": {
+            "titleLine1": "Web",
+            "titleLine2": "Development",
+            "subtitle": "I design your:",
+            "type1": "Corporate Sites",
+            "type2": "SaaS Applications",
+            "type3": "AI Dashboards",
+            "desc": "Clean code (React/Next.js), SEO-optimized and ready to integrate your AI.",
+            "button": "Discuss my project"
         }
     },
     "webDevPage": {

@@ -75,7 +75,7 @@
         "titleHighlight2": "ARCHITECTE IA",
         "story": {
             "title": "Romain Kantzer",
-            "text": "Expert web devenu architecte AI. Je conçois des systèmes intelligents qui automatisent et accroissent la valeur de votre entreprise.",
+            "text": "Issu de l'automatisation industrielle — automates, supervision SCADA, systèmes connectés — j'ai pivoté vers le web avant de fusionner ces deux expertises dans l'architecture IA. Cette double culture technique m'a appris à penser en systèmes : concevoir des solutions robustes, scalables et orientées résultats.",
             "highlight": "Le web est la fondation, l'AI est le moteur."
         },
         "vision": {
@@ -283,6 +283,16 @@
             "titleHighlight": "Data",
             "desc": "Ne naviguez plus à vue. Transformez vos données brutes en intelligence stratégique grâce à nos dashboards prédictifs.",
             "button": "Découvrir la Data"
+        },
+        "webDev": {
+            "titleLine1": "Développement",
+            "titleLine2": "Web",
+            "subtitle": "Je conçois vos :",
+            "type1": "Sites Corporate",
+            "type2": "Applications SaaS",
+            "type3": "Dashboards IA",
+            "desc": "Du code propre (React/Next.js), optimisé pour le SEO et prêt à intégrer votre IA.",
+            "button": "Discuter de mon projet"
         }
     },
     "webDevPage": {

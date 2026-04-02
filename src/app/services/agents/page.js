@@ -314,10 +314,10 @@ export default function AgentsPage() {
                         whileInView={{ opacity: 1, y: 0 }}
                         className="text-4xl md:text-6xl font-black uppercase tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-orange-400"
                     >
-                        Assemblez<br />Votre Équipe
+                        Vos Agents IA<br />Sur-Mesure
                     </motion.h2>
                     <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto font-light">
-                        Trois entités uniques. Une synergie parfaite pour propulser votre business.
+                        Trois exemples concrets de ce qu'un agent IA peut faire pour votre business. Chaque agent est conçu et entraîné spécifiquement pour vos processus, vos outils et vos objectifs.
                     </p>
                 </div>
 

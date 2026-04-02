@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 export async function POST(req) {
     try {
         const { message } = await req.json();
-        const apiKey = process.env.GEMINI_API_KEY || "AIzaSyCpfGrXEm2VRlSoTwnIlVEtpyKsha5d6pg";
+        const apiKey = process.env.GEMINI_API_KEY;
 
         if (!apiKey) {
             return NextResponse.json({ error: "API key missing" }, { status: 500 });

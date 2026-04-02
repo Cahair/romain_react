@@ -465,9 +465,9 @@ export default function ServicesPage() {
                             whileInView={{ opacity: 1, x: 0 }}
                             className="text-[clamp(2.5rem,6vw,5rem)] font-black uppercase leading-none"
                         >
-                            <span className="text-blue-400">Développement</span>
+                            <span className="text-blue-400">{t("servicesPage.webDev.titleLine1")}</span>
                             <br />
-                            <span className="text-white">Web</span>
+                            <span className="text-white">{t("servicesPage.webDev.titleLine2")}</span>
                         </motion.h2>
 
                         {/* Dynamic Subtitle with Text Animation */}
@@ -477,7 +477,7 @@ export default function ServicesPage() {
                             transition={{ delay: 0.2 }}
                             className="flex items-center gap-2 text-[clamp(1.125rem,2vw,1.5rem)] text-muted-foreground"
                         >
-                            <span>Je conçois vos :</span>
+                            <span>{t("servicesPage.webDev.subtitle")}</span>
                             <span className="relative inline-block min-w-[280px] h-[1.5em]">
                                 <motion.span
                                     className="text-blue-400 font-bold absolute left-0 top-0"
@@ -490,7 +490,7 @@ export default function ServicesPage() {
                                         repeatDelay: 6,
                                     }}
                                 >
-                                    Sites Corporate
+                                    {t("servicesPage.webDev.type1")}
                                 </motion.span>
                                 <motion.span
                                     className="text-blue-400 font-bold absolute left-0 top-0"
@@ -504,7 +504,7 @@ export default function ServicesPage() {
                                         delay: 3,
                                     }}
                                 >
-                                    Applications SaaS
+                                    {t("servicesPage.webDev.type2")}
                                 </motion.span>
                                 <motion.span
                                     className="text-blue-400 font-bold absolute left-0 top-0"
@@ -518,7 +518,7 @@ export default function ServicesPage() {
                                         delay: 6,
                                     }}
                                 >
-                                    Dashboards IA
+                                    {t("servicesPage.webDev.type3")}
                                 </motion.span>
                             </span>
                         </motion.div>
@@ -530,7 +530,7 @@ export default function ServicesPage() {
                             transition={{ delay: 0.4 }}
                             className="text-sm md:text-base text-gray-400 leading-relaxed max-w-lg"
                         >
-                            Du code propre (React/Vue), optimisé pour le SEO et prêt à accueillir votre IA.
+                            {t("servicesPage.webDev.desc")}
                         </motion.p>
 
                         {/* CTA Button */}
@@ -543,7 +543,7 @@ export default function ServicesPage() {
                                 href="/contact"
                                 className="inline-flex items-center gap-3 px-6 py-3 bg-blue-500/10 border border-blue-500/50 rounded-full hover:bg-blue-500/20 transition-all group"
                             >
-                                <span className="uppercase tracking-widest font-bold text-sm text-blue-400">Discuter de mon projet</span>
+                                <span className="uppercase tracking-widest font-bold text-sm text-blue-400">{t("servicesPage.webDev.button")}</span>
                                 <ArrowRight className="w-4 h-4 text-blue-400 group-hover:translate-x-1 transition-transform" />
                             </Link>
                         </motion.div>
