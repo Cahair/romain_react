@@ -113,6 +113,10 @@ html.light {
   --text-stroke-color: rgba(15, 23, 42, 0.25);
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
