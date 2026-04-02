@@ -82,7 +82,7 @@ const MagneticButton = ({ children, href }) => {
         >
             <Link
                 href={href}
-                className="group relative inline-flex items-center gap-3 px-8 py-4 md:px-10 md:py-5 bg-primary/10 border border-primary/50 text-foreground font-medium text-base md:text-lg rounded-2xl transition-all duration-500 hover:bg-primary/20 hover:border-primary hover:shadow-[0_0_40px_rgba(6,182,212,0.3)] overflow-hidden"
+                className="group relative inline-flex items-center gap-3 px-7 py-3.5 md:px-9 md:py-4 bg-primary/10 border border-primary/50 text-foreground font-medium text-base rounded-2xl transition-all duration-500 hover:bg-primary/20 hover:border-primary hover:shadow-[0_0_40px_rgba(6,182,212,0.3)] overflow-hidden"
             >
                 {/* Glow effect */}
                 <span className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-primary/10 via-secondary/10 to-primary/10" />
@@ -171,15 +171,15 @@ export default function Hero() {
             />
 
             {/* ═══ CONTENT ═══ */}
-            <div className="container mx-auto px-4 relative z-10 h-full flex flex-col justify-center items-center pt-32 md:pt-40 pb-8">
+            <div className="container mx-auto px-4 relative z-10 h-full flex flex-col justify-center items-center pt-24 md:pt-28 pb-6">
 
-                <div className="flex flex-col items-center gap-8 md:gap-12 max-w-6xl w-full">
+                <div className="flex flex-col items-center gap-5 md:gap-8 max-w-6xl w-full">
 
                     {/* ── Animated Title ── */}
                     <div className="text-center">
                         <motion.h1
                             key={locale}
-                            className="font-display font-bold text-5xl sm:text-6xl md:text-8xl lg:text-9xl leading-[0.9] tracking-tighter uppercase w-full text-center"
+                            className="font-display font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.9] tracking-tighter uppercase w-full text-center"
                             initial="hidden"
                             animate="visible"
                             variants={{
@@ -217,7 +217,7 @@ export default function Hero() {
                     </div>
 
                     {/* ── Subtitle + Floating Cards Row ── */}
-                    <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 w-full">
+                    <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 w-full">
 
                         {/* Left: Text */}
                         <motion.div
@@ -226,16 +226,16 @@ export default function Hero() {
                             transition={{ delay: 0.9, duration: 0.8, ease: "easeOut" }}
                             className="max-w-lg text-center md:text-left"
                         >
-                            <h2 className="text-lg md:text-2xl font-light tracking-wide text-foreground/90 font-mono mb-3">
+                            <h2 className="text-base md:text-xl font-light tracking-wide text-foreground/90 font-mono mb-2">
                                 {t("hero.highlightTitle")}
                             </h2>
-                            <p className="text-muted-foreground text-sm md:text-base whitespace-pre-line leading-relaxed">
+                            <p className="text-muted-foreground text-sm whitespace-pre-line leading-relaxed">
                                 {t("hero.description")}
                             </p>
                         </motion.div>
 
                         {/* Right: Floating UI Cards */}
-                        <div className="relative w-[240px] h-[200px] md:w-[320px] md:h-[260px] flex-shrink-0">
+                        <div className="relative w-[240px] h-[190px] md:w-[290px] md:h-[220px] flex-shrink-0">
                             <FloatingCard
                                 mouseX={mouseX}
                                 mouseY={mouseY}
@@ -318,22 +318,31 @@ export default function Hero() {
                             {t("hero.cta")}
                         </MagneticButton>
                     </motion.div>
-                </div>
 
-                {/* Scroll Indicator */}
-                <motion.div
-                    className="absolute bottom-6 flex flex-col items-center gap-2"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 2.5 }}
-                >
-                    <span className="text-[10px] text-muted-foreground tracking-[0.2em] uppercase">{t("hero.scroll")}</span>
+                    {/* Scroll Indicator */}
                     <motion.div
-                        className="w-[1px] h-8 md:h-12 bg-gradient-to-b from-primary/60 to-transparent"
-                        animate={{ scaleY: [1, 0.5, 1] }}
-                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                    />
-                </motion.div>
+                        className="flex flex-col items-center gap-3 mt-2"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 2.5 }}
+                    >
+                        <span className="text-[10px] text-muted-foreground tracking-[0.3em] uppercase font-mono">{t("hero.scroll")}</span>
+                        <motion.div
+                            className="relative flex flex-col items-center"
+                            animate={{ y: [0, 6, 0] }}
+                            transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+                        >
+                            {/* Mouse icon */}
+                            <div className="w-[22px] h-[34px] rounded-full border border-white/20 flex justify-center pt-[6px]">
+                                <motion.div
+                                    className="w-[2px] h-[6px] rounded-full bg-primary-neon"
+                                    animate={{ opacity: [1, 0, 1], y: [0, 4, 0] }}
+                                    transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+                                />
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                </div>
             </div>
         </section>
     );
