@@ -423,6 +423,12 @@
             "button": "Lancer l'Intégration"
         }
     },
+    "statsBar": {
+        "lighthouse": "Score Lighthouse",
+        "experience": "Ans d'expérience",
+        "projects": "Projets livrés",
+        "availability": "Disponibilité IA"
+    },
     "footer": {
         "title": "PRÊT POUR",
         "titleHighlight": "L'AUTOMATISATION ?",

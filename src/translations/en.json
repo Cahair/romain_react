@@ -417,6 +417,12 @@
             "button": "Start Integration"
         }
     },
+    "statsBar": {
+        "lighthouse": "Lighthouse Score",
+        "experience": "Years of experience",
+        "projects": "Projects delivered",
+        "availability": "AI Availability"
+    },
     "footer": {
         "title": "READY FOR",
         "titleHighlight": "AUTOMATION?",

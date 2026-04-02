@@ -413,6 +413,12 @@
             "button": "Integration starten"
         }
     },
+    "statsBar": {
+        "lighthouse": "Lighthouse Score",
+        "experience": "Jahre Erfahrung",
+        "projects": "Projekte geliefert",
+        "availability": "KI Verfügbarkeit"
+    },
     "footer": {
         "title": "BEREIT FÜR",
         "titleHighlight": "AUTOMATISIERUNG?",
