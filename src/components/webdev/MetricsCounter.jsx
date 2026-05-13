@@ -1,9 +1,12 @@
 "use client";
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
+import { Gauge, Zap, Accessibility, CheckCircle2 } from "lucide-react";
+
+const gaugeIcons = [Gauge, Zap, Accessibility, CheckCircle2];
 
 // ─── Circular Gauge (Lighthouse style) ───
-function CircularGauge({ value, label, inView, delay = 0 }) {
+function CircularGauge({ value, label, inView, delay = 0, Icon }) {
     const [displayValue, setDisplayValue] = useState(0);
     const radius = 54;
     const circumference = 2 * Math.PI * radius;
@@ -68,9 +71,19 @@ function CircularGauge({ value, label, inView, delay = 0 }) {
                 </svg>
 
                 {/* Value */}
-                <div className="absolute inset-0 flex items-center justify-center">
+                <div className="absolute inset-0 flex flex-col items-center justify-center mt-2">
+                    {Icon && (
+                        <motion.div 
+                            whileHover={{ scale: 1.2, rotate: 10 }}
+                            transition={{ type: "spring", stiffness: 300 }}
+                            className="mb-0"
+                            style={{ color }}
+                        >
+                            <Icon size={18} strokeWidth={2.5} className="opacity-80" />
+                        </motion.div>
+                    )}
                     <span
-                        className="text-2xl md:text-3xl font-display font-bold tabular-nums"
+                        className="text-2xl md:text-3xl font-display font-bold tabular-nums leading-none mt-1"
                         style={{ color }}
                     >
                         {displayValue}
@@ -122,15 +135,19 @@ export default function MetricsCounter({ metrics }) {
                     className="backdrop-blur-md bg-white/[0.02] border border-white/10 rounded-3xl p-8 md:p-12"
                 >
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6">
-                        {metrics.items.map((item, i) => (
-                            <CircularGauge
-                                key={i}
-                                value={item.value}
-                                label={item.label}
-                                inView={inView}
-                                delay={i * 200}
-                            />
-                        ))}
+                        {metrics.items.map((item, i) => {
+                            const IconComponent = gaugeIcons[i % gaugeIcons.length];
+                            return (
+                                <CircularGauge
+                                    key={i}
+                                    value={item.value}
+                                    label={item.label}
+                                    inView={inView}
+                                    delay={i * 200}
+                                    Icon={IconComponent}
+                                />
+                            );
+                        })}
                     </div>
                 </motion.div>
             </div>

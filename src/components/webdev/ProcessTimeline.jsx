@@ -1,21 +1,10 @@
 "use client";
 import { motion } from "framer-motion";
+import { Target, PenTool, Code2, Rocket } from "lucide-react";
 
 const steps = [
     {
-        icon: (
-            /* Target / Compass */
-            <svg viewBox="0 0 48 48" fill="none" className="w-full h-full">
-                <circle cx="24" cy="24" r="18" stroke="currentColor" strokeWidth="1.5" strokeDasharray="4 3" opacity="0.3" />
-                <circle cx="24" cy="24" r="12" stroke="currentColor" strokeWidth="1.5" opacity="0.5" />
-                <circle cx="24" cy="24" r="6" stroke="currentColor" strokeWidth="2" />
-                <circle cx="24" cy="24" r="2" fill="currentColor" />
-                <line x1="24" y1="2" x2="24" y2="10" stroke="currentColor" strokeWidth="1.5" opacity="0.4" />
-                <line x1="24" y1="38" x2="24" y2="46" stroke="currentColor" strokeWidth="1.5" opacity="0.4" />
-                <line x1="2" y1="24" x2="10" y2="24" stroke="currentColor" strokeWidth="1.5" opacity="0.4" />
-                <line x1="38" y1="24" x2="46" y2="24" stroke="currentColor" strokeWidth="1.5" opacity="0.4" />
-            </svg>
-        ),
+        icon: <Target className="w-full h-full" strokeWidth={1.5} />,
         gradient: "from-blue-600/20 to-cyan-600/20",
         border: "group-hover:border-blue-500/40",
         iconColor: "text-blue-400",
@@ -23,16 +12,7 @@ const steps = [
         numGradient: "from-blue-400 to-cyan-400",
     },
     {
-        icon: (
-            /* Pen Tool / Design */
-            <svg viewBox="0 0 48 48" fill="none" className="w-full h-full">
-                <rect x="8" y="8" width="32" height="32" rx="4" stroke="currentColor" strokeWidth="1.5" opacity="0.2" />
-                <rect x="14" y="14" width="20" height="20" rx="2" stroke="currentColor" strokeWidth="1.5" opacity="0.4" />
-                <path d="M20 28l4-12 4 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                <line x1="21" y1="25" x2="27" y2="25" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                <circle cx="36" cy="12" r="3" fill="currentColor" opacity="0.3" />
-            </svg>
-        ),
+        icon: <PenTool className="w-full h-full" strokeWidth={1.5} />,
         gradient: "from-violet-600/20 to-fuchsia-600/20",
         border: "group-hover:border-violet-500/40",
         iconColor: "text-violet-400",
@@ -40,16 +20,7 @@ const steps = [
         numGradient: "from-violet-400 to-fuchsia-400",
     },
     {
-        icon: (
-            /* Code Brackets */
-            <svg viewBox="0 0 48 48" fill="none" className="w-full h-full">
-                <path d="M16 14l-8 10 8 10" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                <path d="M32 14l8 10-8 10" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-                <line x1="28" y1="10" x2="20" y2="38" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
-                <circle cx="12" cy="24" r="1.5" fill="currentColor" opacity="0.3" />
-                <circle cx="36" cy="24" r="1.5" fill="currentColor" opacity="0.3" />
-            </svg>
-        ),
+        icon: <Code2 className="w-full h-full" strokeWidth={1.5} />,
         gradient: "from-cyan-600/20 to-emerald-600/20",
         border: "group-hover:border-cyan-500/40",
         iconColor: "text-cyan-400",
@@ -57,18 +28,7 @@ const steps = [
         numGradient: "from-cyan-400 to-emerald-400",
     },
     {
-        icon: (
-            /* Rocket */
-            <svg viewBox="0 0 48 48" fill="none" className="w-full h-full">
-                <path d="M24 6c-4 6-6 14-6 22h12c0-8-2-16-6-22z" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
-                <path d="M18 28l-4 6h4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.6" />
-                <path d="M30 28l4 6h-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.6" />
-                <circle cx="24" cy="20" r="3" stroke="currentColor" strokeWidth="1.5" />
-                <path d="M20 36l4 6 4-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                <line x1="22" y1="42" x2="22" y2="46" stroke="currentColor" strokeWidth="1" opacity="0.3" />
-                <line x1="26" y1="42" x2="26" y2="45" stroke="currentColor" strokeWidth="1" opacity="0.3" />
-            </svg>
-        ),
+        icon: <Rocket className="w-full h-full" strokeWidth={1.5} />,
         gradient: "from-amber-600/20 to-orange-600/20",
         border: "group-hover:border-amber-500/40",
         iconColor: "text-amber-400",
@@ -103,7 +63,7 @@ function VisualStepCard({ step, visual, index }) {
                         animate={{ rotate: 360 }}
                         transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
                     />
-                    <div className={`w-14 h-14 md:w-16 md:h-16 ${visual.iconColor}`}>
+                    <div className={`w-14 h-14 md:w-16 md:h-16 ${visual.iconColor} group-hover:scale-110 group-hover:-rotate-12 transition-transform duration-500 ease-out`}>
                         {visual.icon}
                     </div>
                 </div>

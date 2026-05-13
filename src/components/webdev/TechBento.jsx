@@ -130,9 +130,13 @@ export default function TechBento({ tech }) {
                     {techItems.map((item, i) => (
                         <SpotlightCard key={item.name} delay={i * 0.08} className={item.span}>
                             <div className="flex flex-col gap-3">
-                                <div className="text-blue-400/70 group-hover:text-blue-400 transition-colors">
+                                <motion.div 
+                                    className="text-blue-400/70 group-hover:text-blue-400 transition-colors w-fit"
+                                    whileHover={{ scale: 1.1, rotate: i % 2 === 0 ? 8 : -8 }}
+                                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                                >
                                     {item.icon}
-                                </div>
+                                </motion.div>
                                 <div>
                                     <h3 className="text-white font-semibold text-sm md:text-base">{item.name}</h3>
                                     <p className="text-gray-500 text-xs md:text-sm font-mono">{item.desc}</p>

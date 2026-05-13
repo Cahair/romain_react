@@ -2,6 +2,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
 import Link from "next/link";
+import { Code2, Sparkles, Globe } from "lucide-react";
 
 // Animated word component
 const Word = ({ children, delay }) => (
@@ -94,6 +95,29 @@ export default function HeroVideoParallax({ hero }) {
                         </span>
                     ))}
                 </h1>
+
+                {/* Floating Icons */}
+                <motion.div
+                    className="absolute top-[20%] left-[15%] text-blue-400/30 hidden md:block"
+                    animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                >
+                    <Code2 size={64} />
+                </motion.div>
+                <motion.div
+                    className="absolute top-[30%] right-[10%] text-cyan-400/30 hidden lg:block"
+                    animate={{ y: [0, 20, 0], rotate: [0, -15, 0] }}
+                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                >
+                    <Globe size={80} />
+                </motion.div>
+                <motion.div
+                    className="absolute bottom-[25%] left-[20%] text-white/20 hidden md:block"
+                    animate={{ y: [0, 15, 0], scale: [1, 1.1, 1] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                >
+                    <Sparkles size={48} />
+                </motion.div>
 
                 {/* CTA */}
                 <motion.div
