@@ -71,7 +71,7 @@ export default function AgentCard({ agent, isActive, onClick }) {
                         className="overflow-hidden"
                     >
                         <ul className="space-y-3 mb-4">
-                            {agent.tasks.map((task, i) => (
+                            {(Array.isArray(agent.tasks) ? agent.tasks : []).map((task, i) => (
                                 <motion.li
                                     key={i}
                                     initial={{ opacity: 0, x: -10 }}
