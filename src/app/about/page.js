@@ -167,9 +167,13 @@ const SidebarIdentityCard = ({ t }) => (
                         className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                     />
                 </motion.div>
-                <div className="absolute bottom-2 right-0 bg-black border border-primary-neon p-1.5 rounded z-20">
+                <motion.div 
+                    animate={{ opacity: [1, 0.4, 1], boxShadow: ["0 0 0px rgba(0,240,255,0)", "0 0 10px rgba(0,240,255,0.5)", "0 0 0px rgba(0,240,255,0)"] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute bottom-2 right-0 bg-black border border-primary-neon p-1.5 rounded z-20"
+                >
                     <Terminal className="w-3 h-3 text-primary-neon" />
-                </div>
+                </motion.div>
             </div>
 
             {/* Name + title */}
