@@ -8,27 +8,27 @@ import Footer from "../../../components/Footer";
 import AgentCard from "../../../components/AgentCard";
 import { useTranslation } from "../../../components/LanguageProvider";
 
-const agents = [
+const getAgents = (t) => [
     {
         id: "axiom",
         name: "Emma",
-        role: "SUPPORT & SERVICE CLIENT",
-        tasks: ["Gestion autonome de vos emails entrants 24/7", "Qualification et résolution immédiate des tickets", "Parcours de fidélisation qualitatif et personnalisé"],
-        cta: "Déléguer mon support",
+        role: t("agentsPage.agentsList.emma.role"),
+        tasks: t("agentsPage.agentsList.emma.tasks"),
+        cta: t("agentsPage.agentsList.emma.cta"),
     },
     {
         id: "lumina",
         name: "Luna",
-        role: "SOCIAL MEDIA MANAGER",
-        tasks: ["Conception de contenus visuels et textuels engageants", "Orchestration complète de votre calendrier éditorial", "Animation active et croissance de votre audience"],
-        cta: "Automatiser mes posts",
+        role: t("agentsPage.agentsList.luna.role"),
+        tasks: t("agentsPage.agentsList.luna.tasks"),
+        cta: t("agentsPage.agentsList.luna.cta"),
     },
     {
         id: "kairo",
         name: "Maya",
-        role: "RESPONSABLE OPÉRATIONS",
-        tasks: ["Pilotage centralisé de vos projets stratégiques", "Synchronisation fluide de vos différentes équipes", "Contrôle proactif des échéances et livrables"],
-        cta: "Optimiser mes opérations",
+        role: t("agentsPage.agentsList.maya.role"),
+        tasks: t("agentsPage.agentsList.maya.tasks"),
+        cta: t("agentsPage.agentsList.maya.cta"),
     },
 ];
 
@@ -295,6 +295,7 @@ const DataVisual = () => {
 
 export default function AgentsPage() {
     const { t } = useTranslation();
+    const agents = getAgents(t);
 
     return (
         <main className="h-[100dvh] w-full overflow-y-scroll snap-y snap-mandatory bg-background text-foreground selection:bg-purple-900/30 selection:text-foreground scroll-smooth">
@@ -314,10 +315,10 @@ export default function AgentsPage() {
                         whileInView={{ opacity: 1, y: 0 }}
                         className="text-4xl md:text-6xl font-black uppercase tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-orange-400"
                     >
-                        Vos Agents IA<br />Sur-Mesure
+                        {t("agentsPage.showcase.titleLine1")}<br />{t("agentsPage.showcase.titleLine2")}
                     </motion.h2>
                     <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto font-light">
-                        Trois exemples concrets de ce qu'un agent IA peut faire pour votre business. Chaque agent est conçu et entraîné spécifiquement pour vos processus, vos outils et vos objectifs.
+                        {t("agentsPage.showcase.subtitle")}
                     </p>
                 </div>
 
@@ -329,7 +330,7 @@ export default function AgentsPage() {
                     className="absolute bottom-[5vh] left-1/2 -translate-x-1/2 z-20 cursor-pointer"
                 >
                     <div className="flex flex-col items-center gap-2 group">
-                        <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground group-hover:text-primary-neon transition-colors">Découvrir</span>
+                        <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground group-hover:text-primary-neon transition-colors">{t("agentsPage.showcase.discover")}</span>
                         <motion.div
                             animate={{ y: [0, 5, 0] }}
                             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}

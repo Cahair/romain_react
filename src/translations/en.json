@@ -144,6 +144,8 @@
             },
             "skills": {
                 "title": "Skills",
+                "yearsLabel": "years of tech experience",
+                "domainsLabel": "areas of expertise",
                 "categories": {
                     "ai": "Artificial Intelligence & Automation",
                     "dev": "Web Development",
@@ -415,6 +417,79 @@
             "titleHighlight": "First Agent",
             "subtitle": "Let's define together the scope of action for your future digital workforce.",
             "button": "Start Integration"
+        },
+        "showcase": {
+            "titleLine1": "Your Custom",
+            "titleLine2": "AI Agents",
+            "subtitle": "Three concrete examples of what an AI agent can do for your business. Each agent is designed and trained specifically for your processes, tools and goals.",
+            "discover": "Discover"
+        },
+        "agentsList": {
+            "emma": {
+                "role": "SUPPORT & CUSTOMER SERVICE",
+                "tasks": [
+                    "Autonomous management of your inbound emails 24/7",
+                    "Immediate ticket qualification and resolution",
+                    "Qualitative and personalised loyalty journey"
+                ],
+                "cta": "Delegate my support"
+            },
+            "luna": {
+                "role": "SOCIAL MEDIA MANAGER",
+                "tasks": [
+                    "Creation of engaging visual and written content",
+                    "Full orchestration of your editorial calendar",
+                    "Active community management and audience growth"
+                ],
+                "cta": "Automate my posts"
+            },
+            "maya": {
+                "role": "OPERATIONS MANAGER",
+                "tasks": [
+                    "Centralised management of your strategic projects",
+                    "Smooth synchronisation across your teams",
+                    "Proactive control of deadlines and deliverables"
+                ],
+                "cta": "Optimise my operations"
+            }
+        }
+    },
+    "workflowsPage": {
+        "badge": "Signature Workflow",
+        "titlePrefix": "Lead Gen",
+        "titleHighlight": "Autopilot",
+        "subtitle": "A complete, autonomous and intelligent system that turns your visitors into qualified opportunities without human intervention.",
+        "steps": [
+            {
+                "title": "1. Capture & Enrichment",
+                "desc": "As soon as a lead submits a form, the system intercepts it. We instantly query external databases (Clearbit, Apollo) to retrieve job title, company size and tech stack."
+            },
+            {
+                "title": "2. AI Analysis",
+                "desc": "An LLM (GPT-4o) analyses the enriched profile. It scores the lead from 0 to 100 based on your ICP, detects purchase intent and decides the strategy to adopt."
+            },
+            {
+                "title": "3. Targeted Action",
+                "hotLeads": "Hot Leads:",
+                "hotDesc": "Immediate Slack to sales + ultra-personalised email draft sent to the CRM.",
+                "others": "Others:",
+                "othersDesc": "Added to educational nurturing sequence."
+            }
+        ],
+        "cta": "Install this system",
+        "viz": {
+            "enrichment": "Enrichment",
+            "aiQualif": "AI Qualif.",
+            "highPriority": "High Priority",
+            "nurturing": "Nurturing",
+            "scoring": "Scoring & Intent",
+            "linkedinData": "+ LinkedIn, Email, Company Data",
+            "linkedinDataShort": "+ LinkedIn, Email",
+            "dealCrm": "CRM Deal",
+            "slackSales": "Slack Sales Alert",
+            "emailPerso": "Personalised Email",
+            "newsletter": "Add Newsletter",
+            "updateDb": "Update Database"
         }
     },
     "statsBar": {

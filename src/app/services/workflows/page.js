@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
 import { Database, Mail, MessageSquare, Zap, Cpu, Bell, CheckCircle2, User, Globe, ArrowRight, Server, FileText, Filter, Users } from "lucide-react";
+import { useTranslation } from "../../../components/LanguageProvider";
 
 // --- Components for the Complex Visualization ---
 
@@ -71,7 +72,7 @@ const MobileArrow = ({ color = "text-gray-600" }) => (
 );
 
 
-const ComplexWorkflowVisual = () => {
+const ComplexWorkflowVisual = ({ t }) => {
     return (
         <div className="w-full my-10 md:my-20">
             {/* Mobile View */}
@@ -84,9 +85,9 @@ const ComplexWorkflowVisual = () => {
 
                 {/* 2. Enrichment */}
                 <div className="flex flex-col items-center w-full">
-                    <Node isMobile icon={Database} label="Enrichissement" color="purple" />
+                    <Node isMobile icon={Database} label={t("workflowsPage.viz.enrichment")} color="purple" />
                     <div className="mt-2 text-xs text-gray-400 text-center bg-gray-900/50 px-3 py-1 rounded-full border border-gray-800">
-                        + LinkedIn, Email
+                        {t("workflowsPage.viz.linkedinDataShort")}
                     </div>
                 </div>
 
@@ -94,9 +95,9 @@ const ComplexWorkflowVisual = () => {
 
                 {/* 3. AI Analysis */}
                 <div className="flex flex-col items-center w-full">
-                    <Node isMobile icon={Cpu} label="Qualif. IA" color="pink" />
+                    <Node isMobile icon={Cpu} label={t("workflowsPage.viz.aiQualif")} color="pink" />
                     <div className="mt-2 text-xs text-pink-500 font-bold border border-pink-500/30 px-2 py-1 rounded bg-pink-500/10">
-                        Scoring & Intent
+                        {t("workflowsPage.viz.scoring")}
                     </div>
                 </div>
 
@@ -104,7 +105,7 @@ const ComplexWorkflowVisual = () => {
                     {/* Branch Left: Hot */}
                     <div className="flex flex-col items-center">
                         <div className="h-8 w-0.5 bg-gradient-to-b from-pink-500/50 to-emerald-500/50 mb-2"></div>
-                        <Node isMobile icon={Zap} label="Priorité Haute" color="emerald" />
+                        <Node isMobile icon={Zap} label={t("workflowsPage.viz.highPriority")} color="emerald" />
                         <div className="flex flex-col gap-2 mt-4 items-center">
                             <span className="flex items-center gap-2 text-[10px] text-emerald-400"><CheckCircle2 size={10} /> Deal CRM</span>
                             <span className="flex items-center gap-2 text-[10px] text-emerald-400"><MessageSquare size={10} /> Slack</span>
@@ -114,7 +115,7 @@ const ComplexWorkflowVisual = () => {
                     {/* Branch Right: Cold */}
                     <div className="flex flex-col items-center">
                         <div className="h-8 w-0.5 bg-gradient-to-b from-pink-500/50 to-red-500/50 mb-2"></div>
-                        <Node isMobile icon={Filter} label="Nurturing" color="red" />
+                        <Node isMobile icon={Filter} label={t("workflowsPage.viz.nurturing")} color="red" />
                         <div className="flex flex-col gap-2 mt-4 items-center">
                             <span className="flex items-center gap-2 text-[10px] text-gray-400"><User size={10} /> Newsletter</span>
                         </div>
@@ -190,37 +191,37 @@ const ComplexWorkflowVisual = () => {
 
                 {/* 2. Data Enrichment */}
                 <div className="absolute top-1/2 left-[35%] -translate-y-1/2 -translate-x-1/2">
-                    <Node icon={Database} label="Enrichissement" color="purple" x={0} y={0} delay={0.2} />
+                    <Node icon={Database} label={t("workflowsPage.viz.enrichment")} color="purple" x={0} y={0} delay={0.2} />
                     <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs text-gray-500">
-                        + LinkedIn, Email, Company Data
+                        {t("workflowsPage.viz.linkedinData")}
                     </div>
                 </div>
 
                 {/* 3. AI Analysis */}
                 <div className="absolute top-1/2 left-[60%] -translate-y-1/2 -translate-x-1/2">
-                    <Node icon={Cpu} label="Qualif. IA" color="pink" x={0} y={0} delay={0.4} />
+                    <Node icon={Cpu} label={t("workflowsPage.viz.aiQualif")} color="pink" x={0} y={0} delay={0.4} />
                     <div className="absolute -top-12 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs text-pink-500 font-bold border border-pink-500/30 px-2 py-1 rounded bg-pink-500/10">
-                        Scoring & Intent
+                        {t("workflowsPage.viz.scoring")}
                     </div>
                 </div>
 
                 {/* 4. Branches */}
                 {/* Hot Lead */}
                 <div className="absolute top-[25%] right-[10%] -translate-y-1/2 -translate-x-1/2">
-                    <Node icon={Zap} label="Priorité Haute" color="emerald" x={0} y={0} delay={0.6} />
+                    <Node icon={Zap} label={t("workflowsPage.viz.highPriority")} color="emerald" x={0} y={0} delay={0.6} />
                     <div className="flex flex-col gap-2 mt-4 ml-8">
-                        <span className="flex items-center gap-2 text-xs text-emerald-400"><CheckCircle2 size={12} /> Création Deal CRM</span>
-                        <span className="flex items-center gap-2 text-xs text-emerald-400"><MessageSquare size={12} /> Slack Alert Sales</span>
-                        <span className="flex items-center gap-2 text-xs text-emerald-400"><Mail size={12} /> Email Personnalisé</span>
+                        <span className="flex items-center gap-2 text-xs text-emerald-400"><CheckCircle2 size={12} /> {t("workflowsPage.viz.dealCrm")}</span>
+                        <span className="flex items-center gap-2 text-xs text-emerald-400"><MessageSquare size={12} /> {t("workflowsPage.viz.slackSales")}</span>
+                        <span className="flex items-center gap-2 text-xs text-emerald-400"><Mail size={12} /> {t("workflowsPage.viz.emailPerso")}</span>
                     </div>
                 </div>
 
                 {/* Cold Lead */}
                 <div className="absolute bottom-[25%] right-[10%] translate-y-1/2 -translate-x-1/2">
-                    <Node icon={Filter} label="Nurturing" color="red" x={0} y={0} delay={0.6} />
+                    <Node icon={Filter} label={t("workflowsPage.viz.nurturing")} color="red" x={0} y={0} delay={0.6} />
                     <div className="flex flex-col gap-2 mt-4 ml-8">
-                        <span className="flex items-center gap-2 text-xs text-gray-400"><User size={12} /> Ajout Newsletter</span>
-                        <span className="flex items-center gap-2 text-xs text-gray-400"><Server size={12} /> Update Database</span>
+                        <span className="flex items-center gap-2 text-xs text-gray-400"><User size={12} /> {t("workflowsPage.viz.newsletter")}</span>
+                        <span className="flex items-center gap-2 text-xs text-gray-400"><Server size={12} /> {t("workflowsPage.viz.updateDb")}</span>
                     </div>
                 </div>
             </div>
@@ -229,6 +230,8 @@ const ComplexWorkflowVisual = () => {
 };
 
 export default function WorkflowsPage() {
+    const { t } = useTranslation();
+    const steps = t("workflowsPage.steps");
     return (
         <main className="bg-background min-h-screen text-foreground selection:bg-primary-neon selection:text-white overflow-x-hidden">
             <Navbar />
@@ -242,14 +245,14 @@ export default function WorkflowsPage() {
                         className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary-neon text-xs font-mono uppercase tracking-widest mb-6"
                     >
                         <Zap size={14} />
-                        Workflow Signature
+                        {t("workflowsPage.badge")}
                     </motion.div>
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         className="text-4xl md:text-6xl lg:text-7xl font-display font-black uppercase tracking-tighter leading-none mb-6"
                     >
-                        Lead Gen <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">Autopilot</span>
+                        {t("workflowsPage.titlePrefix")} <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">{t("workflowsPage.titleHighlight")}</span>
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -257,12 +260,12 @@ export default function WorkflowsPage() {
                         transition={{ delay: 0.1 }}
                         className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
                     >
-                        Un système complet, autonome et intelligent qui transforme vos visiteurs en opportunités qualifiées sans intervention humaine.
+                        {t("workflowsPage.subtitle")}
                     </motion.p>
                 </div>
 
                 {/* The Complex Visualization */}
-                <ComplexWorkflowVisual />
+                <ComplexWorkflowVisual t={t} />
 
                 {/* Workflow Breakdown */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-20">
@@ -275,9 +278,9 @@ export default function WorkflowsPage() {
                         <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center text-blue-400 mb-4">
                             <Globe size={24} />
                         </div>
-                        <h3 className="text-xl font-bold mb-3">1. Capture & Enrichissement</h3>
+                        <h3 className="text-xl font-bold mb-3">{steps[0]?.title}</h3>
                         <p className="text-muted-foreground text-sm leading-relaxed">
-                            Dès qu'un lead soumet un formulaire, le système l'intercepte. Nous interrogeons instantanément des bases de données externes (Clearbit, Apollo) pour récupérer poste, taille d'entreprise et stack technique.
+                            {steps[0]?.desc}
                         </p>
                     </motion.div>
 
@@ -291,9 +294,9 @@ export default function WorkflowsPage() {
                         <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center text-purple-400 mb-4">
                             <Cpu size={24} />
                         </div>
-                        <h3 className="text-xl font-bold mb-3">2. Analyse IA</h3>
+                        <h3 className="text-xl font-bold mb-3">{steps[1]?.title}</h3>
                         <p className="text-muted-foreground text-sm leading-relaxed">
-                            Un LLM (GPT-4o) analyse le profil enrichi. Il score le lead de 0 à 100 selon votre ICP, détecte l'intention d'achat et décide de la stratégie à adopter.
+                            {steps[1]?.desc}
                         </p>
                     </motion.div>
 
@@ -307,11 +310,11 @@ export default function WorkflowsPage() {
                         <div className="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center text-emerald-400 mb-4">
                             <Zap size={24} />
                         </div>
-                        <h3 className="text-xl font-bold mb-3">3. Action Ciblée</h3>
+                        <h3 className="text-xl font-bold mb-3">{steps[2]?.title}</h3>
                         <p className="text-muted-foreground text-sm leading-relaxed">
-                            <strong className="text-emerald-400">Hot Leads :</strong> Slack immédiat aux sales + Draft email ultra-personnalisé envoyé dans le CRM.
+                            <strong className="text-emerald-400">{steps[2]?.hotLeads}</strong> {steps[2]?.hotDesc}
                             <br /><br />
-                            <strong className="text-red-400">Autres :</strong> Ajout sequence nurturing éducative.
+                            <strong className="text-red-400">{steps[2]?.others}</strong> {steps[2]?.othersDesc}
                         </p>
                     </motion.div>
                 </div>
@@ -319,7 +322,7 @@ export default function WorkflowsPage() {
                 {/* CTA */}
                 <div className="flex justify-center mt-20">
                     <Link href="/contact" className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-primary-dark px-8 font-medium text-white transition-all duration-300 hover:bg-primary hover:scale-105 hover:shadow-[0_0_20px_rgba(6,182,212,0.5)]">
-                        <span className="mr-2">Installer ce système</span>
+                        <span className="mr-2">{t("workflowsPage.cta")}</span>
                         <ArrowRight className="transition-transform group-hover:translate-x-1" size={20} />
                         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 translate-x-[-100%] group-hover:animate-shine" />
                     </Link>

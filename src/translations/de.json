@@ -143,6 +143,8 @@
             },
             "skills": {
                 "title": "Kompetenzen",
+                "yearsLabel": "Jahre Tech-Erfahrung",
+                "domainsLabel": "Fachbereiche",
                 "categories": {
                     "ai": "Künstliche Intelligenz & Automatisierung",
                     "dev": "Webentwicklung",
@@ -411,6 +413,79 @@
             "titleHighlight": "Ersten Agenten",
             "subtitle": "Lassen Sie uns gemeinsam den Aktionsradius Ihrer zukünftigen digitalen Arbeitskraft definieren.",
             "button": "Integration starten"
+        },
+        "showcase": {
+            "titleLine1": "Ihre KI-Agenten",
+            "titleLine2": "Maßgeschneidert",
+            "subtitle": "Drei konkrete Beispiele, was ein KI-Agent für Ihr Unternehmen tun kann. Jeder Agent wird speziell für Ihre Prozesse, Tools und Ziele entwickelt und trainiert.",
+            "discover": "Entdecken"
+        },
+        "agentsList": {
+            "emma": {
+                "role": "SUPPORT & KUNDENSERVICE",
+                "tasks": [
+                    "Autonome Verwaltung Ihrer eingehenden E-Mails 24/7",
+                    "Sofortige Ticket-Qualifizierung und -Lösung",
+                    "Qualitatives und personalisiertes Kundenbindungsprogramm"
+                ],
+                "cta": "Support delegieren"
+            },
+            "luna": {
+                "role": "SOCIAL MEDIA MANAGER",
+                "tasks": [
+                    "Erstellung ansprechender visueller und textlicher Inhalte",
+                    "Vollständige Orchestrierung Ihres Redaktionskalenders",
+                    "Aktives Community-Management und Publikumswachstum"
+                ],
+                "cta": "Posts automatisieren"
+            },
+            "maya": {
+                "role": "OPERATIONS MANAGER",
+                "tasks": [
+                    "Zentrales Management Ihrer strategischen Projekte",
+                    "Reibungslose Synchronisation Ihrer Teams",
+                    "Proaktive Kontrolle von Fristen und Lieferzielen"
+                ],
+                "cta": "Operationen optimieren"
+            }
+        }
+    },
+    "workflowsPage": {
+        "badge": "Signatur-Workflow",
+        "titlePrefix": "Lead Gen",
+        "titleHighlight": "Autopilot",
+        "subtitle": "Ein vollständiges, autonomes und intelligentes System, das Ihre Besucher ohne menschliches Eingreifen in qualifizierte Opportunities umwandelt.",
+        "steps": [
+            {
+                "title": "1. Erfassung & Anreicherung",
+                "desc": "Sobald ein Lead ein Formular abschickt, fängt das System es ab. Wir fragen sofort externe Datenbanken (Clearbit, Apollo) ab, um Jobtitel, Unternehmensgröße und Tech-Stack zu ermitteln."
+            },
+            {
+                "title": "2. KI-Analyse",
+                "desc": "Ein LLM (GPT-4o) analysiert das angereicherte Profil. Es bewertet den Lead von 0 bis 100 nach Ihrem ICP, erkennt Kaufabsicht und entscheidet die anzuwendende Strategie."
+            },
+            {
+                "title": "3. Gezielte Aktion",
+                "hotLeads": "Hot Leads:",
+                "hotDesc": "Sofortige Slack-Benachrichtigung an den Vertrieb + ultra-personalisierter E-Mail-Entwurf im CRM.",
+                "others": "Andere:",
+                "othersDesc": "Hinzufügen zur edukativen Nurturing-Sequenz."
+            }
+        ],
+        "cta": "System installieren",
+        "viz": {
+            "enrichment": "Anreicherung",
+            "aiQualif": "KI-Qualif.",
+            "highPriority": "Hohe Priorität",
+            "nurturing": "Nurturing",
+            "scoring": "Scoring & Intent",
+            "linkedinData": "+ LinkedIn, E-Mail, Unternehmensdaten",
+            "linkedinDataShort": "+ LinkedIn, E-Mail",
+            "dealCrm": "CRM Deal erstellen",
+            "slackSales": "Slack Vertriebsalarm",
+            "emailPerso": "Personalisierte E-Mail",
+            "newsletter": "Newsletter hinzufügen",
+            "updateDb": "Datenbank aktualisieren"
         }
     },
     "statsBar": {

@@ -659,7 +659,7 @@ export default function AboutPage() {
                                 viewport={{ once: true }}
                                 transition={{ type: "spring", stiffness: 320, damping: 14, delay: 0.2 }}
                             >7</motion.span>
-                            <span className="text-xs uppercase tracking-widest text-gray-500">ans d&apos;expérience tech</span>
+                            <span className="text-xs uppercase tracking-widest text-gray-500">{t("about.cv.skills.yearsLabel")}</span>
                             <span className="w-8 h-[1px] bg-white/10" />
                             <motion.span
                                 className="text-3xl font-display font-bold text-primary-neon"
@@ -668,7 +668,7 @@ export default function AboutPage() {
                                 viewport={{ once: true }}
                                 transition={{ type: "spring", stiffness: 320, damping: 14, delay: 0.35 }}
                             >2</motion.span>
-                            <span className="text-xs uppercase tracking-widest text-gray-500">domaines d&apos;expertise</span>
+                            <span className="text-xs uppercase tracking-widest text-gray-500">{t("about.cv.skills.domainsLabel")}</span>
                         </motion.div>
 
                         <div className="space-y-5">
