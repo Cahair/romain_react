@@ -76,38 +76,7 @@ export default function WebDevPage() {
                 {/* 4. Process Timeline */}
                 <ProcessTimeline process={data.process} />
 
-                {/* 5. Giant CTA */}
-                <section className="relative py-28 md:py-40 px-6 overflow-hidden">
-                    {/* Background */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-background via-blue-950/20 to-background" />
-                    <motion.div
-                        animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
-                        transition={{ duration: 6, repeat: Infinity }}
-                        className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 blur-3xl pointer-events-none"
-                    />
 
-                    <div className="container mx-auto max-w-5xl relative z-10 text-center">
-                        <motion.div
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
-                        >
-                            <h2 className="font-display text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tight mb-6 leading-[0.95]">
-                                {data.cta.title}{" "}
-                                <span className="block mt-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
-                                    {data.cta.titleHighlight}
-                                </span>
-                            </h2>
-                            <p className="text-gray-400 text-base md:text-lg max-w-2xl mx-auto mb-10 md:mb-14 font-light">
-                                {data.cta.subtitle}
-                            </p>
-                            <MagneticCTA href="/contact">
-                                {data.cta.button}
-                            </MagneticCTA>
-                        </motion.div>
-                    </div>
-                </section>
             </main>
 
             <Footer />
