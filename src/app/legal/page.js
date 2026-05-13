@@ -34,10 +34,10 @@ export default function LegalPage() {
                             <h2 className="text-xl font-bold text-white mb-4 uppercase tracking-wide">1. Éditeur du site</h2>
                             <div className="space-y-2">
                                 <p><strong>Nom :</strong> Romain Kantzer</p>
-                                <p><strong>Statut :</strong> Entrepreneur Individuel (ou Société selon statut)</p>
-                                <p><strong>Siège social :</strong> [Adresse à compléter]</p>
-                                <p><strong>Email :</strong> romain@kantzer.ai</p>
-                                <p><strong>SIRET :</strong> [Numéro SIRET à compléter]</p>
+                                <p><strong>Statut :</strong> Entrepreneur Individuel </p>
+                                <p><strong>Siège social :</strong> 6 rue des champs à Rountzenheim</p>
+                                <p><strong>Email :</strong> contact@romain-kantzer.com</p>
+                                <p><strong>SIRET :</strong> [991179961 00016]</p>
                             </div>
                         </section>
 
@@ -45,9 +45,9 @@ export default function LegalPage() {
                         <section className="glass p-8 rounded-2xl">
                             <h2 className="text-xl font-bold text-white mb-4 uppercase tracking-wide">2. Hébergement</h2>
                             <div className="space-y-2">
-                                <p><strong>Hébergeur :</strong> Vercel Inc.</p>
-                                <p><strong>Adresse :</strong> 340 S Lemon Ave #4133 Walnut, CA 91789, USA</p>
-                                <p><strong>Site web :</strong> https://vercel.com</p>
+                                <p><strong>Hébergeur :</strong> Infomaniak</p>
+                                <p><strong>Adresse :</strong> Rue Eugène-Marziano 25, 1227 Genève, Suisse</p>
+                                <p><strong>Site web :</strong> https://www.infomaniak.com</p>
                             </div>
                         </section>
 

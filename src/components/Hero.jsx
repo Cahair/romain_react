@@ -2,6 +2,7 @@
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { ArrowRight, Code2, Atom, Paintbrush } from "lucide-react";
 import { useTranslation } from "./LanguageProvider";
 
 // ─── Animated Word Component ───
@@ -88,9 +89,7 @@ const MagneticButton = ({ children, href }) => {
                 <span className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-primary/10 via-secondary/10 to-primary/10" />
                 <span className="relative z-10 flex items-center gap-3">
                     {children}
-                    <svg className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
+                    <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
                 </span>
             </Link>
         </motion.div>
@@ -245,11 +244,13 @@ export default function Hero() {
                                 className="top-0 left-0 px-4 py-3 md:px-5 md:py-4 z-30"
                             >
                                 <div className="flex items-center gap-3">
-                                    <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center">
-                                        <svg className="w-5 h-5 text-primary-neon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" strokeLinecap="round" strokeLinejoin="round" />
-                                        </svg>
-                                    </div>
+                                    <motion.div 
+                                        className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center"
+                                        whileHover={{ scale: 1.1, rotate: 5 }}
+                                        transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                                    >
+                                        <Code2 className="w-5 h-5 text-primary-neon" />
+                                    </motion.div>
                                     <div>
                                         <p className="text-xs text-muted-foreground">Framework</p>
                                         <p className="text-sm font-semibold text-foreground">Next.js</p>
@@ -266,11 +267,13 @@ export default function Hero() {
                                 className="top-[45%] right-0 px-4 py-3 md:px-5 md:py-4 z-20"
                             >
                                 <div className="flex items-center gap-3">
-                                    <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center">
-                                        <svg className="w-5 h-5 text-blue-400" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.31 0-.592.068-.828.197C4.45 2.33 3.8 4.41 4.048 7.303c-2.09.636-3.442 1.664-3.442 2.697 0 2.08 3.445 3.942 7.687 4.2.525 2.79 1.712 4.8 3.202 4.8 1.49 0 2.677-2.01 3.202-4.8 4.242-.257 7.687-2.12 7.687-4.2 0-1.033-1.352-2.06-3.442-2.697.247-2.894-.403-4.973-2.23-5.786a1.558 1.558 0 0 0-.83-.203z" />
-                                        </svg>
-                                    </div>
+                                    <motion.div 
+                                        className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center"
+                                        whileHover={{ scale: 1.1, rotate: 180 }}
+                                        transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                                    >
+                                        <Atom className="w-5 h-5 text-blue-400" />
+                                    </motion.div>
                                     <div>
                                         <p className="text-xs text-muted-foreground">Library</p>
                                         <p className="text-sm font-semibold text-foreground">React</p>
@@ -287,11 +290,13 @@ export default function Hero() {
                                 className="bottom-0 left-[10%] px-4 py-3 md:px-5 md:py-4 z-10"
                             >
                                 <div className="flex items-center gap-3">
-                                    <div className="w-8 h-8 rounded-lg bg-cyan-500/20 flex items-center justify-center">
-                                        <svg className="w-5 h-5 text-cyan-400" viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M12 6.036l-6.95 4.012L12 14.065l6.95-4.017L12 6.036zM5.05 14.048L12 18.065l6.95-4.017L12 18.065l-6.95-4.017z" />
-                                        </svg>
-                                    </div>
+                                    <motion.div 
+                                        className="w-8 h-8 rounded-lg bg-cyan-500/20 flex items-center justify-center"
+                                        whileHover={{ scale: 1.1, rotate: -15 }}
+                                        transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                                    >
+                                        <Paintbrush className="w-5 h-5 text-cyan-400" />
+                                    </motion.div>
                                     <div>
                                         <p className="text-xs text-muted-foreground">Styling</p>
                                         <p className="text-sm font-semibold text-foreground">Tailwind</p>

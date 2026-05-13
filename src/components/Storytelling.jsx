@@ -2,6 +2,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { useTranslation } from "./LanguageProvider";
+import { Wand2, TrendingUp, Lightbulb, Rocket } from "lucide-react";
 
 import ImpactCharts from "./ImpactCharts";
 
@@ -42,6 +43,29 @@ export default function Storytelling() {
                                 {t("storytelling.titleEnd")}
                             </motion.div>
                         </h2>
+
+                        {/* Floating Icons */}
+                        <motion.div
+                            className="absolute -top-12 left-[10%] text-primary-neon/40 hidden md:block"
+                            animate={{ y: [0, -15, 0], rotate: [0, 10, 0] }}
+                            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                        >
+                            <Wand2 size={48} />
+                        </motion.div>
+                        <motion.div
+                            className="absolute top-[20%] right-[5%] text-blue-400/40 hidden lg:block"
+                            animate={{ y: [0, 20, 0], rotate: [0, -15, 0] }}
+                            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                        >
+                            <TrendingUp size={56} />
+                        </motion.div>
+                        <motion.div
+                            className="absolute -bottom-8 left-[30%] text-purple-400/40 hidden md:block"
+                            animate={{ y: [0, 10, 0], scale: [1, 1.1, 1] }}
+                            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                        >
+                            <Lightbulb size={40} />
+                        </motion.div>
                     </div>
 
                     {/* Part 2: Statement - AMPLIFIED */}

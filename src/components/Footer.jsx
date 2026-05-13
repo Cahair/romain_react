@@ -1,5 +1,5 @@
 "use client";
-import { Send, Linkedin, Github } from "lucide-react";
+import { Send, Linkedin } from "lucide-react";
 import Link from "next/link";
 import { useTranslation } from "./LanguageProvider";
 
@@ -41,9 +41,6 @@ export default function Footer() {
                     <div className="flex gap-8">
                         <a href="https://www.linkedin.com/in/romain-kantzer-9323b920a/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary-neon transition-colors">
                             <Linkedin className="w-6 h-6" />
-                        </a>
-                        <a href="https://github.com/Cahair" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary-neon transition-colors">
-                            <Github className="w-6 h-6" />
                         </a>
                     </div>
 

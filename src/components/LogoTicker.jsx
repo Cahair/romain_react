@@ -1,5 +1,7 @@
 "use client";
 import { useTranslation } from "./LanguageProvider";
+import { motion } from "framer-motion";
+import { useState } from "react";
 
 const logos = [
     {
@@ -76,13 +78,26 @@ const logos = [
 ];
 
 export default function LogoTicker() {
+    const [isHovered, setIsHovered] = useState(false);
+
     return (
         <section className="py-8 md:py-12 bg-background relative overflow-hidden border-t border-border">
             {/* Fade masks */}
             <div className="absolute inset-y-0 left-0 w-24 md:w-40 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
             <div className="absolute inset-y-0 right-0 w-24 md:w-40 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
-            <div className="flex ticker-track">
+            <motion.div 
+                className="flex w-max"
+                animate={{ x: ["0%", "-50%"] }}
+                transition={{ 
+                    duration: 30, 
+                    ease: "linear", 
+                    repeat: Infinity,
+                }}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                style={{ animationPlayState: isHovered ? "paused" : "running" }} // Backup for css
+            >
                 {/* Double the logos for seamless loop */}
                 {[...logos, ...logos].map((logo, i) => (
                     <div
@@ -93,7 +108,7 @@ export default function LogoTicker() {
                         <span className="text-sm font-mono tracking-wider whitespace-nowrap">{logo.name}</span>
                     </div>
                 ))}
-            </div>
+            </motion.div>
         </section>
     );
 }

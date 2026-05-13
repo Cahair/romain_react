@@ -500,7 +500,7 @@ export default function AboutPage() {
                                 <AnimatedWord>
                                     <span
                                         className="block font-display font-bold text-5xl md:text-7xl uppercase leading-[0.9] tracking-tighter"
-                                        style={{ WebkitTextStroke: "1px rgba(255,255,255,0.35)", color: "transparent" }}
+                                        style={{ WebkitTextStroke: "1px var(--text-stroke-color)", color: "transparent" }}
                                     >
                                         {t("about.title")}
                                     </span>
@@ -510,7 +510,7 @@ export default function AboutPage() {
                             {/* L2: muted */}
                             <div className="overflow-hidden mt-1">
                                 <AnimatedWord delay={0.1}>
-                                    <span className="block font-display font-light text-4xl md:text-6xl uppercase leading-[0.9] tracking-tighter text-white/35">
+                                    <span className="block font-display font-light text-4xl md:text-6xl uppercase leading-[0.9] tracking-tighter text-white/30">
                                         {t("about.titleMiddle")}
                                     </span>
                                 </AnimatedWord>
