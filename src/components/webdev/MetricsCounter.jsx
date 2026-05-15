@@ -1,12 +1,12 @@
 "use client";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import { Gauge, Zap, Accessibility, CheckCircle2 } from "lucide-react";
+import { Gauge, Zap, Accessibility, CheckCircle2, X } from "lucide-react";
 
 const gaugeIcons = [Gauge, Zap, Accessibility, CheckCircle2];
 
 // ─── Circular Gauge (Lighthouse style) ───
-function CircularGauge({ value, label, inView, delay = 0, Icon }) {
+function CircularGauge({ value, label, inView, delay = 0, Icon, onClick }) {
     const [displayValue, setDisplayValue] = useState(0);
     const radius = 54;
     const circumference = 2 * Math.PI * radius;
@@ -34,8 +34,8 @@ function CircularGauge({ value, label, inView, delay = 0, Icon }) {
     const glowColor = value >= 90 ? "rgba(34,197,94,0.3)" : "rgba(245,158,11,0.3)";
 
     return (
-        <div className="flex flex-col items-center gap-4">
-            <div className="relative w-28 h-28 md:w-36 md:h-36">
+        <div className="flex flex-col items-center gap-4 cursor-pointer group" onClick={onClick}>
+            <div className="relative w-28 h-28 md:w-36 md:h-36 group-hover:scale-105 transition-transform duration-300">
                 {/* Glow */}
                 <div
                     className="absolute inset-0 rounded-full blur-xl opacity-50 transition-opacity duration-1000"
@@ -102,6 +102,7 @@ function CircularGauge({ value, label, inView, delay = 0, Icon }) {
 export default function MetricsCounter({ metrics }) {
     const ref = useRef(null);
     const inView = useInView(ref, { once: true, margin: "-80px" });
+    const [selectedItem, setSelectedItem] = useState(null);
 
     return (
         <section className="relative py-24 md:py-32 px-6 bg-background overflow-hidden">
@@ -145,11 +146,57 @@ export default function MetricsCounter({ metrics }) {
                                     inView={inView}
                                     delay={i * 200}
                                     Icon={IconComponent}
+                                    onClick={() => setSelectedItem(item)}
                                 />
                             );
                         })}
                     </div>
                 </motion.div>
+
+                {/* Modal */}
+                <AnimatePresence>
+                    {selectedItem && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setSelectedItem(null)}
+                            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm"
+                        >
+                            <motion.div
+                                initial={{ scale: 0.95, opacity: 0, y: 20 }}
+                                animate={{ scale: 1, opacity: 1, y: 0 }}
+                                exit={{ scale: 0.95, opacity: 0, y: 20 }}
+                                onClick={(e) => e.stopPropagation()}
+                                className="relative w-full max-w-md bg-card/90 backdrop-blur-xl border border-white/10 p-6 md:p-8 rounded-3xl shadow-2xl overflow-hidden"
+                            >
+                                {/* Glow Effect */}
+                                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-32 bg-emerald-500/10 rounded-full blur-[60px] pointer-events-none" />
+
+                                <button
+                                    onClick={() => setSelectedItem(null)}
+                                    className="absolute top-4 right-4 p-2 rounded-full hover:bg-white/5 transition-colors"
+                                >
+                                    <X size={20} className="text-gray-400" />
+                                </button>
+
+                                <div className="flex items-center gap-4 mb-4 relative z-10">
+                                    <div className="text-4xl font-display font-bold tabular-nums text-emerald-400">
+                                        {selectedItem.value}
+                                    </div>
+                                    <div>
+                                        <h3 className="text-xl font-bold uppercase tracking-tight">
+                                            {selectedItem.label}
+                                        </h3>
+                                    </div>
+                                </div>
+                                <p className="text-gray-400 leading-relaxed relative z-10 text-sm md:text-base">
+                                    {selectedItem.desc || "Explication à venir."}
+                                </p>
+                            </motion.div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
         </section>
     );

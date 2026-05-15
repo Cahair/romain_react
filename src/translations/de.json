@@ -301,22 +301,26 @@
                 {
                     "label": "SEO",
                     "value": 100,
-                    "suffix": "/100"
+                    "suffix": "/100",
+                    "desc": "Maximale Optimierung für Suchmaschinen. Semantische Struktur, dynamische Meta-Tags und automatisch generierte Sitemap."
                 },
                 {
                     "label": "Leistung",
                     "value": 99,
-                    "suffix": "/100"
+                    "suffix": "/100",
+                    "desc": "Nahezu sofortige Ladezeiten dank serverseitigem Rendering (SSR), Bildoptimierung und Code-Minimierung."
                 },
                 {
                     "label": "Barrierefreiheit",
                     "value": 100,
-                    "suffix": "/100"
+                    "suffix": "/100",
+                    "desc": "Navigation angepasst an alle Benutzerprofile. Optimaler Kontrast, Screenreader-Unterstützung und Tastaturnavigation."
                 },
                 {
                     "label": "Best Practices",
                     "value": 100,
-                    "suffix": "/100"
+                    "suffix": "/100",
+                    "desc": "Sauberer und sicherer Code unter Einhaltung moderner Webstandards. Behebung von Schwachstellen, HTTPS und robuste Architektur."
                 }
             ]
         },

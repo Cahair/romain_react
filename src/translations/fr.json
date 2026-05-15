@@ -311,22 +311,26 @@
                 {
                     "label": "SEO",
                     "value": 100,
-                    "suffix": "/100"
+                    "suffix": "/100",
+                    "desc": "Optimisation maximale pour les moteurs de recherche. Structure sémantique, balises meta dynamiques et sitemap auto-généré."
                 },
                 {
                     "label": "Performance",
                     "value": 99,
-                    "suffix": "/100"
+                    "suffix": "/100",
+                    "desc": "Temps de chargement quasi-instantané grâce au rendu côté serveur (SSR), optimisation des images et minification du code."
                 },
                 {
                     "label": "Accessibilité",
                     "value": 100,
-                    "suffix": "/100"
+                    "suffix": "/100",
+                    "desc": "Navigation adaptée à tous les profils d'utilisateurs. Contraste optimal, support des lecteurs d'écran et navigation au clavier."
                 },
                 {
                     "label": "Bonnes Pratiques",
                     "value": 100,
-                    "suffix": "/100"
+                    "suffix": "/100",
+                    "desc": "Code propre et sécurisé respectant les standards du web moderne. Sécurisation des failles, HTTPS et architecture robuste."
                 }
             ]
         },
