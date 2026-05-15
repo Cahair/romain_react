@@ -175,9 +175,9 @@ export default function MetricsCounter({ metrics }) {
 
                                 <button
                                     onClick={() => setSelectedItem(null)}
-                                    className="absolute top-4 right-4 p-2 rounded-full hover:bg-white/5 transition-colors"
+                                    className="absolute top-2 right-2 p-4 rounded-full hover:bg-white/5 transition-colors z-20"
                                 >
-                                    <X size={20} className="text-gray-400" />
+                                    <X size={24} className="text-gray-400" />
                                 </button>
 
                                 <div className="flex items-center gap-4 mb-4 relative z-10">
