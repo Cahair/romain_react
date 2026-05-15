@@ -160,6 +160,7 @@ export default function MetricsCounter({ metrics }) {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
+                            transition={{ duration: 0.15 }}
                             onClick={() => setSelectedItem(null)}
                             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm"
                         >
@@ -167,6 +168,7 @@ export default function MetricsCounter({ metrics }) {
                                 initial={{ scale: 0.95, opacity: 0, y: 20 }}
                                 animate={{ scale: 1, opacity: 1, y: 0 }}
                                 exit={{ scale: 0.95, opacity: 0, y: 20 }}
+                                transition={{ duration: 0.15 }}
                                 onClick={(e) => e.stopPropagation()}
                                 className="relative w-full max-w-md bg-card/90 backdrop-blur-xl border border-white/10 p-6 md:p-8 rounded-3xl shadow-2xl overflow-hidden"
                             >
@@ -174,8 +176,9 @@ export default function MetricsCounter({ metrics }) {
                                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-32 bg-emerald-500/10 rounded-full blur-[60px] pointer-events-none" />
 
                                 <button
+                                    type="button"
                                     onClick={() => setSelectedItem(null)}
-                                    className="absolute top-2 right-2 p-4 rounded-full hover:bg-white/5 transition-colors z-20"
+                                    className="absolute top-2 right-2 p-4 rounded-full hover:bg-white/5 transition-colors z-20 touch-manipulation"
                                 >
                                     <X size={24} className="text-gray-400" />
                                 </button>
