@@ -1,6 +1,6 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Code2, Sparkles, Globe, CheckCircle2 } from "lucide-react";
 
@@ -18,7 +18,16 @@ const Word = ({ children, delay }) => (
 
 export default function HeroVideoParallax({ hero }) {
     const containerRef = useRef(null);
+    const videoRef = useRef(null);
     const [videoLoaded, setVideoLoaded] = useState(false);
+
+    // onLoadedData can fire before hydration attaches the listener —
+    // check readyState on mount so the video never stays stuck at opacity 0
+    useEffect(() => {
+        if (videoRef.current && videoRef.current.readyState >= 2) {
+            setVideoLoaded(true);
+        }
+    }, []);
 
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -42,21 +51,22 @@ export default function HeroVideoParallax({ hero }) {
 
                 {/* Video */}
                 <video
+                    ref={videoRef}
                     autoPlay
                     loop
                     muted
                     playsInline
-                    preload="metadata"
+                    preload="auto"
                     onLoadedData={() => setVideoLoaded(true)}
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${videoLoaded ? "opacity-60" : "opacity-0"}`}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${videoLoaded ? "opacity-100" : "opacity-0"}`}
                 >
-                    <source src="/videos/video_landing-page_web_dev.mp4" type="video/mp4" />
+                    <source src="/videos/video_dev_web.mp4" type="video/mp4" />
                 </video>
             </motion.div>
 
             {/* Dark Overlay — lighter at rest so the video stays visible, denser on scroll */}
             <motion.div
-                className="absolute inset-0 z-[1] bg-gradient-to-b from-black/50 via-black/25 to-background"
+                className="absolute inset-0 z-[1] bg-gradient-to-b from-black/40 via-black/30 to-background"
                 style={{ opacity: overlayOpacity }}
             />
 
