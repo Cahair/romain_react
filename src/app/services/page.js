@@ -57,7 +57,7 @@ const WorkflowVisual = () => {
                 <motion.path
                     d="M 60 150 L 140 150"
                     fill="none"
-                    stroke="#8b5cf6"
+                    stroke="#6366f1"
                     strokeWidth="2"
                     initial={{ pathLength: 0 }}
                     whileInView={{ pathLength: 1 }}
@@ -68,7 +68,7 @@ const WorkflowVisual = () => {
                 <motion.path
                     d="M 140 150 L 170 150 L 170 80 L 220 80"
                     fill="none"
-                    stroke="#8b5cf6"
+                    stroke="#6366f1"
                     strokeWidth="2"
                     initial={{ pathLength: 0 }}
                     whileInView={{ pathLength: 1 }}
@@ -79,7 +79,7 @@ const WorkflowVisual = () => {
                 <motion.path
                     d="M 140 150 L 170 150 L 170 220 L 220 220"
                     fill="none"
-                    stroke="#8b5cf6"
+                    stroke="#6366f1"
                     strokeWidth="2"
                     initial={{ pathLength: 0 }}
                     whileInView={{ pathLength: 1 }}
@@ -90,7 +90,7 @@ const WorkflowVisual = () => {
                 <motion.path
                     d="M 280 80 L 360 80"
                     fill="none"
-                    stroke="#8b5cf6"
+                    stroke="#6366f1"
                     strokeWidth="2"
                     initial={{ pathLength: 0 }}
                     whileInView={{ pathLength: 1 }}
@@ -101,7 +101,7 @@ const WorkflowVisual = () => {
                 <motion.path
                     d="M 280 220 L 360 220"
                     fill="none"
-                    stroke="#8b5cf6"
+                    stroke="#6366f1"
                     strokeWidth="2"
                     initial={{ pathLength: 0 }}
                     whileInView={{ pathLength: 1 }}
@@ -112,7 +112,7 @@ const WorkflowVisual = () => {
                 {/* Nodes */}
                 {/* 1. Trigger */}
                 <g transform="translate(60, 150)">
-                    <circle r="20" fill="#1e1b4b" stroke="#8b5cf6" strokeWidth="2" />
+                    <circle r="20" fill="#262626" stroke="#6366f1" strokeWidth="2" />
                     <Zap size={16} x="-8" y="-8" className="text-secondary-neon" />
                 </g>
 
@@ -123,7 +123,7 @@ const WorkflowVisual = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 0.4 }}
                 >
-                    <rect x="-20" y="-20" width="40" height="40" rx="6" fill="#1e1b4b" stroke="#8b5cf6" strokeWidth="2" />
+                    <rect x="-20" y="-20" width="40" height="40" rx="6" fill="#262626" stroke="#6366f1" strokeWidth="2" />
                     <Cpu size={16} x="-8" y="-8" className="text-secondary-neon" />
                 </motion.g>
 
@@ -134,7 +134,7 @@ const WorkflowVisual = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 0.8 }}
                 >
-                    <rect x="-24" y="-24" width="48" height="48" rx="8" fill="#1e1b4b" stroke="#8b5cf6" strokeWidth="2" />
+                    <rect x="-24" y="-24" width="48" height="48" rx="8" fill="#262626" stroke="#6366f1" strokeWidth="2" />
                     <Bot size={20} x="-10" y="-10" className="text-secondary-neon" />
                 </motion.g>
 
@@ -145,7 +145,7 @@ const WorkflowVisual = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 0.8 }}
                 >
-                    <rect x="-24" y="-24" width="48" height="48" rx="8" fill="#1e1b4b" stroke="#8b5cf6" strokeWidth="2" />
+                    <rect x="-24" y="-24" width="48" height="48" rx="8" fill="#262626" stroke="#6366f1" strokeWidth="2" />
                     <Mail size={20} x="-10" y="-10" className="text-secondary-neon" />
                 </motion.g>
 
@@ -156,7 +156,7 @@ const WorkflowVisual = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 1.2 }}
                 >
-                    <rect x="-24" y="-24" width="48" height="48" rx="8" fill="#1e1b4b" stroke="#8b5cf6" strokeWidth="2" />
+                    <rect x="-24" y="-24" width="48" height="48" rx="8" fill="#262626" stroke="#6366f1" strokeWidth="2" />
                     <Database size={20} x="-10" y="-10" className="text-secondary-neon" />
                 </motion.g>
 
@@ -167,7 +167,7 @@ const WorkflowVisual = () => {
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 1.4 }}
                 >
-                    <rect x="-24" y="-24" width="48" height="48" rx="8" fill="#1e1b4b" stroke="#8b5cf6" strokeWidth="2" />
+                    <rect x="-24" y="-24" width="48" height="48" rx="8" fill="#262626" stroke="#6366f1" strokeWidth="2" />
                     <Bell size={20} x="-10" y="-10" className="text-secondary-neon" />
                 </motion.g>
             </svg>

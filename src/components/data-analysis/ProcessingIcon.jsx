@@ -10,17 +10,17 @@ export default function ProcessingIcon() {
                 transition={{ duration: 2, repeat: Infinity }}
             />
 
-            <div className="relative z-10 bg-white dark:bg-slate-900 rounded-2xl p-4 shadow-[0_0_50px_rgba(6,182,212,0.4)] border border-cyan-500/30">
+            <div className="relative z-10 bg-white dark:bg-slate-900 rounded-2xl p-4 shadow-[0_0_50px_rgba(59,130,246,0.4)] border border-cyan-500/30">
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <motion.path
                         d="M13 2L3 14H12L11 22L21 10H12L13 2Z"
-                        fill="#06b6d4"
-                        stroke="#06b6d4"
+                        fill="#3b82f6"
+                        stroke="#3b82f6"
                         strokeWidth="2"
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         animate={{
-                            fill: ["#06b6d4", "rgba(6,182,212,0.2)", "#06b6d4"],
+                            fill: ["#3b82f6", "rgba(59,130,246,0.2)", "#3b82f6"],
                         }}
                         transition={{ duration: 2, repeat: Infinity }}
                     />

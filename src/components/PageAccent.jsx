@@ -5,28 +5,34 @@ import { usePathname } from "next/navigation";
 // Page accent colors configuration
 const pageAccents = {
     "/": {
-        primary: "#06b6d4", // Cyan - Home, foundation
-        gradient: "from-cyan-500 to-blue-500",
-        glow: "shadow-[0_0_30px_rgba(6,182,212,0.3)]",
+        primary: "#3b82f6", // Blue - Home, foundation
+        gradient: "from-cyan-500 to-cyan-600",
+        glow: "shadow-[0_0_30px_rgba(59,130,246,0.3)]",
         name: "home"
     },
     "/services": {
-        primary: "#8b5cf6", // Violet - Services, technology
-        gradient: "from-violet-500 to-purple-600",
-        glow: "shadow-[0_0_30px_rgba(139,92,246,0.3)]",
+        primary: "#6366f1", // Indigo - Services, technology
+        gradient: "from-violet-400 to-violet-500",
+        glow: "shadow-[0_0_30px_rgba(99,102,241,0.3)]",
         name: "services"
     },
     "/about": {
-        primary: "#a855f7", // Purple - About, creativity
-        gradient: "from-purple-500 to-pink-500",
-        glow: "shadow-[0_0_30px_rgba(168,85,247,0.3)]",
+        primary: "#4f46e5", // Deep indigo - About, creativity
+        gradient: "from-purple-500 to-purple-600",
+        glow: "shadow-[0_0_30px_rgba(79,70,229,0.3)]",
         name: "about"
     },
     "/contact": {
-        primary: "#22d3ee", // Bright cyan - Contact, action
-        gradient: "from-cyan-400 to-teal-500",
-        glow: "shadow-[0_0_30px_rgba(34,211,238,0.3)]",
+        primary: "#60a5fa", // Light blue - Contact, action
+        gradient: "from-cyan-400 to-cyan-500",
+        glow: "shadow-[0_0_30px_rgba(96,165,250,0.3)]",
         name: "contact"
+    },
+    "/services/web-dev": {
+        primary: "#3b82f6", // Blue - Web development
+        gradient: "from-cyan-500 to-violet-500",
+        glow: "shadow-[0_0_30px_rgba(59,130,246,0.3)]",
+        name: "web-dev"
     }
 };
 

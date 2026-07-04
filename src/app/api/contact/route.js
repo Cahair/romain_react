@@ -65,7 +65,7 @@ export async function POST(request) {
                             <div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #f1f5f9;">
                                 <div style="font-size: 12px; color: #64748b; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 8px;">De la part de</div>
                                 <div style="font-size: 18px; color: #1e293b; font-weight: 600;">${safeName}</div>
-                                <a href="mailto:${safeEmail}" style="color: #3b82f6; text-decoration: none; font-size: 15px;">${safeEmail}</a>
+                                <a href="mailto:${safeEmail}" style="color: #2563eb; text-decoration: none; font-size: 15px;">${safeEmail}</a>
                             </div>
 
                             <!-- Project Details Grid -->

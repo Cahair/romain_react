@@ -2,7 +2,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
 import Link from "next/link";
-import { Code2, Sparkles, Globe } from "lucide-react";
+import { Code2, Sparkles, Globe, CheckCircle2 } from "lucide-react";
 
 // Animated word component
 const Word = ({ children, delay }) => (
@@ -27,17 +27,18 @@ export default function HeroVideoParallax({ hero }) {
 
     // Video moves slower than scroll = parallax
     const videoY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-    const overlayOpacity = useTransform(scrollYProgress, [0, 0.5], [0.5, 0.9]);
+    const overlayOpacity = useTransform(scrollYProgress, [0, 0.5], [0.4, 1]);
     const contentOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
 
     const words = hero.title.split(" ");
+    const proofs = Array.isArray(hero.proofs) ? hero.proofs : [];
 
     return (
         <section ref={containerRef} className="relative h-screen min-h-[100dvh] overflow-hidden">
             {/* Video / Image Background with Parallax */}
             <motion.div className="absolute inset-0 z-0" style={{ y: videoY }}>
                 {/* Fallback gradient while video loads */}
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950/50 to-slate-950" />
+                <div className="absolute inset-0 bg-gradient-to-br from-background via-primary/10 to-background" />
 
                 {/* Video */}
                 <video
@@ -47,22 +48,22 @@ export default function HeroVideoParallax({ hero }) {
                     playsInline
                     preload="metadata"
                     onLoadedData={() => setVideoLoaded(true)}
-                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${videoLoaded ? "opacity-30" : "opacity-0"}`}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${videoLoaded ? "opacity-60" : "opacity-0"}`}
                 >
                     <source src="/videos/video_landing-page_web_dev.mp4" type="video/mp4" />
                 </video>
             </motion.div>
 
-            {/* Dark Overlay */}
+            {/* Dark Overlay — lighter at rest so the video stays visible, denser on scroll */}
             <motion.div
-                className="absolute inset-0 z-[1] bg-gradient-to-b from-black/80 via-black/50 to-background"
+                className="absolute inset-0 z-[1] bg-gradient-to-b from-black/50 via-black/25 to-background"
                 style={{ opacity: overlayOpacity }}
             />
 
             {/* Grid Pattern Overlay */}
             <div className="absolute inset-0 z-[2] opacity-[0.06]">
                 <div
-                    className="absolute inset-0 bg-[linear-gradient(to_right,#3b82f620_1px,transparent_1px),linear-gradient(to_bottom,#3b82f620_1px,transparent_1px)] bg-[size:4rem_4rem]"
+                    className="absolute inset-0 bg-[linear-gradient(to_right,var(--primary)_1px,transparent_1px),linear-gradient(to_bottom,var(--primary)_1px,transparent_1px)] bg-[size:4rem_4rem]"
                     style={{
                         maskImage: "radial-gradient(ellipse 70% 60% at 50% 50%, black, transparent)",
                         WebkitMaskImage: "radial-gradient(ellipse 70% 60% at 50% 50%, black, transparent)",
@@ -80,7 +81,7 @@ export default function HeroVideoParallax({ hero }) {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3, duration: 0.6 }}
-                    className="font-mono text-blue-400 text-xs md:text-sm tracking-[0.3em] uppercase mb-6 md:mb-10 drop-shadow-[0_0_10px_rgba(0,0,0,1)]"
+                    className="font-mono text-primary-neon text-xs md:text-sm tracking-[0.3em] uppercase mb-6 md:mb-8 drop-shadow-[0_0_10px_rgba(0,0,0,1)]"
                 >
                     {hero.overline}
                 </motion.span>
@@ -96,16 +97,28 @@ export default function HeroVideoParallax({ hero }) {
                     ))}
                 </h1>
 
+                {/* Subtitle — value proposition */}
+                {hero.subtitle && (
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 1, duration: 0.6 }}
+                        className="mt-6 max-w-2xl text-center text-sm md:text-lg text-white/85 leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]"
+                    >
+                        {hero.subtitle}
+                    </motion.p>
+                )}
+
                 {/* Floating Icons */}
                 <motion.div
-                    className="absolute top-[20%] left-[15%] text-blue-400/30 hidden md:block"
+                    className="absolute top-[20%] left-[15%] text-primary-neon/30 hidden md:block"
                     animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }}
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                 >
                     <Code2 size={64} />
                 </motion.div>
                 <motion.div
-                    className="absolute top-[30%] right-[10%] text-cyan-400/30 hidden lg:block"
+                    className="absolute top-[30%] right-[10%] text-secondary-neon/30 hidden lg:block"
                     animate={{ y: [0, 20, 0], rotate: [0, -15, 0] }}
                     transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                 >
@@ -124,11 +137,11 @@ export default function HeroVideoParallax({ hero }) {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1.2, duration: 0.6 }}
-                    className="mt-10 md:mt-14"
+                    className="mt-8 md:mt-10"
                 >
                     <Link
                         href="/contact"
-                        className="group inline-flex items-center gap-3 px-8 py-4 md:px-10 md:py-5 bg-blue-500 hover:bg-blue-600 text-white font-bold uppercase tracking-widest text-xs md:text-sm transition-all duration-300 shadow-[0_0_40px_rgba(59,130,246,0.4)] hover:shadow-[0_0_60px_rgba(59,130,246,0.7)] hover:scale-105"
+                        className="group inline-flex items-center gap-3 px-8 py-4 md:px-10 md:py-5 bg-primary hover:bg-primary-dark text-primary-foreground font-bold uppercase tracking-widest text-xs md:text-sm transition-all duration-300 shadow-[0_0_40px] shadow-primary/40 hover:shadow-[0_0_60px] hover:shadow-primary/70 hover:scale-105"
                     >
                         {hero.cta}
                         <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -136,6 +149,26 @@ export default function HeroVideoParallax({ hero }) {
                         </svg>
                     </Link>
                 </motion.div>
+
+                {/* Micro-proofs */}
+                {proofs.length > 0 && (
+                    <motion.ul
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 1.5, duration: 0.6 }}
+                        className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2"
+                    >
+                        {proofs.map((proof, i) => (
+                            <li
+                                key={i}
+                                className="flex items-center gap-2 font-mono text-[11px] md:text-xs uppercase tracking-wider text-white/70 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
+                            >
+                                <CheckCircle2 size={14} className="text-primary-neon shrink-0" />
+                                {proof}
+                            </li>
+                        ))}
+                    </motion.ul>
+                )}
 
                 {/* Scroll cue */}
                 <motion.div
@@ -145,7 +178,7 @@ export default function HeroVideoParallax({ hero }) {
                     transition={{ delay: 2 }}
                 >
                     <motion.div
-                        className="w-[1px] h-10 bg-gradient-to-b from-blue-400/60 to-transparent"
+                        className="w-[1px] h-10 bg-gradient-to-b from-primary-neon/60 to-transparent"
                         animate={{ scaleY: [1, 0.5, 1] }}
                         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                     />

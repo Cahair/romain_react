@@ -111,7 +111,7 @@ export default function Chatbot() {
             {/* Floating Toggle Button */}
             <motion.button
                 onClick={() => setIsOpen(true)}
-                className={`fixed bottom-6 right-6 z-50 p-4 rounded-full bg-card/80 backdrop-blur-md border border-primary-neon/50 shadow-[0_0_20px_rgba(0,240,255,0.3)] group hover:scale-110 transition-all duration-300 ${isOpen ? 'hidden' : (showButton ? 'flex' : 'hidden')}`}
+                className={`fixed bottom-6 right-6 z-50 p-4 rounded-full bg-card/80 backdrop-blur-md border border-primary-neon/50 shadow-[0_0_20px_rgba(96,165,250,0.3)] group hover:scale-110 transition-all duration-300 ${isOpen ? 'hidden' : (showButton ? 'flex' : 'hidden')}`}
                 whileHover={{ rotate: 5 }}
                 initial={{ scale: 0 }}
                 animate={{ scale: showButton ? 1 : 0 }}
@@ -175,7 +175,7 @@ export default function Chatbot() {
                                         <div
                                             className={`p-3 rounded-2xl max-w-[85%] text-sm leading-relaxed ${msg.role === 'user'
                                                 ? 'bg-accent text-foreground rounded-tr-sm'
-                                                : 'bg-primary-neon/5 border border-primary-neon/10 text-muted-foreground rounded-tl-sm shadow-[0_0_15px_rgba(0,240,255,0.05)]'
+                                                : 'bg-primary-neon/5 border border-primary-neon/10 text-muted-foreground rounded-tl-sm shadow-[0_0_15px_rgba(96,165,250,0.05)]'
                                                 }`}
                                         >
                                             {msg.content}

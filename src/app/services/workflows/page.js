@@ -142,7 +142,7 @@ const ComplexWorkflowVisual = ({ t }) => {
 
                         {/* Visual Connections */}
                         <Connection start={{ x: 150, y: 400 }} end={{ x: 450, y: 400 }} color="rgba(59, 130, 246, 0.5)" delay={0.2} />
-                        <Connection start={{ x: 550, y: 400 }} end={{ x: 850, y: 400 }} color="rgba(168, 85, 247, 0.5)" delay={0.4} />
+                        <Connection start={{ x: 550, y: 400 }} end={{ x: 850, y: 400 }} color="rgba(79,70,229, 0.5)" delay={0.4} />
                         <Connection start={{ x: 950, y: 400 }} end={{ x: 1150, y: 200 }} color="rgba(34, 197, 94, 0.5)" delay={0.6} />
                         <Connection start={{ x: 950, y: 400 }} end={{ x: 1150, y: 600 }} color="rgba(239, 68, 68, 0.5)" delay={0.6} />
                     </svg>
@@ -321,7 +321,7 @@ export default function WorkflowsPage() {
 
                 {/* CTA */}
                 <div className="flex justify-center mt-20">
-                    <Link href="/contact" className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-primary-dark px-8 font-medium text-white transition-all duration-300 hover:bg-primary hover:scale-105 hover:shadow-[0_0_20px_rgba(6,182,212,0.5)]">
+                    <Link href="/contact" className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-primary-dark px-8 font-medium text-white transition-all duration-300 hover:bg-primary hover:scale-105 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)]">
                         <span className="mr-2">{t("workflowsPage.cta")}</span>
                         <ArrowRight className="transition-transform group-hover:translate-x-1" size={20} />
                         <div className="absolute inset-0 -z-10 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 translate-x-[-100%] group-hover:animate-shine" />

@@ -2,38 +2,39 @@
 import { motion } from "framer-motion";
 import { Target, PenTool, Code2, Rocket } from "lucide-react";
 
+// Alternate primary (blue) / secondary (indigo) so the grid stays on-theme
 const steps = [
     {
         icon: <Target className="w-full h-full" strokeWidth={1.5} />,
-        gradient: "from-blue-600/20 to-cyan-600/20",
-        border: "group-hover:border-blue-500/40",
-        iconColor: "text-blue-400",
-        accentGlow: "bg-blue-500/20",
-        numGradient: "from-blue-400 to-cyan-400",
+        gradient: "from-primary/20 to-secondary/20",
+        border: "group-hover:border-primary/40",
+        iconColor: "text-primary-neon",
+        accentGlow: "bg-primary/20",
+        numGradient: "from-primary-neon to-secondary-neon",
     },
     {
         icon: <PenTool className="w-full h-full" strokeWidth={1.5} />,
-        gradient: "from-violet-600/20 to-fuchsia-600/20",
-        border: "group-hover:border-violet-500/40",
-        iconColor: "text-violet-400",
-        accentGlow: "bg-violet-500/20",
-        numGradient: "from-violet-400 to-fuchsia-400",
+        gradient: "from-secondary/20 to-primary/20",
+        border: "group-hover:border-secondary/40",
+        iconColor: "text-secondary-neon",
+        accentGlow: "bg-secondary/20",
+        numGradient: "from-secondary-neon to-primary-neon",
     },
     {
         icon: <Code2 className="w-full h-full" strokeWidth={1.5} />,
-        gradient: "from-cyan-600/20 to-emerald-600/20",
-        border: "group-hover:border-cyan-500/40",
-        iconColor: "text-cyan-400",
-        accentGlow: "bg-cyan-500/20",
-        numGradient: "from-cyan-400 to-emerald-400",
+        gradient: "from-primary/20 to-secondary/20",
+        border: "group-hover:border-primary/40",
+        iconColor: "text-primary-neon",
+        accentGlow: "bg-primary/20",
+        numGradient: "from-primary-neon to-secondary-neon",
     },
     {
         icon: <Rocket className="w-full h-full" strokeWidth={1.5} />,
-        gradient: "from-amber-600/20 to-orange-600/20",
-        border: "group-hover:border-amber-500/40",
-        iconColor: "text-amber-400",
-        accentGlow: "bg-amber-500/20",
-        numGradient: "from-amber-400 to-orange-400",
+        gradient: "from-secondary/20 to-primary/20",
+        border: "group-hover:border-secondary/40",
+        iconColor: "text-secondary-neon",
+        accentGlow: "bg-secondary/20",
+        numGradient: "from-secondary-neon to-primary-neon",
     },
 ];
 
@@ -76,13 +77,13 @@ function VisualStepCard({ step, visual, index }) {
                             {step.num}
                         </span>
                         <div className="w-4 h-[1px] bg-white/20" />
-                        <h3 className="text-base md:text-lg font-display font-bold uppercase text-white tracking-wide">
+                        <h3 className="text-base md:text-lg font-display font-bold uppercase text-foreground tracking-wide">
                             {step.title}
                         </h3>
                     </div>
 
                     {/* Description */}
-                    <p className="text-gray-400 text-xs md:text-sm leading-relaxed max-w-xl line-clamp-3 md:line-clamp-none">
+                    <p className="text-muted-foreground text-xs md:text-sm leading-relaxed max-w-xl line-clamp-3 md:line-clamp-none">
                         {step.desc}
                     </p>
                 </div>
@@ -102,8 +103,8 @@ export default function ProcessTimeline({ process: processData }) {
     return (
         <section className="relative py-24 md:py-32 px-6 bg-background overflow-hidden flex flex-col justify-center">
             {/* Background accents */}
-            <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-blue-500/5 rounded-full blur-[140px] pointer-events-none" />
-            <div className="absolute bottom-1/4 right-0 w-[400px] h-[400px] bg-violet-500/5 rounded-full blur-[140px] pointer-events-none" />
+            <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[140px] pointer-events-none" />
+            <div className="absolute bottom-1/4 right-0 w-[400px] h-[400px] bg-secondary/5 rounded-full blur-[140px] pointer-events-none" />
 
             <div className="container mx-auto max-w-6xl relative z-10">
                 {/* Header */}
@@ -113,12 +114,12 @@ export default function ProcessTimeline({ process: processData }) {
                     viewport={{ once: true }}
                     className="text-center mb-8 md:mb-12"
                 >
-                    <span className="font-mono text-blue-400 text-xs md:text-sm tracking-[0.3em] uppercase block mb-3">
+                    <span className="font-mono text-primary-neon text-xs md:text-sm tracking-[0.3em] uppercase block mb-3">
                         {processData.overline}
                     </span>
                     <h2 className="font-display text-2xl md:text-4xl lg:text-5xl font-bold uppercase tracking-tight">
                         {processData.title}{" "}
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-neon to-secondary-neon">
                             {processData.titleHighlight}
                         </span>
                     </h2>
@@ -130,7 +131,7 @@ export default function ProcessTimeline({ process: processData }) {
                     <motion.div
                         className="absolute w-[400px] h-[400px] md:w-[600px] md:h-[600px] rounded-full blur-[100px] md:blur-[140px] pointer-events-none z-0"
                         style={{
-                            background: "radial-gradient(circle, rgba(59,130,246,0.35) 0%, rgba(139,92,246,0.25) 50%, transparent 80%)",
+                            background: "radial-gradient(circle, color-mix(in srgb, var(--primary) 35%, transparent) 0%, color-mix(in srgb, var(--secondary) 25%, transparent) 50%, transparent 80%)",
                         }}
                         animate={{
                             x: ["-10vw", "50vw", "50vw", "-10vw"],

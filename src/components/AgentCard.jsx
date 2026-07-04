@@ -12,7 +12,7 @@ export default function AgentCard({ agent, isActive, onClick }) {
             border: "border-cyan-500/30 hover:border-cyan-400/60",
             text: "text-cyan-100",
             accent: "text-cyan-400",
-            glow: "shadow-[0_0_30px_rgba(34,211,238,0.15)]",
+            glow: "shadow-[0_0_30px_rgba(96,165,250,0.15)]",
         },
         lumina: {
             gradient: "from-orange-900 via-fuchsia-900 to-background",

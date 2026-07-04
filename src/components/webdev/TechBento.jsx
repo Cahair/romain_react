@@ -90,14 +90,14 @@ function SpotlightCard({ children, className = "", delay = 0 }) {
             onMouseMove={handleMouseMove}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            className={`relative overflow-hidden backdrop-blur-md bg-white/[0.03] border border-white/10 rounded-2xl p-6 md:p-8 hover:border-blue-500/30 transition-colors duration-300 cursor-default ${className}`}
+            className={`relative overflow-hidden backdrop-blur-md bg-white/[0.03] border border-white/10 rounded-2xl p-6 md:p-8 hover:border-primary/30 transition-colors duration-300 cursor-default ${className}`}
         >
             {/* Spotlight gradient */}
             {isHovered && (
                 <div
                     className="absolute inset-0 opacity-100 transition-opacity duration-300 pointer-events-none"
                     style={{
-                        background: `radial-gradient(300px circle at ${mousePos.x}px ${mousePos.y}px, rgba(59,130,246,0.12), transparent 60%)`,
+                        background: `radial-gradient(300px circle at ${mousePos.x}px ${mousePos.y}px, color-mix(in srgb, var(--primary) 12%, transparent), transparent 60%)`,
                     }}
                 />
             )}
@@ -117,11 +117,11 @@ export default function TechBento({ tech }) {
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <span className="font-mono text-blue-400 text-xs md:text-sm tracking-[0.3em] uppercase block mb-4">
+                    <span className="font-mono text-primary-neon text-xs md:text-sm tracking-[0.3em] uppercase block mb-4">
                         {tech.overline}
                     </span>
                     <h2 className="font-display text-3xl md:text-5xl font-bold uppercase tracking-tight">
-                        {tech.title} <span className="text-blue-400">{tech.titleHighlight}</span>
+                        {tech.title} <span className="text-primary-neon">{tech.titleHighlight}</span>
                     </h2>
                 </motion.div>
 
@@ -130,16 +130,16 @@ export default function TechBento({ tech }) {
                     {techItems.map((item, i) => (
                         <SpotlightCard key={item.name} delay={i * 0.08} className={item.span}>
                             <div className="flex flex-col gap-3">
-                                <motion.div 
-                                    className="text-blue-400/70 group-hover:text-blue-400 transition-colors w-fit"
+                                <motion.div
+                                    className="text-primary-neon/70 group-hover:text-primary-neon transition-colors w-fit"
                                     whileHover={{ scale: 1.1, rotate: i % 2 === 0 ? 8 : -8 }}
                                     transition={{ type: "spring", stiffness: 300, damping: 15 }}
                                 >
                                     {item.icon}
                                 </motion.div>
                                 <div>
-                                    <h3 className="text-white font-semibold text-sm md:text-base">{item.name}</h3>
-                                    <p className="text-gray-500 text-xs md:text-sm font-mono">{item.desc}</p>
+                                    <h3 className="text-foreground font-semibold text-sm md:text-base">{item.name}</h3>
+                                    <p className="text-muted-foreground text-xs md:text-sm font-mono">{tech.items?.[i] || item.desc}</p>
                                 </div>
                             </div>
                         </SpotlightCard>

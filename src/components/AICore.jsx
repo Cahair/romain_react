@@ -37,7 +37,7 @@ export default function AICore({ size = "default" }) {
         <div className={`relative ${currentSize.container} flex items-center justify-center`}>
             {/* Core - Noyau central avec effet de glow cyan RENFORCÉ */}
             <motion.div
-                className={`${currentSize.core} bg-cyan-400/40 rounded-full blur-2xl absolute shadow-[0_0_60px_rgba(6,182,212,0.8)]`}
+                className={`${currentSize.core} bg-cyan-400/40 rounded-full blur-2xl absolute shadow-[0_0_60px_rgba(59,130,246,0.8)]`}
                 animate={{
                     scale: [1, 1.3, 1],
                     opacity: [0.6, 1, 0.6]
@@ -53,7 +53,7 @@ export default function AICore({ size = "default" }) {
             {[1, 2, 3].map((i) => (
                 <motion.div
                     key={i}
-                    className="absolute border-2 border-cyan-400/60 rounded-full shadow-[0_0_20px_rgba(34,211,238,0.5)]"
+                    className="absolute border-2 border-cyan-400/60 rounded-full shadow-[0_0_20px_rgba(96,165,250,0.5)]"
                     style={{
                         width: i * 50 + 60,
                         height: i * 50 + 60
@@ -69,12 +69,12 @@ export default function AICore({ size = "default" }) {
                     }}
                 >
                     {/* Particule orbitale AGRANDIE */}
-                    <div className="absolute top-0 left-1/2 w-2 h-2 bg-cyan-400 rounded-full shadow-[0_0_15px_#22d3ee,0_0_30px_#06b6d4]" />
+                    <div className="absolute top-0 left-1/2 w-2 h-2 bg-cyan-400 rounded-full shadow-[0_0_15px_#60a5fa,0_0_30px_#3b82f6]" />
                 </motion.div>
             ))}
 
             {/* Particule centrale avec mix-blend pour effet holographique */}
-            <div className={`${currentSize.particle} bg-cyan-200 rounded-full mix-blend-screen opacity-30 blur-md shadow-[0_0_40px_rgba(6,182,212,0.6)]`} />
+            <div className={`${currentSize.particle} bg-cyan-200 rounded-full mix-blend-screen opacity-30 blur-md shadow-[0_0_40px_rgba(59,130,246,0.6)]`} />
         </div>
     );
 }

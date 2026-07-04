@@ -25,7 +25,7 @@ export default function Icon() {
                     // simpler approach for favicon: text color with gradient simulation
                     // or just solid colors. Satori supports some linear gradients.
                     color: 'transparent',
-                    backgroundImage: 'linear-gradient(to right, #3b82f6, #8b5cf6)',
+                    backgroundImage: 'linear-gradient(to right, #2563eb, #6366f1)',
                     backgroundClip: 'text',
                     fontFamily: 'sans-serif', // Fallback
                 }}

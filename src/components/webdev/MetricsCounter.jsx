@@ -107,7 +107,7 @@ export default function MetricsCounter({ metrics }) {
     return (
         <section className="relative py-24 md:py-32 px-6 bg-background overflow-hidden">
             {/* Background glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-emerald-500/8 rounded-full blur-[140px] pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[140px] pointer-events-none" />
 
             <div className="container mx-auto max-w-4xl relative z-10">
                 {/* Header */}
@@ -117,12 +117,12 @@ export default function MetricsCounter({ metrics }) {
                     viewport={{ once: true }}
                     className="text-center mb-16 md:mb-20"
                 >
-                    <span className="font-mono text-blue-400 text-xs md:text-sm tracking-[0.3em] uppercase block mb-4">
+                    <span className="font-mono text-primary-neon text-xs md:text-sm tracking-[0.3em] uppercase block mb-4">
                         {metrics.overline}
                     </span>
                     <h2 className="font-display text-3xl md:text-5xl font-bold uppercase tracking-tight">
                         {metrics.title}{" "}
-                        <span className="text-blue-400">{metrics.titleHighlight}</span>
+                        <span className="text-primary-neon">{metrics.titleHighlight}</span>
                     </h2>
                 </motion.div>
 
@@ -173,7 +173,7 @@ export default function MetricsCounter({ metrics }) {
                                 className="relative w-full max-w-md bg-card/90 backdrop-blur-xl border border-white/10 p-6 md:p-8 rounded-3xl shadow-2xl overflow-hidden"
                             >
                                 {/* Glow Effect */}
-                                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-32 bg-emerald-500/10 rounded-full blur-[60px] pointer-events-none" />
+                                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-32 bg-primary/10 rounded-full blur-[60px] pointer-events-none" />
 
                                 <button
                                     type="button"
@@ -184,7 +184,7 @@ export default function MetricsCounter({ metrics }) {
                                 </button>
 
                                 <div className="flex items-center gap-4 mb-4 relative z-10">
-                                    <div className="text-4xl font-display font-bold tabular-nums text-emerald-400">
+                                    <div className="text-4xl font-display font-bold tabular-nums text-primary-neon">
                                         {selectedItem.value}
                                     </div>
                                     <div>

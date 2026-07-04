@@ -291,6 +291,8 @@
         "hero": {
             "overline": "// Premium-Webentwicklung",
             "title": "Web-Erlebnisse, die Eindruck hinterlassen",
+            "subtitle": "Unternehmensseiten, E-Commerce und maßgeschneiderte Anwendungen mit Next.js — gebaut, um zu konvertieren und zu bestehen.",
+            "proofs": ["Lighthouse-Score 99+", "Lieferung in 2 bis 6 Wochen", "Technisches SEO inklusive"],
             "cta": "Mein Projekt besprechen"
         },
         "metrics": {
@@ -327,7 +329,66 @@
         "tech": {
             "overline": "// Das Ökosystem",
             "title": "Tech",
-            "titleHighlight": "Stack"
+            "titleHighlight": "Stack",
+            "items": ["React-Framework", "UI-Bibliothek", "Utility-First CSS", "Animationen", "Typsicherheit", "Deployment"]
+        },
+        "caseStudies": {
+            "overline": "// Referenzen",
+            "title": "Messbare",
+            "titleHighlight": "Ergebnisse",
+            "subtitle": "Jedes Projekt wird mit einem messbaren Ziel entwickelt: Traffic, Conversion, Performance.",
+            "items": [
+                {
+                    "tag": "Unternehmensseite",
+                    "title": "Handwerk & lokaler Handel",
+                    "desc": "Komplette conversion-orientierte Neugestaltung: starke Identität, vereinfachte Kontaktaufnahme und optimiertes lokales SEO.",
+                    "metrics": [
+                        { "value": "+180%", "label": "Organischer Traffic" },
+                        { "value": "0,4s", "label": "Erste Anzeige" }
+                    ]
+                },
+                {
+                    "tag": "E-Commerce",
+                    "title": "Online-Modeshop",
+                    "desc": "Kaufprozess von A bis Z neu gedacht: immersive Produktseiten, reibungsloser Checkout und vereinfachte Zahlung.",
+                    "metrics": [
+                        { "value": "+65%", "label": "Conversion-Rate" },
+                        { "value": "99/100", "label": "Lighthouse-Score" }
+                    ]
+                },
+                {
+                    "tag": "Web-App",
+                    "title": "Buchungsplattform",
+                    "desc": "Maßgeschneiderte Business-Anwendung mit Dashboard, automatischen Benachrichtigungen und Kalendersynchronisation.",
+                    "metrics": [
+                        { "value": "-70%", "label": "Verwaltungszeit" },
+                        { "value": "24/7", "label": "Online-Buchungen" }
+                    ]
+                }
+            ]
+        },
+        "faq": {
+            "overline": "// Häufige Fragen",
+            "title": "Sie fragen",
+            "titleHighlight": "sich",
+            "items": [
+                {
+                    "q": "Was kostet eine maßgeschneiderte Website?",
+                    "a": "Jedes Projekt ist einzigartig: Das Budget hängt vom Umfang (Unternehmensseite, E-Commerce, Anwendung), Design und den Funktionen ab. Nach einem kostenlosen Erstgespräch erhalten Sie ein detailliertes, transparentes Angebot — ohne Überraschungen."
+                },
+                {
+                    "q": "Wie lange dauert die Umsetzung?",
+                    "a": "Rechnen Sie mit 2 bis 3 Wochen für eine Unternehmensseite und 4 bis 6 Wochen für E-Commerce oder eine Anwendung. Sie verfolgen den Fortschritt kontinuierlich mit regelmäßigen Abstimmungen und Demo-Versionen."
+                },
+                {
+                    "q": "Wird meine Website bei Google gut gefunden?",
+                    "a": "Technisches SEO ist in jedem Projekt enthalten: semantische Struktur, Ladegeschwindigkeit, Meta-Tags, Sitemap und strukturierte Daten. Nahezu perfekte Lighthouse-Scores sind Standard, keine Option."
+                },
+                {
+                    "q": "Bieten Sie Wartung nach dem Launch an?",
+                    "a": "Ja. Wartungspakete decken Updates, Sicherheit, Backups und Weiterentwicklungen ab. Sie konzentrieren sich auf Ihr Geschäft, ich kümmere mich um die Technik."
+                }
+            ]
         },
         "process": {
             "overline": "// Unsere Methodik",

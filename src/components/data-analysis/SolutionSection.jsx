@@ -34,8 +34,8 @@ export default function SolutionSection() {
                         <svg className="w-full h-full overflow-visible" preserveAspectRatio="none">
                             <defs>
                                 <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.1" />
-                                    <stop offset="100%" stopColor="#06b6d4" stopOpacity="0" />
+                                    <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.1" />
+                                    <stop offset="100%" stopColor="#3b82f6" stopOpacity="0" />
                                 </linearGradient>
                             </defs>
                             <motion.path
@@ -48,7 +48,7 @@ export default function SolutionSection() {
                             <motion.path
                                 d="M0,100 C 50,80 100,120 150,60 S 250,40 350,10"
                                 fill="none"
-                                stroke="#06b6d4"
+                                stroke="#3b82f6"
                                 strokeWidth="3"
                                 strokeLinecap="round"
                                 initial={{ pathLength: 0 }}
@@ -61,8 +61,8 @@ export default function SolutionSection() {
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ delay: 1.5 }}
                             >
-                                <circle cx="350" cy="10" r="5" fill="#fff" stroke="#06b6d4" strokeWidth="3" />
-                                <rect x="300" y="-20" width="60" height="24" rx="4" fill="#06b6d4" />
+                                <circle cx="350" cy="10" r="5" fill="#fff" stroke="#3b82f6" strokeWidth="3" />
+                                <rect x="300" y="-20" width="60" height="24" rx="4" fill="#3b82f6" />
                                 <text x="330" y="-4" textAnchor="middle" fill="white" fontSize="10" fontWeight="bold">Forecast</text>
                             </motion.g>
                         </svg>
@@ -81,7 +81,7 @@ export default function SolutionSection() {
                             <svg className="w-full h-full rotate-[-90deg]">
                                 <circle cx="40" cy="40" r="32" fill="none" stroke="#f1f5f9" strokeWidth="8" />
                                 <motion.circle
-                                    cx="40" cy="40" r="32" fill="none" stroke="#8b5cf6" strokeWidth="8" strokeLinecap="round"
+                                    cx="40" cy="40" r="32" fill="none" stroke="#6366f1" strokeWidth="8" strokeLinecap="round"
                                     initial={{ strokeDasharray: 201, strokeDashoffset: 201 }}
                                     whileInView={{ strokeDashoffset: 201 * 0.25 }} // 75%
                                     transition={{ duration: 1, delay: 0.5 }}

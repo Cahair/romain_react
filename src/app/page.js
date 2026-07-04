@@ -1,6 +1,6 @@
 "use client";
 import Navbar from "../components/Navbar";
-import Hero from "../components/Hero";
+import HeroSection from "../components/HeroSection";
 import Storytelling from "../components/Storytelling";
 import ServicesBento from "../components/ServicesBento";
 import Footer from "../components/Footer";
@@ -24,7 +24,7 @@ export default function Home() {
       />
 
       <Navbar />
-      <Hero />
+      <HeroSection />
       <StatsBar />
       <LogoTicker />
       <Storytelling />

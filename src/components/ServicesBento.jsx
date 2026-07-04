@@ -109,7 +109,7 @@ export default function ServicesBento() {
                                     <Share2 size={20} className="text-gray-400" />
                                 </div>
                                 <div className="w-0.5 h-8 bg-gradient-to-b from-white/10 to-purple-500/50"></div>
-                                <div className="w-12 h-12 rounded-xl border border-purple-500/30 flex items-center justify-center bg-purple-500/10 shadow-[0_0_15px_rgba(168,85,247,0.2)]">
+                                <div className="w-12 h-12 rounded-xl border border-purple-500/30 flex items-center justify-center bg-purple-500/10 shadow-[0_0_15px_rgba(79,70,229,0.2)]">
                                     <Cpu size={20} className="text-purple-400" />
                                 </div>
                                 <div className="w-0.5 h-8 bg-gradient-to-b from-purple-500/50 to-white/10"></div>

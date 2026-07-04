@@ -31,12 +31,12 @@ export default function ImpactCharts() {
                         <svg className="absolute inset-0 w-full h-full overflow-visible">
                             <defs>
                                 <linearGradient id="line-gradient" x1="0" y1="0" x2="1" y2="0">
-                                    <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.2" />
-                                    <stop offset="100%" stopColor="#06b6d4" stopOpacity="1" />
+                                    <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.2" />
+                                    <stop offset="100%" stopColor="#3b82f6" stopOpacity="1" />
                                 </linearGradient>
                                 <linearGradient id="area-gradient" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.2" />
-                                    <stop offset="100%" stopColor="#06b6d4" stopOpacity="0" />
+                                    <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.2" />
+                                    <stop offset="100%" stopColor="#3b82f6" stopOpacity="0" />
                                 </linearGradient>
                             </defs>
                             {/* Area */}
@@ -97,7 +97,7 @@ export default function ImpactCharts() {
                             />
                             <defs>
                                 <linearGradient id="radial-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" stopColor="#8b5cf6" />
+                                    <stop offset="0%" stopColor="#6366f1" />
                                     <stop offset="100%" stopColor="#ec4899" />
                                 </linearGradient>
                             </defs>
@@ -139,7 +139,7 @@ export default function ImpactCharts() {
                                 initial={{ height: 0 }}
                                 whileInView={{ height: 180 }}
                                 transition={{ duration: 0.8, delay: 0.4, type: "spring" }}
-                                className="w-16 bg-gradient-to-t from-primary/20 to-primary-neon rounded-t-lg border-t border-x border-primary-neon/50 relative shadow-[0_0_20px_rgba(6,182,212,0.2)]"
+                                className="w-16 bg-gradient-to-t from-primary/20 to-primary-neon rounded-t-lg border-t border-x border-primary-neon/50 relative shadow-[0_0_20px_rgba(59,130,246,0.2)]"
                             >
                                 <div className="absolute -top-6 w-full text-center text-xs text-primary-neon font-bold font-mono">1min</div>
                                 <div className="absolute inset-0 bg-white/20 animate-pulse-slow"></div>

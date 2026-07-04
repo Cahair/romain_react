@@ -83,7 +83,7 @@ const MagneticButton = ({ children, href }) => {
         >
             <Link
                 href={href}
-                className="group relative inline-flex items-center gap-3 px-7 py-3.5 md:px-9 md:py-4 bg-primary/10 border border-primary/50 text-foreground font-medium text-base rounded-2xl transition-all duration-500 hover:bg-primary/20 hover:border-primary hover:shadow-[0_0_40px_rgba(6,182,212,0.3)] overflow-hidden"
+                className="group relative inline-flex items-center gap-3 px-7 py-3.5 md:px-9 md:py-4 bg-primary/10 border border-primary/50 text-foreground font-medium text-base rounded-2xl transition-all duration-500 hover:bg-primary/20 hover:border-primary hover:shadow-[0_0_40px_rgba(59,130,246,0.3)] overflow-hidden"
             >
                 {/* Glow effect */}
                 <span className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-primary/10 via-secondary/10 to-primary/10" />

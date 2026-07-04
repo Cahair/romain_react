@@ -295,6 +295,8 @@
         "hero": {
             "overline": "// Premium Web Development",
             "title": "Web experiences that leave a lasting impression",
+            "subtitle": "Showcase sites, e-commerce and custom applications built with Next.js — designed to convert, built to last.",
+            "proofs": ["Lighthouse score 99+", "Delivered in 2 to 6 weeks", "Technical SEO included"],
             "cta": "Discuss my project"
         },
         "metrics": {
@@ -331,7 +333,66 @@
         "tech": {
             "overline": "// The Ecosystem",
             "title": "Tech",
-            "titleHighlight": "Stack"
+            "titleHighlight": "Stack",
+            "items": ["React Framework", "UI Library", "Utility-First CSS", "Animations", "Type Safety", "Deployment"]
+        },
+        "caseStudies": {
+            "overline": "// Case Studies",
+            "title": "Tangible",
+            "titleHighlight": "results",
+            "subtitle": "Every project is built around a measurable goal: traffic, conversion, performance.",
+            "items": [
+                {
+                    "tag": "Showcase Site",
+                    "title": "Local Craft & Commerce",
+                    "desc": "Complete conversion-focused redesign: strong identity, simplified contact flow and optimized local SEO.",
+                    "metrics": [
+                        { "value": "+180%", "label": "Organic traffic" },
+                        { "value": "0.4s", "label": "First paint" }
+                    ]
+                },
+                {
+                    "tag": "E-commerce",
+                    "title": "Online Fashion Store",
+                    "desc": "Purchase journey redesigned end to end: immersive product pages, smooth checkout funnel and simplified payment.",
+                    "metrics": [
+                        { "value": "+65%", "label": "Conversion rate" },
+                        { "value": "99/100", "label": "Lighthouse score" }
+                    ]
+                },
+                {
+                    "tag": "Web App",
+                    "title": "Booking Platform",
+                    "desc": "Custom business application with dashboard, automatic notifications and calendar synchronization.",
+                    "metrics": [
+                        { "value": "-70%", "label": "Admin time" },
+                        { "value": "24/7", "label": "Online bookings" }
+                    ]
+                }
+            ]
+        },
+        "faq": {
+            "overline": "// Frequently Asked Questions",
+            "title": "You might be",
+            "titleHighlight": "wondering",
+            "items": [
+                {
+                    "q": "How much does a custom website cost?",
+                    "a": "Every project is unique: the budget depends on the scope (showcase, e-commerce, application), design and features. After a free initial call, you receive a detailed, transparent quote — no surprises."
+                },
+                {
+                    "q": "What are the delivery timelines?",
+                    "a": "Allow 2 to 3 weeks for a showcase site and 4 to 6 weeks for an e-commerce or an application. You follow the progress continuously with regular check-ins and demo versions."
+                },
+                {
+                    "q": "Will my site rank well on Google?",
+                    "a": "Technical SEO is included in every project: semantic structure, loading speed, meta tags, sitemap and structured data. Near-perfect Lighthouse scores are a standard, not an option."
+                },
+                {
+                    "q": "Do you offer maintenance after launch?",
+                    "a": "Yes. Maintenance plans cover updates, security, backups and evolutions. You stay focused on your business, I take care of the tech."
+                }
+            ]
         },
         "process": {
             "overline": "// Our Methodology",

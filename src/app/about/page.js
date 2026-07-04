@@ -16,7 +16,7 @@ const ScrollProgressBar = () => {
             className="fixed top-0 left-0 right-0 h-[2px] origin-left z-[200] pointer-events-none"
             style={{
                 scaleX,
-                background: "linear-gradient(to right, #00f0ff, #8b5cf6, #3b82f6)",
+                background: "linear-gradient(to right, #60a5fa, #6366f1, #3b82f6)",
             }}
         />
     );
@@ -33,15 +33,15 @@ const FloatingParticle = ({ x, y, size, duration, delay, color }) => (
             height: size,
             background:
                 color === "cyan"
-                    ? "rgba(0,240,255,0.55)"
+                    ? "rgba(96,165,250,0.55)"
                     : color === "violet"
-                    ? "rgba(168,85,247,0.55)"
+                    ? "rgba(79,70,229,0.55)"
                     : "rgba(59,130,246,0.55)",
             boxShadow:
                 color === "cyan"
-                    ? "0 0 6px rgba(0,240,255,0.6)"
+                    ? "0 0 6px rgba(96,165,250,0.6)"
                     : color === "violet"
-                    ? "0 0 6px rgba(168,85,247,0.6)"
+                    ? "0 0 6px rgba(79,70,229,0.6)"
                     : "0 0 6px rgba(59,130,246,0.6)",
         }}
         animate={{ y: [0, -28, 0], opacity: [0.15, 0.65, 0.15], scale: [1, 1.5, 1] }}
@@ -168,7 +168,7 @@ const SidebarIdentityCard = ({ t }) => (
                     />
                 </motion.div>
                 <motion.div 
-                    animate={{ opacity: [1, 0.4, 1], boxShadow: ["0 0 0px rgba(0,240,255,0)", "0 0 10px rgba(0,240,255,0.5)", "0 0 0px rgba(0,240,255,0)"] }}
+                    animate={{ opacity: [1, 0.4, 1], boxShadow: ["0 0 0px rgba(96,165,250,0)", "0 0 10px rgba(96,165,250,0.5)", "0 0 0px rgba(96,165,250,0)"] }}
                     transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                     className="absolute bottom-2 right-0 bg-black border border-primary-neon p-1.5 rounded z-20"
                 >
@@ -252,8 +252,8 @@ const DiamondNode = ({ color = "cyan", index }) => (
             transition={{ duration: 0.4, delay: index * 0.1, ease: "easeOut" }}
             className={`w-[18px] h-[18px] border ${
                 color === "cyan"
-                    ? "border-primary-neon/70 bg-black shadow-[0_0_14px_rgba(0,240,255,0.5)]"
-                    : "border-purple-500/70 bg-black shadow-[0_0_14px_rgba(168,85,247,0.5)]"
+                    ? "border-primary-neon/70 bg-black shadow-[0_0_14px_rgba(96,165,250,0.5)]"
+                    : "border-purple-500/70 bg-black shadow-[0_0_14px_rgba(79,70,229,0.5)]"
             }`}
         >
             <motion.div
@@ -303,8 +303,8 @@ const TimelineItem = ({ year, title, subtitle, description, type = "experience",
                 style={{ transformPerspective: 900, transformStyle: "preserve-3d" }}
                 className={`relative backdrop-blur-md bg-white/[0.03] border rounded-xl p-5 cursor-default transition-all duration-300 ${
                     isCyan
-                        ? "border-primary-neon/20 hover:border-primary-neon/55 hover:shadow-[0_0_30px_rgba(0,240,255,0.10)]"
-                        : "border-purple-500/20 hover:border-purple-500/55 hover:shadow-[0_0_30px_rgba(168,85,247,0.10)]"
+                        ? "border-primary-neon/20 hover:border-primary-neon/55 hover:shadow-[0_0_30px_rgba(96,165,250,0.10)]"
+                        : "border-purple-500/20 hover:border-purple-500/55 hover:shadow-[0_0_30px_rgba(79,70,229,0.10)]"
                 }`}
             >
                 {/* Year chip */}
@@ -356,7 +356,7 @@ const SkillTag = ({ skill, index, accentColor, cardIndex }) => (
         transition={{ type: "spring", stiffness: 380, damping: 18, delay: cardIndex * 0.15 + index * 0.045 }}
         whileHover={{
             y: -3, scale: 1.09,
-            boxShadow: accentColor === "cyan" ? "0 0 18px rgba(0,240,255,0.5)" : "0 0 18px rgba(168,85,247,0.5)",
+            boxShadow: accentColor === "cyan" ? "0 0 18px rgba(96,165,250,0.5)" : "0 0 18px rgba(79,70,229,0.5)",
         }}
         className={`px-3 py-1 bg-white/[0.04] border border-white/[0.08] text-xs font-mono text-gray-400 uppercase tracking-wider rounded cursor-default transition-colors duration-200 hover:text-white hover:bg-white/[0.07] ${
             accentColor === "cyan" ? "hover:border-primary-neon/45" : "hover:border-purple-500/45"
