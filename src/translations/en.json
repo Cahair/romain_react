@@ -63,95 +63,67 @@
         "viewAll": "View all our services"
     },
     "about": {
-        "title": "THE WEB",
-        "titleHighlight1": "EXPERT",
-        "titleMiddle": "TURNED",
-        "titleHighlight2": "AI ARCHITECT",
+        "intro": "I build websites for small businesses and local associations, from Rountzenheim, in Alsace.",
         "story": {
-            "title": "Romain Kantzer",
-            "text": "From industrial automation — PLCs, SCADA supervision, connected systems — I pivoted to web development before merging both expertises into AI architecture. This dual technical background taught me to think in systems: building robust, scalable, results-driven solutions. Now based in Haguenau, Alsace, I work with businesses locally and remotely.",
-            "highlight": "The web is the foundation, AI is the engine."
+            "title": "Who I am",
+            "p1": "I come from Rountzenheim, a village in northern Alsace. I trained in industrial automation — systems that run production lines and are not allowed to stop — then earned my engineering degree in digital solutions at Icam Strasbourg-Europe, as an apprentice at ERAS. That is where I learned to build things that have to work every day, not just on demo day.",
+            "p2": "It all started with my chess club in Bischwiller. Its website was more than fifteen years old. I rebuilt it completely: new design, content carried over, domain name and hosting — and above all, I trained the volunteers so they could publish their own news. Today the club keeps its website alive without me.",
+            "p3": "That project made me want to turn this into my job. I created RK.ai to bring the same thing to small businesses and associations around here: a clear website that looks like them, and that they can keep alive themselves.",
+            "clubLink": "See the club's website"
         },
-        "vision": {
-            "title": "MY",
-            "titleHighlight": "VISION",
-            "quote": "\"AI is no longer an option. It's a necessity to stay competitive.\"",
-            "stats": {
-                "productivity": "Productivity",
-                "available": "Available",
-                "scalable": "Scalable"
-            }
-        },
-        "tech": {
-            "title": "TECH",
-            "titleHighlight": "STACK"
-        },
-        "cv": {
-            "button": "View My Journey",
-            "title": "MY",
-            "titleHighlight": "JOURNEY",
-            "experience": {
-                "title": "Experience",
-                "items": [
-                    {
-                        "year": "2026 - Present",
-                        "role": "Founder & AI Architect",
-                        "company": "Kantzer.ai",
-                        "description": "Creating automation and generative AI solutions for businesses. Specializing in AI Agents, LLMs, and autonomous workflows."
-                    },
-                    {
-                        "year": "2024 - 2026",
-                        "role": "Engineering Apprentice",
-                        "company": "ERAS",
-                        "description": "Digital systems engineering and industrial process automation. Technical project management and connected solutions development."
-                    },
-                    {
-                        "year": "2025",
-                        "role": "Freelance Developer",
-                        "company": "Independent",
-                        "description": "Designing and developing modern, high-performance websites (Next.js, React). Focused on user experience and premium design."
-                    },
-                    {
-                        "year": "2021 - 2023",
-                        "role": "Automation Apprentice",
-                        "company": "Clemessy",
-                        "description": "PLC programming, industrial supervision, and commissioning of electrical and automated installations."
-                    }
-                ]
-            },
-            "education": {
-                "title": "Education",
-                "items": [
-                    {
-                        "year": "2024 - 2026",
-                        "degree": "Industrial Digital Systems Degree",
-                        "school": "Icam Strasbourg-Europe",
-                        "description": "Specialized engineering training focused on Industry 4.0 and connected systems."
-                    },
-                    {
-                        "year": "2023",
-                        "degree": "Automated Systems & Industrial Computing",
-                        "school": "IUT de Haguenau",
-                        "description": "Specialization in industrial networks and control of automated systems."
-                    },
-                    {
-                        "year": "2020 - 2022",
-                        "degree": "Electrical Engineering & Industrial Computing",
-                        "school": "IUT",
-                        "description": "In-depth technical training in electronics, automation, and embedded computing."
-                    }
-                ]
-            },
-            "skills": {
-                "title": "Skills",
-                "yearsLabel": "years of tech experience",
-                "domainsLabel": "areas of expertise",
-                "categories": {
-                    "ai": "Artificial Intelligence & Automation",
-                    "dev": "Web Development",
-                    "tools": "Tools & Design"
+        "how": {
+            "title": "How I work",
+            "items": [
+                {
+                    "title": "No jargon",
+                    "text": "I explain what I do and why, in plain words. You always know what you are paying for."
+                },
+                {
+                    "title": "You stay independent",
+                    "text": "I train your team or your volunteers to publish without me, just like I did with the chess club."
+                },
+                {
+                    "title": "I handle the technical side",
+                    "text": "Domain name, hosting, maintenance: I take care of that part so you never have to think about it."
+                },
+                {
+                    "title": "I'm local",
+                    "text": "I work from Rountzenheim and I'm happy to meet in person to talk things over."
                 }
-            }
+            ]
+        },
+        "path": {
+            "title": "My background, in short",
+            "items": [
+                {
+                    "year": "2026",
+                    "text": "Founded RK.ai — websites and automation for small businesses and associations"
+                },
+                {
+                    "year": "2025",
+                    "text": "Rebuilt the website of the Cercle d'Échecs de Bischwiller"
+                },
+                {
+                    "year": "2024 – 2026",
+                    "text": "Engineering degree in digital solutions — Icam Strasbourg-Europe, apprenticeship at ERAS"
+                },
+                {
+                    "year": "2023",
+                    "text": "Automated systems and industrial computing — IUT de Haguenau"
+                },
+                {
+                    "year": "2021 – 2023",
+                    "text": "Automation apprentice — Clemessy"
+                },
+                {
+                    "year": "2020 – 2022",
+                    "text": "Electrical engineering and industrial computing — IUT"
+                }
+            ]
+        },
+        "contact": {
+            "text": "A project, a question? The simplest is to write to me.",
+            "button": "Get in touch"
         }
     },
     "contact": {
@@ -296,7 +268,11 @@
             "overline": "// Premium Web Development",
             "title": "Web experiences that leave a lasting impression",
             "subtitle": "Showcase sites, e-commerce and custom applications built with Next.js — designed to convert, built to last.",
-            "proofs": ["Lighthouse score 99+", "Delivered in 2 to 6 weeks", "Technical SEO included"],
+            "proofs": [
+                "Lighthouse score 99+",
+                "Delivered in 2 to 6 weeks",
+                "Technical SEO included"
+            ],
             "cta": "Discuss my project"
         },
         "metrics": {
@@ -334,7 +310,14 @@
             "overline": "// The Ecosystem",
             "title": "Tech",
             "titleHighlight": "Stack",
-            "items": ["React Framework", "UI Library", "Utility-First CSS", "Animations", "Type Safety", "Deployment"]
+            "items": [
+                "React Framework",
+                "UI Library",
+                "Utility-First CSS",
+                "Animations",
+                "Type Safety",
+                "Deployment"
+            ]
         },
         "caseStudies": {
             "overline": "// Case Studies",
@@ -347,8 +330,14 @@
                     "title": "Local Craft & Commerce",
                     "desc": "Complete conversion-focused redesign: strong identity, simplified contact flow and optimized local SEO.",
                     "metrics": [
-                        { "value": "+180%", "label": "Organic traffic" },
-                        { "value": "0.4s", "label": "First paint" }
+                        {
+                            "value": "+180%",
+                            "label": "Organic traffic"
+                        },
+                        {
+                            "value": "0.4s",
+                            "label": "First paint"
+                        }
                     ]
                 },
                 {
@@ -356,8 +345,14 @@
                     "title": "Online Fashion Store",
                     "desc": "Purchase journey redesigned end to end: immersive product pages, smooth checkout funnel and simplified payment.",
                     "metrics": [
-                        { "value": "+65%", "label": "Conversion rate" },
-                        { "value": "99/100", "label": "Lighthouse score" }
+                        {
+                            "value": "+65%",
+                            "label": "Conversion rate"
+                        },
+                        {
+                            "value": "99/100",
+                            "label": "Lighthouse score"
+                        }
                     ]
                 },
                 {
@@ -365,8 +360,14 @@
                     "title": "Booking Platform",
                     "desc": "Custom business application with dashboard, automatic notifications and calendar synchronization.",
                     "metrics": [
-                        { "value": "-70%", "label": "Admin time" },
-                        { "value": "24/7", "label": "Online bookings" }
+                        {
+                            "value": "-70%",
+                            "label": "Admin time"
+                        },
+                        {
+                            "value": "24/7",
+                            "label": "Online bookings"
+                        }
                     ]
                 }
             ]

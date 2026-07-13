@@ -69,95 +69,67 @@
         }
     },
     "about": {
-        "title": "L'EXPERT WEB",
-        "titleHighlight1": "PROFIL",
-        "titleMiddle": "DEVENU",
-        "titleHighlight2": "ARCHITECTE IA",
+        "intro": "Je crée des sites web pour les petites entreprises et les associations, depuis Rountzenheim, en Alsace.",
         "story": {
-            "title": "Romain Kantzer",
-            "text": "Issu de l'automatisation industrielle — automates, supervision SCADA, systèmes connectés — j'ai pivoté vers le web avant de fusionner ces deux expertises dans l'architecture IA. Cette double culture technique m'a appris à penser en systèmes : concevoir des solutions robustes, scalables et orientées résultats. Aujourd'hui basé à Haguenau, dans le Bas-Rhin, j'accompagne les entreprises d'Alsace et d'ailleurs.",
-            "highlight": "Le web est la fondation, l'AI est le moteur."
+            "title": "Qui je suis",
+            "p1": "Je viens de Rountzenheim, un village du nord de l'Alsace. Je me suis formé en automatisme industriel — des systèmes qui pilotent des lignes de production et n'ont pas le droit de s'arrêter — puis j'ai obtenu mon diplôme d'ingénieur en solutions numériques à l'Icam Strasbourg-Europe, en apprentissage chez ERAS. C'est là que j'ai appris à construire des choses qui doivent fonctionner tous les jours, pas seulement le jour de la démonstration.",
+            "p2": "Tout est parti de mon club d'échecs, à Bischwiller. Son site avait plus de quinze ans. Je l'ai entièrement refait : nouveau design, contenu repris, nom de domaine et hébergement — et surtout, j'ai formé les bénévoles pour qu'ils publient leurs actualités eux-mêmes. Aujourd'hui, le club fait vivre son site sans moi.",
+            "p3": "C'est ce projet qui m'a donné envie d'en faire mon métier. J'ai créé RK.ai pour apporter la même chose aux petites entreprises et aux associations de la région : un site clair, qui leur ressemble, et qu'elles peuvent faire vivre elles-mêmes.",
+            "clubLink": "Voir le site du club"
         },
-        "vision": {
-            "title": "MA",
-            "titleHighlight": "VISION",
-            "quote": "\"L'AI n'est plus une option. C'est une nécessité pour rester compétitif.\"",
-            "stats": {
-                "productivity": "Productivité",
-                "available": "Disponible",
-                "scalable": "Scalable"
-            }
-        },
-        "tech": {
-            "title": "STACK",
-            "titleHighlight": "TECH"
-        },
-        "cv": {
-            "button": "Voir Mon Parcours",
-            "title": "MON",
-            "titleHighlight": "PARCOURS",
-            "experience": {
-                "title": "Expérience",
-                "items": [
-                    {
-                        "year": "2026 - Présent",
-                        "role": "Fondateur & AI Architect",
-                        "company": "Kantzer.ai",
-                        "description": "Création de solutions d'automatisation et d'IA générative pour les entreprises. Spécialisation en Agents IA, LLMs et workflows autonomes."
-                    },
-                    {
-                        "year": "2024 - 2026",
-                        "role": "Apprenti Ingénieur",
-                        "company": "ERAS",
-                        "description": "Ingénierie des systèmes numériques et automatisation de procédés industriels. Gestion de projets techniques et développement de solutions connectées."
-                    },
-                    {
-                        "year": "2025",
-                        "role": "Développeur Freelance",
-                        "company": "Indépendant",
-                        "description": "Conception et développement de sites web modernes et performants (Next.js, React). Focus sur l'expérience utilisateur et le design premium."
-                    },
-                    {
-                        "year": "2021 - 2023",
-                        "role": "Apprenti Automaticien",
-                        "company": "Clemessy",
-                        "description": "Programmation d'automates, supervision industrielle et mise en service d'installations électriques et automatisées."
-                    }
-                ]
-            },
-            "education": {
-                "title": "Formation",
-                "items": [
-                    {
-                        "year": "2024 - 2026",
-                        "degree": "Diplôme Systèmes Numériques Industriels",
-                        "school": "Icam Strasbourg-Europe",
-                        "description": "Formation d'ingénieur spécialisée, orientée vers l'industrie 4.0 et les systèmes connectés."
-                    },
-                    {
-                        "year": "2023",
-                        "degree": "Systèmes Automatisés & Informatique Industrielle",
-                        "school": "IUT de Haguenau",
-                        "description": "Spécialisation en réseaux industriels et pilotage de systèmes automatisés."
-                    },
-                    {
-                        "year": "2020 - 2022",
-                        "degree": "Génie Électrique et Informatique Industrielle",
-                        "school": "IUT",
-                        "description": "Formation technique approfondie en électronique, automatisme et informatique embarquée."
-                    }
-                ]
-            },
-            "skills": {
-                "title": "Compétences",
-                "yearsLabel": "ans d'expérience tech",
-                "domainsLabel": "domaines d'expertise",
-                "categories": {
-                    "ai": "Intelligence Artificielle & Automation",
-                    "dev": "Développement Web",
-                    "tools": "Outils & Design"
+        "how": {
+            "title": "Comment je travaille",
+            "items": [
+                {
+                    "title": "Sans jargon",
+                    "text": "J'explique ce que je fais et pourquoi, en français normal. Vous savez toujours ce que vous payez."
+                },
+                {
+                    "title": "Vous restez autonome",
+                    "text": "Je forme votre équipe ou vos bénévoles à publier sans moi, comme je l'ai fait avec le club d'échecs."
+                },
+                {
+                    "title": "Je m'occupe de la technique",
+                    "text": "Nom de domaine, hébergement, maintenance : je gère cette partie pour que vous n'ayez pas à y penser."
+                },
+                {
+                    "title": "Je suis d'ici",
+                    "text": "Je travaille depuis Rountzenheim et je me déplace volontiers pour qu'on en parle de vive voix."
                 }
-            }
+            ]
+        },
+        "path": {
+            "title": "Mon parcours en bref",
+            "items": [
+                {
+                    "year": "2026",
+                    "text": "Création de RK.ai — sites web et automatisation pour TPE et associations"
+                },
+                {
+                    "year": "2025",
+                    "text": "Refonte du site du Cercle d'Échecs de Bischwiller"
+                },
+                {
+                    "year": "2024 – 2026",
+                    "text": "Diplôme d'ingénieur en solutions numériques — Icam Strasbourg-Europe, en apprentissage chez ERAS"
+                },
+                {
+                    "year": "2023",
+                    "text": "Systèmes automatisés et informatique industrielle — IUT de Haguenau"
+                },
+                {
+                    "year": "2021 – 2023",
+                    "text": "Apprenti automaticien — Clemessy"
+                },
+                {
+                    "year": "2020 – 2022",
+                    "text": "Génie électrique et informatique industrielle — IUT"
+                }
+            ]
+        },
+        "contact": {
+            "text": "Un projet, une question ? Le plus simple est de m'écrire.",
+            "button": "Me contacter"
         }
     },
     "contact": {
@@ -302,7 +274,11 @@
             "overline": "// Développement Web Premium",
             "title": "Des expériences web qui marquent les esprits",
             "subtitle": "Sites vitrines, sur-mesure — pensés pour convertir, conçus pour durer.",
-            "proofs": ["Score Lighthouse 99+", "Livré en 2 à 6 semaines", "SEO technique inclus"],
+            "proofs": [
+                "Score Lighthouse 99+",
+                "Livré en 2 à 6 semaines",
+                "SEO technique inclus"
+            ],
             "cta": "Discuter de mon projet"
         },
         "metrics": {
@@ -340,7 +316,14 @@
             "overline": "// L'Écosystème",
             "title": "Stack",
             "titleHighlight": "Technique",
-            "items": ["Framework React", "Librairie UI", "CSS utilitaire", "Animations", "Typage sécurisé", "Déploiement"]
+            "items": [
+                "Framework React",
+                "Librairie UI",
+                "CSS utilitaire",
+                "Animations",
+                "Typage sécurisé",
+                "Déploiement"
+            ]
         },
         "caseStudies": {
             "overline": "// Réalisations",
@@ -353,8 +336,14 @@
                     "title": "Artisan & Commerce local",
                     "desc": "Refonte complète orientée conversion : identité affirmée, prise de contact simplifiée et référencement local optimisé.",
                     "metrics": [
-                        { "value": "+180%", "label": "Trafic organique" },
-                        { "value": "0,4s", "label": "Premier affichage" }
+                        {
+                            "value": "+180%",
+                            "label": "Trafic organique"
+                        },
+                        {
+                            "value": "0,4s",
+                            "label": "Premier affichage"
+                        }
                     ]
                 },
                 {
@@ -362,8 +351,14 @@
                     "title": "Boutique en ligne mode",
                     "desc": "Parcours d'achat repensé de A à Z : fiches produits immersives, tunnel de commande fluide et paiement simplifié.",
                     "metrics": [
-                        { "value": "+65%", "label": "Taux de conversion" },
-                        { "value": "99/100", "label": "Score Lighthouse" }
+                        {
+                            "value": "+65%",
+                            "label": "Taux de conversion"
+                        },
+                        {
+                            "value": "99/100",
+                            "label": "Score Lighthouse"
+                        }
                     ]
                 },
                 {
@@ -371,8 +366,14 @@
                     "title": "Plateforme de réservation",
                     "desc": "Application métier sur-mesure avec tableau de bord, notifications automatiques et synchronisation calendrier.",
                     "metrics": [
-                        { "value": "-70%", "label": "Temps de gestion" },
-                        { "value": "24/7", "label": "Réservations en ligne" }
+                        {
+                            "value": "-70%",
+                            "label": "Temps de gestion"
+                        },
+                        {
+                            "value": "24/7",
+                            "label": "Réservations en ligne"
+                        }
                     ]
                 }
             ]

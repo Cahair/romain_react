@@ -1,12 +1,12 @@
 export const metadata = {
-    title: "À propos — Développeur Web & Ingénieur IA",
+    title: "À propos — Romain Kantzer, sites web pour TPE et associations en Alsace",
     description:
-        "De l'automatisation industrielle au développement web et à l'IA : le parcours de Romain Kantzer, développeur freelance basé à Haguenau, en Alsace.",
+        "Je viens de Rountzenheim, en Alsace. De l'automatisme industriel aux sites web pour petites entreprises et associations : qui je suis, comment je travaille et mon parcours.",
     alternates: { canonical: "/about" },
     openGraph: {
         title: "À propos de Romain Kantzer",
         description:
-            "De l'automatisation industrielle au développement web et à l'IA : mon parcours et ma vision.",
+            "Je crée des sites web pour les petites entreprises et les associations, depuis Rountzenheim, en Alsace.",
         url: "/about",
         images: ["/og-image.jpg"],
     },

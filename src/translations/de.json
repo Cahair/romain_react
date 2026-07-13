@@ -62,95 +62,67 @@
         "viewAll": "Alle Dienstleistungen ansehen"
     },
     "about": {
-        "title": "DER WEB",
-        "titleHighlight1": "EXPERTE",
-        "titleMiddle": "WURDE ZUM",
-        "titleHighlight2": "AI ARCHITEKT",
+        "intro": "Ich baue Websites für kleine Unternehmen und Vereine — von Rountzenheim aus, im Elsass.",
         "story": {
-            "title": "Romain Kantzer",
-            "text": "Von der industriellen Automatisierung — SPS, SCADA-Supervision, vernetzte Systeme — wechselte ich zur Webentwicklung, bevor ich beide Expertisen in der KI-Architektur zusammenführte. Dieser doppelte technische Hintergrund lehrte mich, in Systemen zu denken: robuste, skalierbare und ergebnisorientierte Lösungen zu entwickeln. Heute arbeite ich von Hagenau im Elsass aus mit Unternehmen vor Ort und remote.",
-            "highlight": "Das Web ist das Fundament, AI ist der Motor."
+            "title": "Wer ich bin",
+            "p1": "Ich komme aus Rountzenheim, einem Dorf im Nordelsass. Gelernt habe ich industrielle Automatisierung — Systeme, die Produktionslinien steuern und nicht stehen bleiben dürfen. Danach habe ich mein Ingenieurdiplom in digitalen Lösungen an der Icam Strasbourg-Europe gemacht, im Rahmen einer dualen Ausbildung bei ERAS. Dort habe ich gelernt, Dinge zu bauen, die jeden Tag funktionieren müssen — nicht nur am Tag der Vorführung.",
+            "p2": "Angefangen hat alles mit meinem Schachverein in Bischwiller. Seine Website war über fünfzehn Jahre alt. Ich habe sie komplett neu gebaut: neues Design, Inhalte übernommen, Domain und Hosting — und vor allem habe ich die Ehrenamtlichen geschult, damit sie ihre Neuigkeiten selbst veröffentlichen. Heute pflegt der Verein seine Website ohne mich.",
+            "p3": "Dieses Projekt hat mir Lust gemacht, daraus meinen Beruf zu machen. Ich habe RK.ai gegründet, um kleinen Unternehmen und Vereinen in der Region dasselbe zu bieten: eine klare Website, die zu ihnen passt und die sie selbst pflegen können.",
+            "clubLink": "Zur Website des Vereins"
         },
-        "vision": {
-            "title": "MEINE",
-            "titleHighlight": "VISION",
-            "quote": "\"AI ist keine Option mehr. Es ist eine Notwendigkeit, um wettbewerbsfähig zu bleiben.\"",
-            "stats": {
-                "productivity": "Produktivität",
-                "available": "Verfügbar",
-                "scalable": "Skalierbar"
-            }
-        },
-        "tech": {
-            "title": "TECH",
-            "titleHighlight": "STACK"
-        },
-        "cv": {
-            "button": "Meinen Werdegang ansehen",
-            "title": "MEIN",
-            "titleHighlight": "WERDEGANG",
-            "experience": {
-                "title": "Erfahrung",
-                "items": [
-                    {
-                        "year": "2026 - Heute",
-                        "role": "Gründer & AI Architect",
-                        "company": "Kantzer.ai",
-                        "description": "Erstellung von Automatisierungs- und generativen KI-Lösungen für Unternehmen. Spezialisierung auf KI-Agenten, LLMs und autonome Workflows."
-                    },
-                    {
-                        "year": "2024 - 2026",
-                        "role": "Ingenieur-Lehrling",
-                        "company": "ERAS",
-                        "description": "Digitale Systemtechnik und industrielle Prozessautomatisierung. Technisches Projektmanagement und Entwicklung vernetzter Lösungen."
-                    },
-                    {
-                        "year": "2025",
-                        "role": "Freelance Entwickler",
-                        "company": "Unabhängig",
-                        "description": "Design und Entwicklung moderner, leistungsstarker Websites (Next.js, React). Fokus auf Benutzererfahrung und Premium-Design."
-                    },
-                    {
-                        "year": "2021 - 2023",
-                        "role": "Automatisierungs-Lehrling",
-                        "company": "Clemessy",
-                        "description": "SPS-Programmierung, industrielle Überwachung und Inbetriebnahme elektrischer und automatisierter Anlagen."
-                    }
-                ]
-            },
-            "education": {
-                "title": "Ausbildung",
-                "items": [
-                    {
-                        "year": "2024 - 2026",
-                        "degree": "Diplom Industrielle Digitale Systeme",
-                        "school": "Icam Strasbourg-Europe",
-                        "description": "Spezialisierte Ingenieurausbildung mit Fokus auf Industrie 4.0 und vernetzte Systeme."
-                    },
-                    {
-                        "year": "2023",
-                        "degree": "Automatisierte Systeme & Industrielle Informatik",
-                        "school": "IUT de Haguenau",
-                        "description": "Spezialisierung auf industrielle Netzwerke und Steuerung automatisierter Systeme."
-                    },
-                    {
-                        "year": "2020 - 2022",
-                        "degree": "Elektrotechnik & Industrielle Informatik",
-                        "school": "IUT",
-                        "description": "Fundierte technische Ausbildung in Elektronik, Automatisierung und eingebetteter Informatik."
-                    }
-                ]
-            },
-            "skills": {
-                "title": "Kompetenzen",
-                "yearsLabel": "Jahre Tech-Erfahrung",
-                "domainsLabel": "Fachbereiche",
-                "categories": {
-                    "ai": "Künstliche Intelligenz & Automatisierung",
-                    "dev": "Webentwicklung",
-                    "tools": "Tools & Design"
+        "how": {
+            "title": "Wie ich arbeite",
+            "items": [
+                {
+                    "title": "Ohne Fachjargon",
+                    "text": "Ich erkläre, was ich tue und warum — in verständlicher Sprache. Sie wissen immer, wofür Sie bezahlen."
+                },
+                {
+                    "title": "Sie bleiben unabhängig",
+                    "text": "Ich schule Ihr Team oder Ihre Ehrenamtlichen, damit Sie ohne mich veröffentlichen können — wie beim Schachverein."
+                },
+                {
+                    "title": "Ich kümmere mich um die Technik",
+                    "text": "Domain, Hosting, Wartung: Diesen Teil übernehme ich, damit Sie nicht daran denken müssen."
+                },
+                {
+                    "title": "Ich bin von hier",
+                    "text": "Ich arbeite von Rountzenheim aus und komme gerne persönlich vorbei, um darüber zu sprechen."
                 }
-            }
+            ]
+        },
+        "path": {
+            "title": "Mein Werdegang, kurz gefasst",
+            "items": [
+                {
+                    "year": "2026",
+                    "text": "Gründung von RK.ai — Websites und Automatisierung für kleine Unternehmen und Vereine"
+                },
+                {
+                    "year": "2025",
+                    "text": "Neue Website für den Cercle d'Échecs de Bischwiller"
+                },
+                {
+                    "year": "2024 – 2026",
+                    "text": "Ingenieurdiplom in digitalen Lösungen — Icam Strasbourg-Europe, duale Ausbildung bei ERAS"
+                },
+                {
+                    "year": "2023",
+                    "text": "Automatisierte Systeme und industrielle Informatik — IUT de Haguenau"
+                },
+                {
+                    "year": "2021 – 2023",
+                    "text": "Ausbildung zum Automatisierungstechniker — Clemessy"
+                },
+                {
+                    "year": "2020 – 2022",
+                    "text": "Elektrotechnik und industrielle Informatik — IUT"
+                }
+            ]
+        },
+        "contact": {
+            "text": "Ein Projekt, eine Frage? Schreiben Sie mir einfach.",
+            "button": "Kontakt aufnehmen"
         }
     },
     "contact": {
@@ -292,7 +264,11 @@
             "overline": "// Premium-Webentwicklung",
             "title": "Web-Erlebnisse, die Eindruck hinterlassen",
             "subtitle": "Unternehmensseiten, E-Commerce und maßgeschneiderte Anwendungen mit Next.js — gebaut, um zu konvertieren und zu bestehen.",
-            "proofs": ["Lighthouse-Score 99+", "Lieferung in 2 bis 6 Wochen", "Technisches SEO inklusive"],
+            "proofs": [
+                "Lighthouse-Score 99+",
+                "Lieferung in 2 bis 6 Wochen",
+                "Technisches SEO inklusive"
+            ],
             "cta": "Mein Projekt besprechen"
         },
         "metrics": {
@@ -330,7 +306,14 @@
             "overline": "// Das Ökosystem",
             "title": "Tech",
             "titleHighlight": "Stack",
-            "items": ["React-Framework", "UI-Bibliothek", "Utility-First CSS", "Animationen", "Typsicherheit", "Deployment"]
+            "items": [
+                "React-Framework",
+                "UI-Bibliothek",
+                "Utility-First CSS",
+                "Animationen",
+                "Typsicherheit",
+                "Deployment"
+            ]
         },
         "caseStudies": {
             "overline": "// Referenzen",
@@ -343,8 +326,14 @@
                     "title": "Handwerk & lokaler Handel",
                     "desc": "Komplette conversion-orientierte Neugestaltung: starke Identität, vereinfachte Kontaktaufnahme und optimiertes lokales SEO.",
                     "metrics": [
-                        { "value": "+180%", "label": "Organischer Traffic" },
-                        { "value": "0,4s", "label": "Erste Anzeige" }
+                        {
+                            "value": "+180%",
+                            "label": "Organischer Traffic"
+                        },
+                        {
+                            "value": "0,4s",
+                            "label": "Erste Anzeige"
+                        }
                     ]
                 },
                 {
@@ -352,8 +341,14 @@
                     "title": "Online-Modeshop",
                     "desc": "Kaufprozess von A bis Z neu gedacht: immersive Produktseiten, reibungsloser Checkout und vereinfachte Zahlung.",
                     "metrics": [
-                        { "value": "+65%", "label": "Conversion-Rate" },
-                        { "value": "99/100", "label": "Lighthouse-Score" }
+                        {
+                            "value": "+65%",
+                            "label": "Conversion-Rate"
+                        },
+                        {
+                            "value": "99/100",
+                            "label": "Lighthouse-Score"
+                        }
                     ]
                 },
                 {
@@ -361,8 +356,14 @@
                     "title": "Buchungsplattform",
                     "desc": "Maßgeschneiderte Business-Anwendung mit Dashboard, automatischen Benachrichtigungen und Kalendersynchronisation.",
                     "metrics": [
-                        { "value": "-70%", "label": "Verwaltungszeit" },
-                        { "value": "24/7", "label": "Online-Buchungen" }
+                        {
+                            "value": "-70%",
+                            "label": "Verwaltungszeit"
+                        },
+                        {
+                            "value": "24/7",
+                            "label": "Online-Buchungen"
+                        }
                     ]
                 }
             ]
