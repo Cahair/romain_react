@@ -11,7 +11,7 @@
         "titleLine1": "PREMIUM",
         "titleLine2": "WEBSITES",
         "highlightTitle": "Maßgeschneiderte Webentwicklung.",
-        "description": "Leistungsstarke Websites. Premium-Design. Optimiertes SEO.\nAngetrieben von Künstlicher Intelligenz.",
+        "description": "Leistungsstarke Websites. Premium-Design. Optimiertes SEO.\nEntwickelt im Elsass, angetrieben von Künstlicher Intelligenz.",
         "cta": "Mein Projekt starten",
         "scroll": "Scrollen"
     },
@@ -68,7 +68,7 @@
         "titleHighlight2": "AI ARCHITEKT",
         "story": {
             "title": "Romain Kantzer",
-            "text": "Von der industriellen Automatisierung — SPS, SCADA-Supervision, vernetzte Systeme — wechselte ich zur Webentwicklung, bevor ich beide Expertisen in der KI-Architektur zusammenführte. Dieser doppelte technische Hintergrund lehrte mich, in Systemen zu denken: robuste, skalierbare und ergebnisorientierte Lösungen zu entwickeln.",
+            "text": "Von der industriellen Automatisierung — SPS, SCADA-Supervision, vernetzte Systeme — wechselte ich zur Webentwicklung, bevor ich beide Expertisen in der KI-Architektur zusammenführte. Dieser doppelte technische Hintergrund lehrte mich, in Systemen zu denken: robuste, skalierbare und ergebnisorientierte Lösungen zu entwickeln. Heute arbeite ich von Hagenau im Elsass aus mit Unternehmen vor Ort und remote.",
             "highlight": "Das Web ist das Fundament, AI ist der Motor."
         },
         "vision": {
@@ -171,7 +171,7 @@
             "email": "E-Mail",
             "phone": "Telefon",
             "location": "Standort",
-            "locationValue": "Frankreich & Remote"
+            "locationValue": "Hagenau, Elsass (Frankreich) & Remote"
         },
         "form": {
             "title": "Kontaktanfrage",

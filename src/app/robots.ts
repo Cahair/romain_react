@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
             allow: '/',
             disallow: ['/private/', '/admin/'],
         },
-        sitemap: 'https://kantzer.ai/sitemap.xml',
+        sitemap: 'https://romain-kantzer.com/sitemap.xml',
     };
 }

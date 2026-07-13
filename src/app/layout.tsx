@@ -14,19 +14,16 @@ const oswald = Oswald({ subsets: ["latin"], variable: "--font-oswald" });
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://romain-kantzer.com"),
-    // Mots-clés : Web Development en priorité, puis IA comme différenciateur
-    keywords: ["Romain Kantzer", "Développeur Web", "Création de site", "Next.js", "React", "Site vitrine", "Expert IA", "Automatisation", "Agents IA", "LLMs", "RAG", "Freelance Tech"],
+    keywords: ["Romain Kantzer", "Développeur Web", "Création de site", "Next.js", "React", "Site vitrine", "Alsace", "Haguenau", "Bas-Rhin", "Strasbourg", "Expert IA", "Automatisation", "Agents IA", "Freelance Tech"],
     title: {
-        default: "Romain Kantzer | Expert en Développement Web & Automatisation IA",
+        default: "Romain Kantzer | Développeur Web & IA en Alsace",
         template: "%s | Romain Kantzer",
     },
-    // 👇 MODIFICATION POUR GOOGLE
-    description: "Expert en Développement Web & Ingénierie IA. Création de sites web performants et sur-mesure avec Next.js & React, amplifiés par l'intelligence artificielle pour maximiser votre ROI.",
+    description: "Développeur web et ingénieur IA basé à Haguenau (Bas-Rhin). Création de sites web sur-mesure avec Next.js & React et automatisation IA, en Alsace et à distance.",
 
     openGraph: {
-        title: "Romain Kantzer | Expert en Développement Web & Automatisation IA",
-        // 👇 MODIFICATION POUR FACEBOOK / LINKEDIN
-        description: "Expert en Développement Web & Ingénierie IA. Création de sites web performants et sur-mesure avec Next.js & React, amplifiés par l'intelligence artificielle pour maximiser votre ROI.",
+        title: "Romain Kantzer | Développeur Web & IA en Alsace",
+        description: "Développeur web et ingénieur IA basé à Haguenau (Bas-Rhin). Création de sites web sur-mesure avec Next.js & React et automatisation IA, en Alsace et à distance.",
         url: "https://romain-kantzer.com",
         siteName: "Romain Kantzer",
         locale: "fr_FR",
@@ -45,9 +42,8 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "Romain Kantzer | Expert en Développement Web & IA",
-        // 👇 MODIFICATION POUR TWITTER
-        description: "Expert en Développement Web & Ingénierie IA. Création de sites web performants et sur-mesure avec Next.js & React, amplifiés par l'intelligence artificielle pour maximiser votre ROI.",
+        title: "Romain Kantzer | Développeur Web & IA en Alsace",
+        description: "Développeur web et ingénieur IA basé à Haguenau (Bas-Rhin). Sites web sur-mesure avec Next.js & React et automatisation IA.",
         images: ["/og-image.jpg"],
     },
     robots: {
@@ -84,6 +80,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         "telephone": "+33769603760",
         "address": {
             "@type": "PostalAddress",
+            "addressLocality": "Haguenau",
+            "addressRegion": "Bas-Rhin",
             "addressCountry": "FR"
         },
         "worksFor": {
@@ -108,6 +106,36 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         ]
     };
 
+    const localBusinessJsonLd = {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "@id": "https://romain-kantzer.com/#business",
+        "name": "Romain Kantzer — Création de sites web & automatisation IA",
+        "url": "https://romain-kantzer.com",
+        "image": "https://romain-kantzer.com/og-image.jpg",
+        "email": "romainkantzer@gmail.com",
+        "telephone": "+33769603760",
+        "founder": { "@id": "https://romain-kantzer.com/#person" },
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Haguenau",
+            "addressRegion": "Bas-Rhin",
+            "addressCountry": "FR"
+        },
+        "areaServed": [
+            { "@type": "City", "name": "Haguenau" },
+            { "@type": "City", "name": "Strasbourg" },
+            { "@type": "AdministrativeArea", "name": "Bas-Rhin" },
+            { "@type": "AdministrativeArea", "name": "Alsace" },
+            { "@type": "Country", "name": "France" }
+        ],
+        "knowsAbout": ["Création de sites web", "Next.js", "React", "Automatisation", "Agents IA"],
+        "sameAs": [
+            "https://www.linkedin.com/in/romain-kantzer",
+            "https://github.com/romainkantzer"
+        ]
+    };
+
     return (
         <html lang="fr" className="scroll-smooth" suppressHydrationWarning>
             <head>
@@ -118,7 +146,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 />
                 <script
                     type="application/ld+json"
-                    dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify([jsonLd, localBusinessJsonLd]) }}
                 />
             </head>
             <body className={`${inter.variable} ${oswald.variable} font-sans antialiased`} suppressHydrationWarning>

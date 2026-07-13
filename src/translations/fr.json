@@ -12,7 +12,7 @@
         "titleLine1": "SITES WEB",
         "titleLine2": "PREMIUM",
         "highlightTitle": "Développement Web sur-mesure.",
-        "description": "Sites performants. Design premium. SEO optimisé.\nPropulsés par l'Intelligence Artificielle.",
+        "description": "Sites performants. Design premium. SEO optimisé.\nCréés en Alsace, propulsés par l'Intelligence Artificielle.",
         "cta": "Démarrer mon projet",
         "scroll": "Scroll"
     },
@@ -75,7 +75,7 @@
         "titleHighlight2": "ARCHITECTE IA",
         "story": {
             "title": "Romain Kantzer",
-            "text": "Issu de l'automatisation industrielle — automates, supervision SCADA, systèmes connectés — j'ai pivoté vers le web avant de fusionner ces deux expertises dans l'architecture IA. Cette double culture technique m'a appris à penser en systèmes : concevoir des solutions robustes, scalables et orientées résultats.",
+            "text": "Issu de l'automatisation industrielle — automates, supervision SCADA, systèmes connectés — j'ai pivoté vers le web avant de fusionner ces deux expertises dans l'architecture IA. Cette double culture technique m'a appris à penser en systèmes : concevoir des solutions robustes, scalables et orientées résultats. Aujourd'hui basé à Haguenau, dans le Bas-Rhin, j'accompagne les entreprises d'Alsace et d'ailleurs.",
             "highlight": "Le web est la fondation, l'AI est le moteur."
         },
         "vision": {
@@ -178,7 +178,7 @@
             "email": "Email",
             "phone": "Téléphone",
             "location": "Localisation",
-            "locationValue": "France & Remote"
+            "locationValue": "Haguenau (Bas-Rhin) — Alsace & à distance"
         },
         "form": {
             "title": "Demande de Contact",
