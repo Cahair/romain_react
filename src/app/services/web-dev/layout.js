@@ -1,12 +1,12 @@
 export const metadata = {
     title: "Création de site web en Alsace — Next.js & React",
     description:
-        "Développeur web à Haguenau (Bas-Rhin) : création de sites vitrines et d'applications web performants avec Next.js et React, en Alsace et à distance.",
+        "Création de sites vitrines et d'applications web avec Next.js et React, depuis Rountzenheim (Bas-Rhin), en Alsace et à distance.",
     alternates: { canonical: "/services/web-dev" },
     openGraph: {
         title: "Création de site web en Alsace — Romain Kantzer",
         description:
-            "Développeur web à Haguenau (Bas-Rhin) : sites vitrines et applications web performants avec Next.js et React.",
+            "Sites vitrines et applications web avec Next.js et React, depuis Rountzenheim, en Alsace.",
         url: "/services/web-dev",
         images: ["/og-image.jpg"],
     },

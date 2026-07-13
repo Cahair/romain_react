@@ -45,7 +45,7 @@ export default function Footer() {
                     </div>
 
                     <div className="text-muted-foreground text-xs font-mono tracking-widest uppercase">
-                        <span suppressHydrationWarning>© {new Date().getFullYear()} KANTZER.AI — {t("footer.legal.rights")}</span>
+                        <span suppressHydrationWarning>© {new Date().getFullYear()} Romain Kantzer — {t("footer.legal.rights")}</span>
                         <span className="mx-2">•</span>
                         <Link href="/legal" className="hover:text-primary-neon transition-colors">
                             {t("footer.legal.mentions")}

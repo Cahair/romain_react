@@ -14,7 +14,7 @@ const steps = [
     },
     {
         number: "02",
-        title: "Configuration sur-mesure",
+        title: "Configuration adaptée",
         description: "Personnalisation du modèle (Tone of Voice, Base de connaissances) pour qu'il parle comme vous.",
         icon: (
             <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">

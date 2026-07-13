@@ -143,7 +143,7 @@
             "email": "E-Mail",
             "phone": "Telefon",
             "location": "Standort",
-            "locationValue": "Hagenau, Elsass (Frankreich) & Remote"
+            "locationValue": "Rountzenheim, Elsass (Frankreich) & Remote"
         },
         "form": {
             "title": "Kontaktanfrage",
@@ -157,7 +157,7 @@
                 "chatbot": "KI-Agent",
                 "automation": "Automatisierung",
                 "leadgen": "AI Lead Gen",
-                "custom": "Individuelle Lösung",
+                "custom": "Anderes Projekt",
                 "audit": "Nur Audit"
             },
             "budget": "Budget",

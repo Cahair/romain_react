@@ -67,7 +67,7 @@ export default function LegalPage() {
                                 Les informations recueillies via le formulaire de contact sont enregistrées dans un fichier informatisé par Romain Kantzer pour la gestion de la clientèle.
                             </p>
                             <p className="leading-relaxed">
-                                Conformément à la loi « informatique et libertés », vous pouvez exercer votre droit d'accès aux données vous concernant et les faire rectifier en contactant : romain@kantzer.ai
+                                Conformément à la loi « informatique et libertés », vous pouvez exercer votre droit d'accès aux données vous concernant et les faire rectifier en contactant : contact@romain-kantzer.com
                             </p>
                         </section>
                     </div>

@@ -14,16 +14,16 @@ const oswald = Oswald({ subsets: ["latin"], variable: "--font-oswald" });
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://romain-kantzer.com"),
-    keywords: ["Romain Kantzer", "Développeur Web", "Création de site", "Next.js", "React", "Site vitrine", "Alsace", "Haguenau", "Bas-Rhin", "Strasbourg", "Expert IA", "Automatisation", "Agents IA", "Freelance Tech"],
+    keywords: ["Romain Kantzer", "Développeur Web", "Création de site", "Next.js", "React", "Site vitrine", "Alsace", "Rountzenheim", "Haguenau", "Bas-Rhin", "Strasbourg", "Expert IA", "Automatisation", "Agents IA", "Freelance Tech"],
     title: {
         default: "Romain Kantzer | Développeur Web & IA en Alsace",
         template: "%s | Romain Kantzer",
     },
-    description: "Développeur web et ingénieur IA basé à Haguenau (Bas-Rhin). Création de sites web sur-mesure avec Next.js & React et automatisation IA, en Alsace et à distance.",
+    description: "Création de sites web (Next.js, React) et automatisation IA pour les petites entreprises et les associations — depuis Rountzenheim, en Alsace (Bas-Rhin), sur place ou à distance.",
 
     openGraph: {
         title: "Romain Kantzer | Développeur Web & IA en Alsace",
-        description: "Développeur web et ingénieur IA basé à Haguenau (Bas-Rhin). Création de sites web sur-mesure avec Next.js & React et automatisation IA, en Alsace et à distance.",
+        description: "Création de sites web (Next.js, React) et automatisation IA pour les petites entreprises et les associations — depuis Rountzenheim, en Alsace (Bas-Rhin), sur place ou à distance.",
         url: "https://romain-kantzer.com",
         siteName: "Romain Kantzer",
         locale: "fr_FR",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     twitter: {
         card: "summary_large_image",
         title: "Romain Kantzer | Développeur Web & IA en Alsace",
-        description: "Développeur web et ingénieur IA basé à Haguenau (Bas-Rhin). Sites web sur-mesure avec Next.js & React et automatisation IA.",
+        description: "Sites web (Next.js, React) et automatisation IA pour petites entreprises et associations, depuis Rountzenheim, en Alsace.",
         images: ["/og-image.jpg"],
     },
     robots: {
@@ -69,18 +69,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         "familyName": "Kantzer",
         "url": "https://romain-kantzer.com",
         "jobTitle": "Web Developer & AI Engineer",
-        "description": "Expert en Développement Web & Ingénierie IA. Création de sites web performants et sur-mesure, amplifiés par l'intelligence artificielle.",
+        "description": "Création de sites web et automatisation IA pour les petites entreprises et les associations, depuis Rountzenheim, en Alsace.",
         "image": {
             "@type": "ImageObject",
             "url": "https://romain-kantzer.com/romain-profile.png",
             "width": 400,
             "height": 400
         },
-        "email": "romainkantzer@gmail.com",
+        "email": "contact@romain-kantzer.com",
         "telephone": "+33769603760",
         "address": {
             "@type": "PostalAddress",
-            "addressLocality": "Haguenau",
+            "addressLocality": "Rountzenheim",
             "addressRegion": "Bas-Rhin",
             "addressCountry": "FR"
         },
@@ -113,12 +113,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         "name": "Romain Kantzer — Création de sites web & automatisation IA",
         "url": "https://romain-kantzer.com",
         "image": "https://romain-kantzer.com/og-image.jpg",
-        "email": "romainkantzer@gmail.com",
+        "email": "contact@romain-kantzer.com",
         "telephone": "+33769603760",
         "founder": { "@id": "https://romain-kantzer.com/#person" },
         "address": {
             "@type": "PostalAddress",
-            "addressLocality": "Haguenau",
+            "addressLocality": "Rountzenheim",
             "addressRegion": "Bas-Rhin",
             "addressCountry": "FR"
         },

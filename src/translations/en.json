@@ -144,7 +144,7 @@
             "email": "Email",
             "phone": "Phone",
             "location": "Location",
-            "locationValue": "Haguenau, Alsace (France) & Remote"
+            "locationValue": "Rountzenheim, Alsace (France) & Remote"
         },
         "form": {
             "title": "Contact Request",
@@ -158,7 +158,7 @@
                 "chatbot": "AI Agent",
                 "automation": "Automation",
                 "leadgen": "AI Lead Gen",
-                "custom": "Custom solution",
+                "custom": "Other project",
                 "audit": "Audit only"
             },
             "budget": "Budget",

@@ -150,7 +150,7 @@
             "email": "Email",
             "phone": "Téléphone",
             "location": "Localisation",
-            "locationValue": "Haguenau (Bas-Rhin) — Alsace & à distance"
+            "locationValue": "Rountzenheim (Bas-Rhin) — Alsace & à distance"
         },
         "form": {
             "title": "Demande de Contact",
@@ -164,7 +164,7 @@
                 "chatbot": "Agent IA",
                 "automation": "Automatisation",
                 "leadgen": "Lead Gen AI",
-                "custom": "Solution sur-mesure",
+                "custom": "Autre projet",
                 "audit": "Audit uniquement"
             },
             "budget": "Budget",
