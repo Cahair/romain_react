@@ -301,7 +301,7 @@
         "hero": {
             "overline": "// Développement Web Premium",
             "title": "Des expériences web qui marquent les esprits",
-            "subtitle": "Sites vitrines, e-commerce et applications sur-mesure en Next.js — pensés pour convertir, conçus pour durer.",
+            "subtitle": "Sites vitrines, sur-mesure — pensés pour convertir, conçus pour durer.",
             "proofs": ["Score Lighthouse 99+", "Livré en 2 à 6 semaines", "SEO technique inclus"],
             "cta": "Discuter de mon projet"
         },
