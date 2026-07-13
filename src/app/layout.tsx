@@ -101,8 +101,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         ],
         "knowsAbout": ["Artificial Intelligence", "Web Development", "AI Agents", "LLMs", "RAG", "Next.js", "React", "Automation"],
         "sameAs": [
-            "https://www.linkedin.com/in/romain-kantzer",
-            "https://github.com/romainkantzer"
+            "https://www.linkedin.com/in/romain-kantzer-9323b920a/"
         ]
     };
 
@@ -131,8 +130,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         ],
         "knowsAbout": ["Création de sites web", "Next.js", "React", "Automatisation", "Agents IA"],
         "sameAs": [
-            "https://www.linkedin.com/in/romain-kantzer",
-            "https://github.com/romainkantzer"
+            "https://www.linkedin.com/in/romain-kantzer-9323b920a/"
         ]
     };
 
