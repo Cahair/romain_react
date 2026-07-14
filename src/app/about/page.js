@@ -1,8 +1,8 @@
 "use client";
-import Link from "next/link";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { useTranslation } from "../../components/LanguageProvider";
+import Button from "../../components/ui/Button";
 
 const LinkedInIcon = () => (
     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -23,7 +23,7 @@ export default function AboutPage() {
         <main className="bg-background min-h-screen">
             <Navbar />
 
-            <div className="mx-auto max-w-2xl px-6 pt-36 pb-24">
+            <div className="mx-auto max-w-2xl px-6 pt-32 pb-24">
                 {/* En-tête */}
                 <header>
                     <img
@@ -99,12 +99,9 @@ export default function AboutPage() {
                 {/* Contact */}
                 <section className="mt-16 border-t border-border pt-10">
                     <p className="text-lg text-foreground">{t("about.contact.text")}</p>
-                    <Link
-                        href="/contact"
-                        className="mt-5 inline-block rounded-md bg-primary px-5 py-2.5 text-primary-foreground hover:bg-primary-dark transition-colors"
-                    >
+                    <Button href="/contact" className="mt-5">
                         {t("about.contact.button")}
-                    </Link>
+                    </Button>
                 </section>
             </div>
 

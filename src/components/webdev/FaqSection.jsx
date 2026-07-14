@@ -10,7 +10,7 @@ function FaqItem({ item, isOpen, onToggle, index }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.08 }}
-            className={`overflow-hidden rounded-2xl border backdrop-blur-md bg-white/[0.02] transition-colors duration-300 ${isOpen ? "border-primary/40" : "border-white/10 hover:border-white/20"}`}
+            className={`overflow-hidden rounded-2xl border bg-card transition-colors duration-300 ${isOpen ? "border-primary/40" : "border-border hover:border-foreground/20"}`}
         >
             <button
                 type="button"
@@ -54,7 +54,7 @@ export default function FaqSection({ faq }) {
     if (!faq?.items?.length) return null;
 
     return (
-        <section className="relative overflow-hidden bg-background px-6 py-24 md:py-32">
+        <section className="relative overflow-hidden bg-background px-6 py-16 md:py-24">
             {/* Background accent */}
             <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-secondary/5 rounded-full blur-[140px] pointer-events-none" />
 
@@ -69,9 +69,9 @@ export default function FaqSection({ faq }) {
                     <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary-neon md:text-sm">
                         {faq.overline}
                     </span>
-                    <h2 className="font-display text-3xl font-bold uppercase tracking-tight md:text-5xl">
+                    <h2 className="font-display text-2xl md:text-3xl text-foreground">
                         {faq.title}{" "}
-                        <span className="text-primary-neon">{faq.titleHighlight}</span>
+                        <span className="text-primary">{faq.titleHighlight}</span>
                     </h2>
                 </motion.div>
 

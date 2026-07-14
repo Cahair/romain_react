@@ -526,6 +526,26 @@
             }
         }
     },
+    "leadGenPage": {
+        "title": "Lead Gen",
+        "titleHighlight": "IA",
+        "subtitle": "Un système d'acquisition automatisé et hyper-ciblé.",
+        "steps": {
+            "targeting": {
+                "title": "Ciblage & Scraping",
+                "desc": "Identification de vos prospects idéaux sur tout le web."
+            },
+            "enrichment": {
+                "title": "Enrichissement & IA",
+                "desc": "Qualification et écriture de messages hyper-personnalisés par l'IA."
+            },
+            "conversion": {
+                "title": "Conversion",
+                "desc": "Des leads chauds livrés directement dans votre agenda."
+            }
+        },
+        "cta": "Lancer ma campagne"
+    },
     "workflowsPage": {
         "badge": "Workflow Signature",
         "titlePrefix": "Lead Gen",

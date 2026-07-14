@@ -11,9 +11,9 @@ export default function ImpactCharts() {
                 className="grid grid-cols-1 md:grid-cols-3 gap-6 h-full"
             >
                 {/* 1. ROI Line Chart */}
-                <div className="glass p-6 rounded-2xl flex flex-col justify-between min-h-[300px] relative overflow-hidden group">
+                <div className="bg-card border border-border p-6 rounded-2xl flex flex-col justify-between min-h-[300px] relative overflow-hidden group">
                     <div className="relative z-10">
-                        <h3 className="text-gray-400 text-sm font-mono uppercase tracking-widest mb-1">Retour sur Investissement</h3>
+                        <h3 className="text-muted-foreground text-sm font-mono uppercase tracking-widest mb-1">Retour sur Investissement</h3>
                         <div className="text-3xl font-bold text-foreground flex items-baseline gap-2">
                             +300% <span className="text-sm text-primary-neon font-normal">/ an</span>
                         </div>
@@ -71,7 +71,7 @@ export default function ImpactCharts() {
                 </div>
 
                 {/* 2. Automation Rate Radial */}
-                <div className="glass p-6 rounded-2xl flex flex-col items-center justify-center min-h-[300px] relative group">
+                <div className="bg-card border border-border p-6 rounded-2xl flex flex-col items-center justify-center min-h-[300px] relative group">
                     <div className="relative w-48 h-48 flex items-center justify-center">
                         {/* Background Circle */}
                         <svg className="w-full h-full rotate-[-90deg]">
@@ -104,18 +104,18 @@ export default function ImpactCharts() {
                         </svg>
                         <div className="absolute flex flex-col items-center">
                             <span className="text-4xl font-black text-foreground">85%</span>
-                            <span className="text-xs text-gray-400 uppercase tracking-widest mt-1">Automatisation</span>
+                            <span className="text-xs text-muted-foreground uppercase tracking-widest mt-1">Automatisation</span>
                         </div>
                     </div>
                     <div className="text-center mt-6 max-w-[80%]">
-                        <p className="text-sm text-gray-400">des tâches répétitives traitées sans intervention humaine.</p>
+                        <p className="text-sm text-muted-foreground">des tâches répétitives traitées sans intervention humaine.</p>
                     </div>
                 </div>
 
                 {/* 3. Speed Comparison Bar Chart */}
-                <div className="glass p-6 rounded-2xl flex flex-col justify-between min-h-[300px] relative">
+                <div className="bg-card border border-border p-6 rounded-2xl flex flex-col justify-between min-h-[300px] relative">
                     <div className="mb-4">
-                        <h3 className="text-gray-400 text-sm font-mono uppercase tracking-widest mb-1">Vitesse de Traitement</h3>
+                        <h3 className="text-muted-foreground text-sm font-mono uppercase tracking-widest mb-1">Vitesse de Traitement</h3>
                         <div className="text-3xl font-bold text-foreground">x120</div>
                     </div>
 

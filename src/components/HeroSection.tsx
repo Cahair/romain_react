@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef } from "react";
-import Link from "next/link";
 import {
     motion,
     useMotionTemplate,
@@ -10,6 +9,7 @@ import {
 } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "./LanguageProvider";
+import Button from "./ui/Button";
 
 // ─── Scroll-driven video hero ───
 // The section is 200vh tall: the inner viewport stays sticky while the video
@@ -78,7 +78,7 @@ export default function HeroSection() {
 
                         <h1
                             key={locale}
-                            className="font-display text-4xl font-bold uppercase leading-[0.95] tracking-tighter text-primary-foreground sm:text-6xl md:text-7xl lg:text-8xl"
+                            className="font-display text-4xl leading-[1.05] text-primary-foreground sm:text-6xl md:text-7xl lg:text-8xl"
                         >
                             <span className="block">{t("hero.titleLine1")}</span>
                             <span className="shiny-text block">{t("hero.titleLine2")}</span>
@@ -88,13 +88,10 @@ export default function HeroSection() {
                             {t("hero.description")}
                         </p>
 
-                        <Link
-                            href="/contact"
-                            className="group mt-2 inline-flex items-center gap-3 rounded-2xl border border-primary bg-primary px-7 py-3.5 text-base font-medium text-primary-foreground transition-all duration-500 hover:bg-primary-dark hover:shadow-[0_0_40px_rgba(59,130,246,0.35)] md:px-9 md:py-4"
-                        >
+                        <Button href="/contact" size="lg" className="group mt-2">
                             {t("hero.cta")}
                             <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-                        </Link>
+                        </Button>
                     </motion.div>
 
                     {/* ── Scroll hint ── */}

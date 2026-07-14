@@ -10,7 +10,7 @@ const Card = ({ className, children, href, delay = 0 }) => (
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay }}
-        className={`group relative overflow-hidden rounded-3xl bg-card/80 backdrop-blur-md border border-border hover:border-foreground/20 transition-all duration-500 ${className}`}
+        className={`group relative overflow-hidden rounded-2xl bg-card border border-border hover:border-foreground/20 transition-all duration-500 ${className}`}
     >
         <Link href={href} className="absolute inset-0 z-20" />
         <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -24,7 +24,7 @@ export default function ServicesBento() {
     const { t } = useTranslation();
 
     return (
-        <section className="py-24 bg-background relative overflow-hidden">
+        <section className="py-16 md:py-24 bg-background relative overflow-hidden">
             {/* Background Elements */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 blur-[120px] rounded-full pointer-events-none" />
 
@@ -34,9 +34,9 @@ export default function ServicesBento() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="font-display text-4xl md:text-5xl font-bold uppercase mb-4"
+                        className="font-display text-2xl md:text-3xl text-foreground mb-4"
                     >
-                        {t("servicesBento.titlePrefix")} <span className="text-primary-neon">{t("servicesBento.titleSuffix")}</span>
+                        {t("servicesBento.titlePrefix")} <span className="text-primary">{t("servicesBento.titleSuffix")}</span>
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -66,7 +66,7 @@ export default function ServicesBento() {
                             <h3 className="text-3xl font-display font-bold uppercase mb-2 text-foreground group-hover:text-blue-400 transition-colors">
                                 {t("servicesBento.items.webDev.title")}
                             </h3>
-                            <p className="text-gray-400 max-w-md text-sm mb-6">
+                            <p className="text-muted-foreground max-w-md text-sm mb-6">
                                 {t("servicesBento.items.webDev.desc")}
                             </p>
                             <div className="flex items-center gap-2 text-blue-400 font-bold uppercase tracking-widest text-sm group-hover:gap-4 transition-all">
@@ -122,7 +122,7 @@ export default function ServicesBento() {
                                 <h3 className="text-2xl font-display font-bold uppercase mb-2 text-foreground group-hover:text-purple-400 transition-colors">
                                     {t("servicesBento.items.workflows.title")}
                                 </h3>
-                                <p className="text-gray-400 text-sm mb-4">
+                                <p className="text-muted-foreground text-sm mb-4">
                                     {t("servicesBento.items.workflows.desc")}
                                 </p>
                                 <div className="flex items-center gap-2 text-purple-400 font-bold uppercase tracking-widest text-sm group-hover:gap-4 transition-all">
@@ -140,7 +140,7 @@ export default function ServicesBento() {
                         <h3 className="text-xl font-display font-bold uppercase mb-2 text-foreground group-hover:text-primary-neon transition-colors">
                             {t("servicesBento.items.agents.title")}
                         </h3>
-                        <p className="text-gray-400 text-sm mb-4 line-clamp-2">
+                        <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
                             {t("servicesBento.items.agents.desc")}
                         </p>
                         {/* Bot Visual */}
@@ -157,7 +157,7 @@ export default function ServicesBento() {
                         <h3 className="text-xl font-display font-bold uppercase mb-2 text-foreground group-hover:text-pink-500 transition-colors">
                             {t("servicesBento.items.leadGen.title")}
                         </h3>
-                        <p className="text-gray-400 text-sm mb-4 line-clamp-2">
+                        <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
                             {t("servicesBento.items.leadGen.desc")}
                         </p>
                         {/* Radar Visual */}
@@ -177,7 +177,7 @@ export default function ServicesBento() {
                                     <h3 className="text-2xl md:text-3xl font-display font-bold uppercase mb-2 text-foreground group-hover:text-emerald-500 transition-colors">
                                         {t("servicesBento.items.dataViz.title")}
                                     </h3>
-                                    <p className="text-gray-400 text-sm md:text-base max-w-3xl">
+                                    <p className="text-muted-foreground text-sm md:text-base max-w-3xl">
                                         {t("servicesBento.items.dataViz.desc")}
                                     </p>
                                 </div>

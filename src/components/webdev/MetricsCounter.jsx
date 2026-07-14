@@ -92,7 +92,7 @@ function CircularGauge({ value, label, inView, delay = 0, Icon, onClick }) {
             </div>
 
             {/* Label */}
-            <span className="text-xs md:text-sm text-gray-400 font-mono uppercase tracking-wider text-center">
+            <span className="text-xs md:text-sm text-muted-foreground font-mono uppercase tracking-wider text-center">
                 {label}
             </span>
         </div>
@@ -105,7 +105,7 @@ export default function MetricsCounter({ metrics }) {
     const [selectedItem, setSelectedItem] = useState(null);
 
     return (
-        <section className="relative py-24 md:py-32 px-6 bg-background overflow-hidden">
+        <section className="relative py-16 md:py-24 px-6 bg-background overflow-hidden">
             {/* Background glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[140px] pointer-events-none" />
 
@@ -120,9 +120,9 @@ export default function MetricsCounter({ metrics }) {
                     <span className="font-mono text-primary-neon text-xs md:text-sm tracking-[0.3em] uppercase block mb-4">
                         {metrics.overline}
                     </span>
-                    <h2 className="font-display text-3xl md:text-5xl font-bold uppercase tracking-tight">
+                    <h2 className="font-display text-2xl md:text-3xl text-foreground">
                         {metrics.title}{" "}
-                        <span className="text-primary-neon">{metrics.titleHighlight}</span>
+                        <span className="text-primary">{metrics.titleHighlight}</span>
                     </h2>
                 </motion.div>
 
@@ -133,7 +133,7 @@ export default function MetricsCounter({ metrics }) {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="backdrop-blur-md bg-white/[0.02] border border-white/10 rounded-3xl p-8 md:p-12"
+                    className="bg-card border border-border rounded-2xl p-6 md:p-8"
                 >
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6">
                         {metrics.items.map((item, i) => {
@@ -170,7 +170,7 @@ export default function MetricsCounter({ metrics }) {
                                 exit={{ scale: 0.95, opacity: 0, y: 20 }}
                                 transition={{ duration: 0.15 }}
                                 onClick={(e) => e.stopPropagation()}
-                                className="relative w-full max-w-md bg-card/90 backdrop-blur-xl border border-white/10 p-6 md:p-8 rounded-3xl shadow-2xl overflow-hidden"
+                                className="relative w-full max-w-md bg-card/90 backdrop-blur-xl border border-border p-6 md:p-8 rounded-2xl shadow-2xl overflow-hidden"
                             >
                                 {/* Glow Effect */}
                                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-32 bg-primary/10 rounded-full blur-[60px] pointer-events-none" />
@@ -193,7 +193,7 @@ export default function MetricsCounter({ metrics }) {
                                         </h3>
                                     </div>
                                 </div>
-                                <p className="text-gray-400 leading-relaxed relative z-10 text-sm md:text-base">
+                                <p className="text-muted-foreground leading-relaxed relative z-10 text-sm md:text-base">
                                     {selectedItem.desc || "Explication à venir."}
                                 </p>
                             </motion.div>

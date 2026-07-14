@@ -45,11 +45,11 @@ function VisualStepCard({ step, visual, index }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: index * 0.1 }}
-            className={`group relative rounded-3xl border border-white/10 overflow-hidden transition-all duration-500 ${visual.border}`}
+            className={`group relative rounded-2xl border border-border overflow-hidden transition-all duration-500 ${visual.border}`}
         >
             {/* Background gradient */}
             <div className={`absolute inset-0 bg-gradient-to-br ${visual.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-            <div className="absolute inset-0 backdrop-blur-md bg-white/[0.02]" />
+            <div className="absolute inset-0 bg-card/80" />
 
             {/* Hover glow */}
             <div className={`absolute -inset-4 ${visual.accentGlow} rounded-3xl blur-3xl opacity-0 group-hover:opacity-40 transition-opacity duration-700 pointer-events-none`} />
@@ -101,7 +101,7 @@ function VisualStepCard({ step, visual, index }) {
 
 export default function ProcessTimeline({ process: processData }) {
     return (
-        <section className="relative py-24 md:py-32 px-6 bg-background overflow-hidden flex flex-col justify-center">
+        <section className="relative py-16 md:py-24 px-6 bg-background overflow-hidden flex flex-col justify-center">
             {/* Background accents */}
             <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[140px] pointer-events-none" />
             <div className="absolute bottom-1/4 right-0 w-[400px] h-[400px] bg-secondary/5 rounded-full blur-[140px] pointer-events-none" />
@@ -117,9 +117,9 @@ export default function ProcessTimeline({ process: processData }) {
                     <span className="font-mono text-primary-neon text-xs md:text-sm tracking-[0.3em] uppercase block mb-3">
                         {processData.overline}
                     </span>
-                    <h2 className="font-display text-2xl md:text-4xl lg:text-5xl font-bold uppercase tracking-tight">
+                    <h2 className="font-display text-2xl md:text-3xl text-foreground">
                         {processData.title}{" "}
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-neon to-secondary-neon">
+                        <span className="text-primary">
                             {processData.titleHighlight}
                         </span>
                     </h2>

@@ -1,7 +1,8 @@
 "use client";
-import { Send, Linkedin } from "lucide-react";
+import { ArrowRight, Linkedin } from "lucide-react";
 import Link from "next/link";
 import { useTranslation } from "./LanguageProvider";
+import Button from "./ui/Button";
 
 export default function Footer() {
     const { t } = useTranslation();
@@ -24,16 +25,10 @@ export default function Footer() {
                         {t("footer.titleHighlight")}
                     </h2>
 
-                    <Link
-                        href="/contact"
-                        className="mt-16 group relative inline-flex items-center gap-4 px-12 py-6 bg-primary/10 border border-primary/50 rounded-full overflow-hidden hover:bg-primary/20 transition-all duration-500 hover:scale-105"
-                    >
-                        <span className="font-mono text-xl text-primary-neon uppercase tracking-widest z-10">
-                            {t("footer.form.submit")}
-                        </span>
-                        <Send className="w-6 h-6 text-primary-neon z-10 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                        <div className="absolute inset-0 bg-primary/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    </Link>
+                    <Button href="/contact" size="lg" className="group mt-16">
+                        {t("footer.form.submit")}
+                        <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                    </Button>
                 </div>
 
                 {/* Bottom Bar */}

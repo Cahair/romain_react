@@ -516,6 +516,26 @@
             }
         }
     },
+    "leadGenPage": {
+        "title": "Lead Gen",
+        "titleHighlight": "KI",
+        "subtitle": "Ein automatisiertes, präzise ausgerichtetes Akquise-System.",
+        "steps": {
+            "targeting": {
+                "title": "Targeting & Scraping",
+                "desc": "Identifikation Ihrer idealen Interessenten im gesamten Web."
+            },
+            "enrichment": {
+                "title": "Anreicherung & KI",
+                "desc": "Qualifizierung und hyper-personalisierte Nachrichten durch KI."
+            },
+            "conversion": {
+                "title": "Conversion",
+                "desc": "Warme Leads direkt in Ihren Kalender geliefert."
+            }
+        },
+        "cta": "Meine Kampagne starten"
+    },
     "workflowsPage": {
         "badge": "Signatur-Workflow",
         "titlePrefix": "Lead Gen",

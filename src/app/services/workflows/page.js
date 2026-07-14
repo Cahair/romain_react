@@ -1,28 +1,40 @@
 "use client";
 import React, { useRef } from "react";
-import Link from "next/link";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
 import { Database, Mail, MessageSquare, Zap, Cpu, Bell, CheckCircle2, User, Globe, ArrowRight, Server, FileText, Filter, Users } from "lucide-react";
 import { useTranslation } from "../../../components/LanguageProvider";
+import Button from "../../../components/ui/Button";
 
 // --- Components for the Complex Visualization ---
 
-const Node = ({ icon: Icon, label, color, x, y, delay = 0, isMobile = false }) => (
-    <motion.div
-        className={`${isMobile ? 'relative w-full max-w-[200px]' : 'absolute'} p-4 rounded-2xl border border-${color}-500/30 bg-black/80 backdrop-blur-xl flex flex-col items-center gap-2 shadow-[0_0_30px_-5px_rgba(0,0,0,0.5)] z-20`}
-        style={isMobile ? {} : { left: x, top: y }}
-        initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ delay, duration: 0.5 }}
-    >
-        <div className={`p-3 rounded-xl bg-${color}-500/20 text-${color}-400`}>
-            <Icon size={24} />
-        </div>
-        <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground text-center">{label}</span>
-    </motion.div>
-);
+// Classes statiques : Tailwind ne compile pas les classes construites dynamiquement (`border-${color}-...`).
+const nodeStyles = {
+    blue: { border: "border-blue-500/30", icon: "bg-blue-500/20 text-blue-400" },
+    purple: { border: "border-purple-500/30", icon: "bg-purple-500/20 text-purple-400" },
+    pink: { border: "border-pink-500/30", icon: "bg-pink-500/20 text-pink-400" },
+    emerald: { border: "border-emerald-500/30", icon: "bg-emerald-500/20 text-emerald-400" },
+    red: { border: "border-red-500/30", icon: "bg-red-500/20 text-red-400" },
+};
+
+const Node = ({ icon: Icon, label, color, x, y, delay = 0, isMobile = false }) => {
+    const style = nodeStyles[color] || nodeStyles.blue;
+    return (
+        <motion.div
+            className={`${isMobile ? 'relative w-full max-w-[200px]' : 'absolute'} p-4 rounded-2xl border ${style.border} bg-card/90 backdrop-blur-xl flex flex-col items-center gap-2 shadow-[0_0_30px_-5px_rgba(0,0,0,0.5)] z-20`}
+            style={isMobile ? {} : { left: x, top: y }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ delay, duration: 0.5 }}
+        >
+            <div className={`p-3 rounded-xl ${style.icon}`}>
+                <Icon size={24} />
+            </div>
+            <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground text-center">{label}</span>
+        </motion.div>
+    );
+};
 
 const Connection = ({ start, end, color = "gray", delay = 0 }) => {
     // Simple straight line or curved implementation could be complex dynamically. 
@@ -125,7 +137,7 @@ const ComplexWorkflowVisual = ({ t }) => {
             </div>
 
             {/* Desktop View */}
-            <div className="hidden md:block relative w-full h-[800px] bg-grid-pattern overflow-hidden rounded-3xl border border-white/10">
+            <div className="hidden md:block relative w-full h-[800px] bg-grid-pattern overflow-hidden rounded-2xl border border-border">
                 {/* Background Glows */}
                 <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px]" />
                 <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[100px]" />
@@ -236,7 +248,7 @@ export default function WorkflowsPage() {
         <main className="bg-background min-h-screen text-foreground selection:bg-primary-neon selection:text-white overflow-x-hidden">
             <Navbar />
 
-            <div className="pt-32 pb-20 container mx-auto px-4 md:px-6">
+            <div className="pt-32 pb-20 container mx-auto px-6">
                 {/* Header */}
                 <div className="max-w-4xl mx-auto text-center mb-16">
                     <motion.div
@@ -250,9 +262,9 @@ export default function WorkflowsPage() {
                     <motion.h1
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-4xl md:text-6xl lg:text-7xl font-display font-black uppercase tracking-tighter leading-none mb-6"
+                        className="font-display text-4xl md:text-6xl lg:text-7xl leading-[1.05] text-foreground mb-6"
                     >
-                        {t("workflowsPage.titlePrefix")} <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-600">{t("workflowsPage.titleHighlight")}</span>
+                        {t("workflowsPage.titlePrefix")} <span className="text-primary">{t("workflowsPage.titleHighlight")}</span>
                     </motion.h1>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -273,7 +285,7 @@ export default function WorkflowsPage() {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-500/30 transition-colors"
+                        className="p-6 rounded-2xl bg-card border border-border hover:border-blue-500/30 transition-colors"
                     >
                         <div className="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center text-blue-400 mb-4">
                             <Globe size={24} />
@@ -289,7 +301,7 @@ export default function WorkflowsPage() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-purple-500/30 transition-colors"
+                        className="p-6 rounded-2xl bg-card border border-border hover:border-purple-500/30 transition-colors"
                     >
                         <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center text-purple-400 mb-4">
                             <Cpu size={24} />
@@ -305,7 +317,7 @@ export default function WorkflowsPage() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
-                        className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-emerald-500/30 transition-colors"
+                        className="p-6 rounded-2xl bg-card border border-border hover:border-emerald-500/30 transition-colors"
                     >
                         <div className="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center text-emerald-400 mb-4">
                             <Zap size={24} />
@@ -321,11 +333,10 @@ export default function WorkflowsPage() {
 
                 {/* CTA */}
                 <div className="flex justify-center mt-20">
-                    <Link href="/contact" className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-primary-dark px-8 font-medium text-white transition-all duration-300 hover:bg-primary hover:scale-105 hover:shadow-[0_0_20px_rgba(59,130,246,0.5)]">
-                        <span className="mr-2">{t("workflowsPage.cta")}</span>
+                    <Button href="/contact" size="lg" className="group">
+                        {t("workflowsPage.cta")}
                         <ArrowRight className="transition-transform group-hover:translate-x-1" size={20} />
-                        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 translate-x-[-100%] group-hover:animate-shine" />
-                    </Link>
+                    </Button>
                 </div>
             </div>
 

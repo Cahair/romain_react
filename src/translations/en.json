@@ -520,6 +520,26 @@
             }
         }
     },
+    "leadGenPage": {
+        "title": "Lead Gen",
+        "titleHighlight": "AI",
+        "subtitle": "An automated, hyper-targeted acquisition system.",
+        "steps": {
+            "targeting": {
+                "title": "Targeting & Scraping",
+                "desc": "We identify your ideal prospects across the web."
+            },
+            "enrichment": {
+                "title": "Enrichment & AI",
+                "desc": "AI-powered qualification and hyper-personalised outreach messages."
+            },
+            "conversion": {
+                "title": "Conversion",
+                "desc": "Hot leads delivered straight to your calendar."
+            }
+        },
+        "cta": "Launch my campaign"
+    },
     "workflowsPage": {
         "badge": "Signature Workflow",
         "titlePrefix": "Lead Gen",

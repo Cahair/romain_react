@@ -88,7 +88,7 @@ function CaseCard({ item, index }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: index * 0.12 }}
-            className={`group relative flex flex-col overflow-hidden rounded-3xl border border-white/10 backdrop-blur-md bg-white/[0.02] transition-colors duration-500 ${accent.border}`}
+            className={`group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-colors duration-500 ${accent.border}`}
         >
             {/* Browser mockup */}
             <div className="relative m-4 mb-0 overflow-hidden rounded-xl border border-white/10 bg-black/30">
@@ -118,7 +118,7 @@ function CaseCard({ item, index }) {
                 </p>
 
                 {/* Metrics */}
-                <div className="mt-6 grid grid-cols-2 gap-4 border-t border-white/10 pt-5">
+                <div className="mt-6 grid grid-cols-2 gap-4 border-t border-border pt-5">
                     {item.metrics?.map((metric, i) => (
                         <div key={i}>
                             <div className={`flex items-center gap-1.5 font-display text-xl md:text-2xl font-bold tabular-nums ${accent.metric}`}>
@@ -140,7 +140,7 @@ export default function CaseStudies({ caseStudies }) {
     if (!caseStudies?.items?.length) return null;
 
     return (
-        <section className="relative overflow-hidden bg-background px-6 py-24 md:py-32">
+        <section className="relative overflow-hidden bg-background px-6 py-16 md:py-24">
             {/* Background accents */}
             <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[140px] pointer-events-none" />
 
@@ -155,9 +155,9 @@ export default function CaseStudies({ caseStudies }) {
                     <span className="mb-4 block font-mono text-xs uppercase tracking-[0.3em] text-primary-neon md:text-sm">
                         {caseStudies.overline}
                     </span>
-                    <h2 className="font-display text-3xl font-bold uppercase tracking-tight md:text-5xl">
+                    <h2 className="font-display text-2xl md:text-3xl text-foreground">
                         {caseStudies.title}{" "}
-                        <span className="text-primary-neon">{caseStudies.titleHighlight}</span>
+                        <span className="text-primary">{caseStudies.titleHighlight}</span>
                     </h2>
                     {caseStudies.subtitle && (
                         <p className="mx-auto mt-4 max-w-xl text-sm text-muted-foreground md:text-base">

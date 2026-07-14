@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { usePageAccent } from "./PageAccent";
 import { useTheme } from "./ThemeProvider";
 import { useTranslation, availableLocales } from "./LanguageProvider";
+import Button from "./ui/Button";
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
@@ -192,9 +193,9 @@ export default function Navbar() {
                                 </span>
                             </Link>
                         ) : (
-                            <Link href="/contact" className="ml-4 px-5 py-2 border border-primary/30 bg-primary/5 text-primary-neon rounded text-xs font-mono uppercase tracking-wider hover:bg-primary/20 hover:border-primary/60 transition-all duration-300">
+                            <Button href="/contact" size="sm" className="ml-4">
                                 {t("nav.audit")}
-                            </Link>
+                            </Button>
                         )}
                     </div>
 
@@ -268,9 +269,9 @@ export default function Navbar() {
                         ))}
 
                         <div className="flex flex-col gap-4 pt-4 border-t border-border">
-                            <Link href="/contact" onClick={() => setMobileMenu(false)} className="w-full text-center px-5 py-3 border border-primary/30 bg-primary/5 text-primary-neon rounded-xl text-sm font-mono uppercase tracking-wider hover:bg-primary/20 hover:border-primary/60 transition-all duration-300 shadow-neon-cyan">
+                            <Button href="/contact" onClick={() => setMobileMenu(false)} className="w-full">
                                 {t("nav.audit")}
-                            </Link>
+                            </Button>
                         </div>
 
                         {/* Mobile Footer Actions */}

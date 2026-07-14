@@ -23,15 +23,15 @@ export default function LegalPage() {
                         animate={{ opacity: 1, y: 0 }}
                         className="mb-12"
                     >
-                        <h1 className="text-4xl md:text-5xl font-black tracking-tighter mb-4">
-                            Mentions <span className="text-gradient">Légales</span>
+                        <h1 className="font-display text-4xl md:text-5xl text-foreground mb-4">
+                            Mentions <span className="text-primary">Légales</span>
                         </h1>
                     </motion.div>
 
-                    <div className="space-y-12 text-gray-300">
+                    <div className="space-y-12 text-muted-foreground">
                         {/* 1. Éditeur */}
-                        <section className="glass p-8 rounded-2xl">
-                            <h2 className="text-xl font-bold text-white mb-4 uppercase tracking-wide">1. Éditeur du site</h2>
+                        <section className="rounded-2xl border border-border bg-card p-6 md:p-8">
+                            <h2 className="font-display text-2xl text-foreground mb-4">1. Éditeur du site</h2>
                             <div className="space-y-2">
                                 <p><strong>Nom :</strong> Romain Kantzer</p>
                                 <p><strong>Statut :</strong> Entrepreneur Individuel </p>
@@ -42,8 +42,8 @@ export default function LegalPage() {
                         </section>
 
                         {/* 2. Hébergement */}
-                        <section className="glass p-8 rounded-2xl">
-                            <h2 className="text-xl font-bold text-white mb-4 uppercase tracking-wide">2. Hébergement</h2>
+                        <section className="rounded-2xl border border-border bg-card p-6 md:p-8">
+                            <h2 className="font-display text-2xl text-foreground mb-4">2. Hébergement</h2>
                             <div className="space-y-2">
                                 <p><strong>Hébergeur :</strong> Infomaniak</p>
                                 <p><strong>Adresse :</strong> Rue Eugène-Marziano 25, 1227 Genève, Suisse</p>
@@ -52,8 +52,8 @@ export default function LegalPage() {
                         </section>
 
                         {/* 3. Propriété Intellectuelle */}
-                        <section className="glass p-8 rounded-2xl">
-                            <h2 className="text-xl font-bold text-white mb-4 uppercase tracking-wide">3. Propriété Intellectuelle</h2>
+                        <section className="rounded-2xl border border-border bg-card p-6 md:p-8">
+                            <h2 className="font-display text-2xl text-foreground mb-4">3. Propriété Intellectuelle</h2>
                             <p className="leading-relaxed">
                                 L'ensemble de ce site relève de la législation française et internationale sur le droit d'auteur et la propriété intellectuelle.
                                 Tous les droits de reproduction sont réservés, y compris pour les documents téléchargeables et les représentations iconographiques et photographiques.
@@ -61,8 +61,8 @@ export default function LegalPage() {
                         </section>
 
                         {/* 4. Données Personnelles */}
-                        <section className="glass p-8 rounded-2xl">
-                            <h2 className="text-xl font-bold text-white mb-4 uppercase tracking-wide">4. Données Personnelles</h2>
+                        <section className="rounded-2xl border border-border bg-card p-6 md:p-8">
+                            <h2 className="font-display text-2xl text-foreground mb-4">4. Données Personnelles</h2>
                             <p className="leading-relaxed mb-4">
                                 Les informations recueillies via le formulaire de contact sont enregistrées dans un fichier informatisé par Romain Kantzer pour la gestion de la clientèle.
                             </p>

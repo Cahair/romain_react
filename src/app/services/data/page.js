@@ -20,10 +20,10 @@ export default function DataAnalysisPage() {
 
                     {/* Overlay Text for Problem */}
                     <div className="absolute bottom-8 left-8 z-20 md:top-32 md:left-12 md:bottom-auto">
-                        <h2 className="text-3xl font-bold text-slate-200 tracking-tight font-heading">
+                        <h1 className="font-display text-3xl md:text-4xl text-slate-200">
                             Des Données <br />
                             <span className="text-slate-500">Illisibles</span>
-                        </h2>
+                        </h1>
                     </div>
                 </section>
 
@@ -42,7 +42,7 @@ export default function DataAnalysisPage() {
 
                     {/* Overlay Text for Solution */}
                     <div className="absolute top-28 right-8 z-20 md:top-32 md:right-12 text-right">
-                        <h2 className="text-3xl font-bold text-slate-800 tracking-tight font-heading">
+                        <h2 className="font-display text-3xl md:text-4xl text-slate-800">
                             Une Vision <br />
                             <span className="text-cyan-500">Claire</span>
                         </h2>

@@ -40,6 +40,8 @@ export async function generateMetadata(
     return {
         title: post.title,
         description: post.excerpt,
+        // Contenu factice : ne pas indexer tant que le blog n'est pas réel.
+        robots: { index: false, follow: false },
         openGraph: {
             title: post.title,
             description: post.excerpt,
@@ -57,8 +59,8 @@ export default async function Page({ params }: Props) {
     return (
         <div className="container mx-auto py-12 px-4">
             <header className="mb-8">
-                <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
-                <p className="text-xl text-gray-600">{post.excerpt}</p>
+                <h1 className="font-display text-4xl md:text-5xl text-foreground mb-4">{post.title}</h1>
+                <p className="text-xl text-muted-foreground">{post.excerpt}</p>
             </header>
             <article className="prose lg:prose-xl">
                 <p>Contenu de l'article ici...</p>

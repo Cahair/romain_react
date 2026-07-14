@@ -110,12 +110,12 @@ export default function AgentCard({ agent, isActive, onClick }) {
                                 animate={{ opacity: 1 }}
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className={`w-full py-3 px-4 rounded-lg font-medium text-sm uppercase tracking-wide transition-colors bg-foreground/10 hover:bg-foreground/20 text-foreground border border-foreground/20`}
+                                className={`w-full py-3 px-4 rounded-md font-medium text-sm transition-colors bg-foreground/10 hover:bg-foreground/20 text-foreground border border-foreground/20`}
                             >
                                 {agent.cta}
                             </motion.button>
                         ) : (
-                            <div className="md:hidden w-full py-2 px-4 rounded-lg font-medium text-xs uppercase tracking-wide text-center border border-foreground/10 text-foreground/50 bg-background/20 backdrop-blur-sm">
+                            <div className="md:hidden w-full py-2 px-4 rounded-md font-medium text-xs text-center border border-foreground/10 text-foreground/50 bg-background/20 backdrop-blur-sm">
                                 Voir
                             </div>
                         )}

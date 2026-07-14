@@ -10,11 +10,12 @@ import {
     Sparkles,
     Mail,
     Calendar,
-    TrendingUp,
-    Search
+    ArrowRight
 } from "lucide-react";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
+import Button from "../../../components/ui/Button";
+import { useTranslation } from "../../../components/LanguageProvider";
 
 const containerVariants = {
     hidden: { opacity: 0 },
@@ -37,11 +38,13 @@ const itemVariants = {
 };
 
 export default function LeadGenPage() {
+    const { t } = useTranslation();
+
     return (
         <div className="min-h-screen bg-background text-foreground overflow-hidden font-sans selection:bg-primary/30">
             <Navbar />
 
-            <main className="pt-32 pb-20 container mx-auto px-4 relative">
+            <main className="pt-32 pb-20 container mx-auto px-6 relative">
                 {/* Background Elements */}
                 <div className="absolute top-20 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl -z-10 animate-pulse-slow" />
                 <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl -z-10 animate-pulse-slow delay-1000" />
@@ -51,11 +54,11 @@ export default function LeadGenPage() {
                     animate={{ opacity: 1, y: 0 }}
                     className="text-center mb-16"
                 >
-                    <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                        <span className="text-gradient">Lead Gen IA</span>
+                    <h1 className="font-display text-4xl md:text-6xl text-foreground mb-6">
+                        {t("leadGenPage.title")} <span className="text-primary">{t("leadGenPage.titleHighlight")}</span>
                     </h1>
                     <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                        Un système d'acquisition automatisé et hyper-ciblé.
+                        {t("leadGenPage.subtitle")}
                     </p>
                 </motion.div>
 
@@ -80,9 +83,9 @@ export default function LeadGenPage() {
                         >
                             <div className="flex flex-col md:flex-row items-center justify-between gap-8 px-4 md:px-12">
                                 <div className="flex-1 text-center md:text-left">
-                                    <h2 className="text-2xl font-bold text-primary mb-2">Ciblage & Scraping</h2>
+                                    <h2 className="font-display text-2xl text-primary mb-2">{t("leadGenPage.steps.targeting.title")}</h2>
                                     <p className="text-muted-foreground font-medium">
-                                        Identification de vos prospects idéaux sur tout le web.
+                                        {t("leadGenPage.steps.targeting.desc")}
                                     </p>
                                 </div>
 
@@ -136,9 +139,9 @@ export default function LeadGenPage() {
                         >
                             <div className="flex flex-col md:flex-row-reverse items-center justify-between gap-8 px-4 md:px-8">
                                 <div className="flex-1 text-center md:text-right">
-                                    <h2 className="text-2xl font-bold text-secondary mb-2">Enrichissement & IA</h2>
+                                    <h2 className="font-display text-2xl text-secondary mb-2">{t("leadGenPage.steps.enrichment.title")}</h2>
                                     <p className="text-muted-foreground font-medium">
-                                        Qualification et écriture de messages hyper-personnalisés par l'IA.
+                                        {t("leadGenPage.steps.enrichment.desc")}
                                     </p>
                                 </div>
 
@@ -184,15 +187,10 @@ export default function LeadGenPage() {
                                 </div>
 
                                 <div>
-                                    <h2 className="text-2xl font-bold text-accent mb-2">Conversion</h2>
+                                    <h2 className="font-display text-2xl text-accent mb-2">{t("leadGenPage.steps.conversion.title")}</h2>
                                     <p className="text-muted-foreground font-medium">
-                                        Des leads chauds livrés directement dans votre agenda.
+                                        {t("leadGenPage.steps.conversion.desc")}
                                     </p>
-                                </div>
-
-                                <div className="flex items-center gap-2 text-sm text-green-400 font-mono bg-green-900/20 px-3 py-1 rounded-full">
-                                    <TrendingUp size={16} />
-                                    <span>+300% ROI</span>
                                 </div>
                             </div>
                         </div>
@@ -207,13 +205,10 @@ export default function LeadGenPage() {
                     transition={{ delay: 1.5 }}
                     className="text-center mt-20"
                 >
-                    <a
-                        href="/contact"
-                        className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-full hover:scale-105 transition-transform shadow-lg shadow-primary/25"
-                    >
-                        <span>Lancer ma campagne</span>
-                        <Sparkles size={18} />
-                    </a>
+                    <Button href="/contact" size="lg" className="group">
+                        {t("leadGenPage.cta")}
+                        <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                    </Button>
                 </motion.div>
 
             </main>

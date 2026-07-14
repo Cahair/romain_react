@@ -1,8 +1,8 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
-import { Code2, Sparkles, Globe, CheckCircle2 } from "lucide-react";
+import { ArrowRight, Code2, Sparkles, Globe, CheckCircle2 } from "lucide-react";
+import Button from "../ui/Button";
 
 // Animated word component
 const Word = ({ children, delay }) => (
@@ -97,7 +97,7 @@ export default function HeroVideoParallax({ hero }) {
                 </motion.span>
 
                 {/* Giant Title — word by word */}
-                <h1 className="font-display font-bold text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl text-center leading-[1.05] tracking-tight uppercase max-w-6xl drop-shadow-[0_0_20px_rgba(0,0,0,0.8)]">
+                <h1 className="font-display text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl text-center leading-[1.05] max-w-6xl drop-shadow-[0_0_20px_rgba(0,0,0,0.8)]">
                     {words.map((word, i) => (
                         <span key={i} className="inline-block overflow-hidden mr-[0.3em]">
                             <Word delay={0.5 + i * 0.07}>
@@ -149,15 +149,10 @@ export default function HeroVideoParallax({ hero }) {
                     transition={{ delay: 1.2, duration: 0.6 }}
                     className="mt-8 md:mt-10"
                 >
-                    <Link
-                        href="/contact"
-                        className="group inline-flex items-center gap-3 px-8 py-4 md:px-10 md:py-5 bg-primary hover:bg-primary-dark text-primary-foreground font-bold uppercase tracking-widest text-xs md:text-sm transition-all duration-300 shadow-[0_0_40px] shadow-primary/40 hover:shadow-[0_0_60px] hover:shadow-primary/70 hover:scale-105"
-                    >
+                    <Button href="/contact" size="lg" className="group">
                         {hero.cta}
-                        <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                    </Link>
+                        <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                    </Button>
                 </motion.div>
 
                 {/* Micro-proofs */}

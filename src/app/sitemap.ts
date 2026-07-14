@@ -13,7 +13,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/services/web-dev',
         '/services/workflows',
         '/contact',
-        '/designs',
     ].map((route) => ({
         url: `${baseUrl}${route}`,
         lastModified: new Date(),

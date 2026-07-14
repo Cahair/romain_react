@@ -90,7 +90,7 @@ function SpotlightCard({ children, className = "", delay = 0 }) {
             onMouseMove={handleMouseMove}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            className={`relative overflow-hidden backdrop-blur-md bg-white/[0.03] border border-white/10 rounded-2xl p-6 md:p-8 hover:border-primary/30 transition-colors duration-300 cursor-default ${className}`}
+            className={`relative overflow-hidden bg-card border border-border rounded-2xl p-6 md:p-8 hover:border-primary/30 transition-colors duration-300 cursor-default ${className}`}
         >
             {/* Spotlight gradient */}
             {isHovered && (
@@ -108,7 +108,7 @@ function SpotlightCard({ children, className = "", delay = 0 }) {
 
 export default function TechBento({ tech }) {
     return (
-        <section className="relative py-24 md:py-32 px-6 bg-background overflow-hidden">
+        <section className="relative py-16 md:py-24 px-6 bg-background overflow-hidden">
             <div className="container mx-auto max-w-5xl relative z-10">
                 {/* Header */}
                 <motion.div
@@ -120,8 +120,8 @@ export default function TechBento({ tech }) {
                     <span className="font-mono text-primary-neon text-xs md:text-sm tracking-[0.3em] uppercase block mb-4">
                         {tech.overline}
                     </span>
-                    <h2 className="font-display text-3xl md:text-5xl font-bold uppercase tracking-tight">
-                        {tech.title} <span className="text-primary-neon">{tech.titleHighlight}</span>
+                    <h2 className="font-display text-2xl md:text-3xl text-foreground">
+                        {tech.title} <span className="text-primary">{tech.titleHighlight}</span>
                     </h2>
                 </motion.div>
 
