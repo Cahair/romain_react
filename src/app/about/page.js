@@ -44,10 +44,10 @@ export default function AboutPage() {
                     <aside className="lg:col-span-1">
                         <div className="lg:sticky lg:top-28">
                             <Image
-                                src="/romain-profile-square.jpg"
+                                src="/romain-kantzer.jpg"
                                 alt="Romain Kantzer, créateur de sites web à Rountzenheim"
-                                width={472}
-                                height={472}
+                                width={1200}
+                                height={1200}
                                 sizes="(min-width: 1024px) 26vw, (min-width: 640px) 18rem, 100vw"
                                 priority
                                 className="w-full max-w-[18rem] rounded-2xl border border-border"

@@ -72,9 +72,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         "description": "Création de sites web et automatisation IA pour les petites entreprises et les associations, depuis Rountzenheim, en Alsace.",
         "image": {
             "@type": "ImageObject",
-            "url": "https://romain-kantzer.com/romain-profile.png",
-            "width": 400,
-            "height": 400
+            "url": "https://romain-kantzer.com/romain-kantzer.jpg",
+            "width": 1200,
+            "height": 1200
         },
         "email": "contact@romain-kantzer.com",
         "telephone": "+33769603760",
