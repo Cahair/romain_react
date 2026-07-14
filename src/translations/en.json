@@ -65,26 +65,30 @@
     "about": {
         "intro": "I build websites for small businesses and local associations, from Rountzenheim, in Alsace.",
         "story": {
-            "title": "Who I am",
-            "p1": "I come from Rountzenheim, a village in northern Alsace. I trained in industrial automation — systems that run production lines and are not allowed to stop — then earned my engineering degree in digital solutions at Icam Strasbourg-Europe, as an apprentice at ERAS. That is where I learned to build things that have to work every day, not just on demo day.",
+            "titleBefore": "Who I ",
+            "titleHighlight": "am",
+            "titleAfter": "",
+            "p1": "I come from Rountzenheim, a village in northern Alsace. I trained in industrial automation, then earned my engineering degree in digital solutions at Icam Strasbourg-Europe, as an apprentice at ERAS.",
+            "quote": "I learned to build things that have to work every day, not just on demo day.",
             "p2": "It all started with my chess club in Bischwiller. Its website was more than fifteen years old. I rebuilt it completely: new design, content carried over, domain name and hosting — and above all, I trained the volunteers so they could publish their own news. Today the club keeps its website alive without me.",
             "p3": "That project made me want to turn this into my job. I created RK.ai to bring the same thing to small businesses and associations around here: a clear website that looks like them, and that they can keep alive themselves.",
             "clubLink": "See the club's website",
-            "serviceBefore": "Looking for ",
-            "serviceLink": "a website for an association or small business in Alsace",
-            "serviceAfter": "? I support you from the first conversation through to launch, with a solution that is simple to use and built to last.",
             "contactBefore": "Already have a project in mind? ",
             "contactLink": "Let's talk about it."
         },
         "proof": {
             "eyebrow": "A founding project",
-            "title": "Cercle d'Échecs de Bischwiller",
+            "titleBefore": "Cercle d'Échecs de ",
+            "titleHighlight": "Bischwiller",
+            "titleAfter": "",
             "description": "Website redesign, content migration, domain and hosting management, followed by volunteer training so the club can publish its news independently.",
             "link": "Visit the club's website",
             "imageAlt": "Homepage of the Cercle d'Échecs de Bischwiller website"
         },
         "how": {
-            "title": "How I work",
+            "titleBefore": "How I ",
+            "titleHighlight": "work",
+            "titleAfter": "",
             "items": [
                 {
                     "title": "No jargon",
@@ -105,7 +109,9 @@
             ]
         },
         "path": {
-            "title": "My background, in short",
+            "titleBefore": "My ",
+            "titleHighlight": "background",
+            "titleAfter": ", in short",
             "items": [
                 {
                     "year": "2026",
@@ -135,7 +141,10 @@
         },
         "contact": {
             "text": "A project, a question? The simplest is to write to me.",
-            "button": "Get in touch"
+            "button": "Get in touch",
+            "serviceBefore": "Looking for ",
+            "serviceLink": "a website for an association or small business in Alsace",
+            "serviceAfter": "? I support you from the first conversation through to launch, with a solution that is simple to use and built to last."
         }
     },
     "contact": {

@@ -71,26 +71,30 @@
     "about": {
         "intro": "Je crée des sites web pour les petites entreprises et les associations, depuis Rountzenheim, en Alsace.",
         "story": {
-            "title": "Qui je suis",
-            "p1": "Je viens de Rountzenheim, un village du nord de l'Alsace. Je me suis formé en automatisme industriel — des systèmes qui pilotent des lignes de production et n'ont pas le droit de s'arrêter — puis j'ai obtenu mon diplôme d'ingénieur en solutions numériques à l'Icam Strasbourg-Europe, en apprentissage chez ERAS. C'est là que j'ai appris à construire des choses qui doivent fonctionner tous les jours, pas seulement le jour de la démonstration.",
+            "titleBefore": "Qui je ",
+            "titleHighlight": "suis",
+            "titleAfter": "",
+            "p1": "Je viens de Rountzenheim, un village du nord de l'Alsace. Je me suis formé en automatisme industriel, puis j'ai obtenu mon diplôme d'ingénieur en solutions numériques à l'Icam Strasbourg-Europe, en apprentissage chez ERAS.",
+            "quote": "J'ai appris à construire des choses qui doivent fonctionner tous les jours, pas seulement le jour de la démonstration.",
             "p2": "Tout est parti de mon club d'échecs, à Bischwiller. Son site avait plus de quinze ans. Je l'ai entièrement refait : nouveau design, contenu repris, nom de domaine et hébergement — et surtout, j'ai formé les bénévoles pour qu'ils publient leurs actualités eux-mêmes. Aujourd'hui, le club fait vivre son site sans moi.",
             "p3": "C'est ce projet qui m'a donné envie d'en faire mon métier. J'ai créé RK.ai pour apporter la même chose aux petites entreprises et aux associations de la région : un site clair, qui leur ressemble, et qu'elles peuvent faire vivre elles-mêmes.",
             "clubLink": "Voir le site du club",
-            "serviceBefore": "Vous cherchez une ",
-            "serviceLink": "création de site internet pour association ou TPE en Alsace",
-            "serviceAfter": " ? Je vous accompagne depuis les premiers échanges jusqu'à la mise en ligne, avec une solution simple à utiliser et pensée pour durer.",
             "contactBefore": "Vous avez déjà un projet en tête ? ",
             "contactLink": "Écrivez-moi pour en parler."
         },
         "proof": {
             "eyebrow": "Une réalisation fondatrice",
-            "title": "Le Cercle d'Échecs de Bischwiller",
+            "titleBefore": "Le Cercle d'Échecs de ",
+            "titleHighlight": "Bischwiller",
+            "titleAfter": "",
             "description": "Refonte du site, migration du contenu, gestion du nom de domaine et de l'hébergement, puis formation des bénévoles pour publier leurs actualités en autonomie.",
             "link": "Découvrir le site du club",
             "imageAlt": "Page d'accueil du site du Cercle d'Échecs de Bischwiller"
         },
         "how": {
-            "title": "Comment je travaille",
+            "titleBefore": "Comment je ",
+            "titleHighlight": "travaille",
+            "titleAfter": "",
             "items": [
                 {
                     "title": "Sans jargon",
@@ -111,7 +115,9 @@
             ]
         },
         "path": {
-            "title": "Mon parcours en bref",
+            "titleBefore": "Mon ",
+            "titleHighlight": "parcours",
+            "titleAfter": " en bref",
             "items": [
                 {
                     "year": "2026",
@@ -141,7 +147,10 @@
         },
         "contact": {
             "text": "Un projet, une question ? Le plus simple est de m'écrire.",
-            "button": "Me contacter"
+            "button": "Me contacter",
+            "serviceBefore": "Vous cherchez une ",
+            "serviceLink": "création de site internet pour association ou TPE en Alsace",
+            "serviceAfter": " ? Je vous accompagne depuis les premiers échanges jusqu'à la mise en ligne, avec une solution simple à utiliser et pensée pour durer."
         }
     },
     "contact": {

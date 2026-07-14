@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Mail } from "lucide-react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
@@ -10,14 +10,7 @@ import { useTranslation } from "../../components/LanguageProvider";
 import Button from "../../components/ui/Button";
 import Card from "../../components/ui/Card";
 import Section from "../../components/ui/Section";
-import SectionTitle from "../../components/ui/SectionTitle";
-
-const reveal = {
-    initial: { opacity: 0, y: 20 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.2 },
-    transition: { duration: 0.45, ease: "easeOut" },
-};
+import SectionTitle, { Highlight } from "../../components/ui/SectionTitle";
 
 const LinkedInIcon = () => (
     <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -25,11 +18,28 @@ const LinkedInIcon = () => (
     </svg>
 );
 
+// Titre de section localisé avec un mot mis en couleur (clés titleBefore/titleHighlight/titleAfter).
+const HighlightedTitle = ({ t, base, className = "" }) => (
+    <SectionTitle className={className}>
+        {t(`${base}.titleBefore`)}
+        <Highlight>{t(`${base}.titleHighlight`)}</Highlight>
+        {t(`${base}.titleAfter`)}
+    </SectionTitle>
+);
+
 export default function AboutPage() {
     const { t } = useTranslation();
+    const shouldReduceMotion = useReducedMotion();
     const getList = (key) => {
         const items = t(key);
         return Array.isArray(items) ? items : [];
+    };
+
+    const reveal = {
+        initial: { opacity: 0, y: shouldReduceMotion ? 0 : 20 },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once: true, amount: 0.2 },
+        transition: { duration: shouldReduceMotion ? 0 : 0.45, ease: "easeOut" },
     };
 
     const how = getList("about.how.items");
@@ -43,27 +53,32 @@ export default function AboutPage() {
                 <div className="grid gap-12 lg:grid-cols-[minmax(16rem,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
                     <aside className="lg:col-span-1">
                         <div className="lg:sticky lg:top-28">
-                            <Image
-                                src="/romain-kantzer.jpg"
-                                alt="Romain Kantzer, créateur de sites web à Rountzenheim"
-                                width={1200}
-                                height={1200}
-                                sizes="(min-width: 1024px) 26vw, (min-width: 640px) 18rem, 100vw"
-                                priority
-                                className="w-full max-w-[18rem] rounded-2xl border border-border"
-                            />
+                            {/* Mobile : photo compacte à côté du nom ; desktop : grande photo empilée. */}
+                            <div className="flex items-center gap-5 lg:block">
+                                <Image
+                                    src="/romain-kantzer.jpg"
+                                    alt="Romain Kantzer, créateur de sites web à Rountzenheim"
+                                    width={1200}
+                                    height={1200}
+                                    sizes="(min-width: 1024px) 26vw, 6rem"
+                                    priority
+                                    className="w-24 shrink-0 rounded-2xl border border-border lg:w-full lg:max-w-[18rem]"
+                                />
+                                <div className="min-w-0">
+                                    <p className="text-sm font-medium uppercase tracking-[0.16em] text-primary lg:mt-8">
+                                        RK.ai
+                                    </p>
+                                    <SectionTitle as="h1" size="hero" className="mt-2 leading-[0.9] tracking-tight lg:mt-3">
+                                        Romain Kantzer
+                                    </SectionTitle>
+                                </div>
+                            </div>
 
-                            <p className="mt-8 text-sm font-medium uppercase tracking-[0.16em] text-primary">
-                                RK.ai
-                            </p>
-                            <SectionTitle as="h1" size="hero" className="mt-3 leading-[0.9] tracking-tight">
-                                Romain Kantzer
-                            </SectionTitle>
-                            <p className="mt-6 max-w-md text-xl leading-relaxed text-muted-foreground">
+                            <p className="mt-5 max-w-md text-lg leading-relaxed text-muted-foreground lg:mt-6 lg:text-xl">
                                 {t("about.intro")}
                             </p>
 
-                            <div className="mt-8 flex flex-wrap items-center gap-3">
+                            <div className="mt-6 flex flex-wrap items-center gap-3 lg:mt-8">
                                 <a
                                     href="https://www.linkedin.com/in/romain-kantzer-9323b920a/"
                                     target="_blank"
@@ -83,23 +98,16 @@ export default function AboutPage() {
                     </aside>
 
                     <article className="min-w-0 lg:col-span-1">
-                        <Section containerClassName="px-0" className="pt-0 md:pt-0">
+                        <Section spacing="compact" containerClassName="px-0" className="pt-0 md:pt-0">
                             <motion.div {...reveal}>
-                                <SectionTitle>{t("about.story.title")}</SectionTitle>
-                                <div className="mt-6 space-y-5 text-lg leading-8 text-foreground/85">
+                                <HighlightedTitle t={t} base="about.story" />
+                                <div className="mt-6 space-y-5 text-base leading-relaxed text-foreground/85 md:text-lg md:leading-8">
                                     <p>{t("about.story.p1")}</p>
+                                    <blockquote className="border-l-2 border-primary py-1 pl-5 font-display text-xl leading-snug text-foreground md:text-2xl">
+                                        {t("about.story.quote")}
+                                    </blockquote>
                                     <p>{t("about.story.p2")}</p>
                                     <p>{t("about.story.p3")}</p>
-                                    <p>
-                                        {t("about.story.serviceBefore")}
-                                        <Link
-                                            href="/services/web-dev"
-                                            className="font-medium text-primary transition-colors hover:text-primary-neon hover:underline hover:underline-offset-4"
-                                        >
-                                            {t("about.story.serviceLink")}
-                                        </Link>
-                                        {t("about.story.serviceAfter")}
-                                    </p>
                                     <p>
                                         {t("about.story.contactBefore")}
                                         <Link
@@ -113,14 +121,18 @@ export default function AboutPage() {
                             </motion.div>
                         </Section>
 
-                        <Section containerClassName="px-0" className="border-t border-border">
+                        <Section spacing="compact" containerClassName="px-0" className="border-t border-border">
                             <motion.div {...reveal}>
                                 <p className="text-sm font-medium uppercase tracking-[0.16em] text-primary">
                                     {t("about.proof.eyebrow")}
                                 </p>
-                                <SectionTitle className="mt-3">{t("about.proof.title")}</SectionTitle>
+                                <HighlightedTitle t={t} base="about.proof" className="mt-3" />
 
-                                <Card className="mt-8 overflow-hidden p-0 transition duration-300 hover:-translate-y-1 hover:border-primary">
+                                {/* Pleine largeur sur mobile : l'image du site du club touche les bords de l'écran. */}
+                                <Card
+                                    padded={false}
+                                    className="-mx-6 mt-8 overflow-hidden transition duration-300 hover:-translate-y-1 hover:border-primary max-sm:rounded-none max-sm:border-x-0 sm:mx-0"
+                                >
                                     <div className="relative aspect-[16/9] overflow-hidden border-b border-border">
                                         <Image
                                             src="/images/case-studies/bischwiller-echecs.png"
@@ -148,10 +160,22 @@ export default function AboutPage() {
                             </motion.div>
                         </Section>
 
-                        <Section containerClassName="px-0" className="border-t border-border">
+                        <Section spacing="compact" containerClassName="px-0" className="border-t border-border">
                             <motion.div {...reveal}>
-                                <SectionTitle>{t("about.how.title")}</SectionTitle>
-                                <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                                <HighlightedTitle t={t} base="about.how" />
+
+                                {/* Mobile : liste compacte, moitié moins haute que des cartes empilées. */}
+                                <div className="mt-6 space-y-5 sm:hidden">
+                                    {how.map((item) => (
+                                        <motion.div key={item.title} {...reveal} className="border-l-2 border-border pl-4">
+                                            <h3 className="font-medium text-foreground">{item.title}</h3>
+                                            <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
+                                        </motion.div>
+                                    ))}
+                                </div>
+
+                                {/* Desktop : cartes en deux colonnes. */}
+                                <div className="mt-8 hidden gap-4 sm:grid sm:grid-cols-2">
                                     {how.map((item, index) => (
                                         <motion.div
                                             key={item.title}
@@ -168,28 +192,45 @@ export default function AboutPage() {
                             </motion.div>
                         </Section>
 
-                        <Section containerClassName="px-0" className="border-t border-border">
+                        <Section spacing="compact" containerClassName="px-0" className="border-t border-border">
                             <motion.div {...reveal}>
-                                <SectionTitle>{t("about.path.title")}</SectionTitle>
+                                <HighlightedTitle t={t} base="about.path" />
                                 <ol className="relative mt-8 ml-1 border-l border-border">
-                                    {path.map((item) => (
-                                        <li key={`${item.year}-${item.text}`} className="relative pb-8 pl-8 last:pb-0">
-                                            <span className="absolute left-[-5px] top-1.5 h-2.5 w-2.5 rounded-full border border-border bg-background" />
+                                    {path.map((item, index) => (
+                                        <motion.li
+                                            key={`${item.year}-${item.text}`}
+                                            {...reveal}
+                                            transition={{ ...reveal.transition, delay: index * 0.05 }}
+                                            className="relative pb-6 pl-8 last:pb-0 md:pb-8"
+                                        >
+                                            <span className="absolute left-[-5px] top-1.5 h-2.5 w-2.5 rounded-full bg-primary" />
                                             <p className="text-sm tabular-nums text-muted-foreground">{item.year}</p>
                                             <p className="mt-1 leading-relaxed text-foreground/85">{item.text}</p>
-                                        </li>
+                                        </motion.li>
                                     ))}
                                 </ol>
                             </motion.div>
                         </Section>
 
-                        <Section containerClassName="px-0" className="border-t border-border pb-0 md:pb-0">
+                        <Section spacing="compact" containerClassName="px-0" className="border-t border-border pb-0 md:pb-0">
                             <motion.div {...reveal}>
-                                <p className="text-xl leading-relaxed text-foreground">{t("about.contact.text")}</p>
-                                <Button href="/contact" size="lg" className="mt-6">
-                                    <Mail className="h-4 w-4" aria-hidden="true" />
-                                    {t("about.contact.button")}
-                                </Button>
+                                <Card className="md:p-10">
+                                    <p className="text-xl leading-relaxed text-foreground">{t("about.contact.text")}</p>
+                                    <Button href="/contact" size="lg" className="mt-6">
+                                        <Mail className="h-4 w-4" aria-hidden="true" />
+                                        {t("about.contact.button")}
+                                    </Button>
+                                    <p className="mt-8 border-t border-border pt-6 text-sm leading-relaxed text-muted-foreground">
+                                        {t("about.contact.serviceBefore")}
+                                        <Link
+                                            href="/services/web-dev"
+                                            className="font-medium text-primary transition-colors hover:text-primary-neon hover:underline hover:underline-offset-4"
+                                        >
+                                            {t("about.contact.serviceLink")}
+                                        </Link>
+                                        {t("about.contact.serviceAfter")}
+                                    </p>
+                                </Card>
                             </motion.div>
                         </Section>
                     </article>
