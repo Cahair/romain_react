@@ -16,11 +16,8 @@ const LanguageContext = createContext({
 
 export function LanguageProvider({ children }) {
     const [locale, setLocaleState] = useState("fr");
-    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        setMounted(true);
-
         // Check localStorage first
         const savedLocale = localStorage.getItem("locale");
         if (savedLocale && translations[savedLocale]) {
@@ -74,11 +71,6 @@ export function LanguageProvider({ children }) {
         }
         return key;
     };
-
-    // Prevent hydration mismatch
-    if (!mounted) {
-        return <div style={{ visibility: "hidden" }}>{children}</div>;
-    }
 
     return (
         <LanguageContext.Provider value={{ locale, t, setLocale }}>

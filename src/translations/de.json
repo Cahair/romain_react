@@ -68,7 +68,19 @@
             "p1": "Ich komme aus Rountzenheim, einem Dorf im Nordelsass. Gelernt habe ich industrielle Automatisierung — Systeme, die Produktionslinien steuern und nicht stehen bleiben dürfen. Danach habe ich mein Ingenieurdiplom in digitalen Lösungen an der Icam Strasbourg-Europe gemacht, im Rahmen einer dualen Ausbildung bei ERAS. Dort habe ich gelernt, Dinge zu bauen, die jeden Tag funktionieren müssen — nicht nur am Tag der Vorführung.",
             "p2": "Angefangen hat alles mit meinem Schachverein in Bischwiller. Seine Website war über fünfzehn Jahre alt. Ich habe sie komplett neu gebaut: neues Design, Inhalte übernommen, Domain und Hosting — und vor allem habe ich die Ehrenamtlichen geschult, damit sie ihre Neuigkeiten selbst veröffentlichen. Heute pflegt der Verein seine Website ohne mich.",
             "p3": "Dieses Projekt hat mir Lust gemacht, daraus meinen Beruf zu machen. Ich habe RK.ai gegründet, um kleinen Unternehmen und Vereinen in der Region dasselbe zu bieten: eine klare Website, die zu ihnen passt und die sie selbst pflegen können.",
-            "clubLink": "Zur Website des Vereins"
+            "clubLink": "Zur Website des Vereins",
+            "serviceBefore": "Sie suchen ",
+            "serviceLink": "eine Website für einen Verein oder ein kleines Unternehmen im Elsass",
+            "serviceAfter": "? Ich begleite Sie vom ersten Gespräch bis zum Start — mit einer Lösung, die einfach zu nutzen und auf Dauer angelegt ist.",
+            "contactBefore": "Sie haben bereits ein Projekt im Kopf? ",
+            "contactLink": "Sprechen wir darüber."
+        },
+        "proof": {
+            "eyebrow": "Ein prägendes Projekt",
+            "title": "Cercle d'Échecs de Bischwiller",
+            "description": "Neugestaltung der Website, Übernahme der Inhalte, Verwaltung von Domain und Hosting sowie Schulung der Ehrenamtlichen, damit der Verein seine Neuigkeiten selbst veröffentlichen kann.",
+            "link": "Website des Vereins besuchen",
+            "imageAlt": "Startseite der Website des Cercle d'Échecs de Bischwiller"
         },
         "how": {
             "title": "Wie ich arbeite",

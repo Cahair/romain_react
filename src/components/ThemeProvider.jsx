@@ -8,10 +8,8 @@ const ThemeContext = createContext({
 
 export function ThemeProvider({ children }) {
     const [theme, setTheme] = useState("dark");
-    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        setMounted(true);
         const savedTheme = localStorage.getItem("theme") || "dark";
         setTheme(savedTheme);
         document.documentElement.classList.toggle("light", savedTheme === "light");
@@ -23,11 +21,6 @@ export function ThemeProvider({ children }) {
         localStorage.setItem("theme", newTheme);
         document.documentElement.classList.toggle("light", newTheme === "light");
     };
-
-    // Prevent flash of wrong theme
-    if (!mounted) {
-        return <div style={{ visibility: "hidden" }}>{children}</div>;
-    }
 
     return (
         <ThemeContext.Provider value={{ theme, toggleTheme }}>
