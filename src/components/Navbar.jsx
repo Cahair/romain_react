@@ -62,14 +62,13 @@ export default function Navbar() {
                 >
                     <Link href="/" className="flex items-center gap-3 group">
                         <div className="relative flex items-center justify-center">
-                            <span className="font-display font-bold text-3xl text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-violet-600 group-hover:to-blue-400 transition-all duration-500 tracking-tighter">
+                            <span className="font-display font-bold text-3xl text-foreground tracking-tighter">
                                 RK
                             </span>
                             <span className="text-muted-foreground font-mono text-xs ml-1 opacity-50 text-[10px] tracking-widest">
                                 .AI
                             </span>
-                            {/* Neon Glow under logo */}
-                            <div className="absolute -bottom-1 left-0 right-0 h-[1px] bg-primary/50 blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            <div className="absolute -bottom-1 left-0 h-[2px] w-6 bg-accent-foreground transition-all duration-300 group-hover:w-full" />
                         </div>
                     </Link>
 
