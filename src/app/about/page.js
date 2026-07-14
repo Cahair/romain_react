@@ -50,7 +50,7 @@ export default function AboutPage() {
                                 height={1024}
                                 sizes="(min-width: 1024px) 26vw, (min-width: 640px) 18rem, 100vw"
                                 priority
-                                className="aspect-square w-full max-w-[18rem] rounded-2xl border border-border object-cover object-[center_22%]"
+                                className="aspect-square w-full max-w-[18rem] rounded-2xl border border-border object-cover object-[center_55%]"
                             />
 
                             <p className="mt-8 text-sm font-medium uppercase tracking-[0.16em] text-primary">
