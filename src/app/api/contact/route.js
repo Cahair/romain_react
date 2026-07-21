@@ -38,9 +38,9 @@ export async function POST(request) {
         const safeMessage = sanitizeText(message.trim());
 
         const data = await resend.emails.send({
-            from: 'Contact Form <onboarding@resend.dev>',
-            to: [process.env.CONTACT_EMAIL || 'romainkantzer10@gmail.com'],
-            reply_to: safeEmail,
+            from: process.env.RESEND_FROM || 'Contact Form <onboarding@resend.dev>',
+            to: [process.env.CONTACT_EMAIL || 'contact@romain-kantzer.com'],
+            replyTo: safeEmail,
             subject: `Nouveau contact de ${safeName} - Projet ${safeProject}`,
             html: `
                 <!DOCTYPE html>

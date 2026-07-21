@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Calendar } from "lucide-react";
+import { Mail, Phone, MapPin, Calendar, Check } from "lucide-react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { useTranslation } from "../../components/LanguageProvider";
@@ -87,19 +87,19 @@ export default function ContactPage() {
                                 <h2 className="font-display text-xl md:text-2xl text-foreground mb-4 md:mb-6">{t("contact.why.title")}</h2>
                                 <ul className="space-y-3 text-sm md:text-base text-muted-foreground">
                                     <li className="flex items-start gap-3">
-                                        <span className="text-primary mt-0.5">✦</span>
+                                        <Check className="w-4 h-4 text-primary mt-1 shrink-0" />
                                         <span>{t("contact.why.items.0")}</span>
                                     </li>
                                     <li className="flex items-start gap-3">
-                                        <span className="text-primary mt-0.5">✦</span>
+                                        <Check className="w-4 h-4 text-primary mt-1 shrink-0" />
                                         <span>{t("contact.why.items.1")}</span>
                                     </li>
                                     <li className="flex items-start gap-3">
-                                        <span className="text-primary mt-0.5">✦</span>
+                                        <Check className="w-4 h-4 text-primary mt-1 shrink-0" />
                                         <span>{t("contact.why.items.2")}</span>
                                     </li>
                                     <li className="flex items-start gap-3">
-                                        <span className="text-primary mt-0.5">✦</span>
+                                        <Check className="w-4 h-4 text-primary mt-1 shrink-0" />
                                         <span>{t("contact.why.items.3")}</span>
                                     </li>
                                 </ul>

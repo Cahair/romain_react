@@ -3,7 +3,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageSquare, X, Send, Cpu, User, Loader2, Sparkles, Terminal } from "lucide-react";
+import { MessageSquare, X, Send, Cpu, User, Loader2, Bot, Terminal } from "lucide-react";
 import { useTranslation } from "./LanguageProvider";
 import { usePathname } from "next/navigation";
 
@@ -137,7 +137,7 @@ export default function Chatbot() {
                             <div className="absolute inset-0 bg-gradient-to-r from-primary-neon/10 to-transparent opacity-50" />
                             <div className="flex items-center gap-3 relative z-10">
                                 <div className="w-10 h-10 rounded-full bg-primary-neon/20 flex items-center justify-center border border-primary-neon/50">
-                                    <Sparkles className="w-5 h-5 text-primary-neon" />
+                                    <Bot className="w-5 h-5 text-primary-neon" />
                                 </div>
                                 <div>
                                     <h3 className="text-foreground font-display font-bold tracking-wide">Assistant IA</h3>

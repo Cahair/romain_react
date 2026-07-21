@@ -7,7 +7,6 @@ import {
     Linkedin,
     MapPin,
     Cpu,
-    Sparkles,
     Mail,
     Calendar,
     ArrowRight
@@ -149,7 +148,6 @@ export default function LeadGenPage() {
                                 <div className="flex items-center gap-6 text-secondary">
                                     <div className="relative p-4 bg-secondary/10 rounded-full border border-secondary/20 shadow-neon-violet">
                                         <Cpu size={40} className="animate-pulse" />
-                                        <Sparkles size={20} className="absolute -top-2 -right-2 text-yellow-400 animate-spin-slow" />
                                     </div>
                                     <div className="h-12 w-[1px] bg-secondary/30 hidden md:block" />
                                     <Mail size={32} className="opacity-80" />
