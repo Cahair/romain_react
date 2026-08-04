@@ -40,9 +40,7 @@ export async function POST(req) {
         - Web Development: Next.js, React, TypeScript, TailwindCSS, Node.js, PostgreSQL, Supabase.
       
       - Services Offered by his company:
-        - Agent IA: Architecture complète et intelligente pour votre entreprise (Support, Vente, Analyse).
         - Développement Web: Création de sites web et d'applications avec Next.js et React.
-        - AI Workflows: Automatisation de processus métier de bout en bout.
         
         
       Directives:

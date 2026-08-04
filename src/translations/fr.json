@@ -5,7 +5,6 @@
         "about": "À Propos",
         "contact": "Contact",
         "audit": "AUDIT GRATUIT",
-        "agents": "Agents IA",
         "webDev": "Développement Web"
     },
     "hero": {
@@ -15,58 +14,6 @@
         "description": "Sites performants. Design premium. SEO optimisé.\nCréés en Alsace, propulsés par l'Intelligence Artificielle.",
         "cta": "Démarrer mon projet",
         "scroll": "Scroll"
-    },
-    "services": {
-        "badge": "Solutions IA",
-        "title": "NOS SERVICES",
-        "titleHighlight": "INTELLIGENTS",
-        "subtitle": "Des solutions sur-mesure pour propulser votre business dans l'ère de l'automatisation intelligente.",
-        "items": {
-            "chatbot": {
-                "title": "<highlight>Agents</highlight> IA",
-                "desc": "Support client 24/7 et qualification de leads automatisée via LLMs personnalisés.",
-                "features": [
-                    "Support multilingue intelligent",
-                    "Qualification automatique des leads",
-                    "Intégration CRM & outils existants"
-                ]
-            },
-            "workflows": {
-                "title": "<highlight>Workflows</highlight> IA",
-                "desc": "Automatisation complète de vos processus métiers avec Zapier, Make et scripts IA.",
-                "features": [
-                    "Automatisation de processus complexes",
-                    "Intégrations multi-outils",
-                    "Reporting automatisé"
-                ]
-            },
-            "leadgen": {
-                "title": "<highlight>Lead Gen</highlight> IA",
-                "desc": "Prospection ultra-ciblée et personnalisée grâce à l'analyse prédictive.",
-                "features": [
-                    "Scraping & enrichissement données",
-                    "Emails ultra-personnalisés",
-                    "Suivi de performance"
-                ]
-            },
-            "data": {
-                "title": "Analyse <highlight>Data</highlight>",
-                "desc": "Transformez vos données brutes en insights actionnables pour piloter votre croissance.",
-                "features": [
-                    "Visualisation de données",
-                    "Prédictions IA",
-                    "Dashboards temps réel"
-                ]
-            }
-        },
-        "discover": "DÉCOUVRIR",
-        "viewAll": "Voir tous nos services",
-        "cta": {
-            "title": "PRÊT À",
-            "titleHighlight": "DÉCOLLER ?",
-            "subtitle": "Transformez votre business avec nos solutions d'automatisation.",
-            "button": "DISCUTER DE MON PROJET"
-        }
     },
     "about": {
         "intro": "Je crée des sites web pour les petites entreprises et les associations, depuis Rountzenheim, en Alsace.",
@@ -182,20 +129,18 @@
             "project": "Type de Projet",
             "projectOptions": {
                 "select": "Sélectionnez...",
-                "chatbot": "Agent IA",
-                "automation": "Automatisation",
-                "leadgen": "Lead Gen AI",
-                "custom": "Autre projet",
-                "audit": "Audit uniquement"
+                "redesign": "Refonte de site",
+                "creation": "Création de site",
+                "feature": "Ajout de fonctionnalité",
+                "other": "Autre"
             },
             "budget": "Budget",
             "budgetOptions": {
                 "select": "Sélectionnez...",
-                "less5k": "Moins de 5,000€",
-                "5k10k": "5,000€ - 10,000€",
-                "10k25k": "10,000€ - 25,000€",
-                "more25k": "Plus de 25,000€",
-                "tbd": "À définir"
+                "less1k": "Moins de 1 000 €",
+                "1k2k": "1 000 € - 2 000 €",
+                "2k5k": "2 000 € - 5 000 €",
+                "more5k": "Plus de 5 000 €"
             },
             "message": "Message",
             "messagePlaceholder": "Décrivez brièvement votre besoin...",
@@ -219,76 +164,27 @@
         "subtitle2": "par l'IA.",
         "description": "Des sites web modernes et performants, amplifiés par l'intelligence artificielle."
     },
-    "servicesBento": {
-        "titlePrefix": "Nos",
-        "titleSuffix": "Services",
-        "subtitle": "Une suite complète de solutions web et IA pour accélérer votre croissance.",
-        "popular": "Populaire",
-        "explore": "Explorer",
-        "items": {
-            "agents": {
-                "title": "Agents IA",
-                "desc": "Des assistants conversationnels sur-mesure pour engager vos prospects et supporter vos clients 24/7."
+    "homeWebDev": {
+        "eyebrow": "Ce que je fais",
+        "titleBefore": "En savoir plus sur le ",
+        "titleHighlight": "développement web",
+        "titleAfter": "",
+        "text": "Je crée des sites vitrines pour les TPE et associations alsaciennes. Sur la page dédiée, je détaille ma façon de travailler, les étapes d'un projet et les réponses aux questions qu'on me pose le plus souvent.",
+        "items": [
+            {
+                "title": "Des étapes claires",
+                "text": "Stratégie, design, développement, mise en ligne : vous savez toujours où en est votre projet."
             },
-            "workflows": {
-                "title": "Workflows",
-                "desc": "Automatisation end-to-end de vos processus métiers."
+            {
+                "title": "Vous restez autonome",
+                "text": "Je vous forme à publier vos contenus vous-même, comme je l'ai fait avec le club d'échecs de Bischwiller."
             },
-            "leadGen": {
-                "title": "Lead Gen",
-                "desc": "Acquisition ciblée et enrichissement de données."
-            },
-            "dataViz": {
-                "title": "Data Viz",
-                "desc": "Dashboards interactifs pour piloter votre activité."
-            },
-            "webDev": {
-                "title": "Développement Web Premium",
-                "desc": "Sites vitrines, applications web et e-commerce sur-mesure. Design premium, performances optimales et SEO intégré dès la première ligne de code."
+            {
+                "title": "La technique, je m'en occupe",
+                "text": "Nom de domaine, hébergement, maintenance : cette partie est mon travail, pas le vôtre."
             }
-        }
-    },
-    "servicesPage": {
-        "intro": {
-            "titlePrefix": "Nos",
-            "titleHighlight": "Expertises",
-            "subtitle": "Une approche holistique de l'automatisation. <br /> <span class=\"text-primary-neon\">4 piliers</span> pour transformer votre business.",
-            "scroll": "Scroll"
-        },
-        "chatbots": {
-            "titlePrefix": "Agents",
-            "titleHighlight": "IA",
-            "desc": "Offrez une expérience client exceptionnelle 24/7. Nos agents IA comprennent le contexte, qualifient vos leads et s'intègrent parfaitement à votre CRM.",
-            "button": "Découvrir les Agents IA"
-        },
-        "workflows": {
-            "titlePrefix": "Workflows",
-            "titleHighlight": "IA",
-            "desc": "Connectez vos outils. Automatisez vos tâches. Libérez votre potentiel. De la facturation au reporting, laissez l'IA gérer l'opérationnel.",
-            "button": "Découvrir les Workflows"
-        },
-        "leadGen": {
-            "titlePrefix": "Lead Gen",
-            "titleHighlight": "IA",
-            "desc": "Ciblez avec précision. Nos algorithmes identifient vos prospects idéaux et engagent la conversation avec une pertinence chirurgicale.",
-            "button": "Découvrir la Lead Gen"
-        },
-        "data": {
-            "titlePrefix": "Analyse",
-            "titleHighlight": "Data",
-            "desc": "Ne naviguez plus à vue. Transformez vos données brutes en intelligence stratégique grâce à nos dashboards prédictifs.",
-            "button": "Découvrir la Data"
-        },
-        "webDev": {
-            "titleLine1": "Développement",
-            "titleLine2": "Web",
-            "subtitle": "Je conçois vos :",
-            "type1": "Sites Corporate",
-            "type2": "Applications SaaS",
-            "type3": "Dashboards IA",
-            "desc": "Du code propre (React/Next.js), optimisé pour le SEO et prêt à intégrer votre IA.",
-            "button": "Discuter de mon projet"
-        }
+        ],
+        "cta": "Découvrir le développement web"
     },
     "webDevPage": {
         "hero": {
@@ -454,155 +350,6 @@
             "titleHighlight": "le web ?",
             "subtitle": "Transformons votre vision en une expérience digitale qui marque les esprits.",
             "button": "Démarrer le Projet"
-        }
-    },
-    "agentsPage": {
-        "hero": {
-            "overline": "// Intelligence Artificielle Embarquée",
-            "titleStart": "Recrutez Vos",
-            "titleHighlight": "Agents IA",
-            "titleMiddle": "pour une",
-            "titleEnd": "CROISSANCE",
-            "subtitle": "Des assistants virtuels qui travaillent 24/7. Support client, qualification de leads ou tâches administratives : déléguez l'opérationnel à l'IA.",
-            "cta": "Créer mon Agent",
-            "badge": "Disponibilité 24/7"
-        },
-        "philosophy": {
-            "textPart1": "L'automatisation classique est rigide. L'IA apporte la",
-            "highlight1": "compréhension",
-            "textPart2": ". Nous créons des agents capables de",
-            "highlight2": "raisonner",
-            "textPart3": " et de prendre des décisions autonomes pour votre business."
-        },
-        "services": {
-            "overline": "// Cas d'Usage",
-            "title": "Vos Nouveaux",
-            "titleHighlight": "Employés",
-            "items": {
-                "support": {
-                    "tag": "Service Client",
-                    "title": "Support",
-                    "titleHighlight": "Instantané",
-                    "desc": "Fini les temps d'attente. Un agent qui répond instantanément, dans toutes les langues, et résout 80% des requêtes de niveau 1."
-                },
-                "sales": {
-                    "tag": "Force de Vente",
-                    "title": "SDR",
-                    "titleHighlight": "Autonome",
-                    "desc": "Un chasseur qui ne dort jamais. Il engage vos visiteurs, qualifie le besoin et booke les rendez-vous directement dans votre agenda."
-                },
-                "ops": {
-                    "tag": "Opérations",
-                    "title": "Assistant",
-                    "titleHighlight": "Administratif",
-                    "desc": "Traitement de documents, saisie de données, tri d'emails. Libérez vos équipes des tâches répétitives à faible valeur ajoutée."
-                }
-            }
-        },
-        "stack": {
-            "overline": "// Cerveaux & Outils",
-            "title": "Intelligence",
-            "titleHighlight": "Connectée"
-        },
-        "cta": {
-            "overline": "// Prêt à déléguer ?",
-            "title": "Configurez votre",
-            "titleHighlight": "Premier Agent",
-            "subtitle": "Définissons ensemble le périmètre d'action de votre future main d'œuvre numérique.",
-            "button": "Lancer l'Intégration"
-        },
-        "showcase": {
-            "titleLine1": "Vos Agents IA",
-            "titleLine2": "Sur-Mesure",
-            "subtitle": "Trois exemples concrets de ce qu'un agent IA peut faire pour votre business. Chaque agent est conçu et entraîné spécifiquement pour vos processus, vos outils et vos objectifs.",
-            "discover": "Découvrir"
-        },
-        "agentsList": {
-            "emma": {
-                "role": "SUPPORT & SERVICE CLIENT",
-                "tasks": [
-                    "Gestion autonome de vos emails entrants 24/7",
-                    "Qualification et résolution immédiate des tickets",
-                    "Parcours de fidélisation qualitatif et personnalisé"
-                ],
-                "cta": "Déléguer mon support"
-            },
-            "luna": {
-                "role": "SOCIAL MEDIA MANAGER",
-                "tasks": [
-                    "Conception de contenus visuels et textuels engageants",
-                    "Orchestration complète de votre calendrier éditorial",
-                    "Animation active et croissance de votre audience"
-                ],
-                "cta": "Automatiser mes posts"
-            },
-            "maya": {
-                "role": "RESPONSABLE OPÉRATIONS",
-                "tasks": [
-                    "Pilotage centralisé de vos projets stratégiques",
-                    "Synchronisation fluide de vos différentes équipes",
-                    "Contrôle proactif des échéances et livrables"
-                ],
-                "cta": "Optimiser mes opérations"
-            }
-        }
-    },
-    "leadGenPage": {
-        "title": "Lead Gen",
-        "titleHighlight": "IA",
-        "subtitle": "Un système d'acquisition automatisé et hyper-ciblé.",
-        "steps": {
-            "targeting": {
-                "title": "Ciblage & Scraping",
-                "desc": "Identification de vos prospects idéaux sur tout le web."
-            },
-            "enrichment": {
-                "title": "Enrichissement & IA",
-                "desc": "Qualification et écriture de messages hyper-personnalisés par l'IA."
-            },
-            "conversion": {
-                "title": "Conversion",
-                "desc": "Des leads chauds livrés directement dans votre agenda."
-            }
-        },
-        "cta": "Lancer ma campagne"
-    },
-    "workflowsPage": {
-        "badge": "Workflow Signature",
-        "titlePrefix": "Lead Gen",
-        "titleHighlight": "Autopilot",
-        "subtitle": "Un système complet, autonome et intelligent qui transforme vos visiteurs en opportunités qualifiées sans intervention humaine.",
-        "steps": [
-            {
-                "title": "1. Capture & Enrichissement",
-                "desc": "Dès qu'un lead soumet un formulaire, le système l'intercepte. Nous interrogeons instantanément des bases de données externes (Clearbit, Apollo) pour récupérer poste, taille d'entreprise et stack technique."
-            },
-            {
-                "title": "2. Analyse IA",
-                "desc": "Un LLM (GPT-4o) analyse le profil enrichi. Il score le lead de 0 à 100 selon votre ICP, détecte l'intention d'achat et décide de la stratégie à adopter."
-            },
-            {
-                "title": "3. Action Ciblée",
-                "hotLeads": "Hot Leads :",
-                "hotDesc": "Slack immédiat aux sales + Draft email ultra-personnalisé envoyé dans le CRM.",
-                "others": "Autres :",
-                "othersDesc": "Ajout sequence nurturing éducative."
-            }
-        ],
-        "cta": "Installer ce système",
-        "viz": {
-            "enrichment": "Enrichissement",
-            "aiQualif": "Qualif. IA",
-            "highPriority": "Priorité Haute",
-            "nurturing": "Nurturing",
-            "scoring": "Scoring & Intent",
-            "linkedinData": "+ LinkedIn, Email, Company Data",
-            "linkedinDataShort": "+ LinkedIn, Email",
-            "dealCrm": "Création Deal CRM",
-            "slackSales": "Slack Alert Sales",
-            "emailPerso": "Email Personnalisé",
-            "newsletter": "Ajout Newsletter",
-            "updateDb": "Update Database"
         }
     },
     "statsBar": {

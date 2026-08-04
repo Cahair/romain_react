@@ -1,7 +1,6 @@
 "use client";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import LogoTicker from "@/components/LogoTicker";
 import { useTranslation } from "@/components/LanguageProvider";
 import HeroVideoParallax from "@/components/webdev/HeroVideoParallax";
 import MetricsCounter from "@/components/webdev/MetricsCounter";
@@ -28,22 +27,19 @@ export default function WebDevPage() {
                 {/* 2. Metrics / Lighthouse Scores */}
                 <MetricsCounter metrics={data.metrics} />
 
-                {/* 3. Tech credibility band */}
-                <LogoTicker />
-
-                {/* 4. Case Studies */}
+                {/* 3. Case Studies */}
                 <CaseStudies caseStudies={data.caseStudies} />
 
-                {/* 5. Process Timeline */}
+                {/* 4. Process Timeline */}
                 <ProcessTimeline process={data.process} />
 
-                {/* 6. Tech Stack Bento */}
+                {/* 5. Tech Stack Bento */}
                 <TechBento tech={data.tech} />
 
-                {/* 7. FAQ */}
+                {/* 6. FAQ */}
                 <FaqSection faq={data.faq} />
 
-                {/* 8. Final CTA */}
+                {/* 7. Final CTA */}
                 <FinalCta cta={data.cta} />
             </main>
 

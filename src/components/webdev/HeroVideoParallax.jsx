@@ -1,7 +1,7 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, Code2, Globe, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import Button from "../ui/Button";
 
 // Animated word component
@@ -119,21 +119,6 @@ export default function HeroVideoParallax({ hero }) {
                     </motion.p>
                 )}
 
-                {/* Floating Icons */}
-                <motion.div
-                    className="absolute top-[20%] left-[15%] text-primary-neon/30 hidden md:block"
-                    animate={{ y: [0, -20, 0], rotate: [0, 10, 0] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                >
-                    <Code2 size={64} />
-                </motion.div>
-                <motion.div
-                    className="absolute top-[30%] right-[10%] text-secondary-neon/30 hidden lg:block"
-                    animate={{ y: [0, 20, 0], rotate: [0, -15, 0] }}
-                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                >
-                    <Globe size={80} />
-                </motion.div>
                 {/* CTA */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}

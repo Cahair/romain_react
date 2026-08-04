@@ -10,12 +10,6 @@ const pageAccents = {
         glow: "shadow-[0_0_30px_rgba(59,130,246,0.3)]",
         name: "home"
     },
-    "/services": {
-        primary: "#6366f1", // Indigo - Services, technology
-        gradient: "from-violet-400 to-violet-500",
-        glow: "shadow-[0_0_30px_rgba(99,102,241,0.3)]",
-        name: "services"
-    },
     "/about": {
         primary: "#4f46e5", // Deep indigo - About, creativity
         gradient: "from-purple-500 to-purple-600",

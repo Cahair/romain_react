@@ -2,9 +2,8 @@
 import Navbar from "../components/Navbar";
 import HeroSection from "../components/HeroSection";
 import Storytelling from "../components/Storytelling";
-import ServicesBento from "../components/ServicesBento";
+import WebDevCallout from "../components/WebDevCallout";
 import Footer from "../components/Footer";
-import LogoTicker from "../components/LogoTicker";
 import StatsBar from "../components/StatsBar";
 import { motion, useScroll, useSpring } from "framer-motion";
 
@@ -26,11 +25,8 @@ export default function Home() {
       <Navbar />
       <HeroSection />
       <StatsBar />
-      <LogoTicker />
       <Storytelling />
-      <div id="services">
-        <ServicesBento />
-      </div>
+      <WebDevCallout />
       <Footer />
     </main>
   );

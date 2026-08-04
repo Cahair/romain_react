@@ -201,11 +201,10 @@ export default function ContactPage() {
                                                     className="w-full bg-background border border-border rounded-md px-3 py-2 text-sm focus:outline-none focus:border-primary transition-colors"
                                                 >
                                                     <option value="">{t("contact.form.projectOptions.select")}</option>
-                                                    <option value="chatbot">{t("contact.form.projectOptions.chatbot")}</option>
-                                                    <option value="automation">{t("contact.form.projectOptions.automation")}</option>
-                                                    <option value="leadgen">{t("contact.form.projectOptions.leadgen")}</option>
-                                                    <option value="custom">{t("contact.form.projectOptions.custom")}</option>
-                                                    <option value="audit">{t("contact.form.projectOptions.audit")}</option>
+                                                    <option value="refonte">{t("contact.form.projectOptions.redesign")}</option>
+                                                    <option value="creation">{t("contact.form.projectOptions.creation")}</option>
+                                                    <option value="fonctionnalite">{t("contact.form.projectOptions.feature")}</option>
+                                                    <option value="autre">{t("contact.form.projectOptions.other")}</option>
                                                 </select>
                                             </div>
                                             <div>
@@ -219,11 +218,10 @@ export default function ContactPage() {
                                                     className="w-full bg-background border border-border rounded-md px-3 py-2 text-sm focus:outline-none focus:border-primary transition-colors"
                                                 >
                                                     <option value="">{t("contact.form.budgetOptions.select")}</option>
-                                                    <option value="less5k">{t("contact.form.budgetOptions.less5k")}</option>
-                                                    <option value="5k10k">{t("contact.form.budgetOptions.5k10k")}</option>
-                                                    <option value="10k25k">{t("contact.form.budgetOptions.10k25k")}</option>
-                                                    <option value="more25k">{t("contact.form.budgetOptions.more25k")}</option>
-                                                    <option value="tbd">{t("contact.form.budgetOptions.tbd")}</option>
+                                                    <option value="less1k">{t("contact.form.budgetOptions.less1k")}</option>
+                                                    <option value="1k2k">{t("contact.form.budgetOptions.1k2k")}</option>
+                                                    <option value="2k5k">{t("contact.form.budgetOptions.2k5k")}</option>
+                                                    <option value="more5k">{t("contact.form.budgetOptions.more5k")}</option>
                                                 </select>
                                             </div>
                                         </div>

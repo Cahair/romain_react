@@ -1,38 +1,29 @@
 "use client";
 import { motion } from "framer-motion";
-import { Target, PenTool, Code2, Rocket } from "lucide-react";
 
 // Alternate primary (blue) / secondary (indigo) so the grid stays on-theme
 const steps = [
     {
-        icon: <Target className="w-full h-full" strokeWidth={1.5} />,
         gradient: "from-primary/20 to-secondary/20",
         border: "group-hover:border-primary/40",
-        iconColor: "text-primary-neon",
         accentGlow: "bg-primary/20",
         numGradient: "from-primary-neon to-secondary-neon",
     },
     {
-        icon: <PenTool className="w-full h-full" strokeWidth={1.5} />,
         gradient: "from-secondary/20 to-primary/20",
         border: "group-hover:border-secondary/40",
-        iconColor: "text-secondary-neon",
         accentGlow: "bg-secondary/20",
         numGradient: "from-secondary-neon to-primary-neon",
     },
     {
-        icon: <Code2 className="w-full h-full" strokeWidth={1.5} />,
         gradient: "from-primary/20 to-secondary/20",
         border: "group-hover:border-primary/40",
-        iconColor: "text-primary-neon",
         accentGlow: "bg-primary/20",
         numGradient: "from-primary-neon to-secondary-neon",
     },
     {
-        icon: <Rocket className="w-full h-full" strokeWidth={1.5} />,
         gradient: "from-secondary/20 to-primary/20",
         border: "group-hover:border-secondary/40",
-        iconColor: "text-secondary-neon",
         accentGlow: "bg-secondary/20",
         numGradient: "from-secondary-neon to-primary-neon",
     },
@@ -55,20 +46,6 @@ function VisualStepCard({ step, visual, index }) {
             <div className={`absolute -inset-4 ${visual.accentGlow} rounded-3xl blur-3xl opacity-0 group-hover:opacity-40 transition-opacity duration-700 pointer-events-none`} />
 
             <div className="relative z-10 flex flex-col md:flex-row items-center gap-4 md:gap-6 p-5 md:p-7">
-                {/* Icon Area */}
-                <div className="relative flex-shrink-0">
-                    {/* Animated rotating ring */}
-                    <motion.div
-                        className={`absolute -inset-2 border border-dashed rounded-full opacity-10 ${visual.iconColor}`}
-                        style={{ borderColor: "currentColor" }}
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                    />
-                    <div className={`w-14 h-14 md:w-16 md:h-16 ${visual.iconColor} group-hover:scale-110 group-hover:-rotate-12 transition-transform duration-500 ease-out`}>
-                        {visual.icon}
-                    </div>
-                </div>
-
                 {/* Text Content */}
                 <div className="flex-1 text-center md:text-left">
                     {/* Step Number + Title */}

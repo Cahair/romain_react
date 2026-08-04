@@ -4,7 +4,6 @@
         "services": "Dienstleistungen",
         "about": "Über uns",
         "audit": "GRATIS AUDIT",
-        "agents": "KI-Agenten",
         "webDev": "Webentwicklung"
     },
     "hero": {
@@ -14,52 +13,6 @@
         "description": "Leistungsstarke Websites. Premium-Design. Optimiertes SEO.\nEntwickelt im Elsass, angetrieben von Künstlicher Intelligenz.",
         "cta": "Mein Projekt starten",
         "scroll": "Scrollen"
-    },
-    "services": {
-        "badge": "KI-Lösungen",
-        "title": "UNSERE DIENSTLEISTUNGEN",
-        "titleHighlight": "INTELLIGENT",
-        "subtitle": "Maßgeschneiderte Lösungen, um Ihr Unternehmen in das Zeitalter der intelligenten Automatisierung zu treiben.",
-        "items": {
-            "chatbot": {
-                "title": "<highlight>KI-Agenten</highlight>",
-                "desc": "24/7 Kundensupport und automatisierte Lead-Qualifizierung über benutzerdefinierte LLMs.",
-                "features": [
-                    "Intelligenter mehrsprachiger Support",
-                    "Automatische Lead-Qualifizierung",
-                    "CRM & Integration bestehender Tools"
-                ]
-            },
-            "workflows": {
-                "title": "KI-<highlight>Workflows</highlight>",
-                "desc": "Vollständige Automatisierung Ihrer Geschäftsprozesse mit Zapier, Make und KI-Skripten.",
-                "features": [
-                    "Automatisierung komplexer Prozesse",
-                    "Multi-Tool-Integrationen",
-                    "Automatisiertes Reporting"
-                ]
-            },
-            "leadgen": {
-                "title": "KI <highlight>Lead Gen</highlight>",
-                "desc": "Ultra-gezielte und personalisierte Akquise durch prädiktive Analyse.",
-                "features": [
-                    "Scraping & Datenanreicherung",
-                    "Hochpersonalisierte E-Mails",
-                    "Leistungsverfolgung"
-                ]
-            },
-            "data": {
-                "title": "<highlight>Daten</highlight>analyse",
-                "desc": "Verwandeln Sie Ihre Rohdaten in umsetzbare Erkenntnisse, um Ihr Wachstum voranzutreiben.",
-                "features": [
-                    "Datenvisualisierung",
-                    "KI-Vorhersagen",
-                    "Echtzeit-Dashboards"
-                ]
-            }
-        },
-        "discover": "ENTDECKEN",
-        "viewAll": "Alle Dienstleistungen ansehen"
     },
     "about": {
         "intro": "Ich baue Websites für kleine Unternehmen und Vereine — von Rountzenheim aus, im Elsass.",
@@ -175,20 +128,18 @@
             "project": "Projekttyp",
             "projectOptions": {
                 "select": "Auswählen...",
-                "chatbot": "KI-Agent",
-                "automation": "Automatisierung",
-                "leadgen": "AI Lead Gen",
-                "custom": "Anderes Projekt",
-                "audit": "Nur Audit"
+                "redesign": "Website-Relaunch",
+                "creation": "Neue Website",
+                "feature": "Neue Funktion",
+                "other": "Sonstiges"
             },
             "budget": "Budget",
             "budgetOptions": {
                 "select": "Auswählen...",
-                "less5k": "Weniger als 5.000€",
-                "5k10k": "5.000€ - 10.000€",
-                "10k25k": "10.000€ - 25.000€",
-                "more25k": "Mehr als 25.000€",
-                "tbd": "Noch zu definieren"
+                "less1k": "Unter 1.000 €",
+                "1k2k": "1.000 € - 2.000 €",
+                "2k5k": "2.000 € - 5.000 €",
+                "more5k": "Über 5.000 €"
             },
             "message": "Nachricht",
             "messagePlaceholder": "Beschreiben Sie kurz Ihre Anforderungen...",
@@ -209,76 +160,27 @@
         "subtitle2": "durch KI.",
         "description": "Moderne, leistungsstarke Websites, verstärkt durch Künstliche Intelligenz."
     },
-    "servicesBento": {
-        "titlePrefix": "Unsere",
-        "titleSuffix": "Dienstleistungen",
-        "subtitle": "Eine komplette Suite von Web- und KI-Lösungen, um Ihr Wachstum zu beschleunigen.",
-        "popular": "Beliebt",
-        "explore": "Entdecken",
-        "items": {
-            "agents": {
-                "title": "KI-Agenten",
-                "desc": "Maßgeschneiderte Konversationsassistenten zur Einbindung von Interessenten und Support rund um die Uhr."
+    "homeWebDev": {
+        "eyebrow": "Was ich mache",
+        "titleBefore": "Mehr über ",
+        "titleHighlight": "Webentwicklung",
+        "titleAfter": " erfahren",
+        "text": "Ich erstelle Websites für kleine Unternehmen und Vereine im Elsass. Auf der eigenen Seite erkläre ich, wie ich arbeite, welche Schritte ein Projekt durchläuft und beantworte die häufigsten Fragen.",
+        "items": [
+            {
+                "title": "Klare Etappen",
+                "text": "Strategie, Design, Entwicklung, Go-live: Sie wissen immer, wo Ihr Projekt steht."
             },
-            "workflows": {
-                "title": "Workflows",
-                "desc": "End-to-End-Automatisierung Ihrer Geschäftsprozesse."
+            {
+                "title": "Sie bleiben unabhängig",
+                "text": "Ich schule Sie, Ihre Inhalte selbst zu veröffentlichen — wie beim Schachverein in Bischwiller."
             },
-            "leadGen": {
-                "title": "Lead Gen",
-                "desc": "Gezielte Akquise und Datenanreicherung."
-            },
-            "dataViz": {
-                "title": "Data Viz",
-                "desc": "Interaktive Dashboards zur Steuerung Ihrer Aktivitäten."
-            },
-            "webDev": {
-                "title": "Premium-Webentwicklung",
-                "desc": "Schaufenster-Websites, Webanwendungen und maßgeschneiderter E-Commerce. Premium-Design, optimale Leistung und SEO von der ersten Codezeile an."
+            {
+                "title": "Die Technik übernehme ich",
+                "text": "Domain, Hosting, Wartung: Dieser Teil ist meine Aufgabe, nicht Ihre."
             }
-        }
-    },
-    "servicesPage": {
-        "intro": {
-            "titlePrefix": "Unsere",
-            "titleHighlight": "Expertise",
-            "subtitle": "Ein ganzheitlicher Ansatz zur Automatisierung. <br /> <span class=\"text-primary-neon\">4 Säulen</span>, um Ihr Geschäft zu transformieren.",
-            "scroll": "Scrollen"
-        },
-        "chatbots": {
-            "titlePrefix": "KI-",
-            "titleHighlight": "Agenten",
-            "desc": "Bieten Sie ein außergewöhnliches 24/7-Kundenerlebnis. Unsere KI-Agenten verstehen Kontext, qualifizieren Leads und integrieren sich perfekt in Ihr CRM.",
-            "button": "KI-Agenten entdecken"
-        },
-        "workflows": {
-            "titlePrefix": "KI",
-            "titleHighlight": "Workflows",
-            "desc": "Verbinden Sie Ihre Tools. Automatisieren Sie Aufgaben. Entfalten Sie Ihr Potenzial. Von der Rechnungsstellung bis zum Reporting – lassen Sie KI den Betrieb übernehmen.",
-            "button": "Workflows entdecken"
-        },
-        "leadGen": {
-            "titlePrefix": "KI",
-            "titleHighlight": "Lead Gen",
-            "desc": "Zielen Sie präzise. Unsere Algorithmen identifizieren ideale Interessenten und initiieren chirurgisch relevante Gespräche.",
-            "button": "Lead Gen entdecken"
-        },
-        "data": {
-            "titlePrefix": "Daten",
-            "titleHighlight": "Analyse",
-            "desc": "Navigieren Sie nicht mehr blind. Verwandeln Sie Rohdaten in strategische Intelligenz mit unseren prädiktiven Dashboards.",
-            "button": "Daten entdecken"
-        },
-        "webDev": {
-            "titleLine1": "Web",
-            "titleLine2": "Entwicklung",
-            "subtitle": "Ich gestalte Ihre:",
-            "type1": "Corporate-Websites",
-            "type2": "SaaS-Anwendungen",
-            "type3": "KI-Dashboards",
-            "desc": "Sauberer Code (React/Next.js), SEO-optimiert und bereit für Ihre KI.",
-            "button": "Projekt besprechen"
-        }
+        ],
+        "cta": "Webentwicklung entdecken"
     },
     "webDevPage": {
         "hero": {
@@ -444,155 +346,6 @@
             "titleHighlight": "dominieren?",
             "subtitle": "Verwandeln wir Ihre Vision in ein digitales Erlebnis, das Eindruck hinterlässt.",
             "button": "Projekt starten"
-        }
-    },
-    "agentsPage": {
-        "hero": {
-            "overline": "// Eingebettete Künstliche Intelligenz",
-            "titleStart": "Rekrutieren Sie Ihre",
-            "titleHighlight": "KI-Agenten",
-            "titleMiddle": "für",
-            "titleEnd": "WACHSTUM",
-            "subtitle": "Virtuelle Assistenten, die 24/7 arbeiten. Kundensupport, Lead-Qualifizierung oder administrative Aufgaben: Delegieren Sie den Betrieb an die KI.",
-            "cta": "Meinen Agenten erstellen",
-            "badge": "24/7 Verfügbarkeit"
-        },
-        "philosophy": {
-            "textPart1": "Klassische Automatisierung ist starr. KI bringt",
-            "highlight1": "Verständnis",
-            "textPart2": ". Wir erstellen Agenten, die fähig sind zu",
-            "highlight2": "denken",
-            "textPart3": " und autonome Entscheidungen für Ihr Unternehmen zu treffen."
-        },
-        "services": {
-            "overline": "// Anwendungsfälle",
-            "title": "Ihre Neuen",
-            "titleHighlight": "Mitarbeiter",
-            "items": {
-                "support": {
-                    "tag": "Kundenservice",
-                    "title": "Sofortiger",
-                    "titleHighlight": "Support",
-                    "desc": "Keine Wartezeiten mehr. Ein Agent, der sofort in allen Sprachen antwortet und 80% der Level-1-Anfragen löst."
-                },
-                "sales": {
-                    "tag": "Vertrieb",
-                    "title": "Autonomer",
-                    "titleHighlight": "SDR",
-                    "desc": "Ein Jäger, der nie schläft. Er bindet Ihre Besucher ein, qualifiziert Bedürfnisse und bucht Termine direkt in Ihren Kalender."
-                },
-                "ops": {
-                    "tag": "Operationen",
-                    "title": "Administrativer",
-                    "titleHighlight": "Assistent",
-                    "desc": "Dokumentenverarbeitung, Dateneingabe, E-Mail-Sortierung. Befreien Sie Ihre Teams von repetitiven Aufgaben mit geringem Mehrwert."
-                }
-            }
-        },
-        "stack": {
-            "overline": "// Gehirne & Tools",
-            "title": "Verbundene",
-            "titleHighlight": "Intelligenz"
-        },
-        "cta": {
-            "overline": "// Bereit zu delegieren?",
-            "title": "Konfigurieren Sie Ihren",
-            "titleHighlight": "Ersten Agenten",
-            "subtitle": "Lassen Sie uns gemeinsam den Aktionsradius Ihrer zukünftigen digitalen Arbeitskraft definieren.",
-            "button": "Integration starten"
-        },
-        "showcase": {
-            "titleLine1": "Ihre KI-Agenten",
-            "titleLine2": "Maßgeschneidert",
-            "subtitle": "Drei konkrete Beispiele, was ein KI-Agent für Ihr Unternehmen tun kann. Jeder Agent wird speziell für Ihre Prozesse, Tools und Ziele entwickelt und trainiert.",
-            "discover": "Entdecken"
-        },
-        "agentsList": {
-            "emma": {
-                "role": "SUPPORT & KUNDENSERVICE",
-                "tasks": [
-                    "Autonome Verwaltung Ihrer eingehenden E-Mails 24/7",
-                    "Sofortige Ticket-Qualifizierung und -Lösung",
-                    "Qualitatives und personalisiertes Kundenbindungsprogramm"
-                ],
-                "cta": "Support delegieren"
-            },
-            "luna": {
-                "role": "SOCIAL MEDIA MANAGER",
-                "tasks": [
-                    "Erstellung ansprechender visueller und textlicher Inhalte",
-                    "Vollständige Orchestrierung Ihres Redaktionskalenders",
-                    "Aktives Community-Management und Publikumswachstum"
-                ],
-                "cta": "Posts automatisieren"
-            },
-            "maya": {
-                "role": "OPERATIONS MANAGER",
-                "tasks": [
-                    "Zentrales Management Ihrer strategischen Projekte",
-                    "Reibungslose Synchronisation Ihrer Teams",
-                    "Proaktive Kontrolle von Fristen und Lieferzielen"
-                ],
-                "cta": "Operationen optimieren"
-            }
-        }
-    },
-    "leadGenPage": {
-        "title": "Lead Gen",
-        "titleHighlight": "KI",
-        "subtitle": "Ein automatisiertes, präzise ausgerichtetes Akquise-System.",
-        "steps": {
-            "targeting": {
-                "title": "Targeting & Scraping",
-                "desc": "Identifikation Ihrer idealen Interessenten im gesamten Web."
-            },
-            "enrichment": {
-                "title": "Anreicherung & KI",
-                "desc": "Qualifizierung und hyper-personalisierte Nachrichten durch KI."
-            },
-            "conversion": {
-                "title": "Conversion",
-                "desc": "Warme Leads direkt in Ihren Kalender geliefert."
-            }
-        },
-        "cta": "Meine Kampagne starten"
-    },
-    "workflowsPage": {
-        "badge": "Signatur-Workflow",
-        "titlePrefix": "Lead Gen",
-        "titleHighlight": "Autopilot",
-        "subtitle": "Ein vollständiges, autonomes und intelligentes System, das Ihre Besucher ohne menschliches Eingreifen in qualifizierte Opportunities umwandelt.",
-        "steps": [
-            {
-                "title": "1. Erfassung & Anreicherung",
-                "desc": "Sobald ein Lead ein Formular abschickt, fängt das System es ab. Wir fragen sofort externe Datenbanken (Clearbit, Apollo) ab, um Jobtitel, Unternehmensgröße und Tech-Stack zu ermitteln."
-            },
-            {
-                "title": "2. KI-Analyse",
-                "desc": "Ein LLM (GPT-4o) analysiert das angereicherte Profil. Es bewertet den Lead von 0 bis 100 nach Ihrem ICP, erkennt Kaufabsicht und entscheidet die anzuwendende Strategie."
-            },
-            {
-                "title": "3. Gezielte Aktion",
-                "hotLeads": "Hot Leads:",
-                "hotDesc": "Sofortige Slack-Benachrichtigung an den Vertrieb + ultra-personalisierter E-Mail-Entwurf im CRM.",
-                "others": "Andere:",
-                "othersDesc": "Hinzufügen zur edukativen Nurturing-Sequenz."
-            }
-        ],
-        "cta": "System installieren",
-        "viz": {
-            "enrichment": "Anreicherung",
-            "aiQualif": "KI-Qualif.",
-            "highPriority": "Hohe Priorität",
-            "nurturing": "Nurturing",
-            "scoring": "Scoring & Intent",
-            "linkedinData": "+ LinkedIn, E-Mail, Unternehmensdaten",
-            "linkedinDataShort": "+ LinkedIn, E-Mail",
-            "dealCrm": "CRM Deal erstellen",
-            "slackSales": "Slack Vertriebsalarm",
-            "emailPerso": "Personalisierte E-Mail",
-            "newsletter": "Newsletter hinzufügen",
-            "updateDb": "Datenbank aktualisieren"
         }
     },
     "statsBar": {

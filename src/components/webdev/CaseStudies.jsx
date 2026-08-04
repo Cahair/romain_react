@@ -1,6 +1,5 @@
 "use client";
 import { motion } from "framer-motion";
-import { TrendingUp } from "lucide-react";
 
 // Visual accents alternate between primary (blue) and secondary (indigo)
 const accents = [
@@ -121,8 +120,7 @@ function CaseCard({ item, index }) {
                 <div className="mt-6 grid grid-cols-2 gap-4 border-t border-border pt-5">
                     {item.metrics?.map((metric, i) => (
                         <div key={i}>
-                            <div className={`flex items-center gap-1.5 font-display text-xl md:text-2xl font-bold tabular-nums ${accent.metric}`}>
-                                {i === 0 && <TrendingUp size={16} className="shrink-0 opacity-70" />}
+                            <div className={`font-display text-xl md:text-2xl font-bold tabular-nums ${accent.metric}`}>
                                 {metric.value}
                             </div>
                             <p className="mt-1 font-mono text-[10px] uppercase tracking-wider text-muted-foreground">

@@ -24,10 +24,6 @@ export default function Navbar() {
     const navItems = [
         { name: t("nav.home"), path: "/" },
         { name: t("nav.webDev"), path: "/services/web-dev" },
-        {
-            name: t("nav.agents"),
-            path: "/services/agents",
-        },
         { name: t("nav.about"), path: "/about" }
     ];
 

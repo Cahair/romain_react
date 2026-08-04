@@ -5,7 +5,6 @@
         "about": "About",
         "contact": "Contact",
         "audit": "FREE AUDIT",
-        "agents": "AI Agents",
         "webDev": "Web Dev"
     },
     "hero": {
@@ -15,52 +14,6 @@
         "description": "High-performance sites. Premium design. Optimized SEO.\nCrafted in Alsace, powered by Artificial Intelligence.",
         "cta": "Start my project",
         "scroll": "Scroll"
-    },
-    "services": {
-        "badge": "AI Solutions",
-        "title": "OUR SERVICES",
-        "titleHighlight": "INTELLIGENT",
-        "subtitle": "Tailored solutions to propel your business into the era of intelligent automation.",
-        "items": {
-            "chatbot": {
-                "title": "<highlight>AI Agents</highlight>",
-                "desc": "24/7 customer support and automated lead qualification via custom LLMs.",
-                "features": [
-                    "Intelligent multilingual support",
-                    "Automatic lead qualification",
-                    "CRM & existing tools integration"
-                ]
-            },
-            "workflows": {
-                "title": "AI <highlight>Workflows</highlight>",
-                "desc": "Complete automation of your business processes with Zapier, Make, and AI scripts.",
-                "features": [
-                    "Complex process automation",
-                    "Multi-tool integrations",
-                    "Automated reporting"
-                ]
-            },
-            "leadgen": {
-                "title": "AI <highlight>Lead Gen</highlight>",
-                "desc": "Ultra-targeted and personalized prospecting using predictive analysis.",
-                "features": [
-                    "Data scraping & enrichment",
-                    "Highly personalized emails",
-                    "Performance tracking"
-                ]
-            },
-            "data": {
-                "title": "<highlight>Data</highlight> Analysis",
-                "desc": "Transform your raw data into actionable insights to drive your growth.",
-                "features": [
-                    "Data visualization",
-                    "AI predictions",
-                    "Real-time dashboards"
-                ]
-            }
-        },
-        "discover": "DISCOVER",
-        "viewAll": "View all our services"
     },
     "about": {
         "intro": "I build websites for small businesses and local associations, from Rountzenheim, in Alsace.",
@@ -176,20 +129,18 @@
             "project": "Project Type",
             "projectOptions": {
                 "select": "Select...",
-                "chatbot": "AI Agent",
-                "automation": "Automation",
-                "leadgen": "AI Lead Gen",
-                "custom": "Other project",
-                "audit": "Audit only"
+                "redesign": "Website redesign",
+                "creation": "New website",
+                "feature": "New feature",
+                "other": "Other"
             },
             "budget": "Budget",
             "budgetOptions": {
                 "select": "Select...",
-                "less5k": "Less than €5,000",
-                "5k10k": "€5,000 - €10,000",
-                "10k25k": "€10,000 - €25,000",
-                "more25k": "More than €25,000",
-                "tbd": "To be defined"
+                "less1k": "Under €1,000",
+                "1k2k": "€1,000 - €2,000",
+                "2k5k": "€2,000 - €5,000",
+                "more5k": "Over €5,000"
             },
             "message": "Message",
             "messagePlaceholder": "Briefly describe your needs...",
@@ -213,76 +164,27 @@
         "subtitle2": "by AI.",
         "description": "Modern, high-performance websites amplified by artificial intelligence."
     },
-    "servicesBento": {
-        "titlePrefix": "Our",
-        "titleSuffix": "Services",
-        "subtitle": "A complete suite of web and AI solutions to accelerate your growth.",
-        "popular": "Popular",
-        "explore": "Explore",
-        "items": {
-            "agents": {
-                "title": "AI Agents",
-                "desc": "Custom conversational assistants to engage prospects and support customers 24/7."
+    "homeWebDev": {
+        "eyebrow": "What I do",
+        "titleBefore": "Learn more about ",
+        "titleHighlight": "web development",
+        "titleAfter": "",
+        "text": "I build websites for small businesses and local associations in Alsace. On the dedicated page, I explain how I work, the steps of a project and the answers to the questions I get asked most often.",
+        "items": [
+            {
+                "title": "Clear steps",
+                "text": "Strategy, design, development, launch: you always know where your project stands."
             },
-            "workflows": {
-                "title": "Workflows",
-                "desc": "End-to-end automation of your business processes."
+            {
+                "title": "You stay independent",
+                "text": "I train you to publish your own content, just like I did with the Bischwiller chess club."
             },
-            "leadGen": {
-                "title": "Lead Gen",
-                "desc": "Targeted acquisition and data enrichment."
-            },
-            "dataViz": {
-                "title": "Data Viz",
-                "desc": "Interactive dashboards to drive your business."
-            },
-            "webDev": {
-                "title": "Premium Web Development",
-                "desc": "Showcase sites, web applications and bespoke e-commerce. Premium design, optimal performance and SEO built in from the first line of code."
+            {
+                "title": "I handle the technical side",
+                "text": "Domain name, hosting, maintenance: that part is my job, not yours."
             }
-        }
-    },
-    "servicesPage": {
-        "intro": {
-            "titlePrefix": "Our",
-            "titleHighlight": "Expertise",
-            "subtitle": "A holistic approach to automation. <br /> <span class=\"text-primary-neon\">4 pillars</span> to transform your business.",
-            "scroll": "Scroll"
-        },
-        "chatbots": {
-            "titlePrefix": "AI",
-            "titleHighlight": "Agents",
-            "desc": "Offer exceptional 24/7 customer experience. Our AI agents understand context, qualify leads, and integrate perfectly with your CRM.",
-            "button": "Discover AI Agents"
-        },
-        "workflows": {
-            "titlePrefix": "AI",
-            "titleHighlight": "Workflows",
-            "desc": "Connect your tools. Automate tasks. Unleash your potential. From invoicing to reporting, let AI handle operations.",
-            "button": "Discover Workflows"
-        },
-        "leadGen": {
-            "titlePrefix": "AI",
-            "titleHighlight": "Lead Gen",
-            "desc": "Target with precision. Our algorithms identify ideal prospects and engage conversation with surgical relevance.",
-            "button": "Discover Lead Gen"
-        },
-        "data": {
-            "titlePrefix": "Data",
-            "titleHighlight": "Analysis",
-            "desc": "Stop navigating blindly. Transform raw data into strategic intelligence with our predictive dashboards.",
-            "button": "Discover Data"
-        },
-        "webDev": {
-            "titleLine1": "Web",
-            "titleLine2": "Development",
-            "subtitle": "I design your:",
-            "type1": "Corporate Sites",
-            "type2": "SaaS Applications",
-            "type3": "AI Dashboards",
-            "desc": "Clean code (React/Next.js), SEO-optimized and ready to integrate your AI.",
-            "button": "Discuss my project"
-        }
+        ],
+        "cta": "Discover web development"
     },
     "webDevPage": {
         "hero": {
@@ -448,155 +350,6 @@
             "titleHighlight": "the web?",
             "subtitle": "Let's turn your vision into a digital experience that leaves a lasting impression.",
             "button": "Start the Project"
-        }
-    },
-    "agentsPage": {
-        "hero": {
-            "overline": "// Embedded Artificial Intelligence",
-            "titleStart": "Recruit Your",
-            "titleHighlight": "AI Agents",
-            "titleMiddle": "for",
-            "titleEnd": "GROWTH",
-            "subtitle": "Virtual assistants working 24/7. Customer support, lead qualification, or administrative tasks: delegate operations to AI.",
-            "cta": "Create my Agent",
-            "badge": "24/7 Availability"
-        },
-        "philosophy": {
-            "textPart1": "Classic automation is rigid. AI brings",
-            "highlight1": "understanding",
-            "textPart2": ". We create agents capable of",
-            "highlight2": "reasoning",
-            "textPart3": " and making autonomous decisions for your business."
-        },
-        "services": {
-            "overline": "// Use Cases",
-            "title": "Your New",
-            "titleHighlight": "Employees",
-            "items": {
-                "support": {
-                    "tag": "Customer Service",
-                    "title": "Instant",
-                    "titleHighlight": "Support",
-                    "desc": "No more waiting times. An agent that responds instantly, in all languages, and resolves 80% of level 1 requests."
-                },
-                "sales": {
-                    "tag": "Sales Force",
-                    "title": "Autonomous",
-                    "titleHighlight": "SDR",
-                    "desc": "A hunter that never sleeps. It engages your visitors, qualifies needs, and books appointments directly into your calendar."
-                },
-                "ops": {
-                    "tag": "Operations",
-                    "title": "Administrative",
-                    "titleHighlight": "Assistant",
-                    "desc": "Document processing, data entry, email sorting. Free your teams from repetitive low-value tasks."
-                }
-            }
-        },
-        "stack": {
-            "overline": "// Brains & Tools",
-            "title": "Connected",
-            "titleHighlight": "Intelligence"
-        },
-        "cta": {
-            "overline": "// Ready to delegate?",
-            "title": "Configure your",
-            "titleHighlight": "First Agent",
-            "subtitle": "Let's define together the scope of action for your future digital workforce.",
-            "button": "Start Integration"
-        },
-        "showcase": {
-            "titleLine1": "Your Custom",
-            "titleLine2": "AI Agents",
-            "subtitle": "Three concrete examples of what an AI agent can do for your business. Each agent is designed and trained specifically for your processes, tools and goals.",
-            "discover": "Discover"
-        },
-        "agentsList": {
-            "emma": {
-                "role": "SUPPORT & CUSTOMER SERVICE",
-                "tasks": [
-                    "Autonomous management of your inbound emails 24/7",
-                    "Immediate ticket qualification and resolution",
-                    "Qualitative and personalised loyalty journey"
-                ],
-                "cta": "Delegate my support"
-            },
-            "luna": {
-                "role": "SOCIAL MEDIA MANAGER",
-                "tasks": [
-                    "Creation of engaging visual and written content",
-                    "Full orchestration of your editorial calendar",
-                    "Active community management and audience growth"
-                ],
-                "cta": "Automate my posts"
-            },
-            "maya": {
-                "role": "OPERATIONS MANAGER",
-                "tasks": [
-                    "Centralised management of your strategic projects",
-                    "Smooth synchronisation across your teams",
-                    "Proactive control of deadlines and deliverables"
-                ],
-                "cta": "Optimise my operations"
-            }
-        }
-    },
-    "leadGenPage": {
-        "title": "Lead Gen",
-        "titleHighlight": "AI",
-        "subtitle": "An automated, hyper-targeted acquisition system.",
-        "steps": {
-            "targeting": {
-                "title": "Targeting & Scraping",
-                "desc": "We identify your ideal prospects across the web."
-            },
-            "enrichment": {
-                "title": "Enrichment & AI",
-                "desc": "AI-powered qualification and hyper-personalised outreach messages."
-            },
-            "conversion": {
-                "title": "Conversion",
-                "desc": "Hot leads delivered straight to your calendar."
-            }
-        },
-        "cta": "Launch my campaign"
-    },
-    "workflowsPage": {
-        "badge": "Signature Workflow",
-        "titlePrefix": "Lead Gen",
-        "titleHighlight": "Autopilot",
-        "subtitle": "A complete, autonomous and intelligent system that turns your visitors into qualified opportunities without human intervention.",
-        "steps": [
-            {
-                "title": "1. Capture & Enrichment",
-                "desc": "As soon as a lead submits a form, the system intercepts it. We instantly query external databases (Clearbit, Apollo) to retrieve job title, company size and tech stack."
-            },
-            {
-                "title": "2. AI Analysis",
-                "desc": "An LLM (GPT-4o) analyses the enriched profile. It scores the lead from 0 to 100 based on your ICP, detects purchase intent and decides the strategy to adopt."
-            },
-            {
-                "title": "3. Targeted Action",
-                "hotLeads": "Hot Leads:",
-                "hotDesc": "Immediate Slack to sales + ultra-personalised email draft sent to the CRM.",
-                "others": "Others:",
-                "othersDesc": "Added to educational nurturing sequence."
-            }
-        ],
-        "cta": "Install this system",
-        "viz": {
-            "enrichment": "Enrichment",
-            "aiQualif": "AI Qualif.",
-            "highPriority": "High Priority",
-            "nurturing": "Nurturing",
-            "scoring": "Scoring & Intent",
-            "linkedinData": "+ LinkedIn, Email, Company Data",
-            "linkedinDataShort": "+ LinkedIn, Email",
-            "dealCrm": "CRM Deal",
-            "slackSales": "Slack Sales Alert",
-            "emailPerso": "Personalised Email",
-            "newsletter": "Add Newsletter",
-            "updateDb": "Update Database"
         }
     },
     "statsBar": {
