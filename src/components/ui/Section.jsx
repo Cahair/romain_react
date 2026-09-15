@@ -1,16 +1,27 @@
-// Espacement vertical et gouttière standards pour toutes les sections de page.
-// `spacing="compact"` : mobile resserré, identique au défaut à partir de md.
+// Gouttière et largeur standard de tout le site.
+export const container = "mx-auto w-full max-w-[1600px] px-5 md:px-10";
+
 const spacings = {
-    default: "py-16 md:py-24",
-    compact: "py-10 md:py-24",
+    default: "py-24 md:py-36",
+    compact: "py-16 md:py-24",
+    none: "",
 };
 
-export default function Section({ id, spacing = "default", className = "", containerClassName = "", children }) {
+// Section standard. `tone="invert"` inverse localement la palette (section claire en
+// thème sombre, sombre en thème clair) pour rythmer la page.
+export default function Section({
+    id,
+    spacing = "default",
+    tone,
+    className = "",
+    containerClassName = "",
+    children,
+    ...props
+}) {
+    const toneClass = tone === "invert" ? "tone-invert bg-background text-foreground" : "";
     return (
-        <section id={id} className={`relative ${spacings[spacing] || spacings.default} ${className}`}>
-            <div className={`container mx-auto px-6 ${containerClassName}`}>
-                {children}
-            </div>
+        <section id={id} className={`relative ${toneClass} ${spacings[spacing] ?? spacings.default} ${className}`} {...props}>
+            <div className={`${container} ${containerClassName}`}>{children}</div>
         </section>
     );
 }

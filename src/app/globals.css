@@ -1,453 +1,297 @@
 @import "tailwindcss";
 
-@theme {
+/*
+ * Couleurs : palette historique du site (sombre par défaut, clair via html.light).
+ * `@theme inline` fait lire la variable là où l'utilitaire est utilisé : c'est ce qui
+ * permet à `.tone-invert` d'inverser localement la palette d'une section.
+ */
+@theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
-
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary-dark: var(--primary-dark);
   --color-primary-neon: var(--primary-neon);
-
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-secondary-dark: var(--secondary-dark);
   --color-secondary-neon: var(--secondary-neon);
-
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
+}
 
-  /* Legacy neon hues remapped onto the Modern Minimal palette */
-  --color-cyan-100: #dbeafe;
-  --color-cyan-200: #bfdbfe;
-  --color-cyan-300: #93c5fd;
-  --color-cyan-400: #60a5fa;
-  --color-cyan-500: #3b82f6;
-  --color-cyan-600: #2563eb;
-  --color-cyan-900: #1e3a8a;
+@theme {
+  --font-sans: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-newsreader), ui-serif, Georgia, serif;
+  --font-display: var(--font-hanken), ui-sans-serif, system-ui, sans-serif;
 
-  --color-violet-400: #818cf8;
-  --color-violet-500: #6366f1;
-  --color-violet-600: #4f46e5;
-  --color-violet-950: #1e1b4b;
+  --ease-expo: cubic-bezier(0.76, 0, 0.24, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
-  --color-purple-400: #818cf8;
-  --color-purple-500: #6366f1;
-  --color-purple-600: #4f46e5;
-  --color-purple-900: #312e81;
+  /* Animations continues des maquettes (src/components/visuals) */
+  --animate-spin-slow: rk-spin 16s linear infinite;
+  --animate-mock-scroll: mock-scroll 14s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  --animate-mock-float: mock-float 7s ease-in-out infinite;
+  --animate-mock-bar: mock-bar 2.6s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
+  --animate-mock-draw: mock-draw 3.2s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
+  --animate-mock-toast: mock-toast 6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  --animate-mock-press: mock-press 2.4s ease-in-out infinite;
+  --animate-mock-fly: mock-fly 2.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  --animate-mock-in: mock-in 7s cubic-bezier(0.16, 1, 0.3, 1) infinite;
 
-  --shadow-neon-cyan: 0 0 15px rgba(59, 130, 246, 0.5);
-  --shadow-neon-violet: 0 0 15px rgba(99, 102, 241, 0.5);
-
-  --animate-gradient: gradient 6s linear infinite;
-
-  @keyframes gradient {
-    0% {
-      background-position: 0% 50%;
+  @keyframes rk-spin {
+    to {
+      transform: rotate(360deg);
     }
+  }
 
-    50% {
-      background-position: 100% 50%;
+  @keyframes mock-scroll {
+    0%,
+    14% {
+      transform: translateY(0);
     }
-
+    44%,
+    58% {
+      transform: translateY(-36%);
+    }
+    86%,
     100% {
-      background-position: 0% 50%;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes mock-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+
+  @keyframes mock-bar {
+    from {
+      transform: scaleY(0.35);
+    }
+    to {
+      transform: scaleY(1);
+    }
+  }
+
+  @keyframes mock-draw {
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes mock-toast {
+    0%,
+    8% {
+      transform: translateY(-170%);
+      opacity: 0;
+    }
+    16%,
+    58% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    66%,
+    100% {
+      transform: translateY(-170%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes mock-press {
+    0%,
+    30%,
+    100% {
+      transform: scale(1);
+    }
+    38% {
+      transform: scale(0.8);
+    }
+    46% {
+      transform: scale(1.1);
+    }
+    54% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes mock-fly {
+    0%,
+    38% {
+      opacity: 0;
+      transform: translate(0, 0) scale(1);
+    }
+    42% {
+      opacity: 1;
+    }
+    72% {
+      opacity: 1;
+      transform: translate(var(--fly-x), var(--fly-y)) scale(0.5);
+    }
+    78%,
+    100% {
+      opacity: 0;
+      transform: translate(var(--fly-x), var(--fly-y)) scale(0.3);
+    }
+  }
+
+  @keyframes mock-in {
+    0% {
+      opacity: 0;
+      transform: translateX(18%);
+    }
+    10%,
+    86% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(0);
     }
   }
 }
 
-:root {
-  /* Modern Minimal — dark */
-
-  /* Background & Foreground */
+/* Palette sombre (défaut) — et palette des sections inversées en thème clair */
+:root,
+html.light .tone-invert {
   --background: #171717;
   --foreground: #e5e5e5;
-
-  /* Muted colors for subtle elements */
   --muted: #262626;
   --muted-foreground: #a3a3a3;
-
-  /* Card backgrounds */
   --card: #262626;
   --card-foreground: #e5e5e5;
-
-  /* Accent for hover states */
   --accent: #1e3a8a;
   --accent-foreground: #bfdbfe;
-
-  /* Borders and inputs */
   --border: #404040;
   --input: #404040;
   --ring: #3b82f6;
-
-  /* Brand colors */
   --primary: #3b82f6;
   --primary-foreground: #ffffff;
   --primary-dark: #2563eb;
   --primary-neon: #60a5fa;
-
   --secondary: #6366f1;
   --secondary-foreground: #ffffff;
   --secondary-dark: #4f46e5;
   --secondary-neon: #818cf8;
-
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-
-  /* Glass effect */
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
-
-  /* Legacy */
-  --text-muted: #a3a3a3;
-
-  /* Stroke */
-  --text-stroke-color: rgba(255, 255, 255, 0.4);
+  color-scheme: dark;
 }
 
-/* Light mode variables */
-html.light {
-  /* Modern Minimal — light */
-
-  /* Background & Foreground */
+/* Palette claire (html.light) — et palette des sections inversées en thème sombre */
+html.light,
+.tone-invert {
   --background: #ffffff;
   --foreground: #333333;
-
-  /* Muted colors */
   --muted: #f9fafb;
   --muted-foreground: #6b7280;
-
-  /* Card backgrounds */
   --card: #ffffff;
   --card-foreground: #333333;
-
-  /* Accent */
   --accent: #e0f2fe;
   --accent-foreground: #1e3a8a;
-
-  /* Borders */
   --border: #e5e7eb;
   --input: #e5e7eb;
   --ring: #3b82f6;
-
-  /* Brand colors */
   --primary: #3b82f6;
   --primary-foreground: #ffffff;
   --primary-dark: #2563eb;
   --primary-neon: #2563eb;
-
   --secondary: #6366f1;
   --secondary-foreground: #ffffff;
   --secondary-dark: #4f46e5;
   --secondary-neon: #4f46e5;
-
   --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-
-  /* Glass - Semi-transparent white for frosted effect */
-  --glass-bg: rgba(255, 255, 255, 0.65);
-  --glass-border: rgba(255, 255, 255, 0.9);
-
-  /* Legacy */
-  --text-muted: #6b7280;
-
-  /* Stroke */
-  --text-stroke-color: rgba(51, 51, 51, 0.25);
-}
-
-html {
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: 'Inter', sans-serif;
-  overflow-x: hidden;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-@layer components {
-  .glass {
-    background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    border: 1px solid var(--glass-border);
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-  }
-
-  .text-gradient {
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    background-image: linear-gradient(to right, #3b82f6, #6366f1, #3b82f6);
-    background-size: 200% auto;
-    animation: gradient 6s linear infinite;
-  }
-
-  /* Shiny Text Effect — animated gradient sweep */
-  .shiny-text {
-    background: linear-gradient(120deg,
-        var(--foreground) 0%,
-        var(--foreground) 35%,
-        #3b82f6 42%,
-        #6366f1 48%,
-        #3b82f6 54%,
-        var(--foreground) 61%,
-        var(--foreground) 100%);
-    background-size: 300% 100%;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    animation: shimmer 4s ease-in-out infinite;
-  }
-}
-
-/* Shimmer keyframes */
-@keyframes shimmer {
-  0% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: -100% 50%;
-  }
-}
-
-/* Infinite Logo Ticker */
-.ticker-track {
-  animation: ticker 30s linear infinite;
-  width: max-content;
-}
-
-.ticker-track:hover {
-  animation-play-state: paused;
-}
-
-@keyframes ticker {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-/* ============================================== */
-/* LIGHT MODE - REFINED OVERRIDES                 */
-/* ============================================== */
-
-/* Note: we rely on CSS variables for background colors to ensure opacity modifiers (e.g. bg-background/80) work correctly */
-/* html.light .bg-background { background-color: #f0f4f8 !important; }  <-- Removed to allow variable-based opacity */
-
-/* Allow transparency for glass feel */
-html.light .glass {
-  background-color: rgba(255, 255, 255, 0.75) !important;
-  border-color: rgba(255, 255, 255, 0.8) !important;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03) !important;
-}
-
-html.light .text-foreground {
-  color: #333333 !important;
-}
-
-/* Light mode text adjustments */
-html.light .text-gray-400 {
-  color: #4b5563;
-}
-
-html.light .text-gray-300 {
-  color: #6b7280;
-}
-
-html.light .text-gray-500 {
-  color: #9ca3af;
-}
-
-html.light .text-white {
-  color: #333333;
-}
-
-/* Invert white transparency to black transparency */
-html.light .text-white\/50,
-html.light .text-white\/30 {
-  color: rgba(51, 51, 51, 0.6);
-}
-
-html.light .bg-white\/5 {
-  background-color: rgba(0, 0, 0, 0.05);
-  /* Darken bg */
-}
-
-html.light .bg-white\/10 {
-  background-color: rgba(0, 0, 0, 0.08);
-}
-
-/* Handle arbitrary values commonly used in code */
-html.light .bg-white\/\[0\.02\] {
-  background-color: rgba(0, 0, 0, 0.02);
-}
-
-html.light .bg-white\/\[0\.05\] {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
-html.light .border-white\/5 {
-  border-color: rgba(0, 0, 0, 0.1);
-  /* Visible border */
-}
-
-html.light .border-white\/10 {
-  border-color: rgba(0, 0, 0, 0.15);
-}
-
-html.light .bg-background {
-  background-color: var(--background);
-}
-
-/* Card transparency in light mode */
-html.light [class*="bg-card"] {
-  transition: background-color 0.3s ease, border-color 0.3s ease;
-}
-
-/* Navbar shadow in light mode */
-html.light .shadow-black\/40 {
-  --tw-shadow-color: rgba(0, 0, 0, 0.08);
-}
-
-/* Agents page — soften dark gradients in light mode */
-html.light .from-blue-900 {
-  --tw-gradient-from: #dbeafe;
-}
-
-html.light .via-cyan-900 {
-  --tw-gradient-via: #dbeafe;
-}
-
-html.light .from-orange-900 {
-  --tw-gradient-from: #ffedd5;
-}
-
-html.light .via-fuchsia-900 {
-  --tw-gradient-via: #fae8ff;
-}
-
-html.light .from-emerald-900 {
-  --tw-gradient-from: #d1fae5;
-}
-
-html.light .via-slate-900 {
-  --tw-gradient-via: #e2e8f0;
-}
-
-/* Agents page — darken light-colored text for readability */
-html.light .text-cyan-100 {
-  color: #1e3a8a;
-}
-
-html.light .text-orange-100 {
-  color: #7c2d12;
-}
-
-html.light .text-emerald-100 {
-  color: #064e3b;
-}
-
-html.light .text-cyan-400 {
-  color: #2563eb;
-}
-
-html.light .text-orange-400 {
-  color: #c2410c;
-}
-
-html.light .text-emerald-400 {
-  color: #047857;
-}
-
-
-
-::selection {
-  background: rgba(59, 130, 246, 0.35);
-  color: #fff;
-}
-
-html.light ::selection {
-  color: #000;
-}
-
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #171717;
-}
-
-html.light ::-webkit-scrollbar-track {
-  background: #f3f4f6;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #404040;
-  border-radius: 10px;
-}
-
-html.light ::-webkit-scrollbar-thumb {
-  background: #9ca3af;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #525252;
-}
-
-html.light ::-webkit-scrollbar-thumb:hover {
-  background: #6b7280;
-}
-
-/* Select dropdown styling */
-select {
-  color-scheme: dark;
-}
-
-html.light select {
   color-scheme: light;
 }
 
+html {
+  background-color: var(--background);
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) var(--background);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  /* clip (et non hidden) : ne casse pas position: sticky */
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+
+@layer components {
+  /* Trame de points (fond du hero et de l'appel à l'action) */
+  .dot-grid {
+    background-image: radial-gradient(circle, color-mix(in oklab, var(--foreground) 26%, transparent) 1px, transparent 1.5px);
+    background-size: 22px 22px;
+  }
+}
+
+/* Splash : masqué d'emblée s'il a déjà été vu (classe posée par le script inline du layout),
+   et filet de sécurité si le JavaScript ne s'exécute pas. */
+html.splash-seen [data-splash] {
+  display: none;
+}
+
+[data-splash] {
+  animation: splash-failsafe 0.5s ease 8s forwards;
+}
+
+@keyframes splash-failsafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* Curseur personnalisé : il remplace le curseur natif sur les zones à libellé */
+html.has-cursor [data-cursor] {
+  cursor: none;
+}
+
 select option {
-  background-color: #262626;
-  color: #e5e5e5;
-  padding: 12px;
+  background-color: var(--card);
+  color: var(--foreground);
 }
 
-html.light select option {
-  background-color: #ffffff;
-  color: #333333;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
-select option:hover,
-select option:checked {
-  background-color: #404040;
-}
-
-html.light select option:checked {
-  background-color: #f3f4f6;
-}
-
-/* Hide Next.js Dev Toolbar (N icon) if config doesn't catch it immediately */
+/* Masque la barre d'outils de dev Next.js */
 nextjs-portal,
 #nextjs-dev-tools-overlay {
   display: none !important;

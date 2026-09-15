@@ -1,30 +1,57 @@
-import { Inter, Oswald } from "next/font/google";
-import { Suspense } from "react";
+import { Hanken_Grotesk, Newsreader } from "next/font/google";
+import type { Metadata } from "next";
 import "./globals.css";
-import PageTransition from "../components/PageTransition";
-import { PageAccentProvider, PageAccentIndicator } from "../components/PageAccent";
-import LoadingBar from "../components/LoadingBar";
 import { ThemeProvider } from "../components/ThemeProvider";
 import { LanguageProvider } from "../components/LanguageProvider";
+import SmoothScroll from "../components/motion/SmoothScroll";
+import { SplashProvider } from "../components/motion/Splash";
+import { TransitionProvider } from "../components/motion/TransitionProvider";
+import Cursor from "../components/motion/Cursor";
 import Chatbot from "../components/Chatbot";
-import type { Metadata } from "next";
+import { SERVICE_META, SERVICE_SLUGS } from "../lib/services";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const oswald = Oswald({ subsets: ["latin"], variable: "--font-oswald" });
+const hanken = Hanken_Grotesk({ subsets: ["latin"], variable: "--font-hanken", display: "swap" });
+const newsreader = Newsreader({
+    subsets: ["latin"],
+    variable: "--font-newsreader",
+    style: ["normal", "italic"],
+    axes: ["opsz"],
+    display: "swap",
+});
+
+const SITE_URL = "https://romain-kantzer.com";
+const DEFAULT_TITLE = "Romain Kantzer | Création de sites et d'applications en Alsace";
+const DEFAULT_DESCRIPTION =
+    "Développeur web à Rountzenheim (Bas-Rhin) : création de sites vitrines, de sites e-commerce, d'applications web et d'applications mobiles pour les TPE et les associations, en Alsace et à distance.";
 
 export const metadata: Metadata = {
-    metadataBase: new URL("https://romain-kantzer.com"),
-    keywords: ["Romain Kantzer", "Développeur Web", "Création de site", "Next.js", "React", "Site vitrine", "Alsace", "Rountzenheim", "Haguenau", "Bas-Rhin", "Strasbourg", "Expert IA", "Automatisation", "Agents IA", "Freelance Tech"],
+    metadataBase: new URL(SITE_URL),
+    keywords: [
+        "Romain Kantzer",
+        "Développeur web",
+        "Création de site internet",
+        "Site vitrine",
+        "Site e-commerce",
+        "Application web",
+        "Application mobile",
+        "Next.js",
+        "React",
+        "React Native",
+        "Alsace",
+        "Rountzenheim",
+        "Haguenau",
+        "Bas-Rhin",
+        "Strasbourg",
+    ],
     title: {
-        default: "Romain Kantzer | Développeur Web & IA en Alsace",
+        default: DEFAULT_TITLE,
         template: "%s | Romain Kantzer",
     },
-    description: "Création de sites web (Next.js, React) et automatisation IA pour les petites entreprises et les associations — depuis Rountzenheim, en Alsace (Bas-Rhin), sur place ou à distance.",
-
+    description: DEFAULT_DESCRIPTION,
     openGraph: {
-        title: "Romain Kantzer | Développeur Web & IA en Alsace",
-        description: "Création de sites web (Next.js, React) et automatisation IA pour les petites entreprises et les associations — depuis Rountzenheim, en Alsace (Bas-Rhin), sur place ou à distance.",
-        url: "https://romain-kantzer.com",
+        title: DEFAULT_TITLE,
+        description: DEFAULT_DESCRIPTION,
+        url: SITE_URL,
         siteName: "Romain Kantzer",
         locale: "fr_FR",
         type: "website",
@@ -33,7 +60,7 @@ export const metadata: Metadata = {
                 url: "/og-image.jpg",
                 width: 1200,
                 height: 630,
-                alt: "Romain Kantzer - Expert IA & Web",
+                alt: "Romain Kantzer — sites et applications, faits en Alsace",
             },
         ],
     },
@@ -42,8 +69,9 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "Romain Kantzer | Développeur Web & IA en Alsace",
-        description: "Sites web (Next.js, React) et automatisation IA pour petites entreprises et associations, depuis Rountzenheim, en Alsace.",
+        title: DEFAULT_TITLE,
+        description:
+            "Sites vitrines, e-commerce, applications web et mobiles pour les TPE et les associations, depuis Rountzenheim, en Alsace.",
         images: ["/og-image.jpg"],
     },
     robots: {
@@ -59,107 +87,108 @@ export const metadata: Metadata = {
     },
 };
 
+// Thème et splash décidés avant le premier rendu pour éviter tout flash.
+const bootScript = `(function(){try{var d=document.documentElement;if(localStorage.getItem('theme')==='light')d.classList.add('light');if(sessionStorage.getItem('rk-splash')==='1'||window.matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('splash-seen');}catch(e){}})()`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-    const jsonLd = {
+    const personJsonLd = {
         "@context": "https://schema.org",
         "@type": "Person",
-        "@id": "https://romain-kantzer.com/#person",
-        "name": "Romain Kantzer",
-        "givenName": "Romain",
-        "familyName": "Kantzer",
-        "url": "https://romain-kantzer.com",
-        "jobTitle": "Web Developer & AI Engineer",
-        "description": "Création de sites web et automatisation IA pour les petites entreprises et les associations, depuis Rountzenheim, en Alsace.",
-        "image": {
+        "@id": `${SITE_URL}/#person`,
+        name: "Romain Kantzer",
+        givenName: "Romain",
+        familyName: "Kantzer",
+        url: SITE_URL,
+        jobTitle: "Développeur web",
+        description:
+            "Création de sites vitrines, de sites e-commerce, d'applications web et d'applications mobiles pour les petites entreprises et les associations, depuis Rountzenheim, en Alsace.",
+        image: {
             "@type": "ImageObject",
-            "url": "https://romain-kantzer.com/romain-kantzer.jpg",
-            "width": 1200,
-            "height": 1200
+            url: `${SITE_URL}/romain-kantzer.jpg`,
+            width: 1200,
+            height: 1200,
         },
-        "email": "contact@romain-kantzer.com",
-        "telephone": "+33769603760",
-        "address": {
+        email: "contact@romain-kantzer.com",
+        telephone: "+33769603760",
+        address: {
             "@type": "PostalAddress",
-            "addressLocality": "Rountzenheim",
-            "addressRegion": "Bas-Rhin",
-            "addressCountry": "FR"
+            addressLocality: "Rountzenheim",
+            addressRegion: "Bas-Rhin",
+            addressCountry: "FR",
         },
-        "worksFor": {
+        worksFor: {
             "@type": "Organization",
-            "name": "RK.ai",
-            "url": "https://romain-kantzer.com"
+            name: "RK.ai",
+            url: SITE_URL,
         },
-        "alumniOf": [
-            {
-                "@type": "EducationalOrganization",
-                "name": "Icam Strasbourg-Europe"
-            },
-            {
-                "@type": "EducationalOrganization",
-                "name": "IUT de Haguenau"
-            }
+        alumniOf: [
+            { "@type": "EducationalOrganization", name: "Icam Strasbourg-Europe" },
+            { "@type": "EducationalOrganization", name: "IUT de Haguenau" },
         ],
-        "knowsAbout": ["Artificial Intelligence", "Web Development", "AI Agents", "LLMs", "RAG", "Next.js", "React", "Automation"],
-        "sameAs": [
-            "https://www.linkedin.com/in/romain-kantzer-9323b920a/"
-        ]
+        knowsAbout: ["Web Development", "Next.js", "React", "React Native", "TypeScript", "E-commerce", "Mobile Applications"],
+        sameAs: ["https://www.linkedin.com/in/romain-kantzer-9323b920a/"],
     };
 
-    const localBusinessJsonLd = {
+    const businessJsonLd = {
         "@context": "https://schema.org",
         "@type": "ProfessionalService",
-        "@id": "https://romain-kantzer.com/#business",
-        "name": "Romain Kantzer — Création de sites web & automatisation IA",
-        "url": "https://romain-kantzer.com",
-        "image": "https://romain-kantzer.com/og-image.jpg",
-        "email": "contact@romain-kantzer.com",
-        "telephone": "+33769603760",
-        "founder": { "@id": "https://romain-kantzer.com/#person" },
-        "address": {
+        "@id": `${SITE_URL}/#business`,
+        name: "Romain Kantzer — Création de sites et d'applications",
+        url: SITE_URL,
+        image: `${SITE_URL}/og-image.jpg`,
+        email: "contact@romain-kantzer.com",
+        telephone: "+33769603760",
+        founder: { "@id": `${SITE_URL}/#person` },
+        address: {
             "@type": "PostalAddress",
-            "addressLocality": "Rountzenheim",
-            "addressRegion": "Bas-Rhin",
-            "addressCountry": "FR"
+            addressLocality: "Rountzenheim",
+            addressRegion: "Bas-Rhin",
+            addressCountry: "FR",
         },
-        "areaServed": [
-            { "@type": "City", "name": "Haguenau" },
-            { "@type": "City", "name": "Strasbourg" },
-            { "@type": "AdministrativeArea", "name": "Bas-Rhin" },
-            { "@type": "AdministrativeArea", "name": "Alsace" },
-            { "@type": "Country", "name": "France" }
+        areaServed: [
+            { "@type": "City", name: "Haguenau" },
+            { "@type": "City", name: "Strasbourg" },
+            { "@type": "AdministrativeArea", name: "Bas-Rhin" },
+            { "@type": "AdministrativeArea", name: "Alsace" },
+            { "@type": "Country", name: "France" },
         ],
-        "knowsAbout": ["Création de sites web", "Next.js", "React", "Automatisation", "Agents IA"],
-        "sameAs": [
-            "https://www.linkedin.com/in/romain-kantzer-9323b920a/"
-        ]
+        knowsAbout: ["Création de sites internet", "Site vitrine", "E-commerce", "Application web", "Application mobile"],
+        hasOfferCatalog: {
+            "@type": "OfferCatalog",
+            name: "Création de sites et d'applications",
+            itemListElement: SERVICE_SLUGS.map((slug) => ({
+                "@type": "Offer",
+                itemOffered: {
+                    "@type": "Service",
+                    name: SERVICE_META[slug].name,
+                    url: `${SITE_URL}/services/${slug}`,
+                },
+            })),
+        },
+        sameAs: ["https://www.linkedin.com/in/romain-kantzer-9323b920a/"],
     };
 
     return (
-        <html lang="fr" className="scroll-smooth" suppressHydrationWarning>
+        <html lang="fr" className={`${hanken.variable} ${newsreader.variable}`} suppressHydrationWarning>
             <head>
-                <script
-                    dangerouslySetInnerHTML={{
-                        __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='light')document.documentElement.classList.add('light')}catch(e){}})()`
-                    }}
-                />
+                <script dangerouslySetInnerHTML={{ __html: bootScript }} />
                 <script
                     type="application/ld+json"
-                    dangerouslySetInnerHTML={{ __html: JSON.stringify([jsonLd, localBusinessJsonLd]) }}
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify([personJsonLd, businessJsonLd]) }}
                 />
             </head>
-            <body className={`${inter.variable} ${oswald.variable} font-sans antialiased`} suppressHydrationWarning>
+            <body className="font-sans antialiased" suppressHydrationWarning>
                 <ThemeProvider>
                     <LanguageProvider>
-                        <PageAccentProvider>
-                            <Suspense fallback={null}>
-                                <LoadingBar />
-                            </Suspense>
-                            <PageAccentIndicator />
-                            <PageTransition>
-                                {children}
-                            </PageTransition>
-                            <Chatbot />
-                        </PageAccentProvider>
+                        <SmoothScroll>
+                            <SplashProvider>
+                                <TransitionProvider>
+                                    {children}
+                                    <Cursor />
+                                    <Chatbot />
+                                </TransitionProvider>
+                            </SplashProvider>
+                        </SmoothScroll>
                     </LanguageProvider>
                 </ThemeProvider>
             </body>

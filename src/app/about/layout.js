@@ -1,12 +1,12 @@
 export const metadata = {
-    title: "À propos — Créateur de sites internet en Alsace",
+    title: "À propos — Développeur web en Alsace",
     description:
-        "Romain Kantzer crée des sites internet pour les TPE et les associations en Alsace, depuis Rountzenheim : parcours, méthode de travail et réalisation à Bischwiller.",
+        "Romain Kantzer crée des sites et des applications pour les TPE et les associations en Alsace, depuis Rountzenheim : parcours, méthode de travail et réalisation à Bischwiller.",
     alternates: { canonical: "/about" },
     openGraph: {
         title: "À propos de Romain Kantzer",
         description:
-            "Créateur de sites internet pour les associations et les petites entreprises, depuis Rountzenheim, en Alsace.",
+            "Développeur web : sites et applications pour les associations et les petites entreprises, depuis Rountzenheim, en Alsace.",
         url: "/about",
         images: ["/og-image.jpg"],
     },
@@ -20,7 +20,7 @@ const profilePageJsonLd = {
             "@id": "https://romain-kantzer.com/about/#webpage",
             "url": "https://romain-kantzer.com/about",
             "name": "À propos de Romain Kantzer",
-            "description": "Parcours et méthode de Romain Kantzer, créateur de sites internet pour les TPE et les associations en Alsace.",
+            "description": "Parcours et méthode de Romain Kantzer, développeur de sites et d'applications pour les TPE et les associations en Alsace.",
             "inLanguage": "fr-FR",
             "mainEntity": { "@id": "https://romain-kantzer.com/#person" },
             "breadcrumb": { "@id": "https://romain-kantzer.com/about/#breadcrumb" },

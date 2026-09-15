@@ -2,374 +2,359 @@
     "nav": {
         "home": "Accueil",
         "services": "Services",
-        "about": "À Propos",
+        "about": "À propos",
         "contact": "Contact",
-        "audit": "AUDIT GRATUIT",
-        "webDev": "Développement Web"
+        "cta": "Démarrer un projet",
+        "menu": "Menu",
+        "close": "Fermer",
+        "theme": "Changer de thème",
+        "language": "Langue",
+        "homeAria": "Romain Kantzer, retour à l'accueil",
+        "mainAria": "Navigation principale"
     },
-    "hero": {
-        "titleLine1": "SITES WEB",
-        "titleLine2": "PREMIUM",
-        "highlightTitle": "Développement Web sur-mesure.",
-        "description": "Sites performants. Design premium. SEO optimisé.\nCréés en Alsace, propulsés par l'Intelligence Artificielle.",
-        "cta": "Démarrer mon projet",
-        "scroll": "Scroll"
+    "splash": {
+        "location": "Rountzenheim, Alsace",
+        "role": "Développeur web — sites et applications",
+        "loading": "Chargement du site"
+    },
+    "common": {
+        "visit": "Visiter",
+        "copy": "Copier",
+        "copied": "Copié",
+        "mockupUrl": "votre-entreprise.fr"
+    },
+    "home": {
+        "hero": {
+            "eyebrow": "Développeur web — Rountzenheim, Alsace",
+            "srTitle": "Romain Kantzer, développeur web en Alsace : création de sites vitrines, de sites e-commerce, d'applications web et d'applications mobiles.",
+            "before": "Je crée votre",
+            "words": ["site vitrine", "boutique en ligne", "application web", "application mobile"],
+            "lead": "Je conçois, je code et je mets en ligne des sites et des applications pour les petites entreprises et les associations. Puis je vous apprends à vous en servir.",
+            "cta": "Parlons de votre projet",
+            "secondary": "Voir les services",
+            "ruleCenter": "De l'Alsace au reste du web",
+            "scroll": "Défiler"
+        },
+        "marquee": {
+            "label": "Mes services"
+        },
+        "services": {
+            "label": "Ce que je fais",
+            "all": "Tous les services"
+        },
+        "about": {
+            "label": "Qui je suis",
+            "text": "Je m'appelle Romain. Je suis ingénieur et je fabrique des sites et des applications pour les petites entreprises et les associations. Je vous explique ce que je fais sans jargon, je m'occupe de toute la partie technique, et vous gardez la main sur votre outil. *Un seul interlocuteur, du premier échange à la mise en ligne.*",
+            "cta": "Mon parcours",
+            "imageAlt": "Portrait de Romain Kantzer, développeur web à Rountzenheim",
+            "ruleCenter": "Fait à Rountzenheim",
+            "facts": [
+                { "label": "Basé à", "value": "Rountzenheim, dans le Bas-Rhin" },
+                { "label": "Formation", "value": "Ingénieur, Icam Strasbourg-Europe" },
+                { "label": "Premier projet", "value": "Cercle d'Échecs de Bischwiller, 2025" },
+                { "label": "Je travaille", "value": "Sur place en Alsace, ou à distance" }
+            ]
+        },
+        "project": {
+            "label": "Réalisation",
+            "meta": "2025 — Site d'association",
+            "title": "Cercle d'Échecs de *Bischwiller*",
+            "rolesTitle": "Ce que j'ai fait",
+            "roles": [
+                "Refonte complète du site",
+                "Reprise des contenus",
+                "Nom de domaine et hébergement",
+                "Formation des bénévoles"
+            ],
+            "text": "Le site du club avait plus de quinze ans. Je l'ai entièrement refait, puis j'ai formé les bénévoles pour qu'ils publient leurs actualités eux-mêmes. Aujourd'hui, le club fait vivre son site sans moi.",
+            "link": "Voir le site du club",
+            "imageAlt": "Page d'accueil du site du Cercle d'Échecs de Bischwiller"
+        }
+    },
+    "services": {
+        "forWhoLabel": "Pour qui",
+        "forWhoTitle": "À qui ça *s'adresse*",
+        "includedLabel": "Ce que je livre",
+        "includedTitle": "Ce qui est *inclus*",
+        "buildLabel": "Sous le capot",
+        "buildTitle": "Comment je le *construis*",
+        "faqLabel": "Questions fréquentes",
+        "faqTitle": "Vos *questions*",
+        "next": "Service suivant",
+        "discover": "Découvrir ce service",
+        "heroCta": "Parlons de votre projet",
+        "heroSecondary": "Ce qui est inclus",
+        "breadcrumbAria": "Fil d'Ariane",
+        "items": {
+            "site-vitrine": {
+                "name": "Site vitrine",
+                "title": "Site *vitrine*",
+                "short": "Pour présenter votre activité, être trouvé sur Google et recevoir des demandes.",
+                "lead": "Un site qui explique clairement ce que vous faites, où vous trouver et comment vous contacter. C'est souvent le premier contact qu'un client a avec vous : il doit être clair, rapide et à jour.",
+                "forWho": [
+                    "Les artisans et les commerçants",
+                    "Les associations et les clubs",
+                    "Les indépendants et les professions libérales",
+                    "Les restaurants, les gîtes, les producteurs locaux"
+                ],
+                "included": [
+                    { "title": "Le design et les textes, avec vous", "text": "On construit ensemble l'arborescence et les contenus. Je vous aide à écrire ce que vos clients cherchent vraiment." },
+                    { "title": "Un site lisible sur tous les écrans", "text": "Téléphone, tablette, ordinateur : chaque page est pensée pour être lisible partout." },
+                    { "title": "Les bases du référencement local", "text": "Titres, descriptions, balisage et plan du site : l'essentiel pour que Google comprenne qui vous êtes et où vous travaillez." },
+                    { "title": "Un formulaire qui arrive dans votre boîte mail", "text": "Les demandes vous parviennent directement, sans outil supplémentaire à surveiller." },
+                    { "title": "Un espace pour modifier vos contenus", "text": "Actualités, horaires, photos : vous les mettez à jour vous-même, je vous montre comment." },
+                    { "title": "Nom de domaine, hébergement, mise en ligne", "text": "Je m'occupe de la partie technique, du choix de l'adresse jusqu'à la mise en ligne." }
+                ],
+                "build": {
+                    "text": "Je code les sites avec Next.js et React : les pages s'affichent vite et le code reste simple à faire évoluer. Si vous devez publier souvent, j'ajoute un outil d'édition simple pour que vous gardiez la main.",
+                    "tags": ["Next.js", "React", "TypeScript", "Tailwind CSS"]
+                },
+                "faq": [
+                    { "q": "Combien coûte un site vitrine ?", "a": "Cela dépend du nombre de pages, des contenus à produire et des fonctionnalités. Après un premier échange, je vous envoie un devis détaillé, ligne par ligne, pour que vous sachiez exactement ce que vous payez." },
+                    { "q": "Je n'ai pas encore de textes ni de photos, est-ce un problème ?", "a": "Non. On part de ce que vous avez et je vous aide à structurer le reste. Je vous dis clairement ce qu'il faut préparer, et quand." },
+                    { "q": "Pourrai-je modifier le site moi-même ?", "a": "Oui, c'est même le but. Je vous forme à mettre à jour vos contenus, comme je l'ai fait avec les bénévoles du club d'échecs de Bischwiller." },
+                    { "q": "J'ai déjà un site, pouvez-vous le refaire ?", "a": "Oui. Je reprends les contenus utiles, je conserve votre nom de domaine et je m'assure que les anciennes adresses redirigent vers les nouvelles pages." }
+                ]
+            },
+            "site-e-commerce": {
+                "name": "Site e-commerce",
+                "title": "Site *e-commerce*",
+                "short": "Pour vendre vos produits en ligne, encaisser les paiements et suivre vos commandes.",
+                "lead": "Une boutique en ligne où vos clients trouvent vos produits, paient en toute sécurité et reçoivent une confirmation, pendant que vous gérez les commandes depuis un seul endroit.",
+                "forWho": [
+                    "Les commerces qui veulent vendre au-delà de leur vitrine",
+                    "Les producteurs et les artisans qui vendent en direct",
+                    "Les associations qui vendent des adhésions, des billets ou des produits",
+                    "Les marques qui se lancent dans la vente en ligne"
+                ],
+                "included": [
+                    { "title": "Un catalogue clair", "text": "Fiches produits avec photos, variantes (taille, couleur…), stock et prix, faciles à mettre à jour." },
+                    { "title": "Le paiement en ligne sécurisé", "text": "Carte bancaire et moyens de paiement courants, via un prestataire reconnu comme Stripe. Aucune donnée bancaire ne transite par votre site." },
+                    { "title": "Livraison et retrait", "text": "Frais de port par zone, retrait en magasin ou click & collect : on configure ce qui correspond à votre façon de travailler." },
+                    { "title": "Les e-mails de commande", "text": "Confirmation, expédition, facture : vos clients sont informés à chaque étape, automatiquement." },
+                    { "title": "Un back-office pour tout gérer", "text": "Commandes, clients, stocks : vous suivez tout depuis une interface simple, et je vous montre comment l'utiliser." },
+                    { "title": "Les pages obligatoires", "text": "Je prévois les pages légales (CGV, mentions légales, confidentialité) et je les intègre à partir de vos textes." }
+                ],
+                "build": {
+                    "text": "Selon la taille de votre catalogue et vos besoins, je vous propose soit une plateforme clé en main comme Shopify, pratique pour gérer seul votre boutique au quotidien, soit une boutique codée avec Next.js et Stripe, plus libre et sans abonnement à une plateforme. Je vous explique la différence avant de commencer, en coûts comme en usage.",
+                    "tags": ["Next.js", "Stripe", "Shopify", "React"]
+                },
+                "faq": [
+                    { "q": "Shopify ou boutique codée : que choisir ?", "a": "Shopify convient bien si vous voulez une plateforme clé en main, avec un abonnement mensuel. Une boutique codée avec Next.js vous laisse plus de liberté sur le design et les fonctionnalités, sans abonnement à une plateforme (seuls les frais du prestataire de paiement s'appliquent). Je vous aide à choisir selon votre catalogue et votre budget." },
+                    { "q": "Qui s'occupe des photos et des fiches produits ?", "a": "Vous connaissez vos produits mieux que moi : vous fournissez les informations, je construis des fiches claires et je vous montre comment en ajouter de nouvelles. Si vous avez beaucoup de produits, on prévoit un import." },
+                    { "q": "Est-ce que je peux commencer petit ?", "a": "Oui. On peut lancer la boutique avec quelques produits et l'enrichir ensuite. C'est souvent la meilleure façon de voir ce qui marche avant d'investir davantage." },
+                    { "q": "Comment sont gérés les paiements ?", "a": "Par un prestataire de paiement reconnu, comme Stripe. Il gère la sécurité des cartes bancaires ; vous recevez les fonds directement sur votre compte." }
+                ]
+            },
+            "application-web": {
+                "name": "Application web",
+                "title": "Application *web*",
+                "short": "Pour remplacer vos tableurs, gérer des réservations ou ouvrir un espace client.",
+                "lead": "Un outil en ligne pensé pour votre façon de travailler : réservations, espace client, gestion d'adhérents, planning, devis… Accessible depuis un navigateur, sans rien installer.",
+                "forWho": [
+                    "Les entreprises qui jonglent entre plusieurs tableurs",
+                    "Les associations qui gèrent des adhérents, des inscriptions ou des plannings",
+                    "Les professionnels qui veulent un espace client en ligne",
+                    "Les porteurs de projet qui veulent tester une idée"
+                ],
+                "included": [
+                    { "title": "On part de votre quotidien", "text": "J'observe comment vous travaillez aujourd'hui avant de proposer quoi que ce soit. L'application doit simplifier, pas ajouter une couche." },
+                    { "title": "Des comptes et des accès", "text": "Connexion sécurisée, rôles (administrateur, membre, client) : chacun voit ce qui le concerne." },
+                    { "title": "Vos données au même endroit", "text": "Une base de données propre remplace les fichiers éparpillés. Vous pouvez exporter vos données quand vous le voulez." },
+                    { "title": "Les notifications utiles", "text": "E-mails de confirmation, rappels, alertes : l'application prévient les bonnes personnes au bon moment." },
+                    { "title": "Une première version utilisable tôt", "text": "On commence par l'essentiel pour que vous puissiez l'utiliser tôt, puis on ajoute ce qui manque vraiment." },
+                    { "title": "Hébergement et suivi", "text": "Je mets l'application en ligne, je surveille qu'elle tourne et je fais les mises à jour de sécurité." }
+                ],
+                "build": {
+                    "text": "J'utilise Next.js et React pour l'interface, et une base de données PostgreSQL (souvent via Supabase) pour stocker vos informations et gérer les comptes. Ce sont des outils très répandus : vous n'êtes pas enfermé avec moi.",
+                    "tags": ["Next.js", "React", "TypeScript", "PostgreSQL", "Supabase", "Node.js"]
+                },
+                "faq": [
+                    { "q": "Quelle différence entre un site et une application web ?", "a": "Un site présente des informations. Une application permet d'agir : réserver, gérer, se connecter, enregistrer des données. Beaucoup de projets mélangent les deux." },
+                    { "q": "Combien de temps faut-il pour développer une application ?", "a": "Tout dépend du nombre de fonctionnalités. C'est pour ça que je propose de commencer par une première version limitée à l'essentiel : vous avez un outil utilisable plus tôt, et un planning précis dès le devis." },
+                    { "q": "Mes données sont-elles en sécurité ?", "a": "Les accès sont protégés par une authentification, les échanges sont chiffrés et les données sont hébergées en Europe quand c'est possible. Je vous explique où elles sont stockées et qui peut y accéder." },
+                    { "q": "Et si j'ai besoin d'une application mobile ensuite ?", "a": "Une application web s'utilise déjà sur téléphone. Si vous avez besoin d'une vraie application sur les stores, une grande partie du travail peut être réutilisée." }
+                ]
+            },
+            "application-mobile": {
+                "name": "Application mobile",
+                "title": "Application *mobile*",
+                "short": "Pour être dans la poche de vos clients ou de vos équipes, sur iPhone et Android.",
+                "lead": "Une application installée sur le téléphone de vos clients, de vos membres ou de vos équipes, sur iPhone et Android. Notifications, accès rapide, utilisation sur le terrain : quand un site ne suffit plus.",
+                "forWho": [
+                    "Les commerces qui veulent fidéliser leurs clients",
+                    "Les clubs et les associations qui veulent informer leurs membres",
+                    "Les équipes qui travaillent sur le terrain",
+                    "Les projets qui ont besoin des fonctions du téléphone : photo, localisation, notifications"
+                ],
+                "included": [
+                    { "title": "Une seule application pour iPhone et Android", "text": "Je développe avec React Native : un seul code pour les deux systèmes, donc moins de coûts et des mises à jour plus simples." },
+                    { "title": "Des écrans pensés pour le pouce", "text": "Navigation simple, textes lisibles, gestes naturels : l'application doit se comprendre sans mode d'emploi." },
+                    { "title": "Les notifications", "text": "Rappels, nouveautés, messages : vous prévenez vos utilisateurs directement sur leur téléphone." },
+                    { "title": "Un back-office relié", "text": "Vous gérez les contenus et les utilisateurs depuis une interface web, sans toucher au code." },
+                    { "title": "La publication sur les stores", "text": "Je prépare les fiches App Store et Google Play et je vous accompagne pendant la validation par Apple et Google." },
+                    { "title": "Le suivi après la sortie", "text": "Mises à jour des systèmes, corrections, nouvelles fonctionnalités : l'application continue de vivre." }
+                ],
+                "build": {
+                    "text": "Je développe les applications avec React Native et Expo, dans le même langage que mes sites. Les données et les comptes reposent sur le même type de base que mes applications web : un site, une application web et une application mobile peuvent ainsi partager les mêmes informations.",
+                    "tags": ["React Native", "Expo", "TypeScript", "Supabase"]
+                },
+                "faq": [
+                    { "q": "Ai-je vraiment besoin d'une application mobile ?", "a": "Pas toujours. Si vos utilisateurs ont surtout besoin de consulter des informations, un site bien fait suffit. Une application a du sens quand on l'ouvre souvent, ou qu'on a besoin des notifications et des fonctions du téléphone. Je vous le dis franchement lors du premier échange." },
+                    { "q": "Faut-il un compte développeur Apple et Google ?", "a": "Oui, l'application est publiée à votre nom. Apple demande un abonnement annuel, Google un paiement unique. Je vous accompagne dans les démarches." },
+                    { "q": "Combien de temps prend la validation sur les stores ?", "a": "Cela dépend d'Apple et de Google. Je prévois cette étape dans le planning et je gère les échanges avec eux si des modifications sont demandées." },
+                    { "q": "Pouvez-vous reprendre une application existante ?", "a": "Cela dépend de la technologie utilisée. Je regarde le code avant de m'engager et je vous dis clairement ce qui est possible." }
+                ]
+            }
+        }
+    },
+    "servicesPage": {
+        "label": "Services",
+        "title": "Des sites et des applications, *de A à Z*.",
+        "lead": "Je m'occupe de tout, de la première discussion à la mise en ligne : conception, design, développement, hébergement. Vous avez un seul interlocuteur, qui connaît votre projet de bout en bout.",
+        "faqTitle": "Questions *générales*",
+        "faq": [
+            { "q": "Travaillez-vous uniquement en Alsace ?", "a": "Je suis basé à Rountzenheim, dans le Bas-Rhin, et je me déplace volontiers dans la région pour qu'on se rencontre. Je travaille aussi à distance, en visio, avec des clients plus éloignés." },
+            { "q": "Comment se passe le devis ?", "a": "Après un premier échange gratuit, je vous envoie un devis détaillé : ce qui est inclus, ce qui ne l'est pas, et le planning. Vous savez exactement ce que vous payez." },
+            { "q": "Mon site sera-t-il bien référencé ?", "a": "Je soigne les bases techniques du référencement sur chaque projet : structure des pages, vitesse d'affichage, balises, plan du site. Le positionnement dépend aussi de vos contenus et de la concurrence : je vous explique comment le travailler dans la durée, sans vous promettre la première place." },
+            { "q": "Proposez-vous la maintenance ?", "a": "Oui. Après la mise en ligne, je peux continuer à m'occuper des mises à jour, de la sécurité et des évolutions. On en parle au moment du devis, selon vos besoins." },
+            { "q": "Je ne sais pas quelle solution choisir, pouvez-vous m'aider ?", "a": "C'est justement le rôle du premier échange. Vous me décrivez votre besoin, et je vous dis franchement ce qui me semble adapté, y compris quand une solution plus simple suffit." }
+        ]
+    },
+    "process": {
+        "label": "Comment ça se passe",
+        "title": "De la première discussion à la *mise en ligne*.",
+        "intro": "Chaque projet suit les mêmes étapes. Vous savez toujours où on en est, et ce qui vient ensuite.",
+        "steps": [
+            { "title": "On *se parle*", "text": "Un premier échange gratuit, au téléphone, en visio ou de vive voix. Vous me parlez de votre activité et de ce que vous attendez. Je vous dis franchement ce qui me semble utile, et ce qui ne l'est pas." },
+            { "title": "La *maquette*", "text": "Avant d'écrire la moindre ligne de code, je vous montre à quoi ressemblera le projet, écran par écran. On ajuste ensemble jusqu'à ce que ce soit juste." },
+            { "title": "Le *développement*", "text": "Je code le site ou l'application. Vous suivez l'avancement sur une version en ligne, consultable à tout moment, et vous me faites vos retours au fil de l'eau." },
+            { "title": "La *mise en ligne*", "text": "Nom de domaine, hébergement, publication sur les stores pour une application mobile : je m'occupe de tout. Puis je vous forme pour que vous soyez autonome." },
+            { "title": "Et *après*", "text": "Je reste joignable. Mises à jour, sécurité, nouvelles fonctionnalités : on continue ensemble si vous le souhaitez." }
+        ]
+    },
+    "cta": {
+        "label": "Contact",
+        "title": "Parlons de *votre projet*.",
+        "text": "Un site, une boutique, une application ? Racontez-moi ce que vous avez en tête, même si ce n'est pas encore très précis. Je vous réponds personnellement.",
+        "button": "Écrivez-moi"
     },
     "about": {
-        "intro": "Je crée des sites web pour les petites entreprises et les associations, depuis Rountzenheim, en Alsace.",
+        "label": "À propos",
+        "title": "Romain *Kantzer*",
+        "intro": "Développeur web à Rountzenheim, en Alsace. Je crée des sites et des applications pour les petites entreprises et les associations.",
+        "imageAlt": "Romain Kantzer, développeur web à Rountzenheim",
+        "contactButton": "Me contacter",
         "story": {
-            "titleBefore": "Qui je ",
-            "titleHighlight": "suis",
-            "titleAfter": "",
+            "label": "Mon histoire",
+            "title": "Qui je *suis*",
             "p1": "Je viens de Rountzenheim, un village du nord de l'Alsace. Je me suis formé en automatisme industriel, puis j'ai obtenu mon diplôme d'ingénieur en solutions numériques à l'Icam Strasbourg-Europe, en apprentissage chez ERAS.",
             "quote": "J'ai appris à construire des choses qui doivent fonctionner tous les jours, pas seulement le jour de la démonstration.",
             "p2": "Tout est parti de mon club d'échecs, à Bischwiller. Son site avait plus de quinze ans. Je l'ai entièrement refait : nouveau design, contenu repris, nom de domaine et hébergement — et surtout, j'ai formé les bénévoles pour qu'ils publient leurs actualités eux-mêmes. Aujourd'hui, le club fait vivre son site sans moi.",
-            "p3": "C'est ce projet qui m'a donné envie d'en faire mon métier. J'ai créé RK.ai pour apporter la même chose aux petites entreprises et aux associations de la région : un site clair, qui leur ressemble, et qu'elles peuvent faire vivre elles-mêmes.",
-            "clubLink": "Voir le site du club",
-            "contactBefore": "Vous avez déjà un projet en tête ? ",
-            "contactLink": "Écrivez-moi pour en parler."
-        },
-        "proof": {
-            "eyebrow": "Une réalisation fondatrice",
-            "titleBefore": "Le Cercle d'Échecs de ",
-            "titleHighlight": "Bischwiller",
-            "titleAfter": "",
-            "description": "Refonte du site, migration du contenu, gestion du nom de domaine et de l'hébergement, puis formation des bénévoles pour publier leurs actualités en autonomie.",
-            "link": "Découvrir le site du club",
-            "imageAlt": "Page d'accueil du site du Cercle d'Échecs de Bischwiller"
+            "p3": "C'est ce projet qui m'a donné envie d'en faire mon métier. J'ai créé RK.ai pour apporter la même chose aux petites entreprises et aux associations de la région : des sites et des applications clairs, qui leur ressemblent, et qu'elles peuvent faire vivre elles-mêmes."
         },
         "how": {
-            "titleBefore": "Comment je ",
-            "titleHighlight": "travaille",
-            "titleAfter": "",
+            "label": "Ma méthode",
+            "title": "Comment je *travaille*",
             "items": [
-                {
-                    "title": "Sans jargon",
-                    "text": "J'explique ce que je fais et pourquoi, en français normal. Vous savez toujours ce que vous payez."
-                },
-                {
-                    "title": "Vous restez autonome",
-                    "text": "Je forme votre équipe ou vos bénévoles à publier sans moi, comme je l'ai fait avec le club d'échecs."
-                },
-                {
-                    "title": "Je m'occupe de la technique",
-                    "text": "Nom de domaine, hébergement, maintenance : je gère cette partie pour que vous n'ayez pas à y penser."
-                },
-                {
-                    "title": "Je suis d'ici",
-                    "text": "Je travaille depuis Rountzenheim et je me déplace volontiers pour qu'on en parle de vive voix."
-                }
+                { "title": "Sans jargon", "text": "J'explique ce que je fais et pourquoi, en français normal. Vous savez toujours ce que vous payez." },
+                { "title": "Vous restez autonome", "text": "Je forme votre équipe ou vos bénévoles à publier sans moi, comme je l'ai fait avec le club d'échecs." },
+                { "title": "Je m'occupe de la technique", "text": "Nom de domaine, hébergement, maintenance : je gère cette partie pour que vous n'ayez pas à y penser." },
+                { "title": "Je suis d'ici", "text": "Je travaille depuis Rountzenheim et je me déplace volontiers pour qu'on en parle de vive voix." }
             ]
         },
         "path": {
-            "titleBefore": "Mon ",
-            "titleHighlight": "parcours",
-            "titleAfter": " en bref",
+            "label": "Parcours",
+            "title": "Mon parcours *en bref*",
             "items": [
-                {
-                    "year": "2026",
-                    "text": "Création de RK.ai — sites web et automatisation pour TPE et associations"
-                },
-                {
-                    "year": "2025",
-                    "text": "Refonte du site du Cercle d'Échecs de Bischwiller"
-                },
-                {
-                    "year": "2024 – 2026",
-                    "text": "Diplôme d'ingénieur en solutions numériques — Icam Strasbourg-Europe, en apprentissage chez ERAS"
-                },
-                {
-                    "year": "2023",
-                    "text": "Systèmes automatisés et informatique industrielle — IUT de Haguenau"
-                },
-                {
-                    "year": "2021 – 2023",
-                    "text": "Apprenti automaticien — Clemessy"
-                },
-                {
-                    "year": "2020 – 2022",
-                    "text": "Génie électrique et informatique industrielle — IUT"
-                }
+                { "year": "2026", "text": "Création de RK.ai : sites et applications pour les TPE et les associations" },
+                { "year": "2025", "text": "Refonte du site du Cercle d'Échecs de Bischwiller" },
+                { "year": "2024 – 2026", "text": "Diplôme d'ingénieur en solutions numériques — Icam Strasbourg-Europe, en apprentissage chez ERAS" },
+                { "year": "2023", "text": "Systèmes automatisés et informatique industrielle — IUT de Haguenau" },
+                { "year": "2021 – 2023", "text": "Apprenti automaticien — Clemessy" },
+                { "year": "2020 – 2022", "text": "Génie électrique et informatique industrielle — IUT" }
             ]
-        },
-        "contact": {
-            "text": "Un projet, une question ? Le plus simple est de m'écrire.",
-            "button": "Me contacter",
-            "serviceBefore": "Vous cherchez une ",
-            "serviceLink": "création de site internet pour association ou TPE en Alsace",
-            "serviceAfter": " ? Je vous accompagne depuis les premiers échanges jusqu'à la mise en ligne, avec une solution simple à utiliser et pensée pour durer."
         }
     },
     "contact": {
-        "title": "LANÇONS VOTRE",
-        "titleHighlight": "TRANSFORMATION IA",
-        "subtitle": "Un audit gratuit pour identifier les opportunités d'automatisation.",
-        "why": {
-            "title": "Pourquoi un Audit AI ?",
-            "items": [
-                "Identification des processus à fort ROI d'automatisation",
-                "Estimation du temps et budget nécessaires",
-                "Roadmap personnalisée de transformation",
-                "Conseils d'expert sans engagement"
-            ]
-        },
-        "contact": {
-            "title": "Contact Direct",
-            "email": "Email",
-            "phone": "Téléphone",
-            "location": "Localisation",
-            "locationValue": "Rountzenheim (Bas-Rhin) — Alsace & à distance"
-        },
+        "label": "Contact",
+        "title": "Parlons de *votre projet*.",
+        "lead": "Racontez-moi ce que vous avez en tête, même si ce n'est pas encore très précis. Le premier échange est gratuit et sans engagement.",
         "form": {
-            "title": "Demande de Contact",
-            "name": "Nom",
-            "namePlaceholder": "Jean Dupont",
-            "email": "Email",
-            "emailPlaceholder": "jean@entreprise.com",
-            "project": "Type de Projet",
+            "project": "Votre projet",
             "projectOptions": {
-                "select": "Sélectionnez...",
-                "redesign": "Refonte de site",
-                "creation": "Création de site",
-                "feature": "Ajout de fonctionnalité",
-                "other": "Autre"
+                "site-vitrine": "Site vitrine",
+                "site-e-commerce": "Site e-commerce",
+                "application-web": "Application web",
+                "application-mobile": "Application mobile",
+                "refonte": "Refonte d'un site existant",
+                "autre": "Autre"
             },
-            "budget": "Budget",
+            "name": "Votre nom",
+            "namePlaceholder": "Jean Dupont",
+            "email": "Votre e-mail",
+            "emailPlaceholder": "jean@entreprise.fr",
+            "message": "Votre message",
+            "messagePlaceholder": "Quelques mots sur votre activité et ce que vous aimeriez faire…",
+            "budget": "Budget envisagé (facultatif)",
             "budgetOptions": {
-                "select": "Sélectionnez...",
                 "less1k": "Moins de 1 000 €",
-                "1k2k": "1 000 € - 2 000 €",
-                "2k5k": "2 000 € - 5 000 €",
-                "more5k": "Plus de 5 000 €"
+                "1k2k": "1 000 – 2 000 €",
+                "2k5k": "2 000 – 5 000 €",
+                "more5k": "Plus de 5 000 €",
+                "unknown": "Je ne sais pas encore"
             },
-            "message": "Message",
-            "messagePlaceholder": "Décrivez brièvement votre besoin...",
-            "submit": "Envoyer ma Demande",
-            "sending": "Envoi en cours...",
-            "success": "Message envoyé avec succès !",
-            "error": "Une erreur est survenue. Veuillez réessayer."
+            "submit": "Envoyer mon message",
+            "sending": "Envoi en cours…",
+            "privacy": "Vos informations servent uniquement à vous répondre.",
+            "error": "Le message n'a pas pu partir. Réessayez, ou écrivez-moi directement à contact@romain-kantzer.com.",
+            "successTitle": "Merci, votre message est bien parti.",
+            "successText": "Je le lis et je vous réponds personnellement, par e-mail ou par téléphone.",
+            "again": "Envoyer un autre message"
         },
-        "calendly": {
-            "title": "Ou réservez directement",
-            "button": "Ouvrir Calendly →"
-        }
-    },
-    "storytelling": {
-        "badge": "VOTRE PRÉSENCE DIGITALE",
-        "title": "Pas de simples",
-        "titleHighlight": "sites.",
-        "titleEnd": "Des machines à convertir.",
-        "subtitle1": "Le web",
-        "subtitleHighlight": "propulsé",
-        "subtitle2": "par l'IA.",
-        "description": "Des sites web modernes et performants, amplifiés par l'intelligence artificielle."
-    },
-    "homeWebDev": {
-        "eyebrow": "Ce que je fais",
-        "titleBefore": "En savoir plus sur le ",
-        "titleHighlight": "développement web",
-        "titleAfter": "",
-        "text": "Je crée des sites vitrines pour les TPE et associations alsaciennes. Sur la page dédiée, je détaille ma façon de travailler, les étapes d'un projet et les réponses aux questions qu'on me pose le plus souvent.",
-        "items": [
-            {
-                "title": "Des étapes claires",
-                "text": "Stratégie, design, développement, mise en ligne : vous savez toujours où en est votre projet."
-            },
-            {
-                "title": "Vous restez autonome",
-                "text": "Je vous forme à publier vos contenus vous-même, comme je l'ai fait avec le club d'échecs de Bischwiller."
-            },
-            {
-                "title": "La technique, je m'en occupe",
-                "text": "Nom de domaine, hébergement, maintenance : cette partie est mon travail, pas le vôtre."
-            }
-        ],
-        "cta": "Découvrir le développement web"
-    },
-    "webDevPage": {
-        "hero": {
-            "overline": "// Développement Web Premium",
-            "title": "Des expériences web qui marquent les esprits",
-            "subtitle": "Sites vitrines, sur-mesure — pensés pour convertir, conçus pour durer.",
-            "proofs": [
-                "Score Lighthouse 99+",
-                "Livré en 2 à 6 semaines",
-                "SEO technique inclus"
-            ],
-            "cta": "Discuter de mon projet"
+        "direct": {
+            "title": "En direct",
+            "location": "Rountzenheim (Bas-Rhin) — en Alsace et à distance"
         },
-        "metrics": {
-            "overline": "// La Preuve par les Chiffres",
-            "title": "Performances",
-            "titleHighlight": "Lighthouse",
-            "items": [
-                {
-                    "label": "SEO",
-                    "value": 100,
-                    "suffix": "/100",
-                    "desc": "Optimisation maximale pour les moteurs de recherche. Structure sémantique, balises meta dynamiques et sitemap auto-généré."
-                },
-                {
-                    "label": "Performance",
-                    "value": 99,
-                    "suffix": "/100",
-                    "desc": "Temps de chargement quasi-instantané grâce au rendu côté serveur (SSR), optimisation des images et minification du code."
-                },
-                {
-                    "label": "Accessibilité",
-                    "value": 100,
-                    "suffix": "/100",
-                    "desc": "Navigation adaptée à tous les profils d'utilisateurs. Contraste optimal, support des lecteurs d'écran et navigation au clavier."
-                },
-                {
-                    "label": "Bonnes Pratiques",
-                    "value": 100,
-                    "suffix": "/100",
-                    "desc": "Code propre et sécurisé respectant les standards du web moderne. Sécurisation des failles, HTTPS et architecture robuste."
-                }
-            ]
-        },
-        "tech": {
-            "overline": "// L'Écosystème",
-            "title": "Stack",
-            "titleHighlight": "Technique",
-            "items": [
-                "Framework React",
-                "Librairie UI",
-                "CSS utilitaire",
-                "Animations",
-                "Typage sécurisé",
-                "Déploiement"
-            ]
-        },
-        "caseStudies": {
-            "overline": "// Réalisations",
-            "title": "Des résultats",
-            "titleHighlight": "concrets",
-            "subtitle": "Chaque projet est conçu avec un objectif mesurable : trafic, conversion, performance.",
-            "items": [
-                {
-                    "tag": "Site Vitrine",
-                    "title": "Artisan & Commerce local",
-                    "desc": "Refonte complète orientée conversion : identité affirmée, prise de contact simplifiée et référencement local optimisé.",
-                    "metrics": [
-                        {
-                            "value": "+180%",
-                            "label": "Trafic organique"
-                        },
-                        {
-                            "value": "0,4s",
-                            "label": "Premier affichage"
-                        }
-                    ]
-                },
-                {
-                    "tag": "E-commerce",
-                    "title": "Boutique en ligne mode",
-                    "desc": "Parcours d'achat repensé de A à Z : fiches produits immersives, tunnel de commande fluide et paiement simplifié.",
-                    "metrics": [
-                        {
-                            "value": "+65%",
-                            "label": "Taux de conversion"
-                        },
-                        {
-                            "value": "99/100",
-                            "label": "Score Lighthouse"
-                        }
-                    ]
-                },
-                {
-                    "tag": "Application Web",
-                    "title": "Plateforme de réservation",
-                    "desc": "Application métier sur-mesure avec tableau de bord, notifications automatiques et synchronisation calendrier.",
-                    "metrics": [
-                        {
-                            "value": "-70%",
-                            "label": "Temps de gestion"
-                        },
-                        {
-                            "value": "24/7",
-                            "label": "Réservations en ligne"
-                        }
-                    ]
-                }
-            ]
-        },
-        "faq": {
-            "overline": "// Questions Fréquentes",
-            "title": "Vous vous",
-            "titleHighlight": "demandez",
-            "items": [
-                {
-                    "q": "Combien coûte un site web sur-mesure ?",
-                    "a": "Chaque projet est unique : le budget dépend du périmètre (vitrine, e-commerce, application), du design et des fonctionnalités. Après un premier échange gratuit, vous recevez un devis détaillé et transparent, sans surprise."
-                },
-                {
-                    "q": "Quels sont les délais de livraison ?",
-                    "a": "Comptez 2 à 3 semaines pour un site vitrine et 4 à 6 semaines pour un e-commerce ou une application. Vous suivez l'avancement en continu avec des points réguliers et des versions de démonstration."
-                },
-                {
-                    "q": "Mon site sera-t-il bien référencé sur Google ?",
-                    "a": "Le SEO technique est inclus dans chaque projet : structure sémantique, vitesse de chargement, balises meta, sitemap et données structurées. Les scores Lighthouse quasi parfaits sont un standard, pas une option."
-                },
-                {
-                    "q": "Proposez-vous la maintenance après le lancement ?",
-                    "a": "Oui. Des forfaits de maintenance couvrent les mises à jour, la sécurité, les sauvegardes et les évolutions. Vous restez concentré sur votre activité, je m'occupe de la technique."
-                }
-            ]
-        },
-        "process": {
-            "overline": "// Notre Méthodologie",
-            "title": "Du concept au",
-            "titleHighlight": "lancement",
+        "next": {
+            "title": "Et ensuite ?",
             "steps": [
-                {
-                    "num": "01",
-                    "title": "Stratégie",
-                    "desc": "Audit de votre marché, analyse concurrentielle et définition des objectifs. Nous cartographions l'architecture idéale pour votre projet."
-                },
-                {
-                    "num": "02",
-                    "title": "Design",
-                    "desc": "Wireframes, prototypes interactifs et direction artistique. Chaque pixel est pensé pour convertir et engager."
-                },
-                {
-                    "num": "03",
-                    "title": "Développement",
-                    "desc": "Code propre, performant et maintenable. Next.js, React, Tailwind CSS — les meilleurs outils pour des résultats exceptionnels."
-                },
-                {
-                    "num": "04",
-                    "title": "Lancement",
-                    "desc": "Déploiement, monitoring et optimisation. Votre site est en ligne, rapide et prêt à dominer les résultats de recherche."
-                }
+                "Je lis votre message et je vous réponds personnellement.",
+                "On en parle au téléphone, en visio ou de vive voix.",
+                "Je vous envoie un devis détaillé, sans engagement."
             ]
-        },
-        "cta": {
-            "title": "Prêt à dominer",
-            "titleHighlight": "le web ?",
-            "subtitle": "Transformons votre vision en une expérience digitale qui marque les esprits.",
-            "button": "Démarrer le Projet"
         }
-    },
-    "statsBar": {
-        "lighthouse": "Score Lighthouse",
-        "experience": "Ans d'expérience",
-        "projects": "Projets livrés",
-        "availability": "Disponibilité IA"
     },
     "footer": {
-        "title": "PRÊT POUR",
-        "titleHighlight": "L'AUTOMATISATION ?",
-        "subtitle": "Ne laissez pas vos concurrents prendre l'avantage. Contactez-nous pour un audit AI gratuit de vos processus business.",
-        "form": {
-            "submit": "Envoyer un email"
-        },
-        "legal": {
-            "rights": "TOUS DROITS RÉSERVÉS",
-            "privacy": "Politique Privée",
-            "terms": "Termes",
-            "mentions": "Mentions Légales"
-        }
+        "tagline": "Des sites et des applications, *faits en Alsace*.",
+        "navTitle": "Navigation",
+        "servicesTitle": "Services",
+        "contactTitle": "Contact",
+        "email": "Écrire un e-mail",
+        "rights": "Tous droits réservés",
+        "legal": "Mentions légales",
+        "localTime": "Rountzenheim",
+        "backToTop": "Retour en haut"
+    },
+    "legal": {
+        "label": "Informations",
+        "title": "Mentions *légales*"
+    },
+    "notFound": {
+        "label": "Erreur 404",
+        "title": "Cette page est *introuvable*.",
+        "text": "Le lien est peut-être ancien, ou la page a changé d'adresse.",
+        "button": "Retour à l'accueil"
+    },
+    "chatbot": {
+        "open": "Ouvrir l'assistant",
+        "close": "Fermer l'assistant",
+        "title": "Assistant",
+        "subtitle": "Réponses automatiques sur mon travail",
+        "welcome": "Bonjour ! Je peux répondre à vos questions sur Romain, ses services et sa façon de travailler.",
+        "placeholder": "Posez votre question…",
+        "send": "Envoyer",
+        "loading": "Réponse en cours…",
+        "error": "Désolé, une erreur est survenue. Réessayez dans un instant, ou écrivez à contact@romain-kantzer.com."
     }
 }

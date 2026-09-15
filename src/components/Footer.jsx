@@ -1,59 +1,167 @@
 "use client";
-import { ArrowRight, Linkedin } from "lucide-react";
+
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import { useLenis } from "lenis/react";
 import { useTranslation } from "./LanguageProvider";
 import Button from "./ui/Button";
+import RollText from "./ui/RollText";
+import { container } from "./ui/Section";
+import { Emphasis } from "./ui/SectionTitle";
+import { SERVICE_SLUGS } from "@/lib/services";
+
+const OUT = [0.16, 1, 0.3, 1];
+const WORDMARK = "Romain Kantzer";
+
+function useLocalTime(timeZone) {
+    const [time, setTime] = useState("");
+    useEffect(() => {
+        const format = new Intl.DateTimeFormat("fr-FR", { hour: "2-digit", minute: "2-digit", timeZone });
+        const tick = () => setTime(format.format(new Date()));
+        tick();
+        const interval = setInterval(tick, 20000);
+        return () => clearInterval(interval);
+    }, [timeZone]);
+    return time;
+}
+
+function Column({ title, className = "", children }) {
+    return (
+        <div className={className}>
+            <p className="text-[0.7rem] font-medium uppercase tracking-[0.2em] text-muted-foreground md:text-xs">{title}</p>
+            <ul className="mt-5 space-y-2.5">{children}</ul>
+        </div>
+    );
+}
+
+function FooterLink({ href, external = false, children }) {
+    const classes = "group/roll inline-flex items-center gap-1.5 text-foreground/80 transition-colors hover:text-foreground";
+    if (external) {
+        return (
+            <a href={href} target="_blank" rel="noopener noreferrer" className={classes}>
+                <RollText>{children}</RollText>
+                <ArrowUpRight className="size-3.5" aria-hidden="true" />
+            </a>
+        );
+    }
+    if (href.startsWith("mailto:") || href.startsWith("tel:")) {
+        return (
+            <a href={href} className={classes}>
+                <RollText>{children}</RollText>
+            </a>
+        );
+    }
+    return (
+        <Link href={href} className={classes}>
+            <RollText>{children}</RollText>
+        </Link>
+    );
+}
 
 export default function Footer() {
     const { t } = useTranslation();
+    const lenis = useLenis();
+    const ref = useRef(null);
+    const time = useLocalTime("Europe/Paris");
+    const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end end"] });
+    const y = useTransform(scrollYProgress, [0, 1], [-140, 0]);
+
+    const navigation = [
+        { href: "/", label: t("nav.home") },
+        { href: "/services", label: t("nav.services") },
+        { href: "/about", label: t("nav.about") },
+        { href: "/contact", label: t("nav.contact") },
+    ];
+
+    const backToTop = () => (lenis ? lenis.scrollTo(0) : window.scrollTo({ top: 0, behavior: "smooth" }));
 
     return (
-        <footer id="contact" className="py-16 md:py-32 bg-background border-t border-border relative overflow-hidden">
-            {/* Top Glow Line */}
-            <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary-neon/50 to-transparent" />
-
-            {/* Background Glow */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
-
-            <div className="container mx-auto px-6 relative z-10">
-                {/* Massive CTA */}
-                <div className="flex flex-col items-center text-center justify-center min-h-[40vh]">
-                    <h2 className="font-display font-bold text-[8vw] md:text-[9vw] leading-none text-foreground uppercase tracking-tighter hover:text-primary-neon transition-colors duration-500 cursor-default">
-                        {t("footer.title")}
-                    </h2>
-                    <h2 className="font-display font-bold text-[8vw] md:text-[9vw] leading-none text-transparent stroke-text uppercase tracking-tighter">
-                        {t("footer.titleHighlight")}
-                    </h2>
-
-                    <Button href="/contact" size="lg" className="group mt-16">
-                        {t("footer.form.submit")}
-                        <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-                    </Button>
-                </div>
-
-                {/* Bottom Bar */}
-                <div className="mt-32 pt-12 border-t border-border flex flex-col md:flex-row justify-between items-center gap-8">
-                    <div className="flex gap-8">
-                        <a href="https://www.linkedin.com/in/romain-kantzer-9323b920a/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary-neon transition-colors">
-                            <Linkedin className="w-6 h-6" />
-                        </a>
+        <footer ref={ref} className="relative overflow-hidden border-t border-border bg-background">
+            <motion.div style={{ y }} className={`${container} pt-20 md:pt-28`}>
+                <div className="grid gap-12 md:grid-cols-12">
+                    <div className="md:col-span-5">
+                        <p className="max-w-md text-3xl leading-[1.08] tracking-[-0.025em] md:text-4xl">
+                            <Emphasis text={t("footer.tagline")} />
+                        </p>
+                        <Button href="/contact" className="mt-8">
+                            {t("nav.cta")}
+                        </Button>
                     </div>
 
-                    <div className="text-muted-foreground text-xs font-mono tracking-widest uppercase">
-                        <span suppressHydrationWarning>© {new Date().getFullYear()} Romain Kantzer — {t("footer.legal.rights")}</span>
-                        <span className="mx-2">•</span>
-                        <Link href="/legal" className="hover:text-primary-neon transition-colors">
-                            {t("footer.legal.mentions")}
+                    <Column title={t("footer.navTitle")} className="md:col-span-2 md:col-start-7">
+                        {navigation.map((link) => (
+                            <li key={link.href}>
+                                <FooterLink href={link.href}>{link.label}</FooterLink>
+                            </li>
+                        ))}
+                    </Column>
+
+                    <Column title={t("footer.servicesTitle")} className="md:col-span-2">
+                        {SERVICE_SLUGS.map((slug) => (
+                            <li key={slug}>
+                                <FooterLink href={`/services/${slug}`}>{t(`services.items.${slug}.name`)}</FooterLink>
+                            </li>
+                        ))}
+                    </Column>
+
+                    <Column title={t("footer.contactTitle")} className="md:col-span-2">
+                        <li>
+                            <FooterLink href="mailto:contact@romain-kantzer.com">{t("footer.email")}</FooterLink>
+                        </li>
+                        <li>
+                            <FooterLink href="tel:+33769603760">07 69 60 37 60</FooterLink>
+                        </li>
+                        <li>
+                            <FooterLink href="https://www.linkedin.com/in/romain-kantzer-9323b920a/" external>
+                                LinkedIn
+                            </FooterLink>
+                        </li>
+                    </Column>
+                </div>
+
+                {/* Le déclencheur est sur le conteneur : les lettres, masquées sous lui, ne sont jamais « visibles » pour l'observer. */}
+                <motion.div
+                    aria-hidden="true"
+                    className="mt-20 flex select-none overflow-hidden whitespace-nowrap pb-[0.02em] font-medium leading-[0.8] tracking-[-0.06em] [--gutter:2.5rem] md:mt-28 md:[--gutter:5rem]"
+                    style={{ fontSize: "calc((min(100vw, 1600px) - var(--gutter)) / 6.6)" }}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.5 }}
+                    variants={{ hidden: {}, show: { transition: { staggerChildren: 0.035 } } }}
+                >
+                    {WORDMARK.split("").map((char, index) => (
+                        <motion.span
+                            key={index}
+                            className="inline-block"
+                            variants={{ hidden: { y: "100%" }, show: { y: "0%", transition: { duration: 1.1, ease: OUT } } }}
+                        >
+                            {char === " " ? " " : char}
+                        </motion.span>
+                    ))}
+                </motion.div>
+
+                <div className="flex flex-col gap-4 border-t border-border pb-24 pt-6 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between md:pb-6 md:pr-20">
+                    <p>
+                        <span suppressHydrationWarning>© {new Date().getFullYear()}</span> Romain Kantzer — {t("footer.rights")}
+                    </p>
+                    <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+                        <Link href="/legal" className="transition-colors hover:text-foreground">
+                            {t("footer.legal")}
                         </Link>
+                        <span>
+                            {t("footer.localTime")}{" "}
+                            <span className="tabular-nums text-foreground" suppressHydrationWarning>
+                                {time || "--:--"}
+                            </span>
+                        </span>
+                        <button type="button" onClick={backToTop} className="transition-colors hover:text-foreground">
+                            {t("footer.backToTop")} ↑
+                        </button>
                     </div>
                 </div>
-            </div>
-
-            <style jsx global>{`
-                .stroke-text {
-                    -webkit-text-stroke: 2px var(--text-stroke-color);
-                }
-            `}</style>
+            </motion.div>
         </footer>
     );
 }

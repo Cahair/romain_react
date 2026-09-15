@@ -11,6 +11,7 @@ const translations = { fr, en, de };
 const LanguageContext = createContext({
     locale: "fr",
     t: (key) => key,
+    tl: () => [],
     setLocale: () => { },
 });
 
@@ -34,6 +35,11 @@ export function LanguageProvider({ children }) {
             localStorage.setItem("locale", "fr");
         }
     }, []);
+
+    // Garde l'attribut lang du document aligné sur la langue affichée (lecteurs d'écran).
+    useEffect(() => {
+        document.documentElement.lang = locale;
+    }, [locale]);
 
     const setLocale = (newLocale) => {
         if (translations[newLocale]) {
@@ -72,8 +78,14 @@ export function LanguageProvider({ children }) {
         return key;
     };
 
+    // Variante de t() pour les listes : renvoie toujours un tableau.
+    const tl = (key) => {
+        const value = t(key);
+        return Array.isArray(value) ? value : [];
+    };
+
     return (
-        <LanguageContext.Provider value={{ locale, t, setLocale }}>
+        <LanguageContext.Provider value={{ locale, t, tl, setLocale }}>
             {children}
         </LanguageContext.Provider>
     );
@@ -84,7 +96,7 @@ export function useTranslation() {
 }
 
 export const availableLocales = [
-    { code: "fr", name: "Français", flag: "🇫🇷" },
-    { code: "en", name: "English", flag: "🇬🇧" },
-    { code: "de", name: "Deutsch", flag: "🇩🇪" },
+    { code: "fr", name: "Français" },
+    { code: "en", name: "English" },
+    { code: "de", name: "Deutsch" },
 ];

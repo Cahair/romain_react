@@ -1,280 +1,286 @@
 "use client";
+
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Calendar, Check } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { useTranslation } from "../../components/LanguageProvider";
+import { usePageReady } from "../../components/motion/TransitionProvider";
+import AnimatedTitle from "../../components/motion/AnimatedTitle";
 import Button from "../../components/ui/Button";
+import Label from "../../components/ui/Label";
+import RollText from "../../components/ui/RollText";
+import { container } from "../../components/ui/Section";
+import { CopyEmail, PHONE_DISPLAY, PHONE_HREF } from "../../components/sections/ContactCta";
+
+const OUT = [0.16, 1, 0.3, 1];
+const PROJECTS = ["site-vitrine", "site-e-commerce", "application-web", "application-mobile", "refonte", "autre"];
+const BUDGETS = ["less1k", "1k2k", "2k5k", "more5k", "unknown"];
+const EMPTY_FORM = { name: "", email: "", project: "", budget: "", message: "", website: "" };
+const pad = (value) => String(value).padStart(2, "0");
+
+// Choix unique présenté en pastilles (boutons radio accessibles).
+function ChoiceGroup({ legend, name, options, value, onChange, getLabel }) {
+    return (
+        <fieldset>
+            <legend className="text-sm text-muted-foreground">{legend}</legend>
+            <div className="mt-4 flex flex-wrap gap-2">
+                {options.map((option) => {
+                    const checked = value === option;
+                    return (
+                        <label
+                            key={option}
+                            className={`cursor-pointer rounded-full border px-4 py-2.5 text-sm transition-colors has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-ring ${checked ? "border-primary bg-primary text-primary-foreground" : "border-border hover:border-foreground"}`}
+                        >
+                            <input type="radio" name={name} value={option} checked={checked} onChange={onChange} className="sr-only" />
+                            {getLabel(option)}
+                        </label>
+                    );
+                })}
+            </div>
+        </fieldset>
+    );
+}
+
+function Field({ id, label, textarea = false, ...props }) {
+    const Tag = textarea ? "textarea" : "input";
+    return (
+        <div>
+            <label htmlFor={id} className="text-sm text-muted-foreground">
+                {label}
+            </label>
+            <Tag
+                id={id}
+                {...props}
+                className="mt-2 w-full resize-none border-0 border-b border-border bg-transparent px-0 py-3 text-xl tracking-tight text-foreground transition-colors placeholder:text-muted-foreground/50 focus:border-primary focus:outline-none focus-visible:outline-none md:text-2xl"
+            />
+        </div>
+    );
+}
 
 export default function ContactPage() {
-    const { t } = useTranslation();
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        project: "",
-        budget: "",
-        message: ""
-    });
-    const [status, setStatus] = useState("idle"); // idle, loading, success, error
+    const { t, tl } = useTranslation();
+    const ready = usePageReady();
+    const [form, setForm] = useState(EMPTY_FORM);
+    const [status, setStatus] = useState("idle"); // idle | loading | success | error
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const onChange = (event) => setForm((current) => ({ ...current, [event.target.name]: event.target.value }));
+
+    const onSubmit = async (event) => {
+        event.preventDefault();
         setStatus("loading");
-
         try {
-            const res = await fetch("/api/contact", {
+            const response = await fetch("/api/contact", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData),
+                body: JSON.stringify(form),
             });
-
-            if (res.ok) {
-                setStatus("success");
-                setFormData({ name: "", email: "", project: "", budget: "", message: "" });
-            } else {
-                setStatus("error");
-            }
-        } catch (error) {
+            if (!response.ok) throw new Error("request failed");
+            setStatus("success");
+            setForm(EMPTY_FORM);
+        } catch {
             setStatus("error");
         }
     };
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
+    const reveal = (delay) => ({
+        initial: { opacity: 0, y: 24 },
+        animate: ready ? { opacity: 1, y: 0 } : undefined,
+        transition: { duration: 1, ease: OUT, delay },
+    });
 
     return (
-        <main className="bg-background min-h-screen flex flex-col">
+        <>
             <Navbar />
-
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6 }}
-                className="flex-1 pt-32 pb-10 flex flex-col justify-center min-h-[calc(100vh-80px)]"
-            >
-                {/* Hero - Compact */}
-                <div className="container mx-auto px-6 mb-6 md:mb-8">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="text-center max-w-4xl mx-auto"
-                    >
-                        <h1 className="font-display text-4xl md:text-5xl text-foreground mb-2 leading-tight">
-                            {t("contact.title")} <span className="text-primary">{t("contact.titleHighlight")}</span>
-                        </h1>
-                        <p className="text-sm md:text-base text-muted-foreground max-w-2xl mx-auto">
-                            {t("contact.subtitle")}
-                        </p>
+            <main className="pb-24 pt-32 md:pb-36 md:pt-44">
+                <div className={container}>
+                    <motion.div {...reveal(0)}>
+                        <Label>{t("contact.label")}</Label>
                     </motion.div>
-                </div>
+                    <AnimatedTitle as="h1" size="hero" text={t("contact.title")} play={ready} delay={0.1} className="mt-8 max-w-[12ch]" />
+                    <motion.p {...reveal(0.45)} className="mt-10 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+                        {t("contact.lead")}
+                    </motion.p>
 
-                {/* Optimized Split Screen Layout */}
-                <div className="container mx-auto px-6 flex-1 flex items-center">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-8 max-w-6xl mx-auto w-full h-full">
+                    <div className="mt-16 grid gap-16 md:mt-24 lg:grid-cols-12">
+                        <motion.div {...reveal(0.6)} className="lg:col-span-7">
+                            <AnimatePresence mode="wait">
+                                {status === "success" ? (
+                                    <motion.div
+                                        key="success"
+                                        role="status"
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0 }}
+                                        transition={{ duration: 0.6, ease: OUT }}
+                                        className="rounded-3xl border border-border bg-card p-8 md:p-12"
+                                    >
+                                        <svg viewBox="0 0 52 52" className="size-14 text-primary" aria-hidden="true">
+                                            <motion.circle
+                                                cx="26"
+                                                cy="26"
+                                                r="24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeWidth="2"
+                                                initial={{ pathLength: 0 }}
+                                                animate={{ pathLength: 1 }}
+                                                transition={{ duration: 0.8 }}
+                                            />
+                                            <motion.path
+                                                d="M15 27 l7 7 l15 -16"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                strokeWidth="3"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                initial={{ pathLength: 0 }}
+                                                animate={{ pathLength: 1 }}
+                                                transition={{ duration: 0.5, delay: 0.6 }}
+                                            />
+                                        </svg>
+                                        <h2 className="mt-8 text-3xl tracking-[-0.025em] md:text-4xl">{t("contact.form.successTitle")}</h2>
+                                        <p className="mt-4 max-w-md leading-relaxed text-muted-foreground">{t("contact.form.successText")}</p>
+                                        <Button variant="ghost" className="mt-8" onClick={() => setStatus("idle")}>
+                                            {t("contact.form.again")}
+                                        </Button>
+                                    </motion.div>
+                                ) : (
+                                    <motion.form
+                                        key="form"
+                                        onSubmit={onSubmit}
+                                        exit={{ opacity: 0, y: -20 }}
+                                        transition={{ duration: 0.4 }}
+                                        className="relative space-y-12"
+                                    >
+                                        <ChoiceGroup
+                                            legend={t("contact.form.project")}
+                                            name="project"
+                                            options={PROJECTS}
+                                            value={form.project}
+                                            onChange={onChange}
+                                            getLabel={(option) => t(`contact.form.projectOptions.${option}`)}
+                                        />
+                                        <div className="grid gap-10 md:grid-cols-2">
+                                            <Field
+                                                id="name"
+                                                name="name"
+                                                label={t("contact.form.name")}
+                                                placeholder={t("contact.form.namePlaceholder")}
+                                                value={form.name}
+                                                onChange={onChange}
+                                                autoComplete="name"
+                                                required
+                                            />
+                                            <Field
+                                                id="email"
+                                                name="email"
+                                                type="email"
+                                                label={t("contact.form.email")}
+                                                placeholder={t("contact.form.emailPlaceholder")}
+                                                value={form.email}
+                                                onChange={onChange}
+                                                autoComplete="email"
+                                                required
+                                            />
+                                        </div>
+                                        <Field
+                                            id="message"
+                                            name="message"
+                                            textarea
+                                            rows={4}
+                                            label={t("contact.form.message")}
+                                            placeholder={t("contact.form.messagePlaceholder")}
+                                            value={form.message}
+                                            onChange={onChange}
+                                            required
+                                        />
+                                        <ChoiceGroup
+                                            legend={t("contact.form.budget")}
+                                            name="budget"
+                                            options={BUDGETS}
+                                            value={form.budget}
+                                            onChange={onChange}
+                                            getLabel={(option) => t(`contact.form.budgetOptions.${option}`)}
+                                        />
 
-                        {/* Left Column: Why Audit + Contact Info */}
-                        <motion.div
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.3 }}
-                            className="flex flex-col gap-4 h-full order-2 lg:order-1"
-                        >
-                            {/* Value Proposition Card */}
-                            <div className="rounded-2xl border border-border bg-card p-6 md:p-8 flex-1 flex flex-col justify-center">
-                                <h2 className="font-display text-xl md:text-2xl text-foreground mb-4 md:mb-6">{t("contact.why.title")}</h2>
-                                <ul className="space-y-3 text-sm md:text-base text-muted-foreground">
-                                    <li className="flex items-start gap-3">
-                                        <Check className="w-4 h-4 text-primary mt-1 shrink-0" />
-                                        <span>{t("contact.why.items.0")}</span>
+                                        {/* Pot de miel anti-spam : invisible pour les humains, rempli par les robots. */}
+                                        <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+                                            <label htmlFor="website">Website</label>
+                                            <input
+                                                id="website"
+                                                name="website"
+                                                type="text"
+                                                tabIndex={-1}
+                                                autoComplete="off"
+                                                value={form.website}
+                                                onChange={onChange}
+                                            />
+                                        </div>
+
+                                        <div className="flex flex-wrap items-center gap-6">
+                                            <Button type="submit" size="lg" disabled={status === "loading"}>
+                                                {status === "loading" ? t("contact.form.sending") : t("contact.form.submit")}
+                                                <ArrowRight className="size-4" aria-hidden="true" />
+                                            </Button>
+                                            <p className="text-sm text-muted-foreground">{t("contact.form.privacy")}</p>
+                                        </div>
+                                        <p aria-live="polite" className="text-sm text-destructive">
+                                            {status === "error" ? t("contact.form.error") : ""}
+                                        </p>
+                                    </motion.form>
+                                )}
+                            </AnimatePresence>
+                        </motion.div>
+
+                        <motion.aside {...reveal(0.75)} className="space-y-12 lg:col-span-4 lg:col-start-9">
+                            <div>
+                                <p className="text-[0.7rem] font-medium uppercase tracking-[0.2em] text-muted-foreground md:text-xs">
+                                    {t("contact.direct.title")}
+                                </p>
+                                <ul className="mt-5 space-y-4 text-lg">
+                                    <li>
+                                        <CopyEmail />
                                     </li>
-                                    <li className="flex items-start gap-3">
-                                        <Check className="w-4 h-4 text-primary mt-1 shrink-0" />
-                                        <span>{t("contact.why.items.1")}</span>
+                                    <li>
+                                        <a href={PHONE_HREF} className="tabular-nums transition-colors hover:text-primary">
+                                            {PHONE_DISPLAY}
+                                        </a>
                                     </li>
-                                    <li className="flex items-start gap-3">
-                                        <Check className="w-4 h-4 text-primary mt-1 shrink-0" />
-                                        <span>{t("contact.why.items.2")}</span>
-                                    </li>
-                                    <li className="flex items-start gap-3">
-                                        <Check className="w-4 h-4 text-primary mt-1 shrink-0" />
-                                        <span>{t("contact.why.items.3")}</span>
+                                    <li className="text-muted-foreground">{t("contact.direct.location")}</li>
+                                    <li>
+                                        <a
+                                            href="https://www.linkedin.com/in/romain-kantzer-9323b920a/"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="group/roll inline-flex items-center gap-1.5"
+                                        >
+                                            <RollText>LinkedIn</RollText>
+                                            <ArrowUpRight className="size-4" aria-hidden="true" />
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
 
-                            {/* Contact Details Card */}
-                            <div className="rounded-2xl border border-border bg-card p-5 md:p-6">
-                                <h3 className="text-sm font-bold mb-4 uppercase tracking-widest text-muted-foreground">{t("contact.contact.title")}</h3>
-                                <div className="space-y-3">
-                                    <div className="flex items-center gap-3">
-                                        <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                                            <Mail className="w-5 h-5 text-primary" />
-                                        </div>
-                                        <div>
-                                            <div className="text-[10px] text-muted-foreground uppercase tracking-wide">{t("contact.contact.email")}</div>
-                                            <div className="text-sm font-bold">contact@romain-kantzer.com</div>
-                                        </div>
-                                    </div>
-                                    {/* Phone hidden or kept based on preference, keeping compact */}
-                                    <div className="flex items-center gap-3">
-                                        <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center shrink-0">
-                                            <Phone className="w-5 h-5 text-secondary" />
-                                        </div>
-                                        <div>
-                                            <div className="text-[10px] text-muted-foreground uppercase tracking-wide">{t("contact.contact.phone")}</div>
-                                            <div className="text-sm font-bold">07 69 60 37 60</div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div className="rounded-3xl border border-border p-7 md:p-8">
+                                <p className="text-[0.7rem] font-medium uppercase tracking-[0.2em] text-muted-foreground md:text-xs">
+                                    {t("contact.next.title")}
+                                </p>
+                                <ol className="mt-6 space-y-5">
+                                    {tl("contact.next.steps").map((step, index) => (
+                                        <li key={step} className="flex gap-4">
+                                            <span className="pt-0.5 text-sm tabular-nums text-secondary-neon">({pad(index + 1)})</span>
+                                            <span className="leading-relaxed">{step}</span>
+                                        </li>
+                                    ))}
+                                </ol>
                             </div>
-                        </motion.div>
-
-                        {/* Right Column: High Conversion Form */}
-                        <motion.div
-                            initial={{ opacity: 0, x: 20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ delay: 0.4 }}
-                            className="flex h-full order-1 lg:order-2"
-                        >
-                            <div className="rounded-2xl border border-border bg-card p-5 md:p-8 flex-1 flex flex-col w-full">
-                                <h2 className="font-display text-xl md:text-2xl text-foreground mb-4 md:mb-6">{t("contact.form.title")}</h2>
-
-                                {status === "success" ? (
-                                    <div className="flex-1 flex flex-col items-center justify-center text-center space-y-4">
-                                        <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center border border-green-500/50">
-                                            <svg className="w-8 h-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                            </svg>
-                                        </div>
-                                        <h3 className="text-xl font-bold text-foreground">{t("contact.form.success")}</h3>
-                                        <button
-                                            onClick={() => setStatus("idle")}
-                                            className="text-primary hover:underline"
-                                        >
-                                            Nouvelle demande
-                                        </button>
-                                    </div>
-                                ) : (
-                                    <form onSubmit={handleSubmit} className="space-y-3 md:space-y-4 flex-1 flex flex-col">
-                                        <div className="grid grid-cols-2 gap-3 md:gap-4">
-                                            <div>
-                                                <label className="block text-xs font-bold uppercase tracking-wide text-muted-foreground mb-1">
-                                                    {t("contact.form.name")}
-                                                </label>
-                                                <input
-                                                    type="text"
-                                                    name="name"
-                                                    value={formData.name}
-                                                    onChange={handleChange}
-                                                    required
-                                                    className="w-full bg-background border border-border rounded-md px-3 py-2 text-sm focus:outline-none focus:border-primary transition-colors"
-                                                    placeholder="Votre Nom"
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="block text-xs font-bold uppercase tracking-wide text-muted-foreground mb-1">
-                                                    {t("contact.form.email")}
-                                                </label>
-                                                <input
-                                                    type="email"
-                                                    name="email"
-                                                    value={formData.email}
-                                                    onChange={handleChange}
-                                                    required
-                                                    className="w-full bg-background border border-border rounded-md px-3 py-2 text-sm focus:outline-none focus:border-primary transition-colors"
-                                                    placeholder="votre@email.com"
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="grid grid-cols-2 gap-3 md:gap-4">
-                                            <div>
-                                                <label className="block text-xs font-bold uppercase tracking-wide text-muted-foreground mb-1">
-                                                    {t("contact.form.project")}
-                                                </label>
-                                                <select
-                                                    name="project"
-                                                    value={formData.project}
-                                                    onChange={handleChange}
-                                                    className="w-full bg-background border border-border rounded-md px-3 py-2 text-sm focus:outline-none focus:border-primary transition-colors"
-                                                >
-                                                    <option value="">{t("contact.form.projectOptions.select")}</option>
-                                                    <option value="refonte">{t("contact.form.projectOptions.redesign")}</option>
-                                                    <option value="creation">{t("contact.form.projectOptions.creation")}</option>
-                                                    <option value="fonctionnalite">{t("contact.form.projectOptions.feature")}</option>
-                                                    <option value="autre">{t("contact.form.projectOptions.other")}</option>
-                                                </select>
-                                            </div>
-                                            <div>
-                                                <label className="block text-xs font-bold uppercase tracking-wide text-muted-foreground mb-1">
-                                                    {t("contact.form.budget")}
-                                                </label>
-                                                <select
-                                                    name="budget"
-                                                    value={formData.budget}
-                                                    onChange={handleChange}
-                                                    className="w-full bg-background border border-border rounded-md px-3 py-2 text-sm focus:outline-none focus:border-primary transition-colors"
-                                                >
-                                                    <option value="">{t("contact.form.budgetOptions.select")}</option>
-                                                    <option value="less1k">{t("contact.form.budgetOptions.less1k")}</option>
-                                                    <option value="1k2k">{t("contact.form.budgetOptions.1k2k")}</option>
-                                                    <option value="2k5k">{t("contact.form.budgetOptions.2k5k")}</option>
-                                                    <option value="more5k">{t("contact.form.budgetOptions.more5k")}</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div className="flex-1 min-h-[100px]">
-                                            <label className="block text-xs font-bold uppercase tracking-wide text-muted-foreground mb-1">
-                                                {t("contact.form.message")}
-                                            </label>
-                                            <textarea
-                                                name="message"
-                                                value={formData.message}
-                                                onChange={handleChange}
-                                                required
-                                                rows="3"
-                                                className="w-full h-full bg-background border border-border rounded-md px-3 py-2 text-sm focus:outline-none focus:border-primary transition-colors resize-none"
-                                                placeholder={t("contact.form.messagePlaceholder")}
-                                            />
-                                        </div>
-
-                                        {status === "error" && (
-                                            <p className="text-red-500 text-xs">{t("contact.form.error")}</p>
-                                        )}
-
-                                        <Button
-                                            type="submit"
-                                            disabled={status === "loading"}
-                                            size="lg"
-                                            className="w-full mt-2"
-                                        >
-                                            {status === "loading" ? t("contact.form.sending") : t("contact.form.submit")}
-                                        </Button>
-                                    </form>
-                                )}
-
-                                {/* Compact Calendly section */}
-                                <div className="mt-4 pt-4 border-t border-border">
-                                    <div className="flex items-center justify-between">
-                                        <div className="flex items-center gap-2">
-                                            <Calendar className="w-4 h-4 text-primary" />
-                                            <span className="text-xs font-bold uppercase tracking-wide">{t("contact.calendly.title")}</span>
-                                        </div>
-                                        <button className="text-xs text-primary font-bold hover:underline">
-                                            {t("contact.calendly.button")}
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </motion.div>
+                        </motion.aside>
                     </div>
                 </div>
-            </motion.div>
-
-            {/* Footer */}
+            </main>
             <Footer />
-        </main>
+        </>
     );
 }

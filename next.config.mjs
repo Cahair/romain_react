@@ -3,23 +3,12 @@ const nextConfig = {
   devIndicators: false,
   async redirects() {
     return [
+      // Ancienne page unique « Développement web » → catalogue des services.
       {
-        source: '/services',
-        destination: '/services/web-dev',
+        source: '/services/web-dev',
+        destination: '/services',
         permanent: true,
       },
-      // Exemple de redirection 301 (Ancien WordPress -> Nouveau Next.js)
-      // {
-      //   source: '/ancienne-page-wordpress',
-      //   destination: '/nouvelle-page',
-      //   permanent: true,
-      // },
-      // Exemple avec paramètres dynamiques
-      // {
-      //   source: '/old-blog/:slug',
-      //   destination: '/blog/:slug',
-      //   permanent: true,
-      // },
     ];
   },
 };

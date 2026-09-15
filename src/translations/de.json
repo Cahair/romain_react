@@ -1,371 +1,360 @@
 {
     "nav": {
         "home": "Startseite",
-        "services": "Dienstleistungen",
-        "about": "Über uns",
-        "audit": "GRATIS AUDIT",
-        "webDev": "Webentwicklung"
+        "services": "Leistungen",
+        "about": "Über mich",
+        "contact": "Kontakt",
+        "cta": "Projekt starten",
+        "menu": "Menü",
+        "close": "Schließen",
+        "theme": "Farbschema wechseln",
+        "language": "Sprache",
+        "homeAria": "Romain Kantzer, zur Startseite",
+        "mainAria": "Hauptnavigation"
     },
-    "hero": {
-        "titleLine1": "PREMIUM",
-        "titleLine2": "WEBSITES",
-        "highlightTitle": "Maßgeschneiderte Webentwicklung.",
-        "description": "Leistungsstarke Websites. Premium-Design. Optimiertes SEO.\nEntwickelt im Elsass, angetrieben von Künstlicher Intelligenz.",
-        "cta": "Mein Projekt starten",
-        "scroll": "Scrollen"
+    "splash": {
+        "location": "Rountzenheim, Elsass",
+        "role": "Webentwickler — Websites und Apps",
+        "loading": "Website wird geladen"
+    },
+    "common": {
+        "visit": "Besuchen",
+        "copy": "Kopieren",
+        "copied": "Kopiert",
+        "mockupUrl": "ihr-unternehmen.de"
+    },
+    "home": {
+        "hero": {
+            "eyebrow": "Webentwickler — Rountzenheim, Elsass",
+            "srTitle": "Romain Kantzer, Webentwickler im Elsass: Firmenwebsites, Onlineshops, Web-Apps und mobile Apps.",
+            "before": "Ich entwickle",
+            "words": ["Ihre Website", "Ihren Onlineshop", "Ihre Web-App", "Ihre Mobile App"],
+            "lead": "Ich konzipiere, programmiere und veröffentliche Websites und Apps für kleine Unternehmen und Vereine. Danach zeige ich Ihnen, wie Sie sie selbst pflegen.",
+            "cta": "Sprechen wir über Ihr Projekt",
+            "secondary": "Leistungen ansehen",
+            "ruleCenter": "Vom Elsass ins ganze Web",
+            "scroll": "Scrollen"
+        },
+        "marquee": {
+            "label": "Meine Leistungen"
+        },
+        "services": {
+            "label": "Was ich mache",
+            "all": "Alle Leistungen"
+        },
+        "about": {
+            "label": "Wer ich bin",
+            "text": "Ich heiße Romain. Ich bin Ingenieur und baue Websites und Apps für kleine Unternehmen und Vereine. Ich erkläre, was ich tue, ohne Fachjargon, kümmere mich um die gesamte Technik, und Sie behalten die Kontrolle über Ihr Werkzeug. *Ein Ansprechpartner, vom ersten Gespräch bis zum Start.*",
+            "cta": "Mein Werdegang",
+            "imageAlt": "Porträt von Romain Kantzer, Webentwickler in Rountzenheim",
+            "ruleCenter": "Gemacht in Rountzenheim",
+            "facts": [
+                { "label": "Standort", "value": "Rountzenheim, Bas-Rhin (Frankreich)" },
+                { "label": "Ausbildung", "value": "Ingenieur, Icam Strasbourg-Europe" },
+                { "label": "Erstes Projekt", "value": "Cercle d'Échecs de Bischwiller, 2025" },
+                { "label": "Arbeitsweise", "value": "Vor Ort im Elsass oder aus der Ferne" }
+            ]
+        },
+        "project": {
+            "label": "Referenz",
+            "meta": "2025 — Vereinswebsite",
+            "title": "Cercle d'Échecs de *Bischwiller*",
+            "rolesTitle": "Was ich gemacht habe",
+            "roles": [
+                "Komplette Neugestaltung der Website",
+                "Übernahme der Inhalte",
+                "Domain und Hosting",
+                "Schulung der Ehrenamtlichen"
+            ],
+            "text": "Die Website des Vereins war über fünfzehn Jahre alt. Ich habe sie komplett neu gebaut und die Ehrenamtlichen geschult, damit sie ihre Neuigkeiten selbst veröffentlichen. Heute pflegt der Verein seine Website ohne mich.",
+            "link": "Website des Vereins besuchen",
+            "imageAlt": "Startseite der Website des Cercle d'Échecs de Bischwiller"
+        }
+    },
+    "services": {
+        "forWhoLabel": "Für wen",
+        "forWhoTitle": "Für *wen* es gedacht ist",
+        "includedLabel": "Was ich liefere",
+        "includedTitle": "Was *enthalten* ist",
+        "buildLabel": "Unter der Haube",
+        "buildTitle": "Wie ich es *baue*",
+        "faqLabel": "Häufige Fragen",
+        "faqTitle": "Ihre *Fragen*",
+        "next": "Nächste Leistung",
+        "discover": "Diese Leistung entdecken",
+        "heroCta": "Sprechen wir über Ihr Projekt",
+        "heroSecondary": "Was enthalten ist",
+        "breadcrumbAria": "Brotkrümelnavigation",
+        "items": {
+            "site-vitrine": {
+                "name": "Firmenwebsite",
+                "title": "Firmen*website*",
+                "short": "Um Ihr Angebot vorzustellen, bei Google gefunden zu werden und Anfragen zu erhalten.",
+                "lead": "Eine Website, die klar erklärt, was Sie tun, wo man Sie findet und wie man Sie erreicht. Oft ist sie der erste Kontakt eines Kunden mit Ihnen: Sie muss klar, schnell und aktuell sein.",
+                "forWho": [
+                    "Handwerksbetriebe und Geschäfte",
+                    "Vereine und Clubs",
+                    "Selbstständige und Freiberufler",
+                    "Restaurants, Ferienunterkünfte, regionale Erzeuger"
+                ],
+                "included": [
+                    { "title": "Design und Texte, gemeinsam mit Ihnen", "text": "Wir erarbeiten Seitenstruktur und Inhalte zusammen. Ich helfe Ihnen zu schreiben, wonach Ihre Kunden wirklich suchen." },
+                    { "title": "Gut lesbar auf jedem Bildschirm", "text": "Smartphone, Tablet, Computer: Jede Seite ist so gestaltet, dass sie überall gut lesbar ist." },
+                    { "title": "Die Grundlagen für lokales SEO", "text": "Titel, Beschreibungen, Auszeichnung und Sitemap: das Wesentliche, damit Google versteht, wer Sie sind und wo Sie arbeiten." },
+                    { "title": "Ein Kontaktformular direkt in Ihr Postfach", "text": "Anfragen erreichen Sie direkt, ohne zusätzliches Tool, das Sie im Blick behalten müssen." },
+                    { "title": "Ein Bereich zum Bearbeiten Ihrer Inhalte", "text": "Neuigkeiten, Öffnungszeiten, Fotos: Sie aktualisieren sie selbst, ich zeige Ihnen, wie." },
+                    { "title": "Domain, Hosting, Veröffentlichung", "text": "Ich übernehme die Technik, von der Wahl der Adresse bis zur Veröffentlichung." }
+                ],
+                "build": {
+                    "text": "Ich entwickle Websites mit Next.js und React: Die Seiten laden schnell, und der Code bleibt leicht erweiterbar. Wenn Sie oft veröffentlichen müssen, ergänze ich ein einfaches Redaktionswerkzeug, damit Sie die Kontrolle behalten.",
+                    "tags": ["Next.js", "React", "TypeScript", "Tailwind CSS"]
+                },
+                "faq": [
+                    { "q": "Was kostet eine Firmenwebsite?", "a": "Das hängt von der Anzahl der Seiten, den zu erstellenden Inhalten und den Funktionen ab. Nach einem ersten Gespräch schicke ich Ihnen ein detailliertes Angebot, Position für Position, damit Sie genau wissen, wofür Sie bezahlen." },
+                    { "q": "Ich habe noch keine Texte und Fotos — ist das ein Problem?", "a": "Nein. Wir starten mit dem, was Sie haben, und ich helfe Ihnen, den Rest zu strukturieren. Ich sage Ihnen klar, was Sie vorbereiten müssen und wann." },
+                    { "q": "Kann ich die Website selbst bearbeiten?", "a": "Ja, genau darum geht es. Ich schule Sie darin, Ihre Inhalte zu aktualisieren — so wie die Ehrenamtlichen des Schachvereins in Bischwiller." },
+                    { "q": "Ich habe schon eine Website — können Sie sie neu machen?", "a": "Ja. Ich übernehme die nützlichen Inhalte, behalte Ihre Domain und sorge dafür, dass die alten Adressen auf die neuen Seiten weiterleiten." }
+                ]
+            },
+            "site-e-commerce": {
+                "name": "Onlineshop",
+                "title": "Online*shop*",
+                "short": "Um Ihre Produkte online zu verkaufen, Zahlungen anzunehmen und Bestellungen zu verfolgen.",
+                "lead": "Ein Onlineshop, in dem Ihre Kunden Ihre Produkte finden, sicher bezahlen und eine Bestätigung erhalten — während Sie die Bestellungen an einem Ort verwalten.",
+                "forWho": [
+                    "Geschäfte, die über ihr Schaufenster hinaus verkaufen wollen",
+                    "Erzeuger und Handwerker im Direktverkauf",
+                    "Vereine, die Mitgliedschaften, Tickets oder Fanartikel verkaufen",
+                    "Marken, die mit dem Onlineverkauf beginnen"
+                ],
+                "included": [
+                    { "title": "Ein übersichtlicher Katalog", "text": "Produktseiten mit Fotos, Varianten (Größe, Farbe …), Lagerbestand und Preisen — leicht zu aktualisieren." },
+                    { "title": "Sichere Online-Zahlung", "text": "Kreditkarte und gängige Zahlungsarten über einen anerkannten Anbieter wie Stripe. Keine Kartendaten laufen über Ihre Website." },
+                    { "title": "Versand und Abholung", "text": "Versandkosten nach Zone, Abholung im Geschäft oder Click & Collect: Wir richten ein, was zu Ihrer Arbeitsweise passt." },
+                    { "title": "Bestell-E-Mails", "text": "Bestätigung, Versand, Rechnung: Ihre Kunden werden bei jedem Schritt automatisch informiert." },
+                    { "title": "Ein Backoffice für die Verwaltung", "text": "Bestellungen, Kunden, Lager: Sie behalten alles in einer einfachen Oberfläche im Blick, und ich zeige Ihnen, wie sie funktioniert." },
+                    { "title": "Die Pflichtseiten", "text": "Ich plane die rechtlichen Seiten ein (AGB, Impressum, Datenschutz) und binde sie mit Ihren Texten ein." }
+                ],
+                "build": {
+                    "text": "Je nach Größe Ihres Sortiments und Ihren Anforderungen empfehle ich entweder eine fertige Plattform wie Shopify, praktisch, wenn Sie den Shop im Alltag selbst betreiben möchten, oder einen mit Next.js und Stripe programmierten Shop, mit mehr Freiheit und ohne Plattform-Abo. Ich erkläre Ihnen den Unterschied vor dem Start, bei den Kosten wie bei der Nutzung.",
+                    "tags": ["Next.js", "Stripe", "Shopify", "React"]
+                },
+                "faq": [
+                    { "q": "Shopify oder programmierter Shop: Was soll ich wählen?", "a": "Shopify eignet sich gut, wenn Sie eine fertige Plattform mit monatlichem Abo möchten. Ein mit Next.js programmierter Shop lässt Ihnen mehr Freiheit bei Design und Funktionen, ohne Plattform-Abo (es fallen nur die Gebühren des Zahlungsanbieters an). Ich helfe Ihnen bei der Wahl, passend zu Sortiment und Budget." },
+                    { "q": "Wer kümmert sich um Fotos und Produktseiten?", "a": "Sie kennen Ihre Produkte besser als ich: Sie liefern die Informationen, ich baue übersichtliche Produktseiten und zeige Ihnen, wie Sie neue hinzufügen. Bei vielen Produkten planen wir einen Import." },
+                    { "q": "Kann ich klein anfangen?", "a": "Ja. Wir können den Shop mit wenigen Produkten starten und ihn danach erweitern. Oft ist das der beste Weg, um zu sehen, was funktioniert, bevor Sie mehr investieren." },
+                    { "q": "Wie werden Zahlungen abgewickelt?", "a": "Über einen anerkannten Zahlungsanbieter wie Stripe. Er kümmert sich um die Sicherheit der Kartenzahlungen; das Geld geht direkt auf Ihr Konto." }
+                ]
+            },
+            "application-web": {
+                "name": "Web-App",
+                "title": "Web-*App*",
+                "short": "Um Tabellen abzulösen, Buchungen zu verwalten oder einen Kundenbereich anzubieten.",
+                "lead": "Ein Online-Werkzeug, das zu Ihrer Arbeitsweise passt: Buchungen, Kundenbereich, Mitgliederverwaltung, Planung, Angebote … Im Browser nutzbar, ohne Installation.",
+                "forWho": [
+                    "Unternehmen, die mit mehreren Tabellen jonglieren",
+                    "Vereine, die Mitglieder, Anmeldungen oder Pläne verwalten",
+                    "Fachleute, die einen Online-Kundenbereich möchten",
+                    "Gründer, die eine Idee testen wollen"
+                ],
+                "included": [
+                    { "title": "Wir starten bei Ihrem Alltag", "text": "Ich schaue mir an, wie Sie heute arbeiten, bevor ich etwas vorschlage. Die App soll vereinfachen, nicht eine weitere Ebene hinzufügen." },
+                    { "title": "Konten und Zugriffsrechte", "text": "Sichere Anmeldung und Rollen (Administrator, Mitglied, Kunde): Jeder sieht, was ihn betrifft." },
+                    { "title": "Ihre Daten an einem Ort", "text": "Eine saubere Datenbank ersetzt verstreute Dateien. Sie können Ihre Daten jederzeit exportieren." },
+                    { "title": "Nützliche Benachrichtigungen", "text": "Bestätigungs-E-Mails, Erinnerungen, Hinweise: Die App informiert die richtigen Personen zur richtigen Zeit." },
+                    { "title": "Eine erste Version, die Sie früh nutzen", "text": "Wir beginnen mit dem Wesentlichen, damit Sie die App früh einsetzen können, und ergänzen dann, was wirklich fehlt." },
+                    { "title": "Hosting und Betreuung", "text": "Ich stelle die App online, behalte sie im Blick und spiele die Sicherheitsupdates ein." }
+                ],
+                "build": {
+                    "text": "Für die Oberfläche nutze ich Next.js und React, für Ihre Daten und die Benutzerkonten eine PostgreSQL-Datenbank (oft über Supabase). Das sind weit verbreitete Werkzeuge: Sie sind nicht an mich gebunden.",
+                    "tags": ["Next.js", "React", "TypeScript", "PostgreSQL", "Supabase", "Node.js"]
+                },
+                "faq": [
+                    { "q": "Was ist der Unterschied zwischen einer Website und einer Web-App?", "a": "Eine Website stellt Informationen dar. Eine App ermöglicht Handlungen: buchen, verwalten, sich anmelden, Daten speichern. Viele Projekte verbinden beides." },
+                    { "q": "Wie lange dauert die Entwicklung einer App?", "a": "Das hängt ganz von der Anzahl der Funktionen ab. Deshalb schlage ich vor, mit einer ersten Version zu beginnen, die sich auf das Wesentliche beschränkt: Sie haben früher ein nutzbares Werkzeug und mit dem Angebot einen genauen Zeitplan." },
+                    { "q": "Sind meine Daten sicher?", "a": "Der Zugang ist durch eine Anmeldung geschützt, die Übertragung ist verschlüsselt, und die Daten werden nach Möglichkeit in Europa gehostet. Ich erkläre Ihnen, wo sie gespeichert sind und wer darauf zugreifen kann." },
+                    { "q": "Und wenn ich später eine mobile App brauche?", "a": "Eine Web-App lässt sich bereits auf dem Smartphone nutzen. Wenn Sie eine echte App in den Stores brauchen, kann ein großer Teil der Arbeit wiederverwendet werden." }
+                ]
+            },
+            "application-mobile": {
+                "name": "Mobile App",
+                "title": "Mobile *App*",
+                "short": "Um in der Tasche Ihrer Kunden oder Ihres Teams zu sein, auf iPhone und Android.",
+                "lead": "Eine App auf dem Smartphone Ihrer Kunden, Mitglieder oder Mitarbeitenden, für iPhone und Android. Benachrichtigungen, schneller Zugriff, Einsatz unterwegs: wenn eine Website nicht mehr reicht.",
+                "forWho": [
+                    "Geschäfte, die ihre Kunden binden möchten",
+                    "Clubs und Vereine, die ihre Mitglieder informieren wollen",
+                    "Teams, die im Außendienst arbeiten",
+                    "Projekte, die Funktionen des Smartphones brauchen: Kamera, Standort, Benachrichtigungen"
+                ],
+                "included": [
+                    { "title": "Eine App für iPhone und Android", "text": "Ich entwickle mit React Native: ein Code für beide Systeme, also geringere Kosten und einfachere Updates." },
+                    { "title": "Bildschirme für den Daumen gemacht", "text": "Einfache Navigation, gut lesbare Texte, natürliche Gesten: Die App soll ohne Anleitung verständlich sein." },
+                    { "title": "Benachrichtigungen", "text": "Erinnerungen, Neuigkeiten, Nachrichten: Sie erreichen Ihre Nutzer direkt auf dem Smartphone." },
+                    { "title": "Ein angebundenes Backoffice", "text": "Sie verwalten Inhalte und Nutzer über eine Weboberfläche, ohne den Code anzufassen." },
+                    { "title": "Veröffentlichung in den Stores", "text": "Ich bereite die Einträge im App Store und bei Google Play vor und begleite Sie durch die Prüfung von Apple und Google." },
+                    { "title": "Betreuung nach dem Start", "text": "Systemupdates, Fehlerbehebungen, neue Funktionen: Die App lebt weiter." }
+                ],
+                "build": {
+                    "text": "Ich entwickle Apps mit React Native und Expo, in derselben Sprache wie meine Websites. Daten und Konten laufen über dieselbe Art von Datenbank wie meine Web-Apps — so können Website, Web-App und mobile App dieselben Informationen teilen.",
+                    "tags": ["React Native", "Expo", "TypeScript", "Supabase"]
+                },
+                "faq": [
+                    { "q": "Brauche ich wirklich eine mobile App?", "a": "Nicht immer. Wenn Ihre Nutzer vor allem Informationen nachschlagen, reicht eine gut gemachte Website. Eine App lohnt sich, wenn sie oft geöffnet wird oder wenn Sie Benachrichtigungen und Funktionen des Smartphones brauchen. Das sage ich Ihnen offen im ersten Gespräch." },
+                    { "q": "Brauche ich Entwicklerkonten bei Apple und Google?", "a": "Ja, die App wird unter Ihrem Namen veröffentlicht. Apple verlangt eine jährliche Gebühr, Google eine einmalige Zahlung. Ich begleite Sie bei den Formalitäten." },
+                    { "q": "Wie lange dauert die Prüfung in den Stores?", "a": "Das hängt von Apple und Google ab. Ich plane diesen Schritt im Zeitplan ein und übernehme die Abstimmung, falls Änderungen verlangt werden." },
+                    { "q": "Können Sie eine bestehende App übernehmen?", "a": "Das hängt von der verwendeten Technologie ab. Ich schaue mir den Code an, bevor ich zusage, und sage Ihnen klar, was möglich ist." }
+                ]
+            }
+        }
+    },
+    "servicesPage": {
+        "label": "Leistungen",
+        "title": "Websites und Apps, *von A bis Z*.",
+        "lead": "Ich kümmere mich um alles, vom ersten Gespräch bis zur Veröffentlichung: Konzeption, Design, Entwicklung, Hosting. Sie haben einen Ansprechpartner, der Ihr Projekt von Anfang bis Ende kennt.",
+        "faqTitle": "Allgemeine *Fragen*",
+        "faq": [
+            { "q": "Arbeiten Sie nur im Elsass?", "a": "Ich sitze in Rountzenheim im Département Bas-Rhin und komme gerne in der Region vorbei, um Sie zu treffen. Mit Kunden, die weiter weg sind, arbeite ich per Videocall." },
+            { "q": "Wie läuft das Angebot ab?", "a": "Nach einem kostenlosen ersten Gespräch schicke ich Ihnen ein detailliertes Angebot: was enthalten ist, was nicht, und der Zeitplan. Sie wissen genau, wofür Sie bezahlen." },
+            { "q": "Wird meine Website gut gefunden?", "a": "Ich achte bei jedem Projekt auf die technischen SEO-Grundlagen: Seitenstruktur, Ladezeit, Tags, Sitemap. Das Ranking hängt auch von Ihren Inhalten und der Konkurrenz ab: Ich erkläre Ihnen, wie Sie langfristig daran arbeiten, ohne Ihnen Platz eins zu versprechen." },
+            { "q": "Bieten Sie Wartung an?", "a": "Ja. Nach dem Start kann ich mich weiter um Updates, Sicherheit und Weiterentwicklungen kümmern. Wir besprechen das beim Angebot, je nach Ihrem Bedarf." },
+            { "q": "Ich weiß nicht, welche Lösung passt — können Sie helfen?", "a": "Genau dafür ist das erste Gespräch da. Sie beschreiben Ihren Bedarf, und ich sage Ihnen offen, was mir sinnvoll erscheint, auch wenn eine einfachere Lösung reicht." }
+        ]
+    },
+    "process": {
+        "label": "So läuft es ab",
+        "title": "Vom ersten Gespräch bis zum *Start*.",
+        "intro": "Jedes Projekt folgt denselben Schritten. Sie wissen immer, wo wir stehen und was als Nächstes kommt.",
+        "steps": [
+            { "title": "Wir *sprechen*", "text": "Ein kostenloses erstes Gespräch, telefonisch, per Video oder persönlich. Sie erzählen mir von Ihrem Betrieb und Ihren Erwartungen. Ich sage Ihnen offen, was mir sinnvoll erscheint und was nicht." },
+            { "title": "Der *Entwurf*", "text": "Bevor ich eine Zeile Code schreibe, zeige ich Ihnen, wie das Projekt aussehen wird, Bildschirm für Bildschirm. Wir passen es gemeinsam an, bis es stimmt." },
+            { "title": "Die *Entwicklung*", "text": "Ich programmiere die Website oder App. Sie verfolgen den Fortschritt auf einer Online-Vorschau, die Sie jederzeit ansehen können, und geben mir laufend Feedback." },
+            { "title": "Der *Start*", "text": "Domain, Hosting, Veröffentlichung in den Stores bei einer mobilen App: Ich kümmere mich um alles. Danach schule ich Sie, damit Sie selbstständig sind." },
+            { "title": "Und *danach*", "text": "Ich bleibe erreichbar. Updates, Sicherheit, neue Funktionen: Wir machen gemeinsam weiter, wenn Sie möchten." }
+        ]
+    },
+    "cta": {
+        "label": "Kontakt",
+        "title": "Sprechen wir über *Ihr Projekt*.",
+        "text": "Eine Website, ein Shop, eine App? Erzählen Sie mir, was Sie vorhaben, auch wenn es noch nicht ganz konkret ist. Ich antworte Ihnen persönlich.",
+        "button": "Schreiben Sie mir"
     },
     "about": {
-        "intro": "Ich baue Websites für kleine Unternehmen und Vereine — von Rountzenheim aus, im Elsass.",
+        "label": "Über mich",
+        "title": "Romain *Kantzer*",
+        "intro": "Webentwickler in Rountzenheim im Elsass. Ich baue Websites und Apps für kleine Unternehmen und Vereine.",
+        "imageAlt": "Romain Kantzer, Webentwickler in Rountzenheim",
+        "contactButton": "Kontakt aufnehmen",
         "story": {
-            "titleBefore": "Wer ich ",
-            "titleHighlight": "bin",
-            "titleAfter": "",
+            "label": "Meine Geschichte",
+            "title": "Wer ich *bin*",
             "p1": "Ich komme aus Rountzenheim, einem Dorf im Nordelsass. Gelernt habe ich industrielle Automatisierung, danach habe ich mein Ingenieurdiplom in digitalen Lösungen an der Icam Strasbourg-Europe gemacht, im Rahmen einer dualen Ausbildung bei ERAS.",
             "quote": "Ich habe gelernt, Dinge zu bauen, die jeden Tag funktionieren müssen — nicht nur am Tag der Vorführung.",
             "p2": "Angefangen hat alles mit meinem Schachverein in Bischwiller. Seine Website war über fünfzehn Jahre alt. Ich habe sie komplett neu gebaut: neues Design, Inhalte übernommen, Domain und Hosting — und vor allem habe ich die Ehrenamtlichen geschult, damit sie ihre Neuigkeiten selbst veröffentlichen. Heute pflegt der Verein seine Website ohne mich.",
-            "p3": "Dieses Projekt hat mir Lust gemacht, daraus meinen Beruf zu machen. Ich habe RK.ai gegründet, um kleinen Unternehmen und Vereinen in der Region dasselbe zu bieten: eine klare Website, die zu ihnen passt und die sie selbst pflegen können.",
-            "clubLink": "Zur Website des Vereins",
-            "contactBefore": "Sie haben bereits ein Projekt im Kopf? ",
-            "contactLink": "Sprechen wir darüber."
-        },
-        "proof": {
-            "eyebrow": "Ein prägendes Projekt",
-            "titleBefore": "Cercle d'Échecs de ",
-            "titleHighlight": "Bischwiller",
-            "titleAfter": "",
-            "description": "Neugestaltung der Website, Übernahme der Inhalte, Verwaltung von Domain und Hosting sowie Schulung der Ehrenamtlichen, damit der Verein seine Neuigkeiten selbst veröffentlichen kann.",
-            "link": "Website des Vereins besuchen",
-            "imageAlt": "Startseite der Website des Cercle d'Échecs de Bischwiller"
+            "p3": "Dieses Projekt hat mir Lust gemacht, daraus meinen Beruf zu machen. Ich habe RK.ai gegründet, um kleinen Unternehmen und Vereinen in der Region dasselbe zu bieten: klare Websites und Apps, die zu ihnen passen und die sie selbst pflegen können."
         },
         "how": {
-            "titleBefore": "Wie ich ",
-            "titleHighlight": "arbeite",
-            "titleAfter": "",
+            "label": "Meine Arbeitsweise",
+            "title": "Wie ich *arbeite*",
             "items": [
-                {
-                    "title": "Ohne Fachjargon",
-                    "text": "Ich erkläre, was ich tue und warum — in verständlicher Sprache. Sie wissen immer, wofür Sie bezahlen."
-                },
-                {
-                    "title": "Sie bleiben unabhängig",
-                    "text": "Ich schule Ihr Team oder Ihre Ehrenamtlichen, damit Sie ohne mich veröffentlichen können — wie beim Schachverein."
-                },
-                {
-                    "title": "Ich kümmere mich um die Technik",
-                    "text": "Domain, Hosting, Wartung: Diesen Teil übernehme ich, damit Sie nicht daran denken müssen."
-                },
-                {
-                    "title": "Ich bin von hier",
-                    "text": "Ich arbeite von Rountzenheim aus und komme gerne persönlich vorbei, um darüber zu sprechen."
-                }
+                { "title": "Ohne Fachjargon", "text": "Ich erkläre, was ich tue und warum — in verständlicher Sprache. Sie wissen immer, wofür Sie bezahlen." },
+                { "title": "Sie bleiben unabhängig", "text": "Ich schule Ihr Team oder Ihre Ehrenamtlichen, damit Sie ohne mich veröffentlichen können — wie beim Schachverein." },
+                { "title": "Ich kümmere mich um die Technik", "text": "Domain, Hosting, Wartung: Diesen Teil übernehme ich, damit Sie nicht daran denken müssen." },
+                { "title": "Ich bin von hier", "text": "Ich arbeite von Rountzenheim aus und komme gerne persönlich vorbei, um darüber zu sprechen." }
             ]
         },
         "path": {
-            "titleBefore": "Mein ",
-            "titleHighlight": "Werdegang",
-            "titleAfter": ", kurz gefasst",
+            "label": "Werdegang",
+            "title": "Mein Werdegang, *kurz gefasst*",
             "items": [
-                {
-                    "year": "2026",
-                    "text": "Gründung von RK.ai — Websites und Automatisierung für kleine Unternehmen und Vereine"
-                },
-                {
-                    "year": "2025",
-                    "text": "Neue Website für den Cercle d'Échecs de Bischwiller"
-                },
-                {
-                    "year": "2024 – 2026",
-                    "text": "Ingenieurdiplom in digitalen Lösungen — Icam Strasbourg-Europe, duale Ausbildung bei ERAS"
-                },
-                {
-                    "year": "2023",
-                    "text": "Automatisierte Systeme und industrielle Informatik — IUT de Haguenau"
-                },
-                {
-                    "year": "2021 – 2023",
-                    "text": "Ausbildung zum Automatisierungstechniker — Clemessy"
-                },
-                {
-                    "year": "2020 – 2022",
-                    "text": "Elektrotechnik und industrielle Informatik — IUT"
-                }
+                { "year": "2026", "text": "Gründung von RK.ai — Websites und Apps für kleine Unternehmen und Vereine" },
+                { "year": "2025", "text": "Neue Website für den Cercle d'Échecs de Bischwiller" },
+                { "year": "2024 – 2026", "text": "Ingenieurdiplom in digitalen Lösungen — Icam Strasbourg-Europe, duale Ausbildung bei ERAS" },
+                { "year": "2023", "text": "Automatisierte Systeme und industrielle Informatik — IUT de Haguenau" },
+                { "year": "2021 – 2023", "text": "Ausbildung zum Automatisierungstechniker — Clemessy" },
+                { "year": "2020 – 2022", "text": "Elektrotechnik und industrielle Informatik — IUT" }
             ]
-        },
-        "contact": {
-            "text": "Ein Projekt, eine Frage? Schreiben Sie mir einfach.",
-            "button": "Kontakt aufnehmen",
-            "serviceBefore": "Sie suchen ",
-            "serviceLink": "eine Website für einen Verein oder ein kleines Unternehmen im Elsass",
-            "serviceAfter": "? Ich begleite Sie vom ersten Gespräch bis zum Start — mit einer Lösung, die einfach zu nutzen und auf Dauer angelegt ist."
         }
     },
     "contact": {
-        "title": "STARTEN WIR IHRE",
-        "titleHighlight": "AI TRANSFORMATION",
-        "subtitle": "Ein kostenloses Audit zur Identifizierung von Automatisierungsmöglichkeiten.",
-        "why": {
-            "title": "Warum ein AI-Audit?",
-            "items": [
-                "Identifizierung von Prozessen mit hohem ROI",
-                "Zeit- und Budgetschätzung",
-                "Personalisierte Transformations-Roadmap",
-                "Expertenberatung ohne Verpflichtung"
-            ]
-        },
-        "contact": {
-            "title": "Direkter Kontakt",
-            "email": "E-Mail",
-            "phone": "Telefon",
-            "location": "Standort",
-            "locationValue": "Rountzenheim, Elsass (Frankreich) & Remote"
-        },
+        "label": "Kontakt",
+        "title": "Sprechen wir über *Ihr Projekt*.",
+        "lead": "Erzählen Sie mir, was Sie vorhaben, auch wenn es noch nicht ganz konkret ist. Das erste Gespräch ist kostenlos und unverbindlich.",
         "form": {
-            "title": "Kontaktanfrage",
-            "name": "Name",
-            "namePlaceholder": "Max Mustermann",
-            "email": "E-Mail",
-            "emailPlaceholder": "max@firma.com",
-            "project": "Projekttyp",
+            "project": "Ihr Projekt",
             "projectOptions": {
-                "select": "Auswählen...",
-                "redesign": "Website-Relaunch",
-                "creation": "Neue Website",
-                "feature": "Neue Funktion",
-                "other": "Sonstiges"
+                "site-vitrine": "Firmenwebsite",
+                "site-e-commerce": "Onlineshop",
+                "application-web": "Web-App",
+                "application-mobile": "Mobile App",
+                "refonte": "Relaunch einer bestehenden Website",
+                "autre": "Sonstiges"
             },
-            "budget": "Budget",
+            "name": "Ihr Name",
+            "namePlaceholder": "Max Mustermann",
+            "email": "Ihre E-Mail",
+            "emailPlaceholder": "max@firma.de",
+            "message": "Ihre Nachricht",
+            "messagePlaceholder": "Ein paar Worte zu Ihrem Betrieb und dem, was Sie vorhaben …",
+            "budget": "Geplantes Budget (optional)",
             "budgetOptions": {
-                "select": "Auswählen...",
                 "less1k": "Unter 1.000 €",
-                "1k2k": "1.000 € - 2.000 €",
-                "2k5k": "2.000 € - 5.000 €",
-                "more5k": "Über 5.000 €"
+                "1k2k": "1.000 – 2.000 €",
+                "2k5k": "2.000 – 5.000 €",
+                "more5k": "Über 5.000 €",
+                "unknown": "Noch unklar"
             },
-            "message": "Nachricht",
-            "messagePlaceholder": "Beschreiben Sie kurz Ihre Anforderungen...",
-            "submit": "Anfrage senden"
+            "submit": "Nachricht senden",
+            "sending": "Wird gesendet …",
+            "privacy": "Ihre Angaben werden nur verwendet, um Ihnen zu antworten.",
+            "error": "Die Nachricht konnte nicht gesendet werden. Versuchen Sie es erneut oder schreiben Sie mir direkt an contact@romain-kantzer.com.",
+            "successTitle": "Danke, Ihre Nachricht ist unterwegs.",
+            "successText": "Ich lese sie und antworte Ihnen persönlich, per E-Mail oder Telefon.",
+            "again": "Weitere Nachricht senden"
         },
-        "calendly": {
-            "title": "Oder direkt buchen",
-            "button": "Calendly öffnen →"
-        }
-    },
-    "storytelling": {
-        "badge": "IHRE DIGITALE PRÄSENZ",
-        "title": "Nicht nur",
-        "titleHighlight": "Websites.",
-        "titleEnd": "Konversionsmaschinen.",
-        "subtitle1": "Das Web",
-        "subtitleHighlight": "angetrieben",
-        "subtitle2": "durch KI.",
-        "description": "Moderne, leistungsstarke Websites, verstärkt durch Künstliche Intelligenz."
-    },
-    "homeWebDev": {
-        "eyebrow": "Was ich mache",
-        "titleBefore": "Mehr über ",
-        "titleHighlight": "Webentwicklung",
-        "titleAfter": " erfahren",
-        "text": "Ich erstelle Websites für kleine Unternehmen und Vereine im Elsass. Auf der eigenen Seite erkläre ich, wie ich arbeite, welche Schritte ein Projekt durchläuft und beantworte die häufigsten Fragen.",
-        "items": [
-            {
-                "title": "Klare Etappen",
-                "text": "Strategie, Design, Entwicklung, Go-live: Sie wissen immer, wo Ihr Projekt steht."
-            },
-            {
-                "title": "Sie bleiben unabhängig",
-                "text": "Ich schule Sie, Ihre Inhalte selbst zu veröffentlichen — wie beim Schachverein in Bischwiller."
-            },
-            {
-                "title": "Die Technik übernehme ich",
-                "text": "Domain, Hosting, Wartung: Dieser Teil ist meine Aufgabe, nicht Ihre."
-            }
-        ],
-        "cta": "Webentwicklung entdecken"
-    },
-    "webDevPage": {
-        "hero": {
-            "overline": "// Premium-Webentwicklung",
-            "title": "Web-Erlebnisse, die Eindruck hinterlassen",
-            "subtitle": "Unternehmensseiten, E-Commerce und maßgeschneiderte Anwendungen mit Next.js — gebaut, um zu konvertieren und zu bestehen.",
-            "proofs": [
-                "Lighthouse-Score 99+",
-                "Lieferung in 2 bis 6 Wochen",
-                "Technisches SEO inklusive"
-            ],
-            "cta": "Mein Projekt besprechen"
+        "direct": {
+            "title": "Direkt",
+            "location": "Rountzenheim (Bas-Rhin, Frankreich) — im Elsass und aus der Ferne"
         },
-        "metrics": {
-            "overline": "// Beweis in Zahlen",
-            "title": "Lighthouse",
-            "titleHighlight": "Scores",
-            "items": [
-                {
-                    "label": "SEO",
-                    "value": 100,
-                    "suffix": "/100",
-                    "desc": "Maximale Optimierung für Suchmaschinen. Semantische Struktur, dynamische Meta-Tags und automatisch generierte Sitemap."
-                },
-                {
-                    "label": "Leistung",
-                    "value": 99,
-                    "suffix": "/100",
-                    "desc": "Nahezu sofortige Ladezeiten dank serverseitigem Rendering (SSR), Bildoptimierung und Code-Minimierung."
-                },
-                {
-                    "label": "Barrierefreiheit",
-                    "value": 100,
-                    "suffix": "/100",
-                    "desc": "Navigation angepasst an alle Benutzerprofile. Optimaler Kontrast, Screenreader-Unterstützung und Tastaturnavigation."
-                },
-                {
-                    "label": "Best Practices",
-                    "value": 100,
-                    "suffix": "/100",
-                    "desc": "Sauberer und sicherer Code unter Einhaltung moderner Webstandards. Behebung von Schwachstellen, HTTPS und robuste Architektur."
-                }
-            ]
-        },
-        "tech": {
-            "overline": "// Das Ökosystem",
-            "title": "Tech",
-            "titleHighlight": "Stack",
-            "items": [
-                "React-Framework",
-                "UI-Bibliothek",
-                "Utility-First CSS",
-                "Animationen",
-                "Typsicherheit",
-                "Deployment"
-            ]
-        },
-        "caseStudies": {
-            "overline": "// Referenzen",
-            "title": "Messbare",
-            "titleHighlight": "Ergebnisse",
-            "subtitle": "Jedes Projekt wird mit einem messbaren Ziel entwickelt: Traffic, Conversion, Performance.",
-            "items": [
-                {
-                    "tag": "Unternehmensseite",
-                    "title": "Handwerk & lokaler Handel",
-                    "desc": "Komplette conversion-orientierte Neugestaltung: starke Identität, vereinfachte Kontaktaufnahme und optimiertes lokales SEO.",
-                    "metrics": [
-                        {
-                            "value": "+180%",
-                            "label": "Organischer Traffic"
-                        },
-                        {
-                            "value": "0,4s",
-                            "label": "Erste Anzeige"
-                        }
-                    ]
-                },
-                {
-                    "tag": "E-Commerce",
-                    "title": "Online-Modeshop",
-                    "desc": "Kaufprozess von A bis Z neu gedacht: immersive Produktseiten, reibungsloser Checkout und vereinfachte Zahlung.",
-                    "metrics": [
-                        {
-                            "value": "+65%",
-                            "label": "Conversion-Rate"
-                        },
-                        {
-                            "value": "99/100",
-                            "label": "Lighthouse-Score"
-                        }
-                    ]
-                },
-                {
-                    "tag": "Web-App",
-                    "title": "Buchungsplattform",
-                    "desc": "Maßgeschneiderte Business-Anwendung mit Dashboard, automatischen Benachrichtigungen und Kalendersynchronisation.",
-                    "metrics": [
-                        {
-                            "value": "-70%",
-                            "label": "Verwaltungszeit"
-                        },
-                        {
-                            "value": "24/7",
-                            "label": "Online-Buchungen"
-                        }
-                    ]
-                }
-            ]
-        },
-        "faq": {
-            "overline": "// Häufige Fragen",
-            "title": "Sie fragen",
-            "titleHighlight": "sich",
-            "items": [
-                {
-                    "q": "Was kostet eine maßgeschneiderte Website?",
-                    "a": "Jedes Projekt ist einzigartig: Das Budget hängt vom Umfang (Unternehmensseite, E-Commerce, Anwendung), Design und den Funktionen ab. Nach einem kostenlosen Erstgespräch erhalten Sie ein detailliertes, transparentes Angebot — ohne Überraschungen."
-                },
-                {
-                    "q": "Wie lange dauert die Umsetzung?",
-                    "a": "Rechnen Sie mit 2 bis 3 Wochen für eine Unternehmensseite und 4 bis 6 Wochen für E-Commerce oder eine Anwendung. Sie verfolgen den Fortschritt kontinuierlich mit regelmäßigen Abstimmungen und Demo-Versionen."
-                },
-                {
-                    "q": "Wird meine Website bei Google gut gefunden?",
-                    "a": "Technisches SEO ist in jedem Projekt enthalten: semantische Struktur, Ladegeschwindigkeit, Meta-Tags, Sitemap und strukturierte Daten. Nahezu perfekte Lighthouse-Scores sind Standard, keine Option."
-                },
-                {
-                    "q": "Bieten Sie Wartung nach dem Launch an?",
-                    "a": "Ja. Wartungspakete decken Updates, Sicherheit, Backups und Weiterentwicklungen ab. Sie konzentrieren sich auf Ihr Geschäft, ich kümmere mich um die Technik."
-                }
-            ]
-        },
-        "process": {
-            "overline": "// Unsere Methodik",
-            "title": "Vom Konzept zum",
-            "titleHighlight": "Launch",
+        "next": {
+            "title": "Wie geht es weiter?",
             "steps": [
-                {
-                    "num": "01",
-                    "title": "Strategie",
-                    "desc": "Marktaudit, Wettbewerbsanalyse und Zielsetzung. Wir entwerfen die ideale Architektur für Ihr Projekt."
-                },
-                {
-                    "num": "02",
-                    "title": "Design",
-                    "desc": "Wireframes, interaktive Prototypen und Art Direction. Jeder Pixel ist darauf ausgelegt, zu konvertieren und zu begeistern."
-                },
-                {
-                    "num": "03",
-                    "title": "Entwicklung",
-                    "desc": "Sauberer, performanter und wartbarer Code. Next.js, React, Tailwind CSS — die besten Tools für außergewöhnliche Ergebnisse."
-                },
-                {
-                    "num": "04",
-                    "title": "Launch",
-                    "desc": "Deployment, Monitoring und Optimierung. Ihre Website ist online, schnell und bereit, die Suchergebnisse zu dominieren."
-                }
+                "Ich lese Ihre Nachricht und antworte Ihnen persönlich.",
+                "Wir sprechen darüber, am Telefon, per Video oder persönlich.",
+                "Ich schicke Ihnen ein detailliertes, unverbindliches Angebot."
             ]
-        },
-        "cta": {
-            "title": "Bereit, das Web zu",
-            "titleHighlight": "dominieren?",
-            "subtitle": "Verwandeln wir Ihre Vision in ein digitales Erlebnis, das Eindruck hinterlässt.",
-            "button": "Projekt starten"
         }
-    },
-    "statsBar": {
-        "lighthouse": "Lighthouse Score",
-        "experience": "Jahre Erfahrung",
-        "projects": "Projekte geliefert",
-        "availability": "KI Verfügbarkeit"
     },
     "footer": {
-        "title": "BEREIT FÜR",
-        "titleHighlight": "AUTOMATISIERUNG?",
-        "subtitle": "Lassen Sie Ihre Konkurrenten nicht voraus. Kontaktieren Sie uns für ein kostenloses AI-Audit Ihrer Geschäftsprozesse.",
-        "form": {
-            "submit": "E-Mail Senden"
-        },
-        "legal": {
-            "rights": "ALLE RECHTE VORBEHALTEN",
-            "privacy": "Datenschutz",
-            "terms": "AGB",
-            "mentions": "Impressum"
-        }
+        "tagline": "Websites und Apps, *gemacht im Elsass*.",
+        "navTitle": "Navigation",
+        "servicesTitle": "Leistungen",
+        "contactTitle": "Kontakt",
+        "email": "E-Mail schreiben",
+        "rights": "Alle Rechte vorbehalten",
+        "legal": "Impressum",
+        "localTime": "Rountzenheim",
+        "backToTop": "Nach oben"
+    },
+    "legal": {
+        "label": "Informationen",
+        "title": "*Impressum*"
+    },
+    "notFound": {
+        "label": "Fehler 404",
+        "title": "Diese Seite wurde *nicht gefunden*.",
+        "text": "Der Link ist vielleicht veraltet, oder die Seite ist umgezogen.",
+        "button": "Zur Startseite"
+    },
+    "chatbot": {
+        "open": "Assistent öffnen",
+        "close": "Assistent schließen",
+        "title": "Assistent",
+        "subtitle": "Automatische Antworten zu meiner Arbeit",
+        "welcome": "Hallo! Ich beantworte Ihre Fragen zu Romain, seinen Leistungen und seiner Arbeitsweise.",
+        "placeholder": "Ihre Frage …",
+        "send": "Senden",
+        "loading": "Antwort wird geschrieben …",
+        "error": "Entschuldigung, es ist ein Fehler aufgetreten. Versuchen Sie es gleich noch einmal oder schreiben Sie an contact@romain-kantzer.com."
     }
 }

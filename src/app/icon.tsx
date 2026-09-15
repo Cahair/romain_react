@@ -1,40 +1,44 @@
 import { ImageResponse } from 'next/og';
 
-// Image metadata
 export const size = {
     width: 32,
     height: 32,
 };
 export const contentType = 'image/png';
 
-// Generate the image
+// Monogramme RK et trait bleu, comme le logo de la marque.
 export default function Icon() {
     return new ImageResponse(
         (
-            // ImageResponse JSX element
             <div
                 style={{
-                    fontSize: 20,
                     width: '100%',
                     height: '100%',
                     display: 'flex',
+                    flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontWeight: 800,
-                    // Using a simple gradient via background clip text involves more complexity in satori
-                    // simpler approach for favicon: text color with gradient simulation
-                    // or just solid colors. Satori supports some linear gradients.
-                    color: 'transparent',
-                    backgroundImage: 'linear-gradient(to right, #2563eb, #6366f1)',
-                    backgroundClip: 'text',
-                    fontFamily: 'sans-serif', // Fallback
+                    background: '#171717',
+                    borderRadius: 6,
                 }}
             >
-                RK
+                <div
+                    style={{
+                        display: 'flex',
+                        fontSize: 17,
+                        fontWeight: 700,
+                        color: '#e5e5e5',
+                        letterSpacing: -1,
+                        lineHeight: 1,
+                        fontFamily: 'sans-serif',
+                    }}
+                >
+                    RK
+                </div>
+                <div style={{ display: 'flex', width: 12, height: 2, marginTop: 3, background: '#3b82f6' }} />
             </div>
         ),
         {
-            // ImageResponse options
             ...size,
         }
     );

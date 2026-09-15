@@ -1,243 +1,192 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight, Mail } from "lucide-react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import { useTranslation } from "../../components/LanguageProvider";
+import { usePageReady } from "../../components/motion/TransitionProvider";
+import AnimatedTitle from "../../components/motion/AnimatedTitle";
+import ScrollWords from "../../components/motion/ScrollWords";
+import Reveal from "../../components/motion/Reveal";
 import Button from "../../components/ui/Button";
-import Card from "../../components/ui/Card";
-import Section from "../../components/ui/Section";
-import SectionTitle, { Highlight } from "../../components/ui/SectionTitle";
+import Label from "../../components/ui/Label";
+import Section, { container } from "../../components/ui/Section";
+import FeaturedProject from "../../components/sections/FeaturedProject";
+import ContactCta from "../../components/sections/ContactCta";
 
-const LinkedInIcon = () => (
-    <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-    </svg>
-);
+const OUT = [0.16, 1, 0.3, 1];
+const LINKEDIN_URL = "https://www.linkedin.com/in/romain-kantzer-9323b920a/";
+const pad = (value) => String(value).padStart(2, "0");
 
-// Titre de section localisé avec un mot mis en couleur (clés titleBefore/titleHighlight/titleAfter).
-const HighlightedTitle = ({ t, base, className = "" }) => (
-    <SectionTitle className={className}>
-        {t(`${base}.titleBefore`)}
-        <Highlight>{t(`${base}.titleHighlight`)}</Highlight>
-        {t(`${base}.titleAfter`)}
-    </SectionTitle>
-);
-
-export default function AboutPage() {
+// Portrait dévoilé par le bas (clip-path), puis en parallaxe au scroll.
+function Portrait({ play }) {
     const { t } = useTranslation();
-    const shouldReduceMotion = useReducedMotion();
-    const getList = (key) => {
-        const items = t(key);
-        return Array.isArray(items) ? items : [];
-    };
-
-    const reveal = {
-        initial: { opacity: 0, y: shouldReduceMotion ? 0 : 20 },
-        whileInView: { opacity: 1, y: 0 },
-        viewport: { once: true, amount: 0.2 },
-        transition: { duration: shouldReduceMotion ? 0 : 0.45, ease: "easeOut" },
-    };
-
-    const how = getList("about.how.items");
-    const path = getList("about.path.items");
+    const reduceMotion = useReducedMotion();
+    const ref = useRef(null);
+    const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+    const y = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
 
     return (
-        <main className="min-h-screen bg-background">
+        <motion.div
+            ref={ref}
+            className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-muted"
+            initial={reduceMotion ? false : { clipPath: "inset(100% 0% 0% 0% round 16px)" }}
+            animate={play ? { clipPath: "inset(0% 0% 0% 0% round 16px)" } : undefined}
+            transition={{ duration: 1.4, ease: [0.76, 0, 0.24, 1], delay: 0.35 }}
+        >
+            <motion.div className="absolute inset-x-0 -inset-y-[9%]" style={{ y }}>
+                <Image
+                    src="/romain-kantzer.jpg"
+                    alt={t("about.imageAlt")}
+                    fill
+                    priority
+                    sizes="(min-width: 1024px) 32vw, 100vw"
+                    className="object-cover"
+                />
+            </motion.div>
+        </motion.div>
+    );
+}
+
+// Parcours : frise dont le fil se remplit au scroll.
+function Timeline() {
+    const { t, tl } = useTranslation();
+    const items = tl("about.path.items");
+    const ref = useRef(null);
+    const { scrollYProgress } = useScroll({ target: ref, offset: ["start 0.75", "end 0.55"] });
+
+    return (
+        <Section tone="invert">
+            <div className="grid gap-12 lg:grid-cols-12">
+                <div className="lg:col-span-4">
+                    <Label>{t("about.path.label")}</Label>
+                    <AnimatedTitle text={t("about.path.title")} className="mt-6" />
+                </div>
+                <ol ref={ref} className="relative lg:col-span-7 lg:col-start-6">
+                    <span aria-hidden="true" className="absolute bottom-2 left-[5px] top-2 w-px bg-border">
+                        <motion.span className="block h-full w-full origin-top bg-primary" style={{ scaleY: scrollYProgress }} />
+                    </span>
+                    {items.map((item, index) => (
+                        <Reveal
+                            as="li"
+                            key={`${item.year}-${index}`}
+                            className="relative grid gap-2 pb-10 pl-10 last:pb-0 md:grid-cols-[9rem_1fr] md:gap-8"
+                        >
+                            <span aria-hidden="true" className="absolute left-0 top-2 size-[11px] rounded-full border-2 border-primary bg-background" />
+                            <p className="text-sm tabular-nums text-muted-foreground md:pt-1">{item.year}</p>
+                            <p className="text-lg leading-snug tracking-tight md:text-xl">{item.text}</p>
+                        </Reveal>
+                    ))}
+                </ol>
+            </div>
+        </Section>
+    );
+}
+
+export default function AboutPage() {
+    const { t, tl } = useTranslation();
+    const ready = usePageReady();
+    const how = tl("about.how.items");
+
+    return (
+        <>
             <Navbar />
-
-            <div className="mx-auto max-w-7xl px-6 pb-24 pt-28 md:pt-36">
-                <div className="grid gap-12 lg:grid-cols-[minmax(16rem,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
-                    <aside className="lg:col-span-1">
-                        <div className="lg:sticky lg:top-28">
-                            {/* Mobile : photo compacte à côté du nom ; desktop : grande photo empilée. */}
-                            <div className="flex items-center gap-5 lg:block">
-                                <Image
-                                    src="/romain-kantzer.jpg"
-                                    alt="Romain Kantzer, créateur de sites web à Rountzenheim"
-                                    width={1200}
-                                    height={1200}
-                                    sizes="(min-width: 1024px) 26vw, 6rem"
-                                    priority
-                                    className="w-24 shrink-0 rounded-2xl border border-border lg:w-full lg:max-w-[18rem]"
-                                />
-                                <div className="min-w-0">
-                                    <p className="text-sm font-medium uppercase tracking-[0.16em] text-primary lg:mt-8">
-                                        RK.ai
-                                    </p>
-                                    <SectionTitle as="h1" size="hero" className="mt-2 leading-[0.9] tracking-tight lg:mt-3">
-                                        Romain Kantzer
-                                    </SectionTitle>
-                                </div>
-                            </div>
-
-                            <p className="mt-5 max-w-md text-lg leading-relaxed text-muted-foreground lg:mt-6 lg:text-xl">
-                                {t("about.intro")}
-                            </p>
-
-                            <div className="mt-6 flex flex-wrap items-center gap-3 lg:mt-8">
-                                <a
-                                    href="https://www.linkedin.com/in/romain-kantzer-9323b920a/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 rounded-md border border-border px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-primary hover:bg-accent"
+            <main>
+                <section className="pb-20 pt-32 md:pb-28 md:pt-44">
+                    <div className={container}>
+                        <motion.div
+                            initial={{ opacity: 0, y: 12 }}
+                            animate={ready ? { opacity: 1, y: 0 } : undefined}
+                            transition={{ duration: 0.8, ease: OUT }}
+                        >
+                            <Label>{t("about.label")}</Label>
+                        </motion.div>
+                        <div className="mt-8 grid items-end gap-12 lg:grid-cols-12">
+                            <div className="lg:col-span-7">
+                                <AnimatedTitle as="h1" size="hero" text={t("about.title")} play={ready} delay={0.1} />
+                                <motion.p
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={ready ? { opacity: 1, y: 0 } : undefined}
+                                    transition={{ duration: 1, ease: OUT, delay: 0.45 }}
+                                    className="mt-10 max-w-xl text-xl leading-relaxed text-muted-foreground md:text-2xl"
                                 >
-                                    <LinkedInIcon />
-                                    LinkedIn
-                                    <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-                                </a>
-                                <Button href="/contact" size="md">
-                                    <Mail className="h-4 w-4" aria-hidden="true" />
-                                    {t("about.contact.button")}
-                                </Button>
+                                    {t("about.intro")}
+                                </motion.p>
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={ready ? { opacity: 1, y: 0 } : undefined}
+                                    transition={{ duration: 1, ease: OUT, delay: 0.6 }}
+                                    className="mt-10 flex flex-wrap gap-3"
+                                >
+                                    <Button href="/contact" size="lg">
+                                        <Mail className="size-4" aria-hidden="true" />
+                                        {t("about.contactButton")}
+                                    </Button>
+                                    <Button href={LINKEDIN_URL} external variant="ghost" size="lg">
+                                        LinkedIn
+                                        <ArrowUpRight className="size-4" aria-hidden="true" />
+                                    </Button>
+                                </motion.div>
+                            </div>
+                            <div className="lg:col-span-4 lg:col-start-9">
+                                <Portrait play={ready} />
                             </div>
                         </div>
-                    </aside>
+                    </div>
+                </section>
 
-                    <article className="min-w-0 lg:col-span-1">
-                        <Section spacing="compact" containerClassName="px-0" className="pt-0 md:pt-0">
-                            <motion.div {...reveal}>
-                                <HighlightedTitle t={t} base="about.story" />
-                                <div className="mt-6 space-y-5 text-base leading-relaxed text-foreground/85 md:text-lg md:leading-8">
-                                    <p>{t("about.story.p1")}</p>
-                                    <blockquote className="border-l-2 border-primary py-1 pl-5 font-display text-xl leading-snug text-foreground md:text-2xl">
-                                        {t("about.story.quote")}
-                                    </blockquote>
-                                    <p>{t("about.story.p2")}</p>
-                                    <p>{t("about.story.p3")}</p>
-                                    <p>
-                                        {t("about.story.contactBefore")}
-                                        <Link
-                                            href="/contact"
-                                            className="font-medium text-primary transition-colors hover:text-primary-neon hover:underline hover:underline-offset-4"
-                                        >
-                                            {t("about.story.contactLink")}
-                                        </Link>
-                                    </p>
-                                </div>
-                            </motion.div>
-                        </Section>
+                <Section className="border-t border-border">
+                    <div className="grid gap-12 lg:grid-cols-12">
+                        <div className="lg:col-span-4">
+                            <Label>{t("about.story.label")}</Label>
+                            <AnimatedTitle text={t("about.story.title")} className="mt-6" />
+                        </div>
+                        <div className="text-lg leading-relaxed text-foreground/85 md:text-xl md:leading-[1.6] lg:col-span-7 lg:col-start-6">
+                            <Reveal as="p">{t("about.story.p1")}</Reveal>
+                        </div>
+                    </div>
 
-                        <Section spacing="compact" containerClassName="px-0" className="border-t border-border">
-                            <motion.div {...reveal}>
-                                <p className="text-sm font-medium uppercase tracking-[0.16em] text-primary">
-                                    {t("about.proof.eyebrow")}
-                                </p>
-                                <HighlightedTitle t={t} base="about.proof" className="mt-3" />
+                    <ScrollWords
+                        as="blockquote"
+                        text={t("about.story.quote")}
+                        className="mx-auto my-20 max-w-5xl text-center font-serif text-[clamp(2rem,4.5vw,4.25rem)] italic leading-[1.1] tracking-[-0.02em] md:my-32"
+                    />
 
-                                {/* Pleine largeur sur mobile : l'image du site du club touche les bords de l'écran. */}
-                                <Card
-                                    padded={false}
-                                    className="-mx-6 mt-8 overflow-hidden transition duration-300 hover:-translate-y-1 hover:border-primary max-sm:rounded-none max-sm:border-x-0 sm:mx-0"
-                                >
-                                    <div className="relative aspect-[16/9] overflow-hidden border-b border-border">
-                                        <Image
-                                            src="/images/case-studies/bischwiller-echecs.png"
-                                            alt={t("about.proof.imageAlt")}
-                                            fill
-                                            sizes="(min-width: 1024px) 48vw, 100vw"
-                                            className="object-cover object-top"
-                                        />
-                                    </div>
-                                    <div className="p-6 md:p-8">
-                                        <p className="max-w-2xl leading-relaxed text-muted-foreground">
-                                            {t("about.proof.description")}
-                                        </p>
-                                        <a
-                                            href="https://bischwiller-echecs.com"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="mt-5 inline-flex items-center gap-1.5 font-medium text-primary transition-colors hover:text-primary-neon hover:underline hover:underline-offset-4"
-                                        >
-                                            {t("about.proof.link")}
-                                            <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-                                        </a>
-                                    </div>
-                                </Card>
-                            </motion.div>
-                        </Section>
+                    <div className="grid gap-12 lg:grid-cols-12">
+                        <div className="space-y-6 text-lg leading-relaxed text-foreground/85 md:text-xl md:leading-[1.6] lg:col-span-7 lg:col-start-6">
+                            <Reveal as="p">{t("about.story.p2")}</Reveal>
+                            <Reveal as="p">{t("about.story.p3")}</Reveal>
+                        </div>
+                    </div>
+                </Section>
 
-                        <Section spacing="compact" containerClassName="px-0" className="border-t border-border">
-                            <motion.div {...reveal}>
-                                <HighlightedTitle t={t} base="about.how" />
+                <FeaturedProject tone="invert" />
 
-                                {/* Mobile : liste compacte, moitié moins haute que des cartes empilées. */}
-                                <div className="mt-6 space-y-5 sm:hidden">
-                                    {how.map((item) => (
-                                        <motion.div key={item.title} {...reveal} className="border-l-2 border-border pl-4">
-                                            <h3 className="font-medium text-foreground">{item.title}</h3>
-                                            <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
-                                        </motion.div>
-                                    ))}
-                                </div>
+                <Section>
+                    <div className="grid gap-12 lg:grid-cols-12">
+                        <div className="lg:col-span-4">
+                            <Label>{t("about.how.label")}</Label>
+                            <AnimatedTitle text={t("about.how.title")} className="mt-6" />
+                        </div>
+                        <div className="grid gap-x-10 sm:grid-cols-2 lg:col-span-8">
+                            {how.map((item, index) => (
+                                <Reveal key={item.title} delay={(index % 2) * 0.08} className="border-t border-border py-8">
+                                    <span className="text-sm tabular-nums text-secondary-neon">({pad(index + 1)})</span>
+                                    <h3 className="mt-4 text-2xl tracking-[-0.02em] md:text-3xl">{item.title}</h3>
+                                    <p className="mt-3 leading-relaxed text-muted-foreground">{item.text}</p>
+                                </Reveal>
+                            ))}
+                        </div>
+                    </div>
+                </Section>
 
-                                {/* Desktop : cartes en deux colonnes. */}
-                                <div className="mt-8 hidden gap-4 sm:grid sm:grid-cols-2">
-                                    {how.map((item, index) => (
-                                        <motion.div
-                                            key={item.title}
-                                            {...reveal}
-                                            transition={{ ...reveal.transition, delay: index * 0.06 }}
-                                        >
-                                            <Card className="h-full transition duration-300 hover:-translate-y-1 hover:border-primary">
-                                                <h3 className="text-lg font-medium text-foreground">{item.title}</h3>
-                                                <p className="mt-3 leading-relaxed text-muted-foreground">{item.text}</p>
-                                            </Card>
-                                        </motion.div>
-                                    ))}
-                                </div>
-                            </motion.div>
-                        </Section>
-
-                        <Section spacing="compact" containerClassName="px-0" className="border-t border-border">
-                            <motion.div {...reveal}>
-                                <HighlightedTitle t={t} base="about.path" />
-                                <ol className="relative mt-8 ml-1 border-l border-border">
-                                    {path.map((item, index) => (
-                                        <motion.li
-                                            key={`${item.year}-${item.text}`}
-                                            {...reveal}
-                                            transition={{ ...reveal.transition, delay: index * 0.05 }}
-                                            className="relative pb-6 pl-8 last:pb-0 md:pb-8"
-                                        >
-                                            <span className="absolute left-[-5px] top-1.5 h-2.5 w-2.5 rounded-full bg-primary" />
-                                            <p className="text-sm tabular-nums text-muted-foreground">{item.year}</p>
-                                            <p className="mt-1 leading-relaxed text-foreground/85">{item.text}</p>
-                                        </motion.li>
-                                    ))}
-                                </ol>
-                            </motion.div>
-                        </Section>
-
-                        <Section spacing="compact" containerClassName="px-0" className="border-t border-border pb-0 md:pb-0">
-                            <motion.div {...reveal}>
-                                <Card className="md:p-10">
-                                    <p className="text-xl leading-relaxed text-foreground">{t("about.contact.text")}</p>
-                                    <Button href="/contact" size="lg" className="mt-6">
-                                        <Mail className="h-4 w-4" aria-hidden="true" />
-                                        {t("about.contact.button")}
-                                    </Button>
-                                    <p className="mt-8 border-t border-border pt-6 text-sm leading-relaxed text-muted-foreground">
-                                        {t("about.contact.serviceBefore")}
-                                        <Link
-                                            href="/services/web-dev"
-                                            className="font-medium text-primary transition-colors hover:text-primary-neon hover:underline hover:underline-offset-4"
-                                        >
-                                            {t("about.contact.serviceLink")}
-                                        </Link>
-                                        {t("about.contact.serviceAfter")}
-                                    </p>
-                                </Card>
-                            </motion.div>
-                        </Section>
-                    </article>
-                </div>
-            </div>
-
+                <Timeline />
+                <ContactCta />
+            </main>
             <Footer />
-        </main>
+        </>
     );
 }

@@ -2,6 +2,24 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 
+// Valeurs envoyées par le formulaire (src/app/contact/page.js) → libellés lisibles dans l'e-mail.
+const PROJECT_LABELS = {
+    "site-vitrine": "Site vitrine",
+    "site-e-commerce": "Site e-commerce",
+    "application-web": "Application web",
+    "application-mobile": "Application mobile",
+    refonte: "Refonte d'un site existant",
+    autre: "Autre",
+};
+
+const BUDGET_LABELS = {
+    less1k: "Moins de 1 000 €",
+    "1k2k": "1 000 – 2 000 €",
+    "2k5k": "2 000 – 5 000 €",
+    more5k: "Plus de 5 000 €",
+    unknown: "Je ne sais pas encore",
+};
+
 function isValidEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
@@ -19,7 +37,12 @@ export async function POST(request) {
 
         const resend = new Resend(process.env.RESEND_API_KEY);
         const body = await request.json();
-        const { name, email, project, budget, message } = body;
+        const { name, email, project, budget, message, website } = body;
+
+        // Pot de miel rempli : robot. On répond comme si tout allait bien, sans envoyer.
+        if (website) {
+            return NextResponse.json({ success: true }, { status: 200 });
+        }
 
         if (!name || typeof name !== 'string' || name.trim().length === 0) {
             return NextResponse.json({ error: 'Nom invalide.' }, { status: 400 });
@@ -33,8 +56,8 @@ export async function POST(request) {
 
         const safeName = sanitizeText(name.trim());
         const safeEmail = sanitizeText(email.trim());
-        const safeProject = sanitizeText((project || 'Non spécifié').trim());
-        const safeBudget = sanitizeText((budget || 'Non spécifié').trim());
+        const safeProject = sanitizeText(PROJECT_LABELS[project] || 'Non spécifié');
+        const safeBudget = sanitizeText(BUDGET_LABELS[budget] || 'Non spécifié');
         const safeMessage = sanitizeText(message.trim());
 
         const data = await resend.emails.send({

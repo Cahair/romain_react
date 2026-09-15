@@ -1,38 +1,59 @@
 import Link from "next/link";
+import RollText from "./RollText";
 
-// Standard site-wide : un seul arrondi (rounded-md), deux variantes, trois tailles.
+// Standard site-wide : bouton pilule, trois variantes, trois tailles, texte qui roule au survol.
 const variants = {
     primary: "bg-primary text-primary-foreground hover:bg-primary-dark",
-    ghost: "border border-border text-foreground hover:bg-accent",
+    ghost: "border border-border text-foreground hover:border-foreground",
+    inverse: "bg-foreground text-background hover:bg-foreground/85",
 };
 
 const sizes = {
-    sm: "px-4 py-2 text-sm",
-    md: "px-5 py-2.5 text-sm",
-    lg: "px-7 py-3.5 text-base",
+    sm: "h-10 px-5 text-sm",
+    md: "h-12 px-6 text-[0.95rem]",
+    lg: "h-14 px-8 text-base",
 };
 
 export default function Button({
     variant = "primary",
     size = "md",
     href,
+    external = false,
     className = "",
     children,
     ...props
 }) {
-    const classes = `inline-flex items-center justify-center gap-2 rounded-md font-medium transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed ${variants[variant] || variants.primary} ${sizes[size] || sizes.md} ${className}`;
+    const classes = `group/roll relative inline-flex shrink-0 items-center justify-center rounded-full font-medium transition-colors duration-300 disabled:cursor-not-allowed disabled:opacity-50 ${variants[variant] || variants.primary} ${sizes[size] || sizes.md} ${className}`;
+    const content = <RollText>{children}</RollText>;
+
+    if (href && external) {
+        return (
+            <a href={href} target="_blank" rel="noopener noreferrer" className={classes} {...props}>
+                {content}
+            </a>
+        );
+    }
+
+    // Ancre sur la même page : lien natif, le défilement doux est géré par Lenis.
+    if (href?.startsWith("#")) {
+        return (
+            <a href={href} className={classes} {...props}>
+                {content}
+            </a>
+        );
+    }
 
     if (href) {
         return (
             <Link href={href} className={classes} {...props}>
-                {children}
+                {content}
             </Link>
         );
     }
 
     return (
         <button className={classes} {...props}>
-            {children}
+            {content}
         </button>
     );
 }

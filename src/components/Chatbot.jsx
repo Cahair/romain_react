@@ -1,71 +1,70 @@
-
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { MessageSquare, X, Send, Cpu, User, Loader2, Bot, Terminal } from "lucide-react";
-import { useTranslation } from "./LanguageProvider";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUp, Loader2, MessageCircle, X } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { useLenis } from "lenis/react";
+import { useTranslation } from "./LanguageProvider";
 
+function Bubble({ role, children }) {
+    const fromUser = role === "user";
+    return (
+        <div className={`flex ${fromUser ? "justify-end" : "justify-start"}`}>
+            <p
+                className={`max-w-[85%] whitespace-pre-line rounded-2xl px-4 py-3 text-sm leading-relaxed ${fromUser ? "rounded-br-md bg-primary text-primary-foreground" : "rounded-bl-md bg-muted text-foreground"}`}
+            >
+                {children}
+            </p>
+        </div>
+    );
+}
+
+// Assistant (Gemini, via /api/chat) qui répond aux questions sur Romain et ses services.
 export default function Chatbot() {
+    const { t } = useTranslation();
+    const pathname = usePathname();
+    const lenis = useLenis();
     const [isOpen, setIsOpen] = useState(false);
-    const [messages, setMessages] = useState([
-        { role: "assistant", content: "Bonjour ! Je suis l'assistant virtuel de Romain. Posez-moi une question sur son parcours, ses compétences ou ses services." }
-    ]);
+    const [messages, setMessages] = useState([]);
     const [input, setInput] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [showButton, setShowButton] = useState(false);
-    const messagesEndRef = useRef(null);
+    const endRef = useRef(null);
     const inputRef = useRef(null);
-    const pathname = usePathname();
 
-    const scrollToBottom = () => {
-        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-    };
-
+    // Sur l'accueil, le bouton n'apparaît qu'après le hero.
     useEffect(() => {
-        const handleScroll = () => {
-            if (pathname === "/") {
-                setShowButton(window.scrollY > 100);
-            } else {
-                setShowButton(true);
-            }
-        };
-
-        // Initial check
-        handleScroll();
-
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
+        const onScroll = () => setShowButton(pathname !== "/" || window.scrollY > 600);
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => window.removeEventListener("scroll", onScroll);
     }, [pathname]);
 
     useEffect(() => {
-        scrollToBottom();
+        endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
     }, [messages, isOpen]);
 
     useEffect(() => {
-        if (isOpen && inputRef.current) {
-            inputRef.current.focus();
-        }
-
-        // Lock scroll on body when chatbot is open
-        if (isOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'unset';
-        }
-
-        return () => {
-            document.body.style.overflow = 'unset';
+        if (!isOpen) return;
+        inputRef.current?.focus();
+        lenis?.stop();
+        const onKeyDown = (event) => {
+            if (event.key === "Escape") setIsOpen(false);
         };
-    }, [isOpen]);
+        window.addEventListener("keydown", onKeyDown);
+        return () => {
+            lenis?.start();
+            window.removeEventListener("keydown", onKeyDown);
+        };
+    }, [isOpen, lenis]);
 
     const sendMessage = async (text) => {
         if (!text.trim() || isLoading) return;
 
         const userMessage = text.trim();
         setInput("");
-        setMessages(prev => [...prev, { role: "user", content: userMessage }]);
+        setMessages((previous) => [...previous, { role: "user", content: userMessage }]);
         setIsLoading(true);
 
         try {
@@ -74,160 +73,120 @@ export default function Chatbot() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ message: userMessage }),
             });
-
             const data = await response.json();
-
-            if (data.answer) {
-                setMessages(prev => [...prev, {
-                    role: "assistant",
-                    content: data.answer,
-                    suggestions: data.suggestions || []
-                }]);
-            } else if (data.text) {
-                setMessages(prev => [...prev, { role: "assistant", content: data.text }]);
-            } else {
-                throw new Error("No response");
-            }
+            if (!data.answer) throw new Error("No response");
+            setMessages((previous) => [
+                ...previous,
+                { role: "assistant", content: data.answer, suggestions: data.suggestions || [] },
+            ]);
         } catch (error) {
             console.error("Chat error:", error);
-            setMessages(prev => [...prev, { role: "assistant", content: "Désolé, j'ai rencontré une erreur. Veuillez réessayer plus tard." }]);
+            setMessages((previous) => [...previous, { role: "assistant", content: t("chatbot.error") }]);
         } finally {
             setIsLoading(false);
         }
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        sendMessage(input);
-    };
-
-    const handleSuggestionClick = (question) => {
-        if (isLoading) return;
-        sendMessage(question);
-    };
-
     return (
         <>
-            {/* Floating Toggle Button */}
-            <motion.button
-                onClick={() => setIsOpen(true)}
-                className={`fixed bottom-6 right-6 z-50 p-4 rounded-full bg-card/80 backdrop-blur-md border border-primary-neon/50 shadow-[0_0_20px_rgba(96,165,250,0.3)] group hover:scale-110 transition-all duration-300 ${isOpen ? 'hidden' : (showButton ? 'flex' : 'hidden')}`}
-                whileHover={{ rotate: 5 }}
-                initial={{ scale: 0 }}
-                animate={{ scale: showButton ? 1 : 0 }}
-            >
-                <div className="absolute inset-0 rounded-full border border-white/10" />
-                <div className="absolute inset-0 rounded-full bg-primary-neon/10 animate-pulse-slow" />
-                <MessageSquare className="w-6 h-6 text-primary-neon relative z-10" />
-                <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-bounce" />
-            </motion.button>
+            <AnimatePresence>
+                {showButton && !isOpen && (
+                    <motion.button
+                        key="chat-toggle"
+                        type="button"
+                        onClick={() => setIsOpen(true)}
+                        aria-label={t("chatbot.open")}
+                        initial={{ scale: 0, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0, opacity: 0 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 22 }}
+                        className="fixed bottom-5 right-5 z-[35] flex size-14 items-center justify-center rounded-full bg-foreground text-background shadow-lg transition-transform duration-300 hover:scale-105 md:bottom-8 md:right-8"
+                    >
+                        <MessageCircle className="size-6" aria-hidden="true" />
+                    </motion.button>
+                )}
+            </AnimatePresence>
 
-            {/* Chat Window */}
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
-                        initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                        key="chat-panel"
+                        role="dialog"
+                        aria-label={t("chatbot.title")}
+                        initial={{ opacity: 0, y: 40, scale: 0.96 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 50, scale: 0.9 }}
-                        transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                        className="fixed bottom-6 right-6 z-50 w-[90vw] md:w-[400px] max-h-[600px] h-[70vh] flex flex-col rounded-2xl overflow-hidden backdrop-blur-xl bg-card/95 border border-border shadow-[0_0_50px_rgba(0,0,0,0.5)]"
+                        exit={{ opacity: 0, y: 40, scale: 0.96 }}
+                        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                        className="fixed inset-x-3 bottom-3 z-[60] flex h-[min(38rem,80svh)] origin-bottom-right flex-col overflow-hidden rounded-3xl border border-border bg-background shadow-2xl md:inset-x-auto md:bottom-8 md:right-8 md:w-[26rem]"
                     >
-                        {/* Header */}
-                        <div className="p-4 border-b border-border bg-accent/50 flex items-center justify-between relative overflow-hidden">
-                            <div className="absolute inset-0 bg-gradient-to-r from-primary-neon/10 to-transparent opacity-50" />
-                            <div className="flex items-center gap-3 relative z-10">
-                                <div className="w-10 h-10 rounded-full bg-primary-neon/20 flex items-center justify-center border border-primary-neon/50">
-                                    <Bot className="w-5 h-5 text-primary-neon" />
-                                </div>
-                                <div>
-                                    <h3 className="text-foreground font-display font-bold tracking-wide">Assistant IA</h3>
-                                    <div className="flex items-center gap-1.5">
-                                        <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                                        <span className="text-xs text-muted-foreground font-mono">En ligne</span>
-                                    </div>
-                                </div>
+                        <div className="flex items-center justify-between border-b border-border px-5 py-4">
+                            <div>
+                                <p className="font-medium">{t("chatbot.title")}</p>
+                                <p className="text-xs text-muted-foreground">{t("chatbot.subtitle")}</p>
                             </div>
                             <button
+                                type="button"
                                 onClick={() => setIsOpen(false)}
-                                className="p-2 hover:bg-accent rounded-full transition-colors relative z-10 text-muted-foreground hover:text-foreground"
+                                aria-label={t("chatbot.close")}
+                                className="flex size-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
                             >
-                                <X className="w-5 h-5" />
+                                <X className="size-4" aria-hidden="true" />
                             </button>
                         </div>
 
-                        {/* Messages Area */}
-                        <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-primary-neon/20 scrollbar-track-transparent">
-                            {messages.map((msg, index) => (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    className={`flex flex-col gap-2 ${msg.role === 'user' ? 'items-end' : 'items-start'}`}
-                                >
-                                    <div className={`flex items-start gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}>
-                                        <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 border ${msg.role === 'user' ? 'bg-accent border-border' : 'bg-primary-neon/10 border-primary-neon/30'}`}>
-                                            {msg.role === 'user' ? (
-                                                <User className="w-4 h-4 text-foreground" />
-                                            ) : (
-                                                <Terminal className="w-4 h-4 text-primary-neon" />
-                                            )}
-                                        </div>
-                                        <div
-                                            className={`p-3 rounded-2xl max-w-[85%] text-sm leading-relaxed ${msg.role === 'user'
-                                                ? 'bg-accent text-foreground rounded-tr-sm'
-                                                : 'bg-primary-neon/5 border border-primary-neon/10 text-muted-foreground rounded-tl-sm shadow-[0_0_15px_rgba(96,165,250,0.05)]'
-                                                }`}
-                                        >
-                                            {msg.content}
-                                        </div>
-                                    </div>
-
-                                    {/* Render Suggestions if any */}
-                                    {msg.suggestions && msg.suggestions.length > 0 && (
-                                        <div className="flex flex-wrap gap-2 ml-11 max-w-[85%]">
-                                            {msg.suggestions.map((suggestion, idx) => (
+                        <div data-lenis-prevent className="flex-1 space-y-4 overflow-y-auto overscroll-contain px-5 py-5">
+                            <Bubble role="assistant">{t("chatbot.welcome")}</Bubble>
+                            {messages.map((message, index) => (
+                                <div key={index} className="space-y-2">
+                                    <Bubble role={message.role}>{message.content}</Bubble>
+                                    {message.suggestions?.length > 0 && (
+                                        <div className="flex flex-wrap gap-2">
+                                            {message.suggestions.map((suggestion) => (
                                                 <button
-                                                    key={idx}
+                                                    key={suggestion}
+                                                    type="button"
                                                     onClick={() => sendMessage(suggestion)}
-                                                    className="text-xs px-3 py-1.5 rounded-full border border-primary-neon/50 bg-primary-neon/20 text-primary-neon hover:bg-primary-neon/30 transition-colors text-left"
+                                                    className="rounded-full border border-border px-3 py-1.5 text-left text-xs transition-colors hover:border-primary hover:text-primary"
                                                 >
                                                     {suggestion}
                                                 </button>
                                             ))}
                                         </div>
                                     )}
-                                </motion.div>
+                                </div>
                             ))}
                             {isLoading && (
-                                <div className="flex items-start gap-3">
-                                    <div className="w-8 h-8 rounded-full bg-primary-neon/10 border border-primary-neon/30 flex items-center justify-center flex-shrink-0">
-                                        <Loader2 className="w-4 h-4 text-primary-neon animate-spin" />
-                                    </div>
-                                    <div className="text-xs text-primary-neon/70 font-mono py-2 animate-pulse">
-                                        Analyse de la demande...
-                                    </div>
-                                </div>
+                                <p className="flex items-center gap-2 text-xs text-muted-foreground">
+                                    <Loader2 className="size-3.5 animate-spin" aria-hidden="true" />
+                                    {t("chatbot.loading")}
+                                </p>
                             )}
-                            <div ref={messagesEndRef} />
+                            <div ref={endRef} />
                         </div>
 
-                        {/* Input Area */}
-                        <form onSubmit={handleSubmit} className="p-4 border-t border-border bg-accent/50 backdrop-blur-md">
-                            <div className="relative flex items-center gap-2">
+                        <form
+                            onSubmit={(event) => {
+                                event.preventDefault();
+                                sendMessage(input);
+                            }}
+                            className="border-t border-border p-3"
+                        >
+                            <div className="flex items-center gap-2 rounded-full border border-border bg-muted py-1.5 pl-4 pr-1.5 transition-colors focus-within:border-primary">
                                 <input
                                     ref={inputRef}
-                                    type="text"
                                     value={input}
-                                    onChange={(e) => setInput(e.target.value)}
-                                    placeholder="Posez votre question..."
-                                    className="w-full bg-muted border border-border rounded-xl px-4 py-3 pr-12 text-sm text-foreground placeholder-muted-foreground focus:outline-none focus:border-primary-neon/50 focus:ring-1 focus:ring-primary-neon/50 transition-all font-light"
+                                    onChange={(event) => setInput(event.target.value)}
+                                    placeholder={t("chatbot.placeholder")}
+                                    aria-label={t("chatbot.placeholder")}
+                                    className="min-w-0 flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus-visible:outline-none"
                                 />
                                 <button
                                     type="submit"
                                     disabled={!input.trim() || isLoading}
-                                    className="absolute right-2 p-2 bg-primary-neon/10 rounded-lg text-primary-neon hover:bg-primary-neon/20 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                                    aria-label={t("chatbot.send")}
+                                    className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground transition-opacity disabled:opacity-40"
                                 >
-                                    <Send className="w-4 h-4" />
+                                    <ArrowUp className="size-4" aria-hidden="true" />
                                 </button>
                             </div>
                         </form>
