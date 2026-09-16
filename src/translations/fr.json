@@ -281,7 +281,17 @@
         "title": "Parlons de *votre projet*.",
         "lead": "Racontez-moi ce que vous avez en tête, même si ce n'est pas encore très précis. Le premier échange est gratuit et sans engagement.",
         "form": {
-            "project": "Votre projet",
+            "title": "Votre demande",
+            "subtitle": "Quelques lignes suffisent. Je vous réponds personnellement.",
+            "badge": "Premier échange gratuit",
+            "requiredNote": "Les champs marqués * sont obligatoires.",
+            "optional": "facultatif",
+            "steps": {
+                "project": "Votre projet",
+                "contact": "Vos coordonnées",
+                "message": "Votre message",
+                "budget": "Budget envisagé"
+            },
             "projectOptions": {
                 "site-vitrine": "Site vitrine",
                 "site-e-commerce": "Site e-commerce",
@@ -290,13 +300,11 @@
                 "refonte": "Refonte d'un site existant",
                 "autre": "Autre"
             },
-            "name": "Votre nom",
+            "name": "Nom",
             "namePlaceholder": "Jean Dupont",
-            "email": "Votre e-mail",
+            "email": "E-mail",
             "emailPlaceholder": "jean@entreprise.fr",
-            "message": "Votre message",
             "messagePlaceholder": "Quelques mots sur votre activité et ce que vous aimeriez faire…",
-            "budget": "Budget envisagé (facultatif)",
             "budgetOptions": {
                 "less1k": "Moins de 1 000 €",
                 "1k2k": "1 000 – 2 000 €",
@@ -307,7 +315,27 @@
             "submit": "Envoyer mon message",
             "sending": "Envoi en cours…",
             "privacy": "Vos informations servent uniquement à vous répondre.",
-            "error": "Le message n'a pas pu partir. Réessayez, ou écrivez-moi directement à contact@romain-kantzer.com.",
+            "errors": {
+                "nameRequired": "Indiquez votre nom.",
+                "nameTooLong": "Ce nom est trop long (100 caractères maximum).",
+                "emailRequired": "Indiquez votre e-mail pour que je puisse vous répondre.",
+                "emailInvalid": "Cette adresse e-mail ne semble pas valide.",
+                "messageRequired": "Écrivez quelques mots sur votre projet.",
+                "messageTooShort": "Votre message est un peu court (10 caractères minimum).",
+                "messageTooLong": "Votre message est trop long (5 000 caractères maximum)."
+            },
+            "errorTitle": "Le message n'a pas pu partir.",
+            "errorText": "Le problème vient du site, pas de vous. Votre message est prêt : vous pouvez me l'envoyer directement par e-mail.",
+            "errorMailto": "Envoyer par e-mail",
+            "rateLimited": "Plusieurs messages ont été envoyés en peu de temps. Réessayez dans quelques minutes, ou envoyez-le directement par e-mail.",
+            "mailtoSubject": "Demande de contact",
+            "mailtoLabels": {
+                "name": "Nom",
+                "email": "E-mail",
+                "project": "Projet",
+                "budget": "Budget",
+                "message": "Message"
+            },
             "successTitle": "Merci, votre message est bien parti.",
             "successText": "Je le lis et je vous réponds personnellement, par e-mail ou par téléphone.",
             "again": "Envoyer un autre message"

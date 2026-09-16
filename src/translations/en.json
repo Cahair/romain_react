@@ -281,7 +281,17 @@
         "title": "Let's talk about *your project*.",
         "lead": "Tell me what you have in mind, even if it's not very precise yet. The first conversation is free and without commitment.",
         "form": {
-            "project": "Your project",
+            "title": "Your request",
+            "subtitle": "A few lines are enough. I'll reply personally.",
+            "badge": "Free first conversation",
+            "requiredNote": "Fields marked * are required.",
+            "optional": "optional",
+            "steps": {
+                "project": "Your project",
+                "contact": "Your details",
+                "message": "Your message",
+                "budget": "Budget in mind"
+            },
             "projectOptions": {
                 "site-vitrine": "Business website",
                 "site-e-commerce": "Online store",
@@ -290,13 +300,11 @@
                 "refonte": "Redesign of an existing site",
                 "autre": "Other"
             },
-            "name": "Your name",
+            "name": "Name",
             "namePlaceholder": "Jane Smith",
-            "email": "Your email",
+            "email": "Email",
             "emailPlaceholder": "jane@company.com",
-            "message": "Your message",
             "messagePlaceholder": "A few words about your business and what you'd like to do…",
-            "budget": "Budget in mind (optional)",
             "budgetOptions": {
                 "less1k": "Under €1,000",
                 "1k2k": "€1,000 – €2,000",
@@ -307,7 +315,27 @@
             "submit": "Send my message",
             "sending": "Sending…",
             "privacy": "Your details are only used to reply to you.",
-            "error": "The message couldn't be sent. Please try again, or write to me directly at contact@romain-kantzer.com.",
+            "errors": {
+                "nameRequired": "Please enter your name.",
+                "nameTooLong": "This name is too long (100 characters max).",
+                "emailRequired": "Please enter your email so I can reply.",
+                "emailInvalid": "This email address doesn't look valid.",
+                "messageRequired": "Write a few words about your project.",
+                "messageTooShort": "Your message is a bit short (10 characters minimum).",
+                "messageTooLong": "Your message is too long (5,000 characters max)."
+            },
+            "errorTitle": "The message couldn't be sent.",
+            "errorText": "The problem is on the site's side, not yours. Your message is ready: you can send it to me directly by email.",
+            "errorMailto": "Send by email",
+            "rateLimited": "Several messages were sent in a short time. Please try again in a few minutes, or send it directly by email.",
+            "mailtoSubject": "Contact request",
+            "mailtoLabels": {
+                "name": "Name",
+                "email": "Email",
+                "project": "Project",
+                "budget": "Budget",
+                "message": "Message"
+            },
             "successTitle": "Thank you, your message is on its way.",
             "successText": "I'll read it and reply personally, by email or phone.",
             "again": "Send another message"

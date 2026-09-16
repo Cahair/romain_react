@@ -281,7 +281,17 @@
         "title": "Sprechen wir über *Ihr Projekt*.",
         "lead": "Erzählen Sie mir, was Sie vorhaben, auch wenn es noch nicht ganz konkret ist. Das erste Gespräch ist kostenlos und unverbindlich.",
         "form": {
-            "project": "Ihr Projekt",
+            "title": "Ihre Anfrage",
+            "subtitle": "Ein paar Zeilen genügen. Ich antworte Ihnen persönlich.",
+            "badge": "Erstes Gespräch kostenlos",
+            "requiredNote": "Mit * markierte Felder sind Pflichtfelder.",
+            "optional": "optional",
+            "steps": {
+                "project": "Ihr Projekt",
+                "contact": "Ihre Kontaktdaten",
+                "message": "Ihre Nachricht",
+                "budget": "Geplantes Budget"
+            },
             "projectOptions": {
                 "site-vitrine": "Firmenwebsite",
                 "site-e-commerce": "Onlineshop",
@@ -290,13 +300,11 @@
                 "refonte": "Relaunch einer bestehenden Website",
                 "autre": "Sonstiges"
             },
-            "name": "Ihr Name",
+            "name": "Name",
             "namePlaceholder": "Max Mustermann",
-            "email": "Ihre E-Mail",
+            "email": "E-Mail",
             "emailPlaceholder": "max@firma.de",
-            "message": "Ihre Nachricht",
             "messagePlaceholder": "Ein paar Worte zu Ihrem Betrieb und dem, was Sie vorhaben …",
-            "budget": "Geplantes Budget (optional)",
             "budgetOptions": {
                 "less1k": "Unter 1.000 €",
                 "1k2k": "1.000 – 2.000 €",
@@ -307,7 +315,27 @@
             "submit": "Nachricht senden",
             "sending": "Wird gesendet …",
             "privacy": "Ihre Angaben werden nur verwendet, um Ihnen zu antworten.",
-            "error": "Die Nachricht konnte nicht gesendet werden. Versuchen Sie es erneut oder schreiben Sie mir direkt an contact@romain-kantzer.com.",
+            "errors": {
+                "nameRequired": "Bitte geben Sie Ihren Namen an.",
+                "nameTooLong": "Dieser Name ist zu lang (maximal 100 Zeichen).",
+                "emailRequired": "Bitte geben Sie Ihre E-Mail an, damit ich antworten kann.",
+                "emailInvalid": "Diese E-Mail-Adresse scheint nicht gültig zu sein.",
+                "messageRequired": "Schreiben Sie ein paar Worte zu Ihrem Projekt.",
+                "messageTooShort": "Ihre Nachricht ist etwas kurz (mindestens 10 Zeichen).",
+                "messageTooLong": "Ihre Nachricht ist zu lang (maximal 5.000 Zeichen)."
+            },
+            "errorTitle": "Die Nachricht konnte nicht gesendet werden.",
+            "errorText": "Das Problem liegt bei der Website, nicht bei Ihnen. Ihre Nachricht ist vorbereitet: Sie können sie mir direkt per E-Mail schicken.",
+            "errorMailto": "Per E-Mail senden",
+            "rateLimited": "In kurzer Zeit wurden mehrere Nachrichten gesendet. Versuchen Sie es in ein paar Minuten erneut oder schicken Sie sie direkt per E-Mail.",
+            "mailtoSubject": "Kontaktanfrage",
+            "mailtoLabels": {
+                "name": "Name",
+                "email": "E-Mail",
+                "project": "Projekt",
+                "budget": "Budget",
+                "message": "Nachricht"
+            },
             "successTitle": "Danke, Ihre Nachricht ist unterwegs.",
             "successText": "Ich lese sie und antworte Ihnen persönlich, per E-Mail oder Telefon.",
             "again": "Weitere Nachricht senden"

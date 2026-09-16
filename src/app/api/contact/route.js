@@ -1,8 +1,11 @@
-import { NextResponse } from 'next/server';
-import { Resend } from 'resend';
+import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
+import { Resend } from "resend";
+import { BUDGET_OPTIONS, CONTACT_RECIPIENT, PROJECT_OPTIONS, validateContact } from "@/lib/contact";
 
+export const runtime = "nodejs";
 
-// Valeurs envoyées par le formulaire (src/app/contact/page.js) → libellés lisibles dans l'e-mail.
+// Libellés lisibles dans l'e-mail reçu (en français, langue de Romain).
 const PROJECT_LABELS = {
     "site-vitrine": "Site vitrine",
     "site-e-commerce": "Site e-commerce",
@@ -20,132 +23,198 @@ const BUDGET_LABELS = {
     unknown: "Je ne sais pas encore",
 };
 
-function isValidEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+const LOCALE_LABELS = { fr: "Français", en: "Anglais", de: "Allemand" };
+
+const escapeHtml = (value) =>
+    String(value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+const singleLine = (value) => String(value).replace(/[\r\n]+/g, " ").trim();
+
+// Limite d'envois par adresse IP, en mémoire de l'instance : suffisant contre les rafales.
+const WINDOW_MS = 10 * 60 * 1000;
+const MAX_PER_WINDOW = 5;
+const recentSends = new Map();
+
+function isRateLimited(ip) {
+    const now = Date.now();
+    if (recentSends.size > 5000) recentSends.clear();
+    const recent = (recentSends.get(ip) || []).filter((time) => now - time < WINDOW_MS);
+    recent.push(now);
+    recentSends.set(ip, recent);
+    return recent.length > MAX_PER_WINDOW;
 }
 
-function sanitizeText(str) {
-    if (typeof str !== 'string') return '';
-    return str.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+// Modes d'envoi configurés, dans l'ordre d'essai (voir .env.local.example).
+function getTransports() {
+    const env = process.env;
+    const transports = [];
+
+    if (env.SMTP_HOST && env.SMTP_USER && env.SMTP_PASS) {
+        const port = Number(env.SMTP_PORT) || 465;
+        transports.push({
+            name: "smtp",
+            from: env.SMTP_FROM || env.SMTP_USER,
+            options: {
+                host: env.SMTP_HOST,
+                port,
+                secure: env.SMTP_SECURE ? env.SMTP_SECURE === "true" : port === 465,
+                auth: { user: env.SMTP_USER, pass: env.SMTP_PASS },
+            },
+        });
+    } else if (env.EMAIL_USER && env.EMAIL_PASS) {
+        // Ancien réglage Gmail : adresse Gmail + mot de passe d'application.
+        transports.push({
+            name: "gmail",
+            from: env.EMAIL_USER,
+            options: { service: "gmail", auth: { user: env.EMAIL_USER, pass: env.EMAIL_PASS } },
+        });
+    }
+
+    if (env.RESEND_API_KEY) {
+        // L'expéditeur doit appartenir à un domaine vérifié dans Resend.
+        transports.push({ name: "resend", from: env.RESEND_FROM || "onboarding@resend.dev" });
+    }
+
+    return transports;
+}
+
+function buildMail({ name, email, message, project, budget, locale }) {
+    const cleanName = singleLine(name);
+    const cleanEmail = email.trim();
+    const cleanMessage = message.trim();
+    const projectLabel = PROJECT_OPTIONS.includes(project) ? PROJECT_LABELS[project] : "Non précisé";
+    const budgetLabel = BUDGET_OPTIONS.includes(budget) ? BUDGET_LABELS[budget] : "Non précisé";
+    const localeLabel = LOCALE_LABELS[locale] || LOCALE_LABELS.fr;
+    const subject = `Nouveau message de ${cleanName} — ${projectLabel}`;
+
+    const rows = [
+        ["Nom", escapeHtml(cleanName)],
+        ["E-mail", `<a href="mailto:${escapeHtml(cleanEmail)}" style="color:#2563eb;">${escapeHtml(cleanEmail)}</a>`],
+        ["Projet", escapeHtml(projectLabel)],
+        ["Budget", escapeHtml(budgetLabel)],
+        ["Langue du site", escapeHtml(localeLabel)],
+    ];
+
+    const text = [
+        "Nouveau message depuis le formulaire de romain-kantzer.com",
+        "",
+        `Nom : ${cleanName}`,
+        `E-mail : ${cleanEmail}`,
+        `Projet : ${projectLabel}`,
+        `Budget : ${budgetLabel}`,
+        `Langue du site : ${localeLabel}`,
+        "",
+        "Message :",
+        cleanMessage,
+        "",
+        `Répondez directement à ce mail pour écrire à ${cleanName}.`,
+    ].join("\n");
+
+    const replySubject = encodeURIComponent("Re: votre demande sur romain-kantzer.com");
+    const html = `<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="utf-8"><title>${escapeHtml(subject)}</title></head>
+<body style="margin:0;padding:0;background:#f4f4f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#171717;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f5;padding:32px 12px;">
+<tr><td align="center">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#ffffff;border:1px solid #e5e7eb;border-radius:16px;overflow:hidden;">
+<tr><td style="background:#171717;padding:28px 32px;">
+<div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#a3a3a3;">Formulaire de contact</div>
+<div style="margin-top:8px;font-size:24px;line-height:1.25;font-weight:600;color:#e5e5e5;">Nouveau message de ${escapeHtml(cleanName)}</div>
+<div style="margin-top:14px;width:32px;height:3px;background:#3b82f6;"></div>
+</td></tr>
+<tr><td style="padding:24px 32px 8px;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:15px;">
+${rows.map(([label, value]) => `<tr><td style="padding:8px 0;width:140px;color:#6b7280;vertical-align:top;">${label}</td><td style="padding:8px 0;color:#171717;">${value}</td></tr>`).join("\n")}
+</table>
+</td></tr>
+<tr><td style="padding:12px 32px 28px;">
+<div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#6b7280;margin-bottom:10px;">Message</div>
+<div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:18px 20px;font-size:15px;line-height:1.6;white-space:pre-wrap;">${escapeHtml(cleanMessage)}</div>
+<a href="mailto:${escapeHtml(cleanEmail)}?subject=${replySubject}" style="display:inline-block;margin-top:24px;background:#3b82f6;color:#ffffff;text-decoration:none;padding:12px 22px;border-radius:999px;font-weight:600;font-size:14px;">Répondre à ${escapeHtml(cleanName)}</a>
+</td></tr>
+<tr><td style="padding:16px 32px;background:#f9fafb;border-top:1px solid #e5e7eb;font-size:12px;color:#6b7280;">Envoyé depuis romain-kantzer.com/contact. Répondre à ce mail écrit directement à ${escapeHtml(cleanEmail)}.</td></tr>
+</table>
+</td></tr>
+</table>
+</body>
+</html>`;
+
+    return { subject, text, html, replyTo: { name: cleanName, address: cleanEmail } };
+}
+
+async function send(transport, mail) {
+    if (transport.name === "resend") {
+        const resend = new Resend(process.env.RESEND_API_KEY);
+        const from = transport.from.includes("<") ? transport.from : `Site romain-kantzer.com <${transport.from}>`;
+        const { data, error } = await resend.emails.send({
+            from,
+            to: [CONTACT_RECIPIENT],
+            replyTo: mail.replyTo.address,
+            subject: mail.subject,
+            text: mail.text,
+            html: mail.html,
+        });
+        if (error) throw new Error(`${error.name}: ${error.message}`);
+        return data?.id;
+    }
+
+    const transporter = nodemailer.createTransport(transport.options);
+    const info = await transporter.sendMail({
+        from: { name: "Site romain-kantzer.com", address: transport.from },
+        to: CONTACT_RECIPIENT,
+        replyTo: mail.replyTo,
+        subject: mail.subject,
+        text: mail.text,
+        html: mail.html,
+    });
+    // Renseigné uniquement avec un compte de test Ethereal (vérification en local).
+    const preview = nodemailer.getTestMessageUrl(info);
+    if (preview) console.info("[contact] aperçu du mail de test :", preview);
+    return info.messageId;
 }
 
 export async function POST(request) {
+    let body;
     try {
-        if (!process.env.RESEND_API_KEY) {
-            return NextResponse.json({ error: "Configuration serveur manquante." }, { status: 500 });
-        }
-
-        const resend = new Resend(process.env.RESEND_API_KEY);
-        const body = await request.json();
-        const { name, email, project, budget, message, website } = body;
-
-        // Pot de miel rempli : robot. On répond comme si tout allait bien, sans envoyer.
-        if (website) {
-            return NextResponse.json({ success: true }, { status: 200 });
-        }
-
-        if (!name || typeof name !== 'string' || name.trim().length === 0) {
-            return NextResponse.json({ error: 'Nom invalide.' }, { status: 400 });
-        }
-        if (!email || !isValidEmail(email)) {
-            return NextResponse.json({ error: 'Email invalide.' }, { status: 400 });
-        }
-        if (!message || typeof message !== 'string' || message.trim().length === 0) {
-            return NextResponse.json({ error: 'Message invalide.' }, { status: 400 });
-        }
-
-        const safeName = sanitizeText(name.trim());
-        const safeEmail = sanitizeText(email.trim());
-        const safeProject = sanitizeText(PROJECT_LABELS[project] || 'Non spécifié');
-        const safeBudget = sanitizeText(BUDGET_LABELS[budget] || 'Non spécifié');
-        const safeMessage = sanitizeText(message.trim());
-
-        const data = await resend.emails.send({
-            from: process.env.RESEND_FROM || 'Contact Form <onboarding@resend.dev>',
-            to: [process.env.CONTACT_EMAIL || 'contact@romain-kantzer.com'],
-            replyTo: safeEmail,
-            subject: `Nouveau contact de ${safeName} - Projet ${safeProject}`,
-            html: `
-                <!DOCTYPE html>
-                <html>
-                <head>
-                    <meta charset="utf-8">
-                    <title>Nouveau Message</title>
-                </head>
-                <body style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: #f4f4f5; margin: 0; padding: 40px 0;">
-                    <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08); border: 1px solid #e2e8f0;">
-
-                        <!-- Header -->
-                        <div style="background-color: #0f172a; padding: 32px; text-align: center;">
-                            <h1 style="color: #ffffff; margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -0.5px;">Nouvelle Demande</h1>
-                            <p style="color: #94a3b8; margin: 8px 0 0 0; font-size: 14px;">Reçue depuis votre site web</p>
-                        </div>
-
-                        <!-- Content -->
-                        <div style="padding: 32px 40px;">
-
-                            <!-- User Info -->
-                            <div style="margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid #f1f5f9;">
-                                <div style="font-size: 12px; color: #64748b; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 8px;">De la part de</div>
-                                <div style="font-size: 18px; color: #1e293b; font-weight: 600;">${safeName}</div>
-                                <a href="mailto:${safeEmail}" style="color: #2563eb; text-decoration: none; font-size: 15px;">${safeEmail}</a>
-                            </div>
-
-                            <!-- Project Details Grid -->
-                            <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 32px;">
-                                <tr>
-                                    <td width="50%" style="vertical-align: top; padding-right: 16px;">
-                                        <div style="font-size: 12px; color: #64748b; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 8px;">Type de Projet</div>
-                                        <div style="display: inline-block; background-color: #f0f9ff; color: #0369a1; padding: 6px 12px; border-radius: 6px; font-size: 14px; font-weight: 600; border: 1px solid #e0f2fe;">
-                                            ${safeProject}
-                                        </div>
-                                    </td>
-                                    <td width="50%" style="vertical-align: top; padding-left: 16px;">
-                                        <div style="font-size: 12px; color: #64748b; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 8px;">Budget</div>
-                                        <div style="font-size: 16px; color: #334155; font-weight: 500;">
-                                            ${safeBudget}
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-
-                            <!-- Message -->
-                            <div>
-                                <div style="font-size: 12px; color: #64748b; text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 12px;">Message</div>
-                                <div style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; color: #334155; line-height: 1.6; font-size: 15px; white-space: pre-wrap;">${safeMessage}</div>
-                            </div>
-
-                        </div>
-
-                        <!-- Footer -->
-                        <div style="background-color: #f8fafc; padding: 20px; text-align: center; border-top: 1px solid #e2e8f0;">
-                            <p style="margin: 0; font-size: 12px; color: #94a3b8;">
-                                Cet email a été envoyé automatiquement via le formulaire de contact.
-                            </p>
-                        </div>
-                    </div>
-                </body>
-                </html>
-            `,
-        });
-
-        if (data.error) {
-            return NextResponse.json(
-                { error: 'Erreur lors de l\'envoi de l\'email.' },
-                { status: 500 }
-            );
-        }
-
-        return NextResponse.json(
-            { success: true, message: 'Email envoyé avec succès' },
-            { status: 200 }
-        );
-
-    } catch (error) {
-        return NextResponse.json(
-            { error: 'Erreur interne du serveur.' },
-            { status: 500 }
-        );
+        body = await request.json();
+    } catch {
+        return NextResponse.json({ ok: false, code: "bad_request" }, { status: 400 });
     }
-}
 
+    const { name, email, message, project, budget, locale, website } = body || {};
+
+    // Pot de miel rempli : robot. On répond comme si tout allait bien, sans rien envoyer.
+    if (website) {
+        return NextResponse.json({ ok: true });
+    }
+
+    const fields = validateContact({ name, email, message });
+    if (Object.keys(fields).length > 0) {
+        return NextResponse.json({ ok: false, code: "validation", fields }, { status: 400 });
+    }
+
+    const ip = (request.headers.get("x-forwarded-for") || "").split(",")[0].trim() || "local";
+    if (isRateLimited(ip)) {
+        return NextResponse.json({ ok: false, code: "rate_limited" }, { status: 429 });
+    }
+
+    const transports = getTransports();
+    if (transports.length === 0) {
+        console.error("[contact] aucun mode d'envoi configuré (SMTP_*, EMAIL_* ou RESEND_API_KEY)");
+        return NextResponse.json({ ok: false, code: "not_configured" }, { status: 503 });
+    }
+
+    const mail = buildMail({ name, email, message, project, budget, locale });
+
+    for (const transport of transports) {
+        try {
+            const id = await send(transport, mail);
+            console.info(`[contact] message envoyé via ${transport.name} à ${CONTACT_RECIPIENT} (${id})`);
+            return NextResponse.json({ ok: true });
+        } catch (error) {
+            console.error(`[contact] échec de l'envoi via ${transport.name} :`, error?.message || error);
+        }
+    }
+
+    return NextResponse.json({ ok: false, code: "send_failed" }, { status: 502 });
+}

@@ -34,8 +34,8 @@ export default function Button({
         );
     }
 
-    // Ancre sur la même page : lien natif, le défilement doux est géré par Lenis.
-    if (href?.startsWith("#")) {
+    // Ancre sur la même page (défilement doux géré par Lenis), e-mail ou téléphone : lien natif.
+    if (href?.startsWith("#") || href?.startsWith("mailto:") || href?.startsWith("tel:")) {
         return (
             <a href={href} className={classes} {...props}>
                 {content}
