@@ -137,7 +137,7 @@ export default function Hero() {
                             transition={{ duration: 1, ease: OUT, delay: 0.7 }}
                             className="mt-10 flex flex-wrap items-center gap-3"
                         >
-                            <Button href="/contact" size="lg">
+                            <Button href="/demarrer" size="lg">
                                 {t("home.hero.cta")}
                                 <ArrowRight className="size-4" aria-hidden="true" />
                             </Button>

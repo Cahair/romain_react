@@ -87,6 +87,9 @@ export default function Chatbot() {
         }
     };
 
+    // Pas d'assistant dans l'espace admin.
+    if (pathname?.startsWith("/admin")) return null;
+
     return (
         <>
             <AnimatePresence>

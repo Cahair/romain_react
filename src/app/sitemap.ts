@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '',
         '/services',
         ...SERVICE_SLUGS.map((slug) => `/services/${slug}`),
+        '/demarrer',
         '/about',
         '/contact',
     ];
@@ -16,6 +17,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         url: `${baseUrl}${route}`,
         lastModified: new Date(),
         changeFrequency: 'monthly' as const,
-        priority: route === '' ? 1 : route.startsWith('/services') ? 0.9 : 0.7,
+        priority: route === '' ? 1 : route.startsWith('/services') || route === '/demarrer' ? 0.9 : 0.7,
     }));
 }

@@ -237,7 +237,7 @@
         "label": "Kontakt",
         "title": "Sprechen wir über *Ihr Projekt*.",
         "text": "Eine Website, ein Shop, eine App? Erzählen Sie mir, was Sie vorhaben, auch wenn es noch nicht ganz konkret ist. Ich antworte Ihnen persönlich.",
-        "button": "Schreiben Sie mir"
+        "button": "Projekt starten"
     },
     "about": {
         "label": "Über mich",
@@ -279,70 +279,30 @@
     "contact": {
         "label": "Kontakt",
         "title": "Sprechen wir über *Ihr Projekt*.",
-        "lead": "Erzählen Sie mir, was Sie vorhaben, auch wenn es noch nicht ganz konkret ist. Das erste Gespräch ist kostenlos und unverbindlich.",
-        "form": {
-            "title": "Ihre Anfrage",
-            "subtitle": "Ein paar Zeilen genügen. Ich antworte Ihnen persönlich.",
-            "badge": "Erstes Gespräch kostenlos",
-            "requiredNote": "Mit * markierte Felder sind Pflichtfelder.",
-            "optional": "optional",
-            "steps": {
-                "project": "Ihr Projekt",
-                "contact": "Ihre Kontaktdaten",
-                "message": "Ihre Nachricht",
-                "budget": "Geplantes Budget"
+        "lead": "Per E-Mail, telefonisch oder persönlich im Elsass. Und wenn Sie gleich loslegen möchten, beschreiben Sie Ihr Projekt in wenigen Fragen.",
+        "cards": {
+            "email": {
+                "label": "E-Mail",
+                "hint": "Der einfachste Weg für den Anfang."
             },
-            "projectOptions": {
-                "site-vitrine": "Firmenwebsite",
-                "site-e-commerce": "Onlineshop",
-                "application-web": "Web-App",
-                "application-mobile": "Mobile App",
-                "refonte": "Relaunch einer bestehenden Website",
-                "autre": "Sonstiges"
+            "phone": {
+                "label": "Telefon",
+                "hint": "Wenn Sie lieber sprechen möchten."
             },
-            "name": "Name",
-            "namePlaceholder": "Max Mustermann",
-            "email": "E-Mail",
-            "emailPlaceholder": "max@firma.de",
-            "messagePlaceholder": "Ein paar Worte zu Ihrem Betrieb und dem, was Sie vorhaben …",
-            "budgetOptions": {
-                "less1k": "Unter 1.000 €",
-                "1k2k": "1.000 – 2.000 €",
-                "2k5k": "2.000 – 5.000 €",
-                "more5k": "Über 5.000 €",
-                "unknown": "Noch unklar"
+            "location": {
+                "label": "Wo ich bin",
+                "value": "Rountzenheim (Bas-Rhin, Frankreich)",
+                "hint": "Im Elsass, vor Ort oder aus der Ferne."
             },
-            "submit": "Nachricht senden",
-            "sending": "Wird gesendet …",
-            "privacy": "Ihre Angaben werden nur verwendet, um Ihnen zu antworten.",
-            "errors": {
-                "nameRequired": "Bitte geben Sie Ihren Namen an.",
-                "nameTooLong": "Dieser Name ist zu lang (maximal 100 Zeichen).",
-                "emailRequired": "Bitte geben Sie Ihre E-Mail an, damit ich antworten kann.",
-                "emailInvalid": "Diese E-Mail-Adresse scheint nicht gültig zu sein.",
-                "messageRequired": "Schreiben Sie ein paar Worte zu Ihrem Projekt.",
-                "messageTooShort": "Ihre Nachricht ist etwas kurz (mindestens 10 Zeichen).",
-                "messageTooLong": "Ihre Nachricht ist zu lang (maximal 5.000 Zeichen)."
-            },
-            "errorTitle": "Die Nachricht konnte nicht gesendet werden.",
-            "errorText": "Das Problem liegt bei der Website, nicht bei Ihnen. Ihre Nachricht ist vorbereitet: Sie können sie mir direkt per E-Mail schicken.",
-            "errorMailto": "Per E-Mail senden",
-            "rateLimited": "In kurzer Zeit wurden mehrere Nachrichten gesendet. Versuchen Sie es in ein paar Minuten erneut oder schicken Sie sie direkt per E-Mail.",
-            "mailtoSubject": "Kontaktanfrage",
-            "mailtoLabels": {
-                "name": "Name",
-                "email": "E-Mail",
-                "project": "Projekt",
-                "budget": "Budget",
-                "message": "Nachricht"
-            },
-            "successTitle": "Danke, Ihre Nachricht ist unterwegs.",
-            "successText": "Ich lese sie und antworte Ihnen persönlich, per E-Mail oder Telefon.",
-            "again": "Weitere Nachricht senden"
+            "linkedin": {
+                "label": "LinkedIn",
+                "hint": "Mein beruflicher Werdegang."
+            }
         },
-        "direct": {
-            "title": "Direkt",
-            "location": "Rountzenheim (Bas-Rhin, Frankreich) — im Elsass und aus der Ferne"
+        "start": {
+            "title": "Ein Projekt im Kopf?",
+            "text": "Ein paar Fragen, um Ihren Bedarf einzugrenzen: Art des Projekts, Zeitrahmen, Budget. Danach antworte ich Ihnen persönlich.",
+            "button": "Projekt starten"
         },
         "next": {
             "title": "Wie geht es weiter?",
@@ -351,6 +311,114 @@
                 "Wir sprechen darüber, am Telefon, per Video oder persönlich.",
                 "Ich schicke Ihnen ein detailliertes, unverbindliches Angebot."
             ]
+        }
+    },
+    "onboarding": {
+        "label": "Projekt starten",
+        "stepCounter": "Schritt {current} von {total}",
+        "back": "Zurück",
+        "next": "Weiter",
+        "skip": "Diese Frage überspringen",
+        "edit": "Ändern",
+        "notAnswered": "Keine Angabe",
+        "footerNote": "Lieber direkt schreiben?",
+        "contactLink": "Meine Kontaktdaten ansehen",
+        "mailSubject": "Projektanfrage",
+        "fields": {
+            "name": "Name",
+            "email": "E-Mail",
+            "phone": "Telefon",
+            "optional": "optional",
+            "namePlaceholder": "Max Mustermann",
+            "emailPlaceholder": "max@firma.de",
+            "phonePlaceholder": "+33 6 12 34 56 78"
+        },
+        "errors": {
+            "choice": "Wählen Sie eine Antwort, um fortzufahren.",
+            "message": "Beschreiben Sie Ihr Projekt in ein paar Worten.",
+            "messageShort": "Ein paar Worte mehr würden helfen (mindestens 10 Zeichen).",
+            "name": "Bitte geben Sie Ihren Namen an.",
+            "email": "Bitte geben Sie eine gültige E-Mail an, damit ich antworten kann."
+        },
+        "steps": {
+            "project": {
+                "question": "Welche Art von *Projekt*?",
+                "help": "Wenn Sie unsicher sind, wählen Sie das Naheliegendste: Wir verfeinern es gemeinsam.",
+                "summary": "Art des Projekts",
+                "options": {
+                    "site-vitrine": "Firmenwebsite",
+                    "site-e-commerce": "Onlineshop",
+                    "application-web": "Web-App",
+                    "application-mobile": "Mobile App",
+                    "refonte": "Relaunch einer bestehenden Website",
+                    "autre": "Etwas anderes, oder noch unklar"
+                }
+            },
+            "stage": {
+                "question": "Wo *stehen Sie*?",
+                "help": "Damit ich weiß, wo wir anfangen.",
+                "summary": "Stand",
+                "options": {
+                    "idee": "Es ist noch eine Idee",
+                    "defini": "Das Projekt ist bereits klar",
+                    "existant": "Ich habe eine bestehende Website zu erneuern",
+                    "presse": "Ich habe einen engen Termin"
+                }
+            },
+            "timing": {
+                "question": "Bis *wann*?",
+                "help": "Eine grobe Angabe genügt, wir passen sie mit dem Angebot an.",
+                "summary": "Zeitrahmen",
+                "options": {
+                    "asap": "So bald wie möglich",
+                    "trimestre": "In den nächsten drei Monaten",
+                    "annee": "Später im Jahr",
+                    "inconnu": "Kein festes Datum"
+                }
+            },
+            "budget": {
+                "question": "Welches *Budget* haben Sie im Kopf?",
+                "help": "Eine Spanne genügt: Sie hilft mir, eine realistische Lösung vorzuschlagen. Sie können die Frage auch überspringen.",
+                "summary": "Budget",
+                "options": {
+                    "less1k": "Unter 1.000 €",
+                    "1k2k": "1.000 – 2.000 €",
+                    "2k5k": "2.000 – 5.000 €",
+                    "more5k": "Über 5.000 €",
+                    "unknown": "Noch unklar"
+                }
+            },
+            "message": {
+                "question": "Erzählen Sie mir von Ihrem *Projekt*.",
+                "help": "Ihr Betrieb, was die Website oder App ermöglichen soll, was bereits existiert … Ein paar Sätze genügen.",
+                "summary": "Das Projekt",
+                "placeholder": "Zum Beispiel: Ich bin Schreiner bei Haguenau und möchte eine Website, die meine Arbeiten zeigt und Anfragen bringt."
+            },
+            "identity": {
+                "question": "Wie kann ich Ihnen *antworten*?",
+                "help": "Damit ich Ihnen antworten und Sie bei Bedarf zurückrufen kann.",
+                "summary": "Kontaktdaten"
+            }
+        },
+        "recap": {
+            "counter": "Übersicht",
+            "title": "Alles ist *bereit*.",
+            "help": "Lesen Sie noch einmal, ändern Sie bei Bedarf, und schicken Sie mir Ihre Anfrage.",
+            "notice": "Ihr E-Mail-Programm öffnet sich mit der bereits geschriebenen Anfrage: Sie wird erst verschickt, wenn Sie sie absenden.",
+            "send": "Anfrage senden",
+            "sending": "Wird gesendet …",
+            "sendMailto": "E-Mail-Programm öffnen"
+        },
+        "done": {
+            "mailTitle": "Ihr E-Mail-Programm *öffnet sich*.",
+            "mailText": "Die Anfrage ist bereits geschrieben – Sie müssen sie nur noch absenden. Falls sich nichts öffnet, kopieren Sie sie und senden Sie sie an contact@romain-kantzer.com.",
+            "successTitle": "Danke, Ihre Anfrage ist *unterwegs*.",
+            "successText": "Ich lese sie und antworte Ihnen persönlich, per E-Mail oder Telefon.",
+            "copy": "Anfrage kopieren",
+            "back": "Zurück zur Übersicht",
+            "errorTitle": "Das Senden hat nicht funktioniert.",
+            "errorText": "Das Problem liegt bei der Website, nicht bei Ihnen. Ihre Anfrage ist vorbereitet: Sie können sie mir direkt per E-Mail schicken.",
+            "errorMailto": "Per E-Mail senden"
         }
     },
     "footer": {

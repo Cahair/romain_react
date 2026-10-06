@@ -81,7 +81,7 @@ export default function ServiceHero({ slug }) {
                             transition={{ duration: 1, ease: OUT, delay: 0.6 }}
                             className="mt-10 flex flex-wrap gap-3"
                         >
-                            <Button href="/contact" size="lg">
+                            <Button href={`/demarrer?projet=${slug}`} size="lg">
                                 {t("services.heroCta")}
                                 <ArrowRight className="size-4" aria-hidden="true" />
                             </Button>

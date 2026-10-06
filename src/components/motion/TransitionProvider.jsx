@@ -61,6 +61,8 @@ export function TransitionProvider({ children }) {
 
             const url = new URL(anchor.href, window.location.href);
             if (url.origin !== window.location.origin) return;
+            // Espace admin : navigation directe, sans rideau.
+            if (url.pathname.startsWith("/admin") || window.location.pathname.startsWith("/admin")) return;
 
             if (url.pathname === window.location.pathname) {
                 // Même page : les ancres sont gérées par Lenis ; sinon, retour en haut.

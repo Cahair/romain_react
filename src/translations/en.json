@@ -237,7 +237,7 @@
         "label": "Contact",
         "title": "Let's talk about *your project*.",
         "text": "A website, a store, an app? Tell me what you have in mind, even if it's not very precise yet. I'll reply personally.",
-        "button": "Write to me"
+        "button": "Start a project"
     },
     "about": {
         "label": "About",
@@ -279,70 +279,30 @@
     "contact": {
         "label": "Contact",
         "title": "Let's talk about *your project*.",
-        "lead": "Tell me what you have in mind, even if it's not very precise yet. The first conversation is free and without commitment.",
-        "form": {
-            "title": "Your request",
-            "subtitle": "A few lines are enough. I'll reply personally.",
-            "badge": "Free first conversation",
-            "requiredNote": "Fields marked * are required.",
-            "optional": "optional",
-            "steps": {
-                "project": "Your project",
-                "contact": "Your details",
-                "message": "Your message",
-                "budget": "Budget in mind"
+        "lead": "By email, by phone, or in person in Alsace. And if you would rather get started right away, describe your project in a few questions.",
+        "cards": {
+            "email": {
+                "label": "Email",
+                "hint": "The simplest way to start."
             },
-            "projectOptions": {
-                "site-vitrine": "Business website",
-                "site-e-commerce": "Online store",
-                "application-web": "Web application",
-                "application-mobile": "Mobile app",
-                "refonte": "Redesign of an existing site",
-                "autre": "Other"
+            "phone": {
+                "label": "Phone",
+                "hint": "If you would rather talk it through."
             },
-            "name": "Name",
-            "namePlaceholder": "Jane Smith",
-            "email": "Email",
-            "emailPlaceholder": "jane@company.com",
-            "messagePlaceholder": "A few words about your business and what you'd like to do…",
-            "budgetOptions": {
-                "less1k": "Under €1,000",
-                "1k2k": "€1,000 – €2,000",
-                "2k5k": "€2,000 – €5,000",
-                "more5k": "Over €5,000",
-                "unknown": "Not sure yet"
+            "location": {
+                "label": "Where I am",
+                "value": "Rountzenheim (Bas-Rhin, France)",
+                "hint": "In Alsace, on site or remotely."
             },
-            "submit": "Send my message",
-            "sending": "Sending…",
-            "privacy": "Your details are only used to reply to you.",
-            "errors": {
-                "nameRequired": "Please enter your name.",
-                "nameTooLong": "This name is too long (100 characters max).",
-                "emailRequired": "Please enter your email so I can reply.",
-                "emailInvalid": "This email address doesn't look valid.",
-                "messageRequired": "Write a few words about your project.",
-                "messageTooShort": "Your message is a bit short (10 characters minimum).",
-                "messageTooLong": "Your message is too long (5,000 characters max)."
-            },
-            "errorTitle": "The message couldn't be sent.",
-            "errorText": "The problem is on the site's side, not yours. Your message is ready: you can send it to me directly by email.",
-            "errorMailto": "Send by email",
-            "rateLimited": "Several messages were sent in a short time. Please try again in a few minutes, or send it directly by email.",
-            "mailtoSubject": "Contact request",
-            "mailtoLabels": {
-                "name": "Name",
-                "email": "Email",
-                "project": "Project",
-                "budget": "Budget",
-                "message": "Message"
-            },
-            "successTitle": "Thank you, your message is on its way.",
-            "successText": "I'll read it and reply personally, by email or phone.",
-            "again": "Send another message"
+            "linkedin": {
+                "label": "LinkedIn",
+                "hint": "My professional background."
+            }
         },
-        "direct": {
-            "title": "Direct",
-            "location": "Rountzenheim (Bas-Rhin, France) — in Alsace and remotely"
+        "start": {
+            "title": "A project in mind?",
+            "text": "A few questions to frame your needs: type of project, timing, budget. Then I reply personally.",
+            "button": "Start a project"
         },
         "next": {
             "title": "What happens next?",
@@ -351,6 +311,114 @@
                 "We talk it through by phone, video call or in person.",
                 "I send you a detailed quote, with no commitment."
             ]
+        }
+    },
+    "onboarding": {
+        "label": "Start a project",
+        "stepCounter": "Step {current} of {total}",
+        "back": "Back",
+        "next": "Continue",
+        "skip": "Skip this question",
+        "edit": "Edit",
+        "notAnswered": "Not answered",
+        "footerNote": "Prefer to write directly?",
+        "contactLink": "See my contact details",
+        "mailSubject": "Project enquiry",
+        "fields": {
+            "name": "Name",
+            "email": "Email",
+            "phone": "Phone",
+            "optional": "optional",
+            "namePlaceholder": "Jane Smith",
+            "emailPlaceholder": "jane@company.com",
+            "phonePlaceholder": "+33 6 12 34 56 78"
+        },
+        "errors": {
+            "choice": "Pick an answer to continue.",
+            "message": "Tell me about your project in a few words.",
+            "messageShort": "A few more words would help (10 characters minimum).",
+            "name": "Please enter your name.",
+            "email": "Please enter a valid email so I can reply."
+        },
+        "steps": {
+            "project": {
+                "question": "What kind of *project*?",
+                "help": "If you hesitate, pick the closest one: we will refine it together.",
+                "summary": "Type of project",
+                "options": {
+                    "site-vitrine": "Business website",
+                    "site-e-commerce": "Online store",
+                    "application-web": "Web application",
+                    "application-mobile": "Mobile app",
+                    "refonte": "Redesign of an existing site",
+                    "autre": "Something else, or not sure yet"
+                }
+            },
+            "stage": {
+                "question": "Where are you *at*?",
+                "help": "So I know where to start.",
+                "summary": "Stage",
+                "options": {
+                    "idee": "It is still an idea",
+                    "defini": "The project is well defined",
+                    "existant": "I have an existing site to rebuild",
+                    "presse": "I have a tight deadline"
+                }
+            },
+            "timing": {
+                "question": "For *when*?",
+                "help": "A rough idea is enough, we will adjust it with the quote.",
+                "summary": "Timing",
+                "options": {
+                    "asap": "As soon as possible",
+                    "trimestre": "Within the next three months",
+                    "annee": "Later this year",
+                    "inconnu": "No particular date"
+                }
+            },
+            "budget": {
+                "question": "What *budget* do you have in mind?",
+                "help": "A range is enough: it helps me suggest a realistic solution. You can also skip this question.",
+                "summary": "Budget",
+                "options": {
+                    "less1k": "Under €1,000",
+                    "1k2k": "€1,000 – €2,000",
+                    "2k5k": "€2,000 – €5,000",
+                    "more5k": "Over €5,000",
+                    "unknown": "Not sure yet"
+                }
+            },
+            "message": {
+                "question": "Tell me about your *project*.",
+                "help": "Your business, what the site or app should make possible, what already exists… A few sentences are enough.",
+                "summary": "The project",
+                "placeholder": "For example: I am a joiner near Haguenau, I would like a website to show my work and receive quote requests."
+            },
+            "identity": {
+                "question": "How can I *reply*?",
+                "help": "So I can answer you, and call you back if you prefer the phone.",
+                "summary": "Contact details"
+            }
+        },
+        "recap": {
+            "counter": "Summary",
+            "title": "Everything is *ready*.",
+            "help": "Read it over, edit if needed, then send me your enquiry.",
+            "notice": "Your email app will open with the enquiry already written: it is only sent once you send it.",
+            "send": "Send my enquiry",
+            "sending": "Sending…",
+            "sendMailto": "Open my email app"
+        },
+        "done": {
+            "mailTitle": "Your email app *is opening*.",
+            "mailText": "The enquiry is already written — all you have to do is send it. If nothing opens, copy it and send it to contact@romain-kantzer.com.",
+            "successTitle": "Thank you, your enquiry is *on its way*.",
+            "successText": "I will read it and reply personally, by email or phone.",
+            "copy": "Copy my enquiry",
+            "back": "Back to the summary",
+            "errorTitle": "Sending did not work.",
+            "errorText": "The problem is on the site's side, not yours. Your enquiry is ready: you can send it to me directly by email.",
+            "errorMailto": "Send by email"
         }
     },
     "footer": {

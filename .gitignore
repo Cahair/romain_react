@@ -20,6 +20,9 @@
 # production
 /build
 
+# données de l'espace admin (comptes, actualités, photos)
+/data/
+
 # misc
 .DS_Store
 *.pem

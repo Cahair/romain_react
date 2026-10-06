@@ -246,6 +246,11 @@ body {
   outline-offset: 3px;
 }
 
+/* Éléments focalisés par le code (titres d'étape de l'onboarding) : pas d'anneau visible. */
+[data-focus-silent]:focus-visible {
+  outline: none;
+}
+
 @layer components {
   /* Trame de points (fond du hero et de l'appel à l'action) */
   .dot-grid {

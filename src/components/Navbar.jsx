@@ -184,7 +184,7 @@ export default function Navbar() {
                             <span className="h-5 w-px bg-border" aria-hidden="true" />
                             <LanguageSwitch />
                             <ThemeToggle />
-                            <Button href="/contact" size="sm">
+                            <Button href="/demarrer" size="sm">
                                 {t("nav.cta")}
                             </Button>
                         </div>
@@ -264,6 +264,18 @@ export default function Navbar() {
                                         </li>
                                     ))}
                                 </ul>
+                            </motion.div>
+
+                            <motion.div
+                                initial={{ opacity: 0, y: 16 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.6, ease: OUT, delay: 0.5 }}
+                                className="mt-8"
+                            >
+                                <Button href="/demarrer" size="lg" onClick={closeMenu} className="w-full">
+                                    {t("nav.cta")}
+                                </Button>
                             </motion.div>
 
                             <motion.div

@@ -237,7 +237,7 @@
         "label": "Contact",
         "title": "Parlons de *votre projet*.",
         "text": "Un site, une boutique, une application ? Racontez-moi ce que vous avez en tête, même si ce n'est pas encore très précis. Je vous réponds personnellement.",
-        "button": "Écrivez-moi"
+        "button": "Démarrer un projet"
     },
     "about": {
         "label": "À propos",
@@ -279,70 +279,30 @@
     "contact": {
         "label": "Contact",
         "title": "Parlons de *votre projet*.",
-        "lead": "Racontez-moi ce que vous avez en tête, même si ce n'est pas encore très précis. Le premier échange est gratuit et sans engagement.",
-        "form": {
-            "title": "Votre demande",
-            "subtitle": "Quelques lignes suffisent. Je vous réponds personnellement.",
-            "badge": "Premier échange gratuit",
-            "requiredNote": "Les champs marqués * sont obligatoires.",
-            "optional": "facultatif",
-            "steps": {
-                "project": "Votre projet",
-                "contact": "Vos coordonnées",
-                "message": "Votre message",
-                "budget": "Budget envisagé"
+        "lead": "Par e-mail, par téléphone, ou de vive voix en Alsace. Et si vous préférez avancer tout de suite, décrivez votre projet en quelques questions.",
+        "cards": {
+            "email": {
+                "label": "E-mail",
+                "hint": "Le plus simple pour commencer."
             },
-            "projectOptions": {
-                "site-vitrine": "Site vitrine",
-                "site-e-commerce": "Site e-commerce",
-                "application-web": "Application web",
-                "application-mobile": "Application mobile",
-                "refonte": "Refonte d'un site existant",
-                "autre": "Autre"
+            "phone": {
+                "label": "Téléphone",
+                "hint": "Si vous préférez en parler de vive voix."
             },
-            "name": "Nom",
-            "namePlaceholder": "Jean Dupont",
-            "email": "E-mail",
-            "emailPlaceholder": "jean@entreprise.fr",
-            "messagePlaceholder": "Quelques mots sur votre activité et ce que vous aimeriez faire…",
-            "budgetOptions": {
-                "less1k": "Moins de 1 000 €",
-                "1k2k": "1 000 – 2 000 €",
-                "2k5k": "2 000 – 5 000 €",
-                "more5k": "Plus de 5 000 €",
-                "unknown": "Je ne sais pas encore"
+            "location": {
+                "label": "Où je suis",
+                "value": "Rountzenheim (Bas-Rhin)",
+                "hint": "En Alsace, sur place ou à distance."
             },
-            "submit": "Envoyer mon message",
-            "sending": "Envoi en cours…",
-            "privacy": "Vos informations servent uniquement à vous répondre.",
-            "errors": {
-                "nameRequired": "Indiquez votre nom.",
-                "nameTooLong": "Ce nom est trop long (100 caractères maximum).",
-                "emailRequired": "Indiquez votre e-mail pour que je puisse vous répondre.",
-                "emailInvalid": "Cette adresse e-mail ne semble pas valide.",
-                "messageRequired": "Écrivez quelques mots sur votre projet.",
-                "messageTooShort": "Votre message est un peu court (10 caractères minimum).",
-                "messageTooLong": "Votre message est trop long (5 000 caractères maximum)."
-            },
-            "errorTitle": "Le message n'a pas pu partir.",
-            "errorText": "Le problème vient du site, pas de vous. Votre message est prêt : vous pouvez me l'envoyer directement par e-mail.",
-            "errorMailto": "Envoyer par e-mail",
-            "rateLimited": "Plusieurs messages ont été envoyés en peu de temps. Réessayez dans quelques minutes, ou envoyez-le directement par e-mail.",
-            "mailtoSubject": "Demande de contact",
-            "mailtoLabels": {
-                "name": "Nom",
-                "email": "E-mail",
-                "project": "Projet",
-                "budget": "Budget",
-                "message": "Message"
-            },
-            "successTitle": "Merci, votre message est bien parti.",
-            "successText": "Je le lis et je vous réponds personnellement, par e-mail ou par téléphone.",
-            "again": "Envoyer un autre message"
+            "linkedin": {
+                "label": "LinkedIn",
+                "hint": "Mon parcours professionnel."
+            }
         },
-        "direct": {
-            "title": "En direct",
-            "location": "Rountzenheim (Bas-Rhin) — en Alsace et à distance"
+        "start": {
+            "title": "Un projet en tête ?",
+            "text": "Quelques questions pour cadrer votre besoin : type de projet, échéance, budget. Je vous réponds ensuite personnellement.",
+            "button": "Démarrer un projet"
         },
         "next": {
             "title": "Et ensuite ?",
@@ -351,6 +311,114 @@
                 "On en parle au téléphone, en visio ou de vive voix.",
                 "Je vous envoie un devis détaillé, sans engagement."
             ]
+        }
+    },
+    "onboarding": {
+        "label": "Démarrer un projet",
+        "stepCounter": "Étape {current} sur {total}",
+        "back": "Retour",
+        "next": "Continuer",
+        "skip": "Passer cette question",
+        "edit": "Modifier",
+        "notAnswered": "Non renseigné",
+        "footerNote": "Vous préférez écrire directement ?",
+        "contactLink": "Voir mes coordonnées",
+        "mailSubject": "Demande de projet",
+        "fields": {
+            "name": "Nom",
+            "email": "E-mail",
+            "phone": "Téléphone",
+            "optional": "facultatif",
+            "namePlaceholder": "Jean Dupont",
+            "emailPlaceholder": "jean@entreprise.fr",
+            "phonePlaceholder": "06 12 34 56 78"
+        },
+        "errors": {
+            "choice": "Choisissez une réponse pour continuer.",
+            "message": "Racontez-moi votre projet en quelques mots.",
+            "messageShort": "Quelques mots de plus m'aideraient (10 caractères minimum).",
+            "name": "Indiquez votre nom.",
+            "email": "Indiquez un e-mail valide pour que je puisse vous répondre."
+        },
+        "steps": {
+            "project": {
+                "question": "Quel type de *projet* ?",
+                "help": "Si vous hésitez, choisissez le plus proche : on affinera ensemble.",
+                "summary": "Type de projet",
+                "options": {
+                    "site-vitrine": "Site vitrine",
+                    "site-e-commerce": "Site e-commerce",
+                    "application-web": "Application web",
+                    "application-mobile": "Application mobile",
+                    "refonte": "Refonte d'un site existant",
+                    "autre": "Autre, ou je ne sais pas encore"
+                }
+            },
+            "stage": {
+                "question": "Où en *êtes-vous* ?",
+                "help": "Pour savoir par où commencer.",
+                "summary": "Avancement",
+                "options": {
+                    "idee": "C'est encore une idée",
+                    "defini": "Le projet est déjà bien défini",
+                    "existant": "J'ai un site existant à refaire",
+                    "presse": "J'ai une échéance serrée"
+                }
+            },
+            "timing": {
+                "question": "Pour *quand* ?",
+                "help": "Une indication suffit, on l'ajustera au moment du devis.",
+                "summary": "Échéance",
+                "options": {
+                    "asap": "Dès que possible",
+                    "trimestre": "Dans les trois prochains mois",
+                    "annee": "Plus tard dans l'année",
+                    "inconnu": "Pas de date précise"
+                }
+            },
+            "budget": {
+                "question": "Quel *budget* avez-vous en tête ?",
+                "help": "Une fourchette suffit : elle me sert à proposer une solution réaliste. Vous pouvez aussi passer cette question.",
+                "summary": "Budget",
+                "options": {
+                    "less1k": "Moins de 1 000 €",
+                    "1k2k": "1 000 – 2 000 €",
+                    "2k5k": "2 000 – 5 000 €",
+                    "more5k": "Plus de 5 000 €",
+                    "unknown": "Je ne sais pas encore"
+                }
+            },
+            "message": {
+                "question": "Racontez-moi votre *projet*.",
+                "help": "Votre activité, ce que le site ou l'application doit permettre, ce qui existe déjà… Quelques phrases suffisent.",
+                "summary": "Le projet",
+                "placeholder": "Par exemple : je suis menuisier près de Haguenau, je voudrais un site pour montrer mes réalisations et recevoir des demandes de devis."
+            },
+            "identity": {
+                "question": "Comment puis-je vous *répondre* ?",
+                "help": "Pour vous répondre, et vous rappeler si vous préférez le téléphone.",
+                "summary": "Coordonnées"
+            }
+        },
+        "recap": {
+            "counter": "Récapitulatif",
+            "title": "Tout est *prêt*.",
+            "help": "Relisez, modifiez si besoin, puis envoyez-moi votre demande.",
+            "notice": "Votre messagerie s'ouvrira avec la demande déjà écrite : elle ne partira qu'après votre envoi.",
+            "send": "Envoyer ma demande",
+            "sending": "Envoi en cours…",
+            "sendMailto": "Ouvrir ma messagerie"
+        },
+        "done": {
+            "mailTitle": "Votre messagerie *s'ouvre*.",
+            "mailText": "La demande est déjà écrite : il ne reste qu'à l'envoyer. Si rien ne s'ouvre, copiez-la et envoyez-la à contact@romain-kantzer.com.",
+            "successTitle": "Merci, votre demande est *bien partie*.",
+            "successText": "Je la lis et je vous réponds personnellement, par e-mail ou par téléphone.",
+            "copy": "Copier ma demande",
+            "back": "Revenir au récapitulatif",
+            "errorTitle": "L'envoi n'a pas fonctionné.",
+            "errorText": "Le problème vient du site, pas de vous. Votre demande est prête : vous pouvez me l'envoyer directement par e-mail.",
+            "errorMailto": "Envoyer par e-mail"
         }
     },
     "footer": {

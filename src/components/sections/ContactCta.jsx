@@ -101,7 +101,7 @@ export default function ContactCta() {
 
                 <Magnetic className="mt-12">
                     <Link
-                        href="/contact"
+                        href="/demarrer"
                         className="group/roll flex size-36 flex-col items-center justify-center gap-2 rounded-full bg-primary text-center text-base font-medium text-primary-foreground transition-transform duration-500 ease-out-expo hover:scale-105 md:size-44 md:text-lg"
                     >
                         <RollText>{t("cta.button")}</RollText>

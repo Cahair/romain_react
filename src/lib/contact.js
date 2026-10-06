@@ -2,6 +2,12 @@
 // et la route API (validation serveur). Les messages arrivent toujours à la même adresse.
 export const CONTACT_RECIPIENT = "contact@romain-kantzer.com";
 
+// Mode du formulaire, le temps que l'envoi serveur soit configuré :
+// - "mailto" (défaut) : le formulaire prépare le message et ouvre la messagerie du visiteur ;
+// - "api" : envoi direct par /api/contact (code déjà en place et testé).
+// Pour rebasculer : NEXT_PUBLIC_CONTACT_MODE=api dans .env.local et chez l'hébergeur, puis rebuild.
+export const CONTACT_MODE = process.env.NEXT_PUBLIC_CONTACT_MODE === "api" ? "api" : "mailto";
+
 export const PROJECT_OPTIONS = ["site-vitrine", "site-e-commerce", "application-web", "application-mobile", "refonte", "autre"];
 export const BUDGET_OPTIONS = ["less1k", "1k2k", "2k5k", "more5k", "unknown"];
 
@@ -10,17 +16,19 @@ export const LIMITS = { name: 100, email: 200, messageMin: 10, messageMax: 5000 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 // Renvoie les champs en erreur : { champ: code }, codes « required », « invalid », « tooShort », « tooLong ».
-export function validateContact({ name, email, message }) {
+// `requireIdentity` est désactivé en mode mailto : le mail part de l'adresse du visiteur,
+// son nom et son e-mail ne sont donc plus obligatoires.
+export function validateContact({ name, email, message }, { requireIdentity = true } = {}) {
     const errors = {};
     const cleanName = typeof name === "string" ? name.trim() : "";
     const cleanEmail = typeof email === "string" ? email.trim() : "";
     const cleanMessage = typeof message === "string" ? message.trim() : "";
 
-    if (!cleanName) errors.name = "required";
-    else if (cleanName.length > LIMITS.name) errors.name = "tooLong";
+    if (cleanName.length > LIMITS.name) errors.name = "tooLong";
+    else if (requireIdentity && !cleanName) errors.name = "required";
 
-    if (!cleanEmail) errors.email = "required";
-    else if (cleanEmail.length > LIMITS.email || !EMAIL_PATTERN.test(cleanEmail)) errors.email = "invalid";
+    if (requireIdentity && !cleanEmail) errors.email = "required";
+    else if (cleanEmail && (cleanEmail.length > LIMITS.email || !EMAIL_PATTERN.test(cleanEmail))) errors.email = "invalid";
 
     if (!cleanMessage) errors.message = "required";
     else if (cleanMessage.length < LIMITS.messageMin) errors.message = "tooShort";

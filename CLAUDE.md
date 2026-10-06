@@ -15,6 +15,7 @@ npm run dev      # serveur de dev (localhost:3000)
 npm run build    # build production
 npm run start    # sert le build
 npm run lint     # ESLint (eslint-config-next)
+npm run admin -- create <email>   # compte de l'espace admin (à lancer en SSH sur le serveur)
 ```
 
 Pas de suite de tests. La vérification passe par `npm run build` + contrôle visuel (desktop et mobile, thèmes sombre et clair).
@@ -25,7 +26,8 @@ Next.js 16 (App Router) + React 19 + Tailwind CSS v4 + framer-motion 12 + Lenis 
 
 ### Routes
 
-- `/` accueil · `/services` catalogue · `/services/[slug]` une page par service · `/about` · `/contact` · `/legal` · `not-found.js`.
+- `/` accueil · `/services` catalogue · `/services/[slug]` une page par service · `/demarrer` parcours « Démarrer un projet » · `/about` · `/contact` · `/legal` · `not-found.js`.
+- **Parcours de conversion** : tous les boutons « Démarrer un projet » (navigation, footer, hero, pages service, appel à l'action) mènent à `/demarrer` — six questions, une par écran, puis un récapitulatif modifiable (`src/components/onboarding/Onboarding.jsx`, étapes décrites dans `src/lib/onboarding.js`, libellés sous la clé `onboarding`). Depuis une page service, le type de projet est pré-sélectionné via `/demarrer?projet=<slug>`. `/contact` ne contient plus de formulaire : coordonnées, « Et ensuite ? » et un renvoi vers le parcours.
 - Les slugs des services et leur metadata SEO sont dans `src/lib/services.js` (`SERVICE_SLUGS`, `SERVICE_META`). Pages générées statiquement (`generateStaticParams`, `dynamicParams = false`).
 - `/services/web-dev` (ancienne page) redirige en 301 vers `/services` (`next.config.mjs`).
 - `/designs` (page de travail) et `/blog/[slug]` (maquette sans données) sont en `noindex`, non liés, hors direction artistique.
@@ -65,7 +67,18 @@ Sombre par défaut ; clair via la classe `html.light` (script inline dans `layou
 ### API routes (env vars requises en `.env.local`)
 
 - `src/app/api/chat/route.js` — assistant Gemini (`GEMINI_API_KEY`) ; le profil de Romain et ses services sont en dur dans le prompt système : le tenir à jour si le contenu du site change.
+- **Mode du formulaire de contact** : `CONTACT_MODE` (`src/lib/contact.js`) vaut `mailto` par défaut — le formulaire prépare le message et ouvre la messagerie du visiteur, sans passer par le serveur (solution provisoire tant que l'envoi SMTP n'est pas configuré). `NEXT_PUBLIC_CONTACT_MODE=api` rebascule sur l'envoi par la route ci-dessous.
 - `src/app/api/contact/route.js` — formulaire de contact. Destinataire fixe : **contact@romain-kantzer.com** (`CONTACT_RECIPIENT` dans `src/lib/contact.js`, qui porte aussi la validation partagée avec la page). Envoi par SMTP (`SMTP_HOST`/`SMTP_USER`/`SMTP_PASS`, sinon l'ancien Gmail `EMAIL_USER`/`EMAIL_PASS`), puis Resend en secours (`RESEND_API_KEY` + `RESEND_FROM` sur un domaine vérifié) — voir `.env.local.example`. Pot de miel `website`, limite de 5 envois par IP et par 10 min. Si l'envoi échoue, la page propose un mailto pré-rempli pour ne perdre aucune demande.
+
+### Espace admin (`/admin`) — bac à sable d'automatisation des réseaux sociaux
+
+Outil interne : privé, `noindex`, **hors i18n et hors direction artistique** (textes en français en dur, mais tokens et primitives `ui/` quand même). Pas de splash, de rideau ni de chatbot sur `/admin` (exclusions dans `layout.tsx`, `TransitionProvider`, `Chatbot`).
+
+- **Comptes** : uniquement en ligne de commande sur le serveur (SSH) — `npm run admin -- create|password|revoke|delete <email>` ou `npm run admin -- list` (`scripts/admin-user.mjs`). Aucune inscription depuis le site.
+- **Données** : fichiers JSON dans `data/` (ou `ADMIN_DATA_DIR`), ignoré par Git — `admin-users.json` (hachage scrypt), `actualites.json`, `medias/`, `session-secret`. Code partagé site/CLI en `.mjs` (`src/lib/admin/files.mjs`, `users.mjs`).
+- **Session** : cookie `rk_admin` signé HMAC (`src/lib/admin/session.js`). `requireSession()` en tête de **chaque page et de chaque action serveur** (le layout du groupe `(espace)` ne suffit pas). Toutes les mutations passent par `src/app/admin/actions.js`.
+- **Actualités** : titre, texte, date, catégorie, photo JPEG (seul format accepté par l'API Instagram). Les photos sont servies publiquement par `/medias/<nom aléatoire>.jpg` pour qu'Instagram puisse les récupérer.
+- **Workflow** : « Générer une proposition » envoie l'actualité en POST à `AUTOMATION_WEBHOOK_URL` (n8n/Make, `Authorization: Bearer AUTOMATION_WEBHOOK_SECRET`) et attend `{ "caption": "…" }` (`src/lib/admin/automation.js`). La légende devient un brouillon modifiable, puis « validée ». La publication sur Instagram n'est pas encore branchée.
 
 ### Composants
 

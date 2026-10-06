@@ -85,7 +85,7 @@ export default function Footer() {
                         <p className="max-w-md text-3xl leading-[1.08] tracking-[-0.025em] md:text-4xl">
                             <Emphasis text={t("footer.tagline")} />
                         </p>
-                        <Button href="/contact" className="mt-8">
+                        <Button href="/demarrer" className="mt-8">
                             {t("nav.cta")}
                         </Button>
                     </div>
