@@ -82,7 +82,7 @@ Outil interne : privé, `noindex`, **hors i18n et hors direction artistique** (t
 
 ### Composants
 
-- **Primitives obligatoires** dans `src/components/ui/` : `Button` (pilule, variantes primary/ghost/inverse, tailles sm/md/lg, texte qui roule au survol, icônes lucide `ArrowRight`/`ArrowUpRight`), `Section` (+ export `container`, prop `tone`), `SectionTitle` / `Highlight` / `Emphasis` (échelle unique `titleScales`), `Label` / `LabelRule` (libellés entre crochets), `RollText`, `Spark`, `Card`. Tout nouveau composant passe par ces primitives.
+- **Primitives obligatoires** dans `src/components/ui/` : `Button` (pilule, variantes primary/ghost/inverse, tailles sm/md/lg, texte qui roule au survol, icônes lucide `ArrowRight`/`ArrowUpRight`), `Section` (+ export `container`, prop `tone`), `SectionTitle` / `Highlight` / `Emphasis` (échelle unique `titleScales`), `Label` / `LabelRule` (libellés entre crochets), `RollText`, `Spark`, `Card`, `Logo` (logo vectorisé, `currentColor` ; `tagline` ajoute « RK.ai », à réserver aux grandes tailles). Tout nouveau composant passe par ces primitives.
 - Sections réutilisables : `src/components/sections/` (ServicesList, FeaturedProject, ProcessScroller, ProcessList, Faq, ContactCta, PageHero) ; spécifiques : `src/components/home/`, `src/components/services/`.
 - Visuels : `src/components/visuals/Mockups.jsx` — maquettes animées des 4 services, codées en HTML/CSS avec les tokens (unités `cqw`). **Pas de vidéo ni d'image générée par IA** : les vidéos de `public/` ne sont plus utilisées.
 

@@ -2,11 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useLenis } from "lenis/react";
 import { useTranslation } from "./LanguageProvider";
 import Button from "./ui/Button";
+import Logo from "./ui/Logo";
 import RollText from "./ui/RollText";
 import { container } from "./ui/Section";
 import { Emphasis } from "./ui/SectionTitle";
@@ -62,6 +63,7 @@ function FooterLink({ href, external = false, children }) {
 
 export default function Footer() {
     const { t } = useTranslation();
+    const reduceMotion = useReducedMotion();
     const lenis = useLenis();
     const ref = useRef(null);
     const time = useLocalTime("Europe/Paris");
@@ -121,25 +123,21 @@ export default function Footer() {
                     </Column>
                 </div>
 
-                {/* Le déclencheur est sur le conteneur : les lettres, masquées sous lui, ne sont jamais « visibles » pour l'observer. */}
+                {/* Le déclencheur est sur le conteneur : le logo, masqué sous lui, n'est jamais « visible » pour l'observer. */}
                 <motion.div
-                    aria-hidden="true"
-                    className="mt-20 flex select-none overflow-hidden whitespace-nowrap pb-[0.02em] font-medium leading-[0.8] tracking-[-0.06em] [--gutter:2.5rem] md:mt-28 md:[--gutter:5rem]"
-                    style={{ fontSize: "calc((min(100vw, 1600px) - var(--gutter)) / 6.6)" }}
+                    className="mt-20 overflow-hidden md:mt-28"
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, amount: 0.5 }}
-                    variants={{ hidden: {}, show: { transition: { staggerChildren: 0.035 } } }}
                 >
-                    {WORDMARK.split("").map((char, index) => (
-                        <motion.span
-                            key={index}
-                            className="inline-block"
-                            variants={{ hidden: { y: "100%" }, show: { y: "0%", transition: { duration: 1.1, ease: OUT } } }}
-                        >
-                            {char === " " ? " " : char}
-                        </motion.span>
-                    ))}
+                    <motion.div
+                        variants={{
+                            hidden: reduceMotion ? { opacity: 0 } : { y: "100%" },
+                            show: reduceMotion ? { opacity: 1 } : { y: "0%", transition: { duration: 1.1, ease: OUT } },
+                        }}
+                    >
+                        <Logo tagline title="Romain Kantzer — RK.ai" className="h-auto w-full" />
+                    </motion.div>
                 </motion.div>
 
                 <div className="flex flex-col gap-4 border-t border-border pb-24 pt-6 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between md:pb-6 md:pr-20">

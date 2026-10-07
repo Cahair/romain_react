@@ -9,6 +9,7 @@ import { useLenis } from "lenis/react";
 import { useTheme } from "./ThemeProvider";
 import { useTranslation, availableLocales } from "./LanguageProvider";
 import Button from "./ui/Button";
+import BrandLogo from "./ui/Logo";
 import RollText from "./ui/RollText";
 import { container } from "./ui/Section";
 import { Emphasis } from "./ui/SectionTitle";
@@ -20,12 +21,9 @@ const OUT = [0.16, 1, 0.3, 1];
 export function Logo({ className = "" }) {
     const { t } = useTranslation();
     return (
-        <Link href="/" aria-label={t("nav.homeAria")} className={`group flex items-center gap-3 ${className}`}>
-            <span className="flex flex-col items-start leading-none">
-                <span className="text-[1.6rem] font-semibold tracking-[-0.05em]">RK</span>
-                <span className="mt-1 h-[3px] w-4 bg-primary transition-all duration-500 ease-expo group-hover:w-full" />
-            </span>
-            <span className="hidden text-sm font-medium tracking-tight sm:block">Romain Kantzer</span>
+        <Link href="/" aria-label={t("nav.homeAria")} className={`group flex flex-col items-start ${className}`}>
+            <BrandLogo className="h-3 w-auto md:h-[0.95rem]" />
+            <span className="mt-2 h-[2px] w-4 bg-primary transition-all duration-500 ease-expo group-hover:w-full" />
         </Link>
     );
 }
