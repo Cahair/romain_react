@@ -17,7 +17,7 @@ import { SERVICE_SLUGS } from "@/lib/services";
 import { track } from "@/lib/analytics";
 
 const OUT = [0.16, 1, 0.3, 1];
-// Tant que l'envoi serveur n'est pas configuré, la demande part depuis la messagerie du visiteur.
+// En mode mailto (NEXT_PUBLIC_CONTACT_MODE=mailto), la demande part depuis la messagerie du visiteur.
 const MAIL_MODE = CONTACT_MODE === "mailto";
 
 const inputClasses =
@@ -192,9 +192,12 @@ export default function Onboarding() {
                 body: JSON.stringify({
                     name: answers.name,
                     email: answers.email,
+                    phone: answers.phone,
                     project: answers.project,
+                    stage: answers.stage,
+                    timing: answers.timing,
                     budget: answers.budget,
-                    message: mailBody(),
+                    message: answers.message,
                     website: answers.website,
                     locale,
                 }),

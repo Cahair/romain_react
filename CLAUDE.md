@@ -67,8 +67,8 @@ Sombre par défaut ; clair via la classe `html.light` (script inline dans `layou
 ### API routes (env vars requises en `.env.local`)
 
 - `src/app/api/chat/route.js` — assistant Gemini (`GEMINI_API_KEY`) ; le profil de Romain et ses services sont en dur dans le prompt système : le tenir à jour si le contenu du site change.
-- **Mode du formulaire de contact** : `CONTACT_MODE` (`src/lib/contact.js`) vaut `mailto` par défaut — le formulaire prépare le message et ouvre la messagerie du visiteur, sans passer par le serveur (solution provisoire tant que l'envoi SMTP n'est pas configuré). `NEXT_PUBLIC_CONTACT_MODE=api` rebascule sur l'envoi par la route ci-dessous.
-- `src/app/api/contact/route.js` — formulaire de contact. Destinataire fixe : **contact@romain-kantzer.com** (`CONTACT_RECIPIENT` dans `src/lib/contact.js`, qui porte aussi la validation partagée avec la page). Envoi par SMTP (`SMTP_HOST`/`SMTP_USER`/`SMTP_PASS`, sinon l'ancien Gmail `EMAIL_USER`/`EMAIL_PASS`), puis Resend en secours (`RESEND_API_KEY` + `RESEND_FROM` sur un domaine vérifié) — voir `.env.local.example`. Pot de miel `website`, limite de 5 envois par IP et par 10 min. Si l'envoi échoue, la page propose un mailto pré-rempli pour ne perdre aucune demande.
+- **Mode du formulaire** : `CONTACT_MODE` (`src/lib/contact.js`) vaut `api` par défaut — `/demarrer` envoie la demande directement par la route ci-dessous. `NEXT_PUBLIC_CONTACT_MODE=mailto` revient à l'ouverture de la messagerie du visiteur.
+- `src/app/api/contact/route.js` — envoi des demandes de `/demarrer` (toutes les réponses du parcours, libellés en français dans le mail). Destinataire fixe : **contact@romain-kantzer.com** (`CONTACT_RECIPIENT` dans `src/lib/contact.js`, qui porte aussi la validation partagée avec la page). Envoi par SMTP (`SMTP_HOST`/`SMTP_USER`/`SMTP_PASS`, sinon l'ancien Gmail `EMAIL_USER`/`EMAIL_PASS`), puis Resend en secours (`RESEND_API_KEY` + `RESEND_FROM` sur un domaine vérifié) — voir `.env.local.example`. Pot de miel `website`, limite de 5 envois par IP et par 10 min. Si l'envoi échoue, la page propose un mailto pré-rempli pour ne perdre aucune demande.
 
 ### Mesure d'audience (Umami)
 

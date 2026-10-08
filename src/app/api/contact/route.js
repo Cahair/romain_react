@@ -1,7 +1,15 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { Resend } from "resend";
-import { BUDGET_OPTIONS, CONTACT_RECIPIENT, PROJECT_OPTIONS, validateContact } from "@/lib/contact";
+import {
+    BUDGET_OPTIONS,
+    CONTACT_RECIPIENT,
+    LIMITS,
+    PROJECT_OPTIONS,
+    STAGE_OPTIONS,
+    TIMING_OPTIONS,
+    validateContact,
+} from "@/lib/contact";
 
 export const runtime = "nodejs";
 
@@ -21,6 +29,20 @@ const BUDGET_LABELS = {
     "2k5k": "2 000 – 5 000 €",
     more5k: "Plus de 5 000 €",
     unknown: "Je ne sais pas encore",
+};
+
+const STAGE_LABELS = {
+    idee: "C'est encore une idée",
+    defini: "Le projet est déjà bien défini",
+    existant: "Un site existant à refaire",
+    presse: "Une échéance serrée",
+};
+
+const TIMING_LABELS = {
+    asap: "Dès que possible",
+    trimestre: "Dans les trois prochains mois",
+    annee: "Plus tard dans l'année",
+    inconnu: "Pas de date précise",
 };
 
 const LOCALE_LABELS = { fr: "Français", en: "Anglais", de: "Allemand" };
@@ -77,31 +99,38 @@ function getTransports() {
     return transports;
 }
 
-function buildMail({ name, email, message, project, budget, locale }) {
+const pick = (labels, options, value) => (options.includes(value) ? labels[value] : "Non précisé");
+
+function buildMail({ name, email, phone, message, project, stage, timing, budget, locale }) {
     const cleanName = singleLine(name);
     const cleanEmail = email.trim();
+    const cleanPhone = typeof phone === "string" ? singleLine(phone).slice(0, LIMITS.phone) : "";
     const cleanMessage = message.trim();
-    const projectLabel = PROJECT_OPTIONS.includes(project) ? PROJECT_LABELS[project] : "Non précisé";
-    const budgetLabel = BUDGET_OPTIONS.includes(budget) ? BUDGET_LABELS[budget] : "Non précisé";
+    const projectLabel = pick(PROJECT_LABELS, PROJECT_OPTIONS, project);
     const localeLabel = LOCALE_LABELS[locale] || LOCALE_LABELS.fr;
-    const subject = `Nouveau message de ${cleanName} — ${projectLabel}`;
+    const subject = `Nouvelle demande de ${cleanName} — ${projectLabel}`;
 
-    const rows = [
-        ["Nom", escapeHtml(cleanName)],
-        ["E-mail", `<a href="mailto:${escapeHtml(cleanEmail)}" style="color:#2563eb;">${escapeHtml(cleanEmail)}</a>`],
-        ["Projet", escapeHtml(projectLabel)],
-        ["Budget", escapeHtml(budgetLabel)],
-        ["Langue du site", escapeHtml(localeLabel)],
-    ];
+    // [libellé, valeur en texte brut, valeur HTML si différente]
+    const fields = [
+        ["Nom", cleanName],
+        ["E-mail", cleanEmail, `<a href="mailto:${escapeHtml(cleanEmail)}" style="color:#2563eb;">${escapeHtml(cleanEmail)}</a>`],
+        cleanPhone && [
+            "Téléphone",
+            cleanPhone,
+            `<a href="tel:${escapeHtml(cleanPhone.replace(/[^\d+]/g, ""))}" style="color:#2563eb;">${escapeHtml(cleanPhone)}</a>`,
+        ],
+        ["Projet", projectLabel],
+        ["Avancement", pick(STAGE_LABELS, STAGE_OPTIONS, stage)],
+        ["Échéance", pick(TIMING_LABELS, TIMING_OPTIONS, timing)],
+        ["Budget", pick(BUDGET_LABELS, BUDGET_OPTIONS, budget)],
+        ["Langue du site", localeLabel],
+    ].filter(Boolean);
+    const rows = fields.map(([label, value, html]) => [label, html || escapeHtml(value)]);
 
     const text = [
-        "Nouveau message depuis le formulaire de romain-kantzer.com",
+        "Nouvelle demande depuis romain-kantzer.com/demarrer",
         "",
-        `Nom : ${cleanName}`,
-        `E-mail : ${cleanEmail}`,
-        `Projet : ${projectLabel}`,
-        `Budget : ${budgetLabel}`,
-        `Langue du site : ${localeLabel}`,
+        ...fields.map(([label, value]) => `${label} : ${value}`),
         "",
         "Message :",
         cleanMessage,
@@ -118,8 +147,8 @@ function buildMail({ name, email, message, project, budget, locale }) {
 <tr><td align="center">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#ffffff;border:1px solid #e5e7eb;border-radius:16px;overflow:hidden;">
 <tr><td style="background:#171717;padding:28px 32px;">
-<div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#a3a3a3;">Formulaire de contact</div>
-<div style="margin-top:8px;font-size:24px;line-height:1.25;font-weight:600;color:#e5e5e5;">Nouveau message de ${escapeHtml(cleanName)}</div>
+<div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#a3a3a3;">Démarrer un projet</div>
+<div style="margin-top:8px;font-size:24px;line-height:1.25;font-weight:600;color:#e5e5e5;">Nouvelle demande de ${escapeHtml(cleanName)}</div>
 <div style="margin-top:14px;width:32px;height:3px;background:#3b82f6;"></div>
 </td></tr>
 <tr><td style="padding:24px 32px 8px;">
@@ -132,7 +161,7 @@ ${rows.map(([label, value]) => `<tr><td style="padding:8px 0;width:140px;color:#
 <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:12px;padding:18px 20px;font-size:15px;line-height:1.6;white-space:pre-wrap;">${escapeHtml(cleanMessage)}</div>
 <a href="mailto:${escapeHtml(cleanEmail)}?subject=${replySubject}" style="display:inline-block;margin-top:24px;background:#3b82f6;color:#ffffff;text-decoration:none;padding:12px 22px;border-radius:999px;font-weight:600;font-size:14px;">Répondre à ${escapeHtml(cleanName)}</a>
 </td></tr>
-<tr><td style="padding:16px 32px;background:#f9fafb;border-top:1px solid #e5e7eb;font-size:12px;color:#6b7280;">Envoyé depuis romain-kantzer.com/contact. Répondre à ce mail écrit directement à ${escapeHtml(cleanEmail)}.</td></tr>
+<tr><td style="padding:16px 32px;background:#f9fafb;border-top:1px solid #e5e7eb;font-size:12px;color:#6b7280;">Envoyé depuis romain-kantzer.com/demarrer. Répondre à ce mail écrit directement à ${escapeHtml(cleanEmail)}.</td></tr>
 </table>
 </td></tr>
 </table>
@@ -181,7 +210,7 @@ export async function POST(request) {
         return NextResponse.json({ ok: false, code: "bad_request" }, { status: 400 });
     }
 
-    const { name, email, message, project, budget, locale, website } = body || {};
+    const { name, email, phone, message, project, stage, timing, budget, locale, website } = body || {};
 
     // Pot de miel rempli : robot. On répond comme si tout allait bien, sans rien envoyer.
     if (website) {
@@ -204,7 +233,7 @@ export async function POST(request) {
         return NextResponse.json({ ok: false, code: "not_configured" }, { status: 503 });
     }
 
-    const mail = buildMail({ name, email, message, project, budget, locale });
+    const mail = buildMail({ name, email, phone, message, project, stage, timing, budget, locale });
 
     for (const transport of transports) {
         try {

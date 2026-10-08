@@ -2,16 +2,18 @@
 // et la route API (validation serveur). Les messages arrivent toujours à la même adresse.
 export const CONTACT_RECIPIENT = "contact@romain-kantzer.com";
 
-// Mode du formulaire, le temps que l'envoi serveur soit configuré :
-// - "mailto" (défaut) : le formulaire prépare le message et ouvre la messagerie du visiteur ;
-// - "api" : envoi direct par /api/contact (code déjà en place et testé).
-// Pour rebasculer : NEXT_PUBLIC_CONTACT_MODE=api dans .env.local et chez l'hébergeur, puis rebuild.
-export const CONTACT_MODE = process.env.NEXT_PUBLIC_CONTACT_MODE === "api" ? "api" : "mailto";
+// Mode du formulaire :
+// - "api" (défaut) : envoi direct depuis le site par /api/contact (SMTP ou Resend, voir .env.local.example) ;
+// - "mailto" : le formulaire prépare le message et ouvre la messagerie du visiteur.
+// Pour revenir au mailto : NEXT_PUBLIC_CONTACT_MODE=mailto dans .env.local et chez l'hébergeur, puis rebuild.
+export const CONTACT_MODE = process.env.NEXT_PUBLIC_CONTACT_MODE === "mailto" ? "mailto" : "api";
 
 export const PROJECT_OPTIONS = ["site-vitrine", "site-e-commerce", "application-web", "application-mobile", "refonte", "autre"];
 export const BUDGET_OPTIONS = ["less1k", "1k2k", "2k5k", "more5k", "unknown"];
+export const STAGE_OPTIONS = ["idee", "defini", "existant", "presse"];
+export const TIMING_OPTIONS = ["asap", "trimestre", "annee", "inconnu"];
 
-export const LIMITS = { name: 100, email: 200, messageMin: 10, messageMax: 5000 };
+export const LIMITS = { name: 100, email: 200, phone: 40, messageMin: 10, messageMax: 5000 };
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
