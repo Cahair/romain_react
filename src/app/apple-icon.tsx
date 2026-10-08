@@ -1,14 +1,13 @@
 import { ImageResponse } from 'next/og';
 
-// 48 px : Google n'affiche dans ses résultats que des favicons carrés multiples de 48 px.
 export const size = {
-    width: 48,
-    height: 48,
+    width: 180,
+    height: 180,
 };
 export const contentType = 'image/png';
 
-// Monogramme RK et trait bleu, comme le logo de la marque.
-export default function Icon() {
+// Même monogramme que icon.tsx, pour l'écran d'accueil iOS (iOS arrondit lui-même les coins).
+export default function AppleIcon() {
     return new ImageResponse(
         (
             <div
@@ -20,23 +19,22 @@ export default function Icon() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     background: '#171717',
-                    borderRadius: 9,
                 }}
             >
                 <div
                     style={{
                         display: 'flex',
-                        fontSize: 26,
+                        fontSize: 84,
                         fontWeight: 700,
                         color: '#e5e5e5',
-                        letterSpacing: -1.5,
+                        letterSpacing: -4,
                         lineHeight: 1,
                         fontFamily: 'sans-serif',
                     }}
                 >
                     RK
                 </div>
-                <div style={{ display: 'flex', width: 18, height: 3, marginTop: 4, background: '#3b82f6' }} />
+                <div style={{ display: 'flex', width: 60, height: 9, marginTop: 12, background: '#3b82f6' }} />
             </div>
         ),
         {

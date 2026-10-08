@@ -56,6 +56,22 @@ const SECTIONS = [
             </>
         ),
     },
+    {
+        title: "Mesure d'audience",
+        body: (
+            <>
+                <p>
+                    Ce site utilise Umami (umami.is) pour compter les visites : pages consultées, site de provenance, type
+                    d&apos;appareil, navigateur et pays. Umami ne dépose aucun cookie, ne conserve pas votre adresse IP et ne
+                    vous suit pas d&apos;un site à l&apos;autre : les statistiques sont anonymes.
+                </p>
+                <p>
+                    Aucune donnée saisie dans le parcours « Démarrer un projet » (nom, e-mail, message) n&apos;est transmise
+                    à cet outil.
+                </p>
+            </>
+        ),
+    },
 ];
 
 export default function LegalPage() {

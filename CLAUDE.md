@@ -70,6 +70,12 @@ Sombre par défaut ; clair via la classe `html.light` (script inline dans `layou
 - **Mode du formulaire de contact** : `CONTACT_MODE` (`src/lib/contact.js`) vaut `mailto` par défaut — le formulaire prépare le message et ouvre la messagerie du visiteur, sans passer par le serveur (solution provisoire tant que l'envoi SMTP n'est pas configuré). `NEXT_PUBLIC_CONTACT_MODE=api` rebascule sur l'envoi par la route ci-dessous.
 - `src/app/api/contact/route.js` — formulaire de contact. Destinataire fixe : **contact@romain-kantzer.com** (`CONTACT_RECIPIENT` dans `src/lib/contact.js`, qui porte aussi la validation partagée avec la page). Envoi par SMTP (`SMTP_HOST`/`SMTP_USER`/`SMTP_PASS`, sinon l'ancien Gmail `EMAIL_USER`/`EMAIL_PASS`), puis Resend en secours (`RESEND_API_KEY` + `RESEND_FROM` sur un domaine vérifié) — voir `.env.local.example`. Pot de miel `website`, limite de 5 envois par IP et par 10 min. Si l'envoi échoue, la page propose un mailto pré-rempli pour ne perdre aucune demande.
 
+### Mesure d'audience (Umami)
+
+- Umami Cloud, sans cookie donc **sans bandeau de consentement** : ne jamais ajouter d'outil à cookies (Google Analytics, pixel…) sans prévoir un bandeau CNIL.
+- Script chargé dans `layout.tsx` seulement si `NEXT_PUBLIC_UMAMI_WEBSITE_ID` est défini au build ; limité aux domaines de production, `/admin` exclu (`src/lib/analytics.js`).
+- Événements via `track()` : `demarrer-etape` (premier passage sur chaque écran de `/demarrer`) et `demarrer-envoi` (mode, type de projet, budget). **Aucune donnée personnelle** dans les événements. Mention correspondante dans `/legal`.
+
 ### Espace admin (`/admin`) — bac à sable d'automatisation des réseaux sociaux
 
 Outil interne : privé, `noindex`, **hors i18n et hors direction artistique** (textes en français en dur, mais tokens et primitives `ui/` quand même). Pas de splash, de rideau ni de chatbot sur `/admin` (exclusions dans `layout.tsx`, `TransitionProvider`, `Chatbot`).

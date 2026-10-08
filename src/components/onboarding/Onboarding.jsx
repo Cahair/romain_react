@@ -14,6 +14,7 @@ import { CopyEmail } from "../sections/ContactCta";
 import { CONTACT_MODE, CONTACT_RECIPIENT, LIMITS, PROJECT_OPTIONS, validateContact } from "@/lib/contact";
 import { EMPTY_ANSWERS, ONBOARDING_STEPS, TOTAL_STEPS } from "@/lib/onboarding";
 import { SERVICE_SLUGS } from "@/lib/services";
+import { track } from "@/lib/analytics";
 
 const OUT = [0.16, 1, 0.3, 1];
 // Tant que l'envoi serveur n'est pas configuré, la demande part depuis la messagerie du visiteur.
@@ -61,6 +62,18 @@ export default function Onboarding() {
     useEffect(() => {
         questionRef.current?.focus({ preventScroll: true });
     }, [index, status]);
+
+    // Mesure d'audience : chaque écran atteint pour la première fois (entonnoir du parcours).
+    const furthestRef = useRef(-1);
+    useEffect(() => {
+        if (index <= furthestRef.current) return;
+        furthestRef.current = index;
+        track("demarrer-etape", { etape: onRecap ? "recapitulatif" : step.id });
+    }, [index, onRecap, step]);
+
+    // Seules les réponses à choix partent dans la mesure, jamais le nom, l'e-mail ni le message.
+    const trackSent = (mode) =>
+        track("demarrer-envoi", { mode, projet: answers.project || "-", budget: answers.budget || "-" });
 
     const setAnswer = (id, value) => {
         setAnswers((current) => ({ ...current, [id]: value }));
@@ -165,7 +178,10 @@ export default function Onboarding() {
         }
     };
 
-    const onMailtoClick = () => setStatus("mailOpened");
+    const onMailtoClick = () => {
+        trackSent("mailto");
+        setStatus("mailOpened");
+    };
 
     const submit = async () => {
         setStatus("loading");
@@ -184,7 +200,9 @@ export default function Onboarding() {
                 }),
             });
             const result = await response.json().catch(() => ({}));
-            setStatus(response.ok && result.ok ? "success" : "error");
+            const ok = response.ok && result.ok;
+            if (ok) trackSent("formulaire");
+            setStatus(ok ? "success" : "error");
         } catch {
             setStatus("error");
         }

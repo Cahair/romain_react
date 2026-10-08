@@ -1,5 +1,6 @@
 import { Hanken_Grotesk, Newsreader } from "next/font/google";
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { ThemeProvider } from "../components/ThemeProvider";
 import { LanguageProvider } from "../components/LanguageProvider";
@@ -9,6 +10,7 @@ import { TransitionProvider } from "../components/motion/TransitionProvider";
 import Cursor from "../components/motion/Cursor";
 import Chatbot from "../components/Chatbot";
 import { SERVICE_META, SERVICE_SLUGS } from "../lib/services";
+import { UMAMI_DOMAINS, UMAMI_SCRIPT_URL, UMAMI_WEBSITE_ID, umamiBeforeSendScript } from "../lib/analytics";
 
 const hanken = Hanken_Grotesk({ subsets: ["latin"], variable: "--font-hanken", display: "swap" });
 const newsreader = Newsreader({
@@ -191,6 +193,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                         </SmoothScroll>
                     </LanguageProvider>
                 </ThemeProvider>
+                {UMAMI_WEBSITE_ID && (
+                    <>
+                        <script dangerouslySetInnerHTML={{ __html: umamiBeforeSendScript }} />
+                        <Script
+                            src={UMAMI_SCRIPT_URL}
+                            data-website-id={UMAMI_WEBSITE_ID}
+                            data-domains={UMAMI_DOMAINS}
+                            data-before-send="umamiBeforeSend"
+                            strategy="afterInteractive"
+                        />
+                    </>
+                )}
             </body>
         </html>
     );
