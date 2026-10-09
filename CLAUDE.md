@@ -85,7 +85,11 @@ Outil interne : privé, `noindex`, **hors i18n et hors direction artistique** (t
 - **Données** : fichiers JSON dans `data/` (ou `ADMIN_DATA_DIR`), ignoré par Git — `admin-users.json` (hachage scrypt), `actualites.json`, `medias/`, `session-secret`. Code partagé site/CLI en `.mjs` (`src/lib/admin/files.mjs`, `users.mjs`).
 - **Session** : cookie `rk_admin` signé HMAC (`src/lib/admin/session.js`). `requireSession()` en tête de **chaque page et de chaque action serveur** (le layout du groupe `(espace)` ne suffit pas). Toutes les mutations passent par `src/app/admin/actions.js`.
 - **Actualités** : titre, texte, date, catégorie, photo JPEG (seul format accepté par l'API Instagram). Les photos sont servies publiquement par `/medias/<nom aléatoire>.jpg` pour qu'Instagram puisse les récupérer.
-- **Workflow** : « Générer une proposition » envoie l'actualité en POST à `AUTOMATION_WEBHOOK_URL` (n8n/Make, `Authorization: Bearer AUTOMATION_WEBHOOK_SECRET`) et attend `{ "caption": "…" }` (`src/lib/admin/automation.js`). La légende devient un brouillon modifiable, puis « validée ». La publication sur Instagram n'est pas encore branchée.
+- **Workflow** : un seul webhook n8n, `AUTOMATION_WEBHOOK_URL` (`Authorization: Bearer AUTOMATION_WEBHOOK_SECRET`), qui aiguille selon le champ `event` (`src/lib/admin/automation.js`) :
+  - `actualite.generer` (« Générer une proposition ») : attend `{ "caption": "…" }`. La légende devient un brouillon modifiable, puis « validée ».
+  - `actualite.publier` (« Publier sur Instagram », visible une fois la légende validée) : envoie `imageUrl` + `caption`, attend `{ "id": "<média>", "permalink"?: "…" }`. Statut final « publiée » : légende verrouillée, lien vers le post.
+  - Le jeton Instagram (API avec connexion Instagram, 60 jours, à renouveler) vit **dans n8n**, jamais dans le site.
+  - Avant publication, le site vérifie la photo (proportions acceptées par l'API : 4:5 à 1,91:1, orientation EXIF comprise) et qu'elle existe à son adresse publique (`SITE_URL/medias/…`) : la publication ne marche que depuis le site en ligne.
 
 ### Composants
 

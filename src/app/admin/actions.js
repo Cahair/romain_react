@@ -6,7 +6,14 @@ import { revalidatePath } from "next/cache";
 import { clearSession, createSession, requireSession } from "@/lib/admin/session";
 import { findUser, hashPassword, verifyPassword } from "@/lib/admin/users.mjs";
 import { deleteMedia, deletePost, getPost, newPostId, savePost, saveMedia, validatePost } from "@/lib/admin/posts";
-import { isAutomationConfigured, requestCaption } from "@/lib/admin/automation";
+import {
+    instagramImageIssue,
+    isAutomationConfigured,
+    isPublicImageMissing,
+    mediaUrl,
+    requestCaption,
+    requestPublication,
+} from "@/lib/admin/automation";
 import { DRAFT_STATUS } from "@/lib/admin/categories";
 
 // ─── Connexion ───────────────────────────────────────────────────────────────
@@ -94,12 +101,15 @@ export async function deletePostAction(formData) {
     redirect("/admin");
 }
 
-// ─── Publication Instagram (brouillon) ───────────────────────────────────────
+// ─── Publication Instagram ───────────────────────────────────────────────────
+
+const ALREADY_PUBLISHED = "Déjà publiée sur Instagram : la légende ne peut plus changer.";
 
 export async function generateCaptionAction(_previous, formData) {
     await requireSession();
     const post = await getPost(String(formData.get("id") ?? ""));
     if (!post) return { error: "Cette actualité n'existe plus." };
+    if (post.social?.instagram?.status === "publiee") return { error: ALREADY_PUBLISHED };
     if (!isAutomationConfigured()) {
         return { error: "Aucun workflow branché : renseigner AUTOMATION_WEBHOOK_URL (voir .env.local.example)." };
     }
@@ -125,6 +135,7 @@ export async function saveCaptionAction(_previous, formData) {
     await requireSession();
     const post = await getPost(String(formData.get("id") ?? ""));
     if (!post) return { error: "Cette actualité n'existe plus." };
+    if (post.social?.instagram?.status === "publiee") return { error: ALREADY_PUBLISHED };
 
     const caption = String(formData.get("caption") ?? "").trim();
     const status = String(formData.get("status") ?? "brouillon");
@@ -142,4 +153,53 @@ export async function saveCaptionAction(_previous, formData) {
     });
     revalidatePath(`/admin/actualites/${post.id}`);
     return { message: status === "validee" ? "Légende validée." : "Brouillon enregistré." };
+}
+
+// Publications en cours, par actualité : un double envoi ne doit pas créer deux posts.
+const publishing = new Set();
+
+export async function publishInstagramAction(_previous, formData) {
+    await requireSession();
+    const post = await getPost(String(formData.get("id") ?? ""));
+    if (!post) return { error: "Cette actualité n'existe plus." };
+    const draft = post.social?.instagram;
+    if (draft?.status === "publiee") return { error: "Cette actualité est déjà publiée sur Instagram." };
+    if (draft?.status !== "validee" || !draft.caption) return { error: "Valider d'abord la légende." };
+    if (!isAutomationConfigured()) {
+        return { error: "Aucun workflow branché : renseigner AUTOMATION_WEBHOOK_URL (voir .env.local.example)." };
+    }
+
+    const imageIssue = await instagramImageIssue(post);
+    if (imageIssue) return { error: imageIssue };
+    if (await isPublicImageMissing(post)) {
+        return {
+            error: `La photo n'existe pas à son adresse publique (${mediaUrl(post.image)}) : Instagram la télécharge à cette adresse. Publier depuis le site en ligne.`,
+        };
+    }
+
+    if (publishing.has(post.id)) return { error: "Publication déjà en cours." };
+    publishing.add(post.id);
+    let result;
+    try {
+        result = await requestPublication(post);
+    } catch (error) {
+        const reason =
+            error?.name === "TimeoutError"
+                ? "le workflow n'a pas répondu à temps. Vérifier sur Instagram et dans les exécutions n8n avant de réessayer : le post a peut-être été publié."
+                : error.message;
+        return { error: `Publication impossible : ${reason}` };
+    } finally {
+        publishing.delete(post.id);
+    }
+
+    const now = new Date().toISOString();
+    await savePost({
+        ...post,
+        social: {
+            ...post.social,
+            instagram: { ...draft, status: "publiee", ...result, publishedAt: now, updatedAt: now },
+        },
+    });
+    revalidatePath(`/admin/actualites/${post.id}`);
+    return { message: "Publiée sur Instagram." };
 }

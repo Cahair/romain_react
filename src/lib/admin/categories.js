@@ -10,7 +10,14 @@ export const CATEGORIES = [
 
 export const categoryLabel = (value) => CATEGORIES.find((category) => category.value === value)?.label ?? "Autre";
 
+// Statuts choisis dans le formulaire de légende.
 export const DRAFT_STATUS = {
     brouillon: "Brouillon",
     validee: "Validée",
+};
+
+// Statuts affichés : « publiée » n'est posé que par la publication elle-même.
+export const INSTAGRAM_STATUS = {
+    ...DRAFT_STATUS,
+    publiee: "Publiée",
 };

@@ -1,16 +1,44 @@
 "use client";
 
 import { useActionState } from "react";
-import { generateCaptionAction, saveCaptionAction } from "@/app/admin/actions";
-import { DRAFT_STATUS } from "@/lib/admin/categories";
+import { generateCaptionAction, publishInstagramAction, saveCaptionAction } from "@/app/admin/actions";
+import { INSTAGRAM_STATUS } from "@/lib/admin/categories";
+import Button from "../ui/Button";
 import Field, { inputClasses, Notice } from "./Field";
 import SubmitButton from "./SubmitButton";
 
-// Proposition de publication Instagram : générée par le workflow, puis relue, modifiée
-// et validée ici. La publication elle-même viendra à l'étape suivante.
-export default function CaptionPanel({ postId, draft, automationReady }) {
+const formatDateTime = (value) =>
+    new Intl.DateTimeFormat("fr-FR", { dateStyle: "long", timeStyle: "short", timeZone: "Europe/Paris" }).format(
+        new Date(value),
+    );
+
+// Publication Instagram : légende générée par le workflow, relue, modifiée et validée ici,
+// puis publiée avec la photo de l'actualité.
+export default function CaptionPanel({ postId, draft, automationReady, imageIssue }) {
+    if (draft?.status === "publiee") return <PublishedCaption draft={draft} />;
+    return <CaptionEditor postId={postId} draft={draft} automationReady={automationReady} imageIssue={imageIssue} />;
+}
+
+function PublishedCaption({ draft }) {
+    return (
+        <div className="flex flex-col gap-6">
+            <Notice tone="success">Publiée sur Instagram le {formatDateTime(draft.publishedAt)}.</Notice>
+            <p className="whitespace-pre-wrap text-[0.95rem] leading-relaxed">{draft.caption}</p>
+            {draft.permalink && (
+                <div>
+                    <Button href={draft.permalink} external variant="ghost" size="sm">
+                        Voir sur Instagram
+                    </Button>
+                </div>
+            )}
+        </div>
+    );
+}
+
+function CaptionEditor({ postId, draft, automationReady, imageIssue }) {
     const [generateState, generate] = useActionState(generateCaptionAction, null);
     const [saveState, save] = useActionState(saveCaptionAction, null);
+    const [publishState, publish] = useActionState(publishInstagramAction, null);
     const feedback = [generateState, saveState].find((state) => state?.error) ?? saveState ?? generateState;
 
     return (
@@ -56,11 +84,37 @@ export default function CaptionPanel({ postId, draft, automationReady }) {
                     </SubmitButton>
                     {draft && (
                         <span className="text-sm text-muted-foreground">
-                            Statut : <span className="text-foreground">{DRAFT_STATUS[draft.status] ?? draft.status}</span>
+                            Statut : <span className="text-foreground">{INSTAGRAM_STATUS[draft.status] ?? draft.status}</span>
                         </span>
                     )}
                 </div>
             </form>
+
+            {draft?.status === "validee" && (
+                <div className="flex flex-col gap-4 border-t border-border pt-6">
+                    <p className="text-sm text-muted-foreground">
+                        Publie la dernière légende validée avec la photo de l&apos;actualité. Le post est visible tout
+                        de suite sur le compte.
+                    </p>
+                    {imageIssue && <Notice>{imageIssue}</Notice>}
+                    <form
+                        action={publish}
+                        onSubmit={(event) => {
+                            if (!window.confirm("Publier maintenant cette actualité sur Instagram ?")) event.preventDefault();
+                        }}
+                    >
+                        <input type="hidden" name="id" value={postId} />
+                        <SubmitButton
+                            size="sm"
+                            disabled={!automationReady || Boolean(imageIssue)}
+                            pendingLabel="Publication en cours…"
+                        >
+                            Publier sur Instagram
+                        </SubmitButton>
+                    </form>
+                    {publishState?.error && <Notice tone="error">{publishState.error}</Notice>}
+                </div>
+            )}
         </div>
     );
 }

@@ -7,7 +7,8 @@ import { CATEGORIES } from "./categories";
 
 // Actualités saisies dans l'espace admin, stockées dans data/actualites.json.
 // Forme : { id, title, body, date, category, image, createdAt, updatedAt,
-//           social?: { instagram?: { caption, status, generatedAt, updatedAt } } }
+//           social?: { instagram?: { caption, status, generatedAt, updatedAt,
+//                                    mediaId?, permalink?, publishedAt? } } }
 const POSTS_FILE = "actualites.json";
 
 export const MAX_IMAGE_BYTES = 8 * 1024 * 1024;
@@ -77,6 +78,50 @@ export async function saveMedia(file) {
     await mkdir(mediaDir(), { recursive: true });
     await writeFile(path.join(mediaDir(), name), buffer);
     return { name };
+}
+
+// Dimensions affichées d'un JPEG (en-tête SOF), orientation EXIF comprise : une photo de
+// téléphone prise en portrait est souvent enregistrée en paysage avec une consigne de rotation.
+export function jpegSize(buffer) {
+    let orientation = 1;
+    let offset = 2;
+    while (offset + 9 <= buffer.length) {
+        if (buffer[offset] !== 0xff) return null;
+        const marker = buffer[offset + 1];
+        if (marker === 0xff) {
+            offset += 1; // octet de remplissage
+            continue;
+        }
+        if (marker === 0x01 || (marker >= 0xd0 && marker <= 0xd7)) {
+            offset += 2; // marqueur sans longueur
+            continue;
+        }
+        const length = buffer.readUInt16BE(offset + 2);
+        if (marker === 0xe1) orientation = exifOrientation(buffer, offset + 4, offset + 2 + length) ?? orientation;
+        if (marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker)) {
+            const height = buffer.readUInt16BE(offset + 5);
+            const width = buffer.readUInt16BE(offset + 7);
+            return orientation >= 5 ? { width: height, height: width } : { width, height };
+        }
+        offset += 2 + length;
+    }
+    return null;
+}
+
+function exifOrientation(buffer, start, end) {
+    if (end > buffer.length || buffer.toString("latin1", start, start + 6) !== "Exif\0\0") return null;
+    const tiff = start + 6;
+    if (tiff + 8 > end) return null;
+    const little = buffer.toString("latin1", tiff, tiff + 2) === "II";
+    const u16 = (at) => (little ? buffer.readUInt16LE(at) : buffer.readUInt16BE(at));
+    const ifd = tiff + (little ? buffer.readUInt32LE(tiff + 4) : buffer.readUInt32BE(tiff + 4));
+    if (ifd + 2 > end) return null;
+    for (let index = 0; index < u16(ifd); index++) {
+        const entry = ifd + 2 + index * 12;
+        if (entry + 12 > end) return null;
+        if (u16(entry) === 0x0112) return u16(entry + 8);
+    }
+    return null;
 }
 
 export async function readMedia(name) {

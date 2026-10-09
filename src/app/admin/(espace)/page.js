@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { requireSession } from "@/lib/admin/session";
 import { listPosts } from "@/lib/admin/posts";
-import { categoryLabel, DRAFT_STATUS } from "@/lib/admin/categories";
+import { categoryLabel, INSTAGRAM_STATUS } from "@/lib/admin/categories";
 import Button from "@/components/ui/Button";
 import Label from "@/components/ui/Label";
 
@@ -46,9 +46,9 @@ export default async function AdminHomePage() {
                                     <span className="text-sm text-muted-foreground">{categoryLabel(post.category)}</span>
                                     <span className="text-sm text-muted-foreground">{formatDate(post.date)}</span>
                                     <span
-                                        className={`rounded-full border px-3 py-1 text-xs ${draft?.status === "validee" ? "border-primary/40 text-primary" : "border-border text-muted-foreground"}`}
+                                        className={`rounded-full border px-3 py-1 text-xs ${draft?.status === "publiee" ? "border-primary bg-primary/10 text-primary" : draft?.status === "validee" ? "border-primary/40 text-primary" : "border-border text-muted-foreground"}`}
                                     >
-                                        Instagram : {draft ? DRAFT_STATUS[draft.status] : "à générer"}
+                                        Instagram : {draft ? INSTAGRAM_STATUS[draft.status] : "à générer"}
                                     </span>
                                 </Link>
                             </li>

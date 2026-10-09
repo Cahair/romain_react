@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { requireSession } from "@/lib/admin/session";
 import { getPost } from "@/lib/admin/posts";
-import { isAutomationConfigured } from "@/lib/admin/automation";
+import { instagramImageIssue, isAutomationConfigured } from "@/lib/admin/automation";
 import Card from "@/components/ui/Card";
 import Label from "@/components/ui/Label";
 import PostForm from "@/components/admin/PostForm";
@@ -18,6 +18,8 @@ export default async function EditPostPage({ params, searchParams }) {
     const { enregistre } = await searchParams;
     const post = await getPost(id);
     if (!post) notFound();
+    // Contrôle de la photo seulement quand le bouton de publication est affiché.
+    const imageIssue = post.social?.instagram?.status === "validee" ? await instagramImageIssue(post) : null;
 
     return (
         <>
@@ -56,6 +58,7 @@ export default async function EditPostPage({ params, searchParams }) {
                             postId={post.id}
                             draft={post.social?.instagram ?? null}
                             automationReady={isAutomationConfigured()}
+                            imageIssue={imageIssue}
                         />
                     </Card>
                 </section>
