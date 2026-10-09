@@ -16,7 +16,7 @@ export default function PostForm({ post }) {
 
     return (
         <form action={action} className="flex flex-col gap-6">
-            {post && <input type="hidden" name="id" value={post.id} />}
+            {post && <input type="hidden" name="postId" value={post.id} />}
             {errors.form && <Notice tone="error">{errors.form}</Notice>}
 
             <Field label="Titre" htmlFor="title" error={errors.title}>

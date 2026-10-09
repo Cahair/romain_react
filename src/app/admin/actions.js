@@ -59,9 +59,13 @@ export async function logoutAction() {
 
 // ─── Actualités ──────────────────────────────────────────────────────────────
 
+// L'actualité visée arrive dans le champ caché « postId », jamais « id » : un champ nommé id
+// masque form.id dans le DOM, et React rattache alors la valeur du bouton cliqué (Valider…)
+// à un formulaire inexistant, si bien qu'elle n'est pas envoyée.
+
 export async function savePostAction(_previous, formData) {
     await requireSession();
-    const id = String(formData.get("id") ?? "");
+    const id = String(formData.get("postId") ?? "");
     const existing = id ? await getPost(id) : null;
     if (id && !existing) return { errors: { form: "Cette actualité n'existe plus." } };
 
@@ -97,7 +101,7 @@ export async function savePostAction(_previous, formData) {
 
 export async function deletePostAction(formData) {
     await requireSession();
-    await deletePost(String(formData.get("id") ?? ""));
+    await deletePost(String(formData.get("postId") ?? ""));
     redirect("/admin");
 }
 
@@ -107,7 +111,7 @@ const ALREADY_PUBLISHED = "Déjà publiée sur Instagram : la légende ne peut p
 
 export async function generateCaptionAction(_previous, formData) {
     await requireSession();
-    const post = await getPost(String(formData.get("id") ?? ""));
+    const post = await getPost(String(formData.get("postId") ?? ""));
     if (!post) return { error: "Cette actualité n'existe plus." };
     if (post.social?.instagram?.status === "publiee") return { error: ALREADY_PUBLISHED };
     if (!isAutomationConfigured()) {
@@ -133,7 +137,7 @@ export async function generateCaptionAction(_previous, formData) {
 
 export async function saveCaptionAction(_previous, formData) {
     await requireSession();
-    const post = await getPost(String(formData.get("id") ?? ""));
+    const post = await getPost(String(formData.get("postId") ?? ""));
     if (!post) return { error: "Cette actualité n'existe plus." };
     if (post.social?.instagram?.status === "publiee") return { error: ALREADY_PUBLISHED };
 
@@ -160,7 +164,7 @@ const publishing = new Set();
 
 export async function publishInstagramAction(_previous, formData) {
     await requireSession();
-    const post = await getPost(String(formData.get("id") ?? ""));
+    const post = await getPost(String(formData.get("postId") ?? ""));
     if (!post) return { error: "Cette actualité n'existe plus." };
     const draft = post.social?.instagram;
     if (draft?.status === "publiee") return { error: "Cette actualité est déjà publiée sur Instagram." };

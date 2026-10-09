@@ -11,7 +11,7 @@ export default function DeletePostButton({ postId }) {
                 if (!window.confirm("Supprimer définitivement cette actualité et sa photo ?")) event.preventDefault();
             }}
         >
-            <input type="hidden" name="id" value={postId} />
+            <input type="hidden" name="postId" value={postId} />
             <SubmitButton variant="ghost" size="sm" pendingLabel="Suppression…">
                 Supprimer
             </SubmitButton>

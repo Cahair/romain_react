@@ -51,7 +51,7 @@ function CaptionEditor({ postId, draft, automationReady, imageIssue }) {
             )}
 
             <form action={generate}>
-                <input type="hidden" name="id" value={postId} />
+                <input type="hidden" name="postId" value={postId} />
                 <SubmitButton variant="ghost" size="sm" disabled={!automationReady} pendingLabel="Génération en cours…">
                     {draft ? "Générer une nouvelle proposition" : "Générer une proposition"}
                 </SubmitButton>
@@ -61,7 +61,7 @@ function CaptionEditor({ postId, draft, automationReady, imageIssue }) {
             {!feedback?.error && feedback?.message && <Notice tone="success">{feedback.message}</Notice>}
 
             <form action={save} className="flex flex-col gap-5">
-                <input type="hidden" name="id" value={postId} />
+                <input type="hidden" name="postId" value={postId} />
                 <Field label="Légende Instagram" htmlFor="caption" hint="2 200 caractères maximum.">
                     <textarea
                         // Nouvelle proposition reçue : le champ repart de la version enregistrée.
@@ -103,7 +103,7 @@ function CaptionEditor({ postId, draft, automationReady, imageIssue }) {
                             if (!window.confirm("Publier maintenant cette actualité sur Instagram ?")) event.preventDefault();
                         }}
                     >
-                        <input type="hidden" name="id" value={postId} />
+                        <input type="hidden" name="postId" value={postId} />
                         <SubmitButton
                             size="sm"
                             disabled={!automationReady || Boolean(imageIssue)}
