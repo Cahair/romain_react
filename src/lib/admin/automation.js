@@ -7,11 +7,13 @@ import { readMedia } from "./posts";
 // webhook unique, le workflow aiguille selon le champ « event ».
 //
 // Requête : POST AUTOMATION_WEBHOOK_URL, JSON
-//   { event, network: "instagram", actualite: {…}, imageUrl, caption? }
+//   { event, network: "instagram", actualite: {…}, imageUrl, caption?, instagram? }
 //   + en-tête Authorization: Bearer AUTOMATION_WEBHOOK_SECRET si défini.
 // - event "actualite.generer" : le workflow appelle l'IA et répond { "caption": "…" } (ou du texte brut).
-// - event "actualite.publier" : le workflow publie imageUrl + caption sur Instagram et répond
-//   { "id": "<identifiant du média>", "permalink": "https://www.instagram.com/p/…" } (permalink facultatif).
+// - event "actualite.publier" : le workflow publie imageUrl + caption sur le compte
+//   instagram.userId avec le jeton instagram.accessToken (renouvelé par le site, n8n n'en garde
+//   pas de copie) et répond { "id": "<identifiant du média>", "permalink": "https://www.instagram.com/p/…" }
+//   (permalink facultatif).
 const CAPTION_TIMEOUT_MS = 60_000;
 const PUBLISH_TIMEOUT_MS = 90_000;
 
@@ -99,13 +101,15 @@ export async function isPublicImageMissing(post) {
     }
 }
 
-export async function requestPublication(post) {
+// account : compte Instagram connecté (src/lib/admin/instagram.js), jeton déjà renouvelé si besoin.
+export async function requestPublication(post, account) {
     const text = await callWorkflow(
         {
             event: "actualite.publier",
             actualite: actualite(post),
             imageUrl: mediaUrl(post.image),
             caption: post.social.instagram.caption,
+            instagram: { userId: account.userId, accessToken: account.accessToken },
         },
         PUBLISH_TIMEOUT_MS,
     );

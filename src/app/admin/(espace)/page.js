@@ -2,10 +2,23 @@ import Link from "next/link";
 import { requireSession } from "@/lib/admin/session";
 import { listPosts } from "@/lib/admin/posts";
 import { categoryLabel, INSTAGRAM_STATUS } from "@/lib/admin/categories";
+import { getInstagramAccount, instagramStatus, WARN_BEFORE_DAYS } from "@/lib/admin/instagram";
 import Button from "@/components/ui/Button";
 import Label from "@/components/ui/Label";
+import { Notice } from "@/components/admin/Field";
 
 export const metadata = { title: "Actualités" };
+
+// Problème de jeton Instagram à signaler dès l'accueil (la publication en dépend).
+function instagramWarning(instagram) {
+    if (!instagram.connected) return { tone: "info", text: "Aucun compte Instagram connecté : la publication est impossible." };
+    if (instagram.expired) return { tone: "error", text: "Le jeton Instagram a expiré : la publication ne fonctionne plus." };
+    if (instagram.lastError) return { tone: "error", text: "Le renouvellement automatique du jeton Instagram a échoué." };
+    if (instagram.daysLeft < WARN_BEFORE_DAYS) {
+        return { tone: "error", text: `Le jeton Instagram expire dans ${instagram.daysLeft} jour${instagram.daysLeft > 1 ? "s" : ""}.` };
+    }
+    return null;
+}
 
 const formatDate = (value) =>
     value ? new Intl.DateTimeFormat("fr-FR", { dateStyle: "long", timeZone: "UTC" }).format(new Date(value)) : "Sans date";
@@ -13,6 +26,7 @@ const formatDate = (value) =>
 export default async function AdminHomePage() {
     await requireSession();
     const posts = await listPosts();
+    const warning = instagramWarning(instagramStatus(await getInstagramAccount()));
 
     return (
         <>
@@ -23,6 +37,17 @@ export default async function AdminHomePage() {
                 </div>
                 <Button href="/admin/actualites/nouvelle">Nouvelle actualité</Button>
             </div>
+
+            {warning && (
+                <div className="mt-8 max-w-2xl">
+                    <Notice tone={warning.tone}>
+                        {warning.text}{" "}
+                        <Link href="/admin/reglages" className="font-medium text-foreground underline underline-offset-4">
+                            Ouvrir les réglages
+                        </Link>
+                    </Notice>
+                </div>
+            )}
 
             {posts.length === 0 ? (
                 <p className="mt-12 max-w-xl text-muted-foreground">

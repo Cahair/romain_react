@@ -1,6 +1,4 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
-import { Resend } from "resend";
 import {
     BUDGET_OPTIONS,
     CONTACT_RECIPIENT,
@@ -11,6 +9,7 @@ import {
     cleanNeeds,
     validateContact,
 } from "@/lib/contact";
+import { getTransports, sendWith } from "@/lib/mailer";
 
 export const runtime = "nodejs";
 
@@ -91,40 +90,6 @@ function isRateLimited(ip) {
     return recent.length > MAX_PER_WINDOW;
 }
 
-// Modes d'envoi configurés, dans l'ordre d'essai (voir .env.local.example).
-function getTransports() {
-    const env = process.env;
-    const transports = [];
-
-    if (env.SMTP_HOST && env.SMTP_USER && env.SMTP_PASS) {
-        const port = Number(env.SMTP_PORT) || 465;
-        transports.push({
-            name: "smtp",
-            from: env.SMTP_FROM || env.SMTP_USER,
-            options: {
-                host: env.SMTP_HOST,
-                port,
-                secure: env.SMTP_SECURE ? env.SMTP_SECURE === "true" : port === 465,
-                auth: { user: env.SMTP_USER, pass: env.SMTP_PASS },
-            },
-        });
-    } else if (env.EMAIL_USER && env.EMAIL_PASS) {
-        // Ancien réglage Gmail : adresse Gmail + mot de passe d'application.
-        transports.push({
-            name: "gmail",
-            from: env.EMAIL_USER,
-            options: { service: "gmail", auth: { user: env.EMAIL_USER, pass: env.EMAIL_PASS } },
-        });
-    }
-
-    if (env.RESEND_API_KEY) {
-        // L'expéditeur doit appartenir à un domaine vérifié dans Resend.
-        transports.push({ name: "resend", from: env.RESEND_FROM || "onboarding@resend.dev" });
-    }
-
-    return transports;
-}
-
 const pick = (labels, options, value) => (options.includes(value) ? labels[value] : "Non précisé");
 
 function buildMail({ name, email, phone, message, needs, project, stage, timing, budget, locale }) {
@@ -200,37 +165,6 @@ ${rows.map(([label, value]) => `<tr><td style="padding:8px 0;width:140px;color:#
     return { subject, text, html, replyTo: { name: cleanName, address: cleanEmail } };
 }
 
-async function send(transport, mail) {
-    if (transport.name === "resend") {
-        const resend = new Resend(process.env.RESEND_API_KEY);
-        const from = transport.from.includes("<") ? transport.from : `Site romain-kantzer.com <${transport.from}>`;
-        const { data, error } = await resend.emails.send({
-            from,
-            to: [CONTACT_RECIPIENT],
-            replyTo: mail.replyTo.address,
-            subject: mail.subject,
-            text: mail.text,
-            html: mail.html,
-        });
-        if (error) throw new Error(`${error.name}: ${error.message}`);
-        return data?.id;
-    }
-
-    const transporter = nodemailer.createTransport(transport.options);
-    const info = await transporter.sendMail({
-        from: { name: "Site romain-kantzer.com", address: transport.from },
-        to: CONTACT_RECIPIENT,
-        replyTo: mail.replyTo,
-        subject: mail.subject,
-        text: mail.text,
-        html: mail.html,
-    });
-    // Renseigné uniquement avec un compte de test Ethereal (vérification en local).
-    const preview = nodemailer.getTestMessageUrl(info);
-    if (preview) console.info("[contact] aperçu du mail de test :", preview);
-    return info.messageId;
-}
-
 export async function POST(request) {
     let body;
     try {
@@ -266,7 +200,7 @@ export async function POST(request) {
 
     for (const transport of transports) {
         try {
-            const id = await send(transport, mail);
+            const id = await sendWith(transport, mail);
             console.info(`[contact] message envoyé via ${transport.name} à ${CONTACT_RECIPIENT} (${id})`);
             return NextResponse.json({ ok: true });
         } catch (error) {

@@ -23,6 +23,9 @@ export default async function AdminSpaceLayout({ children }) {
                             <Link href="/admin/actualites/nouvelle" className="transition-colors hover:text-foreground">
                                 Nouvelle actualité
                             </Link>
+                            <Link href="/admin/reglages" className="transition-colors hover:text-foreground">
+                                Réglages
+                            </Link>
                             <Link href="/" className="transition-colors hover:text-foreground">
                                 Voir le site
                             </Link>

@@ -15,6 +15,7 @@ import {
     requestPublication,
 } from "@/lib/admin/automation";
 import { DRAFT_STATUS } from "@/lib/admin/categories";
+import { connectInstagram, disconnectInstagram, instagramStatus, refreshInstagramToken } from "@/lib/admin/instagram";
 
 // ─── Connexion ───────────────────────────────────────────────────────────────
 
@@ -178,6 +179,11 @@ export async function publishInstagramAction(_previous, formData) {
     if (!isAutomationConfigured()) {
         return { error: "Aucun workflow branché : renseigner AUTOMATION_WEBHOOK_URL (voir .env.local.example)." };
     }
+    // Compte connecté dans les réglages, jeton renouvelé au passage s'il date d'une semaine.
+    const { account } = await refreshInstagramToken();
+    const instagram = instagramStatus(account);
+    if (!instagram.connected) return { error: "Aucun compte Instagram connecté : coller un jeton dans les Réglages." };
+    if (instagram.expired) return { error: "Le jeton Instagram a expiré : en coller un nouveau dans les Réglages." };
 
     const imageIssue = await instagramImageIssue(post);
     if (imageIssue) return { error: imageIssue };
@@ -191,7 +197,7 @@ export async function publishInstagramAction(_previous, formData) {
     publishing.add(post.id);
     let result;
     try {
-        result = await requestPublication(post);
+        result = await requestPublication(post, account);
     } catch (error) {
         const reason =
             error?.name === "TimeoutError"
@@ -219,4 +225,33 @@ export async function publishInstagramAction(_previous, formData) {
     });
     revalidatePath(`/admin/actualites/${post.id}`);
     return { message: "Publiée sur Instagram." };
+}
+
+// ─── Réglages : compte Instagram ─────────────────────────────────────────────
+
+export async function connectInstagramAction(_previous, formData) {
+    await requireSession();
+    try {
+        const account = await connectInstagram(formData.get("token"));
+        revalidatePath("/admin", "layout");
+        return { message: `Compte @${account.username} connecté.` };
+    } catch (error) {
+        return { error: `Jeton refusé. ${error.message} Vérifier qu'il a été copié en entier.` };
+    }
+}
+
+export async function refreshInstagramAction() {
+    await requireSession();
+    const result = await refreshInstagramToken({ force: true });
+    revalidatePath("/admin", "layout");
+    if (result.status === "renouvele") return { message: "Jeton renouvelé." };
+    if (result.status === "trop-recent") return { error: "Instagram n'accepte un renouvellement que 24 h après le précédent." };
+    if (result.status === "absent") return { error: "Aucun compte Instagram connecté." };
+    return { error: `Renouvellement impossible : ${result.error}` };
+}
+
+export async function disconnectInstagramAction() {
+    await requireSession();
+    await disconnectInstagram();
+    revalidatePath("/admin", "layout");
 }
