@@ -30,7 +30,8 @@ export default function Chatbot() {
     const [input, setInput] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [showButton, setShowButton] = useState(false);
-    const endRef = useRef(null);
+    const panelRef = useRef(null);
+    const listRef = useRef(null);
     const inputRef = useRef(null);
 
     // Sur l'accueil, le bouton n'apparaît qu'après le hero.
@@ -41,13 +42,42 @@ export default function Chatbot() {
         return () => window.removeEventListener("scroll", onScroll);
     }, [pathname]);
 
+    // On défile la liste elle-même : scrollIntoView ferait aussi bouger la page sur iOS.
     useEffect(() => {
-        endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
-    }, [messages, isOpen]);
+        const list = listRef.current;
+        list?.scrollTo({ top: list.scrollHeight, behavior: "smooth" });
+    }, [messages, isLoading, isOpen]);
+
+    // Sur mobile, le panneau occupe la zone réellement visible. Quand le clavier s'ouvre, seul
+    // le visualViewport rétrécit (iOS comme Android) : calé sur le bas de l'écran, le panneau
+    // passerait sous le clavier ou se ferait rogner par le haut.
+    useEffect(() => {
+        const viewport = window.visualViewport;
+        const panel = panelRef.current;
+        if (!isOpen || !viewport || !panel) return;
+        const place = () => {
+            panel.style.setProperty("--chat-top", `${viewport.offsetTop}px`);
+            panel.style.setProperty("--chat-height", `${viewport.height}px`);
+        };
+        const onResize = () => {
+            place();
+            const list = listRef.current;
+            if (list) list.scrollTop = list.scrollHeight;
+        };
+        place();
+        viewport.addEventListener("resize", onResize);
+        viewport.addEventListener("scroll", place);
+        return () => {
+            viewport.removeEventListener("resize", onResize);
+            viewport.removeEventListener("scroll", place);
+        };
+    }, [isOpen]);
 
     useEffect(() => {
         if (!isOpen) return;
-        inputRef.current?.focus();
+        // Pas de focus automatique sur écran tactile : le clavier masquerait le message
+        // d'accueil avant même qu'on ait pu le lire.
+        if (window.matchMedia("(pointer: fine)").matches) inputRef.current?.focus();
         lenis?.stop();
         const onKeyDown = (event) => {
             if (event.key === "Escape") setIsOpen(false);
@@ -115,13 +145,14 @@ export default function Chatbot() {
                 {isOpen && (
                     <motion.div
                         key="chat-panel"
+                        ref={panelRef}
                         role="dialog"
                         aria-label={t("chatbot.title")}
                         initial={{ opacity: 0, y: 40, scale: 0.96 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 40, scale: 0.96 }}
                         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                        className="fixed inset-x-3 bottom-3 z-[60] flex h-[min(38rem,80svh)] origin-bottom-right flex-col overflow-hidden rounded-3xl border border-border bg-background shadow-2xl md:inset-x-auto md:bottom-8 md:right-8 md:w-[26rem]"
+                        className="fixed inset-x-0 top-[var(--chat-top,0px)] z-[60] flex h-[var(--chat-height,100dvh)] flex-col overflow-hidden bg-background md:inset-x-auto md:bottom-8 md:right-8 md:top-auto md:h-[min(38rem,80svh)] md:w-[26rem] md:origin-bottom-right md:rounded-3xl md:border md:border-border md:shadow-2xl"
                     >
                         <div className="flex items-center justify-between border-b border-border px-5 py-4">
                             <div>
@@ -138,7 +169,7 @@ export default function Chatbot() {
                             </button>
                         </div>
 
-                        <div data-lenis-prevent className="flex-1 space-y-4 overflow-y-auto overscroll-contain px-5 py-5">
+                        <div ref={listRef} data-lenis-prevent className="flex-1 space-y-4 overflow-y-auto overscroll-contain px-5 py-5">
                             <Bubble role="assistant">{t("chatbot.welcome")}</Bubble>
                             {messages.map((message, index) => (
                                 <div key={index} className="space-y-2">
@@ -165,7 +196,6 @@ export default function Chatbot() {
                                     {t("chatbot.loading")}
                                 </p>
                             )}
-                            <div ref={endRef} />
                         </div>
 
                         <form
@@ -182,7 +212,10 @@ export default function Chatbot() {
                                     onChange={(event) => setInput(event.target.value)}
                                     placeholder={t("chatbot.placeholder")}
                                     aria-label={t("chatbot.placeholder")}
-                                    className="min-w-0 flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus-visible:outline-none"
+                                    autoComplete="off"
+                                    enterKeyHint="send"
+                                    // 16 px minimum sur mobile, sinon iOS zoome sur le champ au focus.
+                                    className="min-w-0 flex-1 bg-transparent text-base text-foreground md:text-sm placeholder:text-muted-foreground focus:outline-none focus-visible:outline-none"
                                 />
                                 <button
                                     type="submit"
