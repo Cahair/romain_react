@@ -33,7 +33,52 @@
             "cta": "Parlons de votre projet",
             "secondary": "Voir les services",
             "ruleCenter": "De l'Alsace au reste du web",
-            "scroll": "Défiler"
+            "scroll": "Défiler",
+            "stage": {
+                "fig": "Fig.",
+                "caption": "Vue éclatée",
+                "pick": "Choisir un exemple",
+                "layers": ["Maquette", "Code", "En ligne"],
+                "vitrine": {
+                    "brand": "Votre entreprise",
+                    "nav": ["Accueil", "Services", "Contact"],
+                    "title": "Votre savoir-faire, *en ligne*",
+                    "text": "Vos services, vos horaires et vos coordonnées, au même endroit.",
+                    "cta": "Prendre rendez-vous",
+                    "cards": ["Horaires", "Accès", "Téléphone"],
+                    "toast": "Demande envoyée"
+                },
+                "shop": {
+                    "brand": "Votre boutique",
+                    "search": "Rechercher",
+                    "title": "La nouvelle *collection*",
+                    "text": "Commande en ligne, retrait en magasin.",
+                    "cta": "Découvrir",
+                    "cards": ["Vase", "Bol", "Tasse"],
+                    "toast": "Ajouté au panier"
+                },
+                "app": {
+                    "nav": ["Accueil", "Agenda", "Membres", "Messages", "Réglages"],
+                    "title": "Tableau de bord",
+                    "text": "Semaine en cours",
+                    "cta": "Nouveau",
+                    "cards": ["Membres", "Agenda", "Messages"],
+                    "chart": "Inscriptions",
+                    "toast": "Enregistré"
+                },
+                "mobile": {
+                    "clock": "9:41",
+                    "title": "Bonjour !",
+                    "text": "Votre semaine en un coup d'œil",
+                    "card": "Prochain rendez-vous",
+                    "time": "14:30",
+                    "day": "Demain",
+                    "items": ["Rendez-vous confirmé", "Nouveau message", "Rappel"],
+                    "times": ["09:30", "11:00", "16:45"],
+                    "cta": "Réserver un créneau",
+                    "toast": "Créneau réservé"
+                }
+            }
         },
         "marquee": {
             "label": "Mes services"
@@ -315,15 +360,25 @@
     },
     "onboarding": {
         "label": "Démarrer un projet",
-        "stepCounter": "Étape {current} sur {total}",
+        "questionCounter": "Question {current} sur {total}",
+        "lastStep": "Dernière étape",
+        "intro": "{total} questions, la plupart en un clic. Sans engagement.",
+        "resumed": "Vos réponses ont été gardées : on reprend où vous en étiez.",
+        "restart": "Recommencer",
         "back": "Retour",
         "next": "Continuer",
-        "skip": "Passer cette question",
+        "enterHint": "ou appuyez sur Entrée",
         "edit": "Modifier",
         "notAnswered": "Non renseigné",
+        "pending": "À venir",
+        "addMessage": "Ajouter un détail",
         "footerNote": "Vous préférez écrire directement ?",
-        "contactLink": "Voir mes coordonnées",
         "mailSubject": "Demande de projet",
+        "summary": {
+            "title": "Votre projet",
+            "mobile": "Vos réponses",
+            "reassurance": "Je lis chaque demande moi-même et je vous réponds personnellement."
+        },
         "fields": {
             "name": "Nom",
             "email": "E-mail",
@@ -331,11 +386,13 @@
             "optional": "facultatif",
             "namePlaceholder": "Jean Dupont",
             "emailPlaceholder": "jean@entreprise.fr",
-            "phonePlaceholder": "06 12 34 56 78"
+            "phonePlaceholder": "06 12 34 56 78",
+            "suggestion": "Vouliez-vous dire {email} ?",
+            "privacy": "Vos coordonnées ne servent qu'à vous répondre."
         },
         "errors": {
             "choice": "Choisissez une réponse pour continuer.",
-            "message": "Racontez-moi votre projet en quelques mots.",
+            "needs": "Choisissez au moins une réponse, ou décrivez votre projet en quelques mots.",
             "messageShort": "Quelques mots de plus m'aideraient (10 caractères minimum).",
             "name": "Indiquez votre nom.",
             "email": "Indiquez un e-mail valide pour que je puisse vous répondre."
@@ -343,7 +400,7 @@
         "steps": {
             "project": {
                 "question": "Quel type de *projet* ?",
-                "help": "Si vous hésitez, choisissez le plus proche : on affinera ensemble.",
+                "help": "Choisissez le plus proche : on affinera ensemble.",
                 "summary": "Type de projet",
                 "options": {
                     "site-vitrine": "Site vitrine",
@@ -353,6 +410,14 @@
                     "refonte": "Refonte d'un site existant",
                     "autre": "Autre, ou je ne sais pas encore"
                 }
+            },
+            "needs": {
+                "question": "Qu'est-ce qu'il doit *permettre* ?",
+                "help": "Touchez tout ce qui compte pour vous. Plusieurs réponses possibles.",
+                "summary": "Besoins",
+                "messageLabel": "Un détail à ajouter ?",
+                "messageSummary": "Message",
+                "placeholder": "Par exemple : je suis menuisier près de Haguenau, je voudrais un site pour montrer mes réalisations et recevoir des demandes de devis."
             },
             "stage": {
                 "question": "Où en *êtes-vous* ?",
@@ -378,7 +443,7 @@
             },
             "budget": {
                 "question": "Quel *budget* avez-vous en tête ?",
-                "help": "Une fourchette suffit : elle me sert à proposer une solution réaliste. Vous pouvez aussi passer cette question.",
+                "help": "Une fourchette suffit : elle me sert à vous proposer une solution réaliste.",
                 "summary": "Budget",
                 "options": {
                     "less1k": "Moins de 1 000 €",
@@ -388,34 +453,52 @@
                     "unknown": "Je ne sais pas encore"
                 }
             },
-            "message": {
-                "question": "Racontez-moi votre *projet*.",
-                "help": "Votre activité, ce que le site ou l'application doit permettre, ce qui existe déjà… Quelques phrases suffisent.",
-                "summary": "Le projet",
-                "placeholder": "Par exemple : je suis menuisier près de Haguenau, je voudrais un site pour montrer mes réalisations et recevoir des demandes de devis."
-            },
             "identity": {
-                "question": "Comment puis-je vous *répondre* ?",
-                "help": "Pour vous répondre, et vous rappeler si vous préférez le téléphone.",
+                "question": "Où puis-je vous *répondre* ?",
+                "help": "C'est la dernière étape. Je vous réponds personnellement, par e-mail, ou par téléphone si vous préférez.",
                 "summary": "Coordonnées"
             }
         },
-        "recap": {
-            "counter": "Récapitulatif",
-            "title": "Tout est *prêt*.",
-            "help": "Relisez, modifiez si besoin, puis envoyez-moi votre demande.",
-            "notice": "Votre messagerie s'ouvrira avec la demande déjà écrite : elle ne partira qu'après votre envoi.",
-            "send": "Envoyer ma demande",
+        "needs": {
+            "presenter": "Présenter mon activité",
+            "realisations": "Montrer mes réalisations",
+            "demandes": "Recevoir des demandes de devis",
+            "google": "Être trouvé sur Google",
+            "rdv": "Prise de rendez-vous en ligne",
+            "autonomie": "Modifier le contenu moi-même",
+            "catalogue": "Présenter mes produits",
+            "paiement": "Paiement en ligne",
+            "livraison": "Livraison ou retrait sur place",
+            "commandes": "Gérer les commandes et les stocks",
+            "reservations": "Réservations ou inscriptions en ligne",
+            "espace-client": "Espace client avec connexion",
+            "adherents": "Gérer des adhérents ou des clients",
+            "suivi": "Tableau de bord, suivi d'activité",
+            "papier": "Remplacer des fichiers Excel ou du papier",
+            "stores": "Publication sur l'App Store et Google Play",
+            "notifications": "Notifications",
+            "comptes": "Comptes utilisateurs",
+            "back-office": "Un back-office pour gérer le contenu",
+            "design": "Un design plus actuel",
+            "mobile": "Un meilleur affichage sur téléphone",
+            "vitesse": "Un site plus rapide"
+        },
+        "send": {
+            "button": "Envoyer ma demande",
             "sending": "Envoi en cours…",
-            "sendMailto": "Ouvrir ma messagerie"
+            "mailto": "Ouvrir ma messagerie",
+            "notice": "Votre messagerie s'ouvrira avec la demande déjà écrite : elle ne partira qu'après votre envoi.",
+            "reassurance": "Premier échange gratuit, puis un devis détaillé, sans engagement."
         },
         "done": {
             "mailTitle": "Votre messagerie *s'ouvre*.",
             "mailText": "La demande est déjà écrite : il ne reste qu'à l'envoyer. Si rien ne s'ouvre, copiez-la et envoyez-la à contact@romain-kantzer.com.",
             "successTitle": "Merci, votre demande est *bien partie*.",
-            "successText": "Je la lis et je vous réponds personnellement, par e-mail ou par téléphone.",
+            "successTitleNamed": "Merci {name}, votre demande est *bien partie*.",
+            "successText": "Elle est arrivée dans ma boîte mail. Voici la suite :",
+            "home": "Retour à l'accueil",
             "copy": "Copier ma demande",
-            "back": "Revenir au récapitulatif",
+            "back": "Revenir à ma demande",
             "errorTitle": "L'envoi n'a pas fonctionné.",
             "errorText": "Le problème vient du site, pas de vous. Votre demande est prête : vous pouvez me l'envoyer directement par e-mail.",
             "errorMailto": "Envoyer par e-mail"

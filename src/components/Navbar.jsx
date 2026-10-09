@@ -28,7 +28,7 @@ export function Logo({ className = "" }) {
     );
 }
 
-function LanguageSwitch() {
+export function LanguageSwitch() {
     const { locale, setLocale, t } = useTranslation();
     return (
         <div role="group" aria-label={t("nav.language")} className="flex items-center text-xs font-medium uppercase tracking-[0.14em]">

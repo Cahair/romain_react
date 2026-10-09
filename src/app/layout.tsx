@@ -89,8 +89,9 @@ export const metadata: Metadata = {
     },
 };
 
-// Thème et splash décidés avant le premier rendu pour éviter tout flash (pas de splash dans l'espace admin).
-const bootScript = `(function(){try{var d=document.documentElement;if(localStorage.getItem('theme')==='light')d.classList.add('light');if(location.pathname.indexOf('/admin')===0||sessionStorage.getItem('rk-splash')==='1'||window.matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('splash-seen');}catch(e){}})()`;
+// Thème et splash décidés avant le premier rendu pour éviter tout flash (pas de splash dans l'espace admin,
+// ni à l'arrivée directe sur /demarrer : le formulaire doit s'afficher tout de suite).
+const bootScript = `(function(){try{var d=document.documentElement;if(localStorage.getItem('theme')==='light')d.classList.add('light');if(location.pathname.indexOf('/admin')===0||location.pathname.indexOf('/demarrer')===0||sessionStorage.getItem('rk-splash')==='1'||window.matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('splash-seen');}catch(e){}})()`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     const personJsonLd = {

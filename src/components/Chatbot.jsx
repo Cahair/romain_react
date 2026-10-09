@@ -87,8 +87,9 @@ export default function Chatbot() {
         }
     };
 
-    // Pas d'assistant dans l'espace admin.
-    if (pathname?.startsWith("/admin")) return null;
+    // Pas d'assistant dans l'espace admin, ni dans le parcours /demarrer (rien ne doit distraire
+    // ni chevaucher la barre d'action fixée en bas sur mobile).
+    if (pathname?.startsWith("/admin") || pathname === "/demarrer") return null;
 
     return (
         <>

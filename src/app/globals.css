@@ -252,9 +252,13 @@ body {
 }
 
 @layer components {
-  /* Trame de points (fond du hero et de l'appel à l'action) */
+  /* Trame de points (fond du hero et de l'appel à l'action). --dot-color change sa couleur. */
   .dot-grid {
-    background-image: radial-gradient(circle, color-mix(in oklab, var(--foreground) 26%, transparent) 1px, transparent 1.5px);
+    background-image: radial-gradient(
+      circle,
+      var(--dot-color, color-mix(in oklab, var(--foreground) 26%, transparent)) 1px,
+      transparent 1.5px
+    );
     background-size: 22px 22px;
   }
 }

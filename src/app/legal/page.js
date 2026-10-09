@@ -50,6 +50,12 @@ const SECTIONS = [
                     par Romain Kantzer pour la gestion de la clientèle.
                 </p>
                 <p>
+                    Pendant que vous remplissez le parcours « Démarrer un projet », vos réponses (sans votre nom, votre
+                    e-mail ni votre téléphone) sont gardées dans votre navigateur pour que vous puissiez reprendre plus
+                    tard. Elles ne quittent votre appareil qu&apos;au moment où vous envoyez la demande, et sont alors
+                    effacées.
+                </p>
+                <p>
                     Conformément à la loi « informatique et libertés », vous pouvez exercer votre droit d&apos;accès aux données
                     vous concernant et les faire rectifier en contactant : contact@romain-kantzer.com
                 </p>

@@ -1,167 +1,291 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
+import { useEffect, useEffectEvent, useRef, useState, useSyncExternalStore } from "react";
 import { useSearchParams } from "next/navigation";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { AlertCircle, ArrowLeft, ArrowRight, Check, Loader2, Mail } from "lucide-react";
+import { AnimatePresence, MotionConfig, motion } from "framer-motion";
+import { useLenis } from "lenis/react";
+import { AlertCircle, ArrowLeft, ArrowRight, CornerDownLeft, Loader2, Lock, Mail, RotateCcw } from "lucide-react";
 import { useTranslation } from "../LanguageProvider";
+import { LanguageSwitch, Logo } from "../Navbar";
 import Button from "../ui/Button";
 import Label from "../ui/Label";
 import { container } from "../ui/Section";
-import { Emphasis } from "../ui/SectionTitle";
-import { CopyEmail } from "../sections/ContactCta";
 import { CONTACT_MODE, CONTACT_RECIPIENT, LIMITS, PROJECT_OPTIONS, validateContact } from "@/lib/contact";
-import { EMPTY_ANSWERS, ONBOARDING_STEPS, TOTAL_STEPS } from "@/lib/onboarding";
-import { SERVICE_SLUGS } from "@/lib/services";
+import {
+    EMPTY_ANSWERS,
+    IDENTITY_STEP,
+    ONBOARDING_STEPS,
+    TOTAL_STEPS,
+    clearDraft,
+    firstIncomplete,
+    hasDraftContent,
+    isStepComplete,
+    needsFor,
+    progressAt,
+    readDraft,
+    saveDraft,
+} from "@/lib/onboarding";
 import { track } from "@/lib/analytics";
+import { ChoiceOptions, IdentityFields, NeedsPicker, OUT, Question, itemVariants } from "./StepFields";
+import { MobileRecap, Portrait, ProjectSummary, answerText } from "./ProjectSummary";
+import { MailOpenedScreen, SuccessScreen } from "./DoneScreen";
+import useKeyboardOpen from "./useKeyboardOpen";
 
-const OUT = [0.16, 1, 0.3, 1];
 // En mode mailto (NEXT_PUBLIC_CONTACT_MODE=mailto), la demande part depuis la messagerie du visiteur.
 const MAIL_MODE = CONTACT_MODE === "mailto";
+// Petite pause après un choix, pour qu'on voie la réponse cochée avant l'écran suivant.
+const AUTO_ADVANCE_MS = 280;
 
-const inputClasses =
-    "mt-2 block w-full rounded-xl border border-input bg-muted px-4 py-3.5 text-base text-foreground transition-[border-color,box-shadow] duration-200 placeholder:text-muted-foreground/70 hover:border-foreground/30 focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/15 focus-visible:outline-none";
+// L'écran entre dans le sens de la navigation (vers la gauche en avançant, vers la droite en reculant).
+const screenVariants = {
+    enter: (direction) => ({ opacity: 0, x: direction * 28 }),
+    center: { opacity: 1, x: 0, transition: { duration: 0.45, ease: OUT, staggerChildren: 0.05 } },
+    exit: (direction) => ({ opacity: 0, x: direction * -28, transition: { duration: 0.2, ease: [0.4, 0, 1, 1] } }),
+};
 
-function Question({ id, children }) {
+const subscribeNothing = () => () => {};
+
+// Le parcours ne s'affiche que dans le navigateur : il reprend un brouillon et l'historique,
+// qui n'existent pas au rendu serveur (même coquille vide que le fallback de Suspense).
+export default function Onboarding() {
+    const searchParams = useSearchParams();
+    const isClient = useSyncExternalStore(subscribeNothing, () => true, () => false);
+    const preset = searchParams.get("projet");
+
+    if (!isClient) return <div className="min-h-[100svh]" />;
     return (
-        <h1
-            id={id}
-            tabIndex={-1}
-            className="max-w-3xl text-[clamp(2rem,4.6vw,4rem)] font-normal leading-[1.02] tracking-[-0.03em] outline-none"
-        >
-            {children}
-        </h1>
+        <MotionConfig reducedMotion="user">
+            <Flow preset={PROJECT_OPTIONS.includes(preset) ? preset : ""} />
+        </MotionConfig>
     );
 }
 
-export default function Onboarding() {
-    const { t, locale } = useTranslation();
-    const searchParams = useSearchParams();
-    const reduceMotion = useReducedMotion();
+// Point de départ : brouillon éventuel, type de projet pré-sélectionné (/demarrer?projet=…),
+// ou écran mémorisé dans l'historique (retour arrière vers le parcours, rechargement).
+function initialState(preset) {
+    const draft = readDraft();
+    const answers = { ...EMPTY_ANSWERS, ...draft?.answers };
+    if (preset) {
+        answers.project = preset;
+        answers.needs = answers.needs.filter((need) => needsFor(preset).includes(need));
+    }
 
-    // Depuis une page service, le type de projet arrive pré-sélectionné (/demarrer?projet=…).
-    const presetProject = searchParams.get("projet");
-    const [answers, setAnswers] = useState(() => ({
-        ...EMPTY_ANSWERS,
-        project: PROJECT_OPTIONS.includes(presetProject) ? presetProject : "",
-    }));
-    const [index, setIndex] = useState(0); // 0…TOTAL_STEPS-1 = questions, TOTAL_STEPS = récapitulatif
+    const fresh = preset ? 1 : 0;
+    const missing = firstIncomplete(answers);
+    const historyState = window.history.state;
+    let index = fresh;
+    let resumed = false;
+    if (Number.isInteger(historyState?.rkStep)) {
+        index = Math.min(historyState.rkStep, missing);
+    } else if (draft && hasDraftContent(draft.answers)) {
+        index = Math.min(Math.max(draft.furthest, fresh), missing);
+        resumed = index > fresh;
+    }
+
+    return {
+        answers,
+        index,
+        resumed,
+        furthest: Math.max(index, draft?.furthest ?? 0),
+        depth: Number.isInteger(historyState?.rkDepth) ? historyState.rkDepth : 0,
+    };
+}
+
+function Flow({ preset }) {
+    const { t, locale } = useTranslation();
+    const lenis = useLenis();
+    const keyboardOpen = useKeyboardOpen();
+
+    const [initial] = useState(() => initialState(preset));
+    const [answers, setAnswers] = useState(initial.answers);
+    const [index, setIndex] = useState(initial.index);
+    const [direction, setDirection] = useState(1);
+    const [furthest, setFurthest] = useState(initial.furthest);
+    const [returnTo, setReturnTo] = useState(null); // écran où revenir après une modification
+    const [resumed, setResumed] = useState(initial.resumed);
+    const [pending, setPending] = useState(false); // un choix vient d'être fait, l'écran suivant arrive
     const [error, setError] = useState("");
+    const [touched, setTouched] = useState({});
+    const [submitted, setSubmitted] = useState(false);
     const [status, setStatus] = useState("idle"); // idle | loading | mailOpened | success | error
     const [copied, setCopied] = useState(false);
-    const [fromRecap, setFromRecap] = useState(false);
-    const questionRef = useRef(null);
+    // Profondeur de l'entrée d'historique courante dans le parcours (0 = arrivée sur la page).
+    const depthRef = useRef(initial.depth);
+    const timerRef = useRef(null);
+    const trackedRef = useRef(-1);
 
     const step = ONBOARDING_STEPS[index];
-    const onRecap = index >= TOTAL_STEPS;
+    const isIdentity = step.type === "identity";
     const done = status === "mailOpened" || status === "success";
-    const progress = Math.min(index / TOTAL_STEPS, 1);
+    const identityErrors = validateContact(
+        { name: answers.name, email: answers.email, message: answers.message, needs: answers.needs },
+        { requireIdentity: !MAIL_MODE }
+    );
+    const identityValid = !identityErrors.name && !identityErrors.email;
+    const stepAnswered = isIdentity ? identityValid && Boolean(answers.email.trim()) : isStepComplete(step, answers);
+    // La barre avance dès qu'on répond, avant même de passer à l'écran suivant.
+    const progress = done ? 1 : progressAt(index + (stepAnswered ? 0.6 : 0));
+    const screenKey = done ? status : step.id;
 
-    // À chaque écran, le focus revient sur la question (clavier et lecteurs d'écran).
+    // L'entrée d'historique courante porte l'écran affiché : le bouton retour du navigateur
+    // (ou du téléphone) ramène à la question précédente au lieu de quitter le parcours.
     useEffect(() => {
-        questionRef.current?.focus({ preventScroll: true });
-    }, [index, status]);
+        window.history.replaceState({ ...window.history.state, rkStep: initial.index, rkDepth: initial.depth }, "");
+    }, [initial]);
+
+    // Brouillon : on peut fermer l'onglet et reprendre plus tard (sans nom, e-mail ni téléphone).
+    useEffect(() => {
+        if (!done) saveDraft(answers, furthest);
+    }, [answers, furthest, done]);
+
+    useEffect(() => {
+        const timer = timerRef;
+        return () => clearTimeout(timer.current);
+    }, []);
 
     // Mesure d'audience : chaque écran atteint pour la première fois (entonnoir du parcours).
-    const furthestRef = useRef(-1);
     useEffect(() => {
-        if (index <= furthestRef.current) return;
-        furthestRef.current = index;
-        track("demarrer-etape", { etape: onRecap ? "recapitulatif" : step.id });
-    }, [index, onRecap, step]);
+        if (index <= trackedRef.current) return;
+        trackedRef.current = index;
+        track("demarrer-etape", { etape: ONBOARDING_STEPS[index].id });
+    }, [index]);
 
-    // Seules les réponses à choix partent dans la mesure, jamais le nom, l'e-mail ni le message.
-    const trackSent = (mode) =>
-        track("demarrer-envoi", { mode, projet: answers.project || "-", budget: answers.budget || "-" });
+    // Chaque nouvel écran repart du haut.
+    useEffect(() => {
+        if (window.scrollY === 0) return;
+        lenis?.scrollTo(0, { immediate: true, force: true });
+        window.scrollTo(0, 0);
+    }, [screenKey, lenis]);
 
-    const setAnswer = (id, value) => {
-        setAnswers((current) => ({ ...current, [id]: value }));
+    const show = (target) => {
+        clearTimeout(timerRef.current);
+        setPending(false);
+        setDirection(target >= index ? 1 : -1);
+        setIndex(target);
+        setFurthest((current) => Math.max(current, target));
+        setError("");
+        setResumed(false);
+    };
+
+    const pushStep = (target) => {
+        depthRef.current += 1;
+        window.history.pushState({ rkStep: target, rkPrev: index, rkDepth: depthRef.current }, "");
+        show(target);
+    };
+
+    // Écran suivant, ou retour là où l'on était après une modification, sans jamais
+    // dépasser une étape encore incomplète. `stepByStep` impose l'écran suivant (nouveau type
+    // de projet : la liste des besoins a changé, il faut la montrer).
+    const advance = (nextAnswers, stepByStep = false) => {
+        const target = Math.min(stepByStep ? index + 1 : (returnTo ?? index + 1), firstIncomplete(nextAnswers), IDENTITY_STEP);
+        if (returnTo !== null && target >= returnTo) setReturnTo(null);
+        pushStep(target);
+    };
+
+    const goBack = () => {
+        if (index === 0) return;
+        clearTimeout(timerRef.current);
+        setReturnTo(null);
+        const state = window.history.state;
+        // L'entrée précédente est la question d'avant : on recule dans l'historique (suite dans onPopState).
+        if (depthRef.current > 0 && state?.rkPrev === index - 1) {
+            window.history.back();
+            return;
+        }
+        window.history.replaceState({ ...state, rkStep: index - 1 }, "");
+        show(index - 1);
+    };
+
+    const onPopState = useEffectEvent((event) => {
+        const target = event.state?.rkStep;
+        if (!Number.isInteger(target) || done) return;
+        depthRef.current = Number.isInteger(event.state.rkDepth) ? event.state.rkDepth : 0;
+        setReturnTo(null);
+        show(Math.min(target, firstIncomplete(answers)));
+    });
+
+    useEffect(() => {
+        const listener = (event) => onPopState(event);
+        window.addEventListener("popstate", listener);
+        return () => window.removeEventListener("popstate", listener);
+    }, []);
+
+    const setAnswer = (field, value) => {
+        setAnswers((current) => ({ ...current, [field]: value }));
         setError("");
     };
 
-    const stepError = () => {
-        if (!step) return "";
-        if (step.type === "choice" && step.required && !answers[step.id]) return t("onboarding.errors.choice");
-        if (step.type === "text") {
-            const value = answers.message.trim();
-            if (!value) return t("onboarding.errors.message");
-            if (value.length < LIMITS.messageMin) return t("onboarding.errors.messageShort");
-        }
-        if (step.type === "identity") {
-            const fieldErrors = validateContact(
-                { name: answers.name, email: answers.email, message: answers.message },
-                { requireIdentity: !MAIL_MODE }
-            );
-            if (fieldErrors.name) return t("onboarding.errors.name");
-            if (fieldErrors.email) return t("onboarding.errors.email");
-        }
-        return "";
+    const choose = (value) => {
+        if (step.type !== "choice") return;
+        const nextAnswers = { ...answers, [step.id]: value };
+        // Autre type de projet : on ne garde que les besoins qui lui correspondent.
+        const projectChanged = step.id === "project" && value !== answers.project;
+        if (projectChanged) nextAnswers.needs = answers.needs.filter((need) => needsFor(value).includes(need));
+        setAnswers(nextAnswers);
+        setError("");
+        setPending(true);
+        clearTimeout(timerRef.current);
+        timerRef.current = setTimeout(() => advance(nextAnswers, projectChanged), AUTO_ADVANCE_MS);
     };
 
-    const goTo = (next) => {
+    const toggleNeed = (need) => {
+        setAnswers((current) => ({
+            ...current,
+            needs: current.needs.includes(need) ? current.needs.filter((item) => item !== need) : [...current.needs, need],
+        }));
         setError("");
-        setIndex(next);
     };
 
     const goNext = () => {
-        const problem = stepError();
-        if (problem) {
-            setError(problem);
+        if (isStepComplete(step, answers)) {
+            advance(answers);
             return;
         }
-        if (fromRecap) {
-            setFromRecap(false);
-            goTo(TOTAL_STEPS);
-            return;
+        if (step.type === "needs") {
+            const length = answers.message.trim().length;
+            setError(length > 0 && length < LIMITS.messageMin ? t("onboarding.errors.messageShort") : t("onboarding.errors.needs"));
+        } else {
+            setError(t("onboarding.errors.choice"));
         }
-        goTo(Math.min(index + 1, TOTAL_STEPS));
     };
 
-    const goBack = () => goTo(Math.max(index - 1, 0));
-
-    const choose = (value) => {
-        setAnswer(step.id, value);
-        if (fromRecap) {
-            setFromRecap(false);
-            goTo(TOTAL_STEPS);
-            return;
-        }
-        // Petite pause pour qu'on voie la réponse cochée avant de passer à la suite.
-        setTimeout(() => goTo(Math.min(index + 1, TOTAL_STEPS)), reduceMotion ? 0 : 260);
-    };
-
+    // Modifier une réponse déjà donnée, puis revenir là où l'on était.
     const editStep = (target) => {
-        setFromRecap(true);
-        goTo(target);
+        if (target === index) return;
+        if (target < index) setReturnTo((current) => Math.max(current ?? 0, index));
+        pushStep(Math.min(target, firstIncomplete(answers)));
     };
 
-    const answerLabel = (stepDef) => {
-        if (stepDef.type === "choice") {
-            return answers[stepDef.id]
-                ? t(`onboarding.steps.${stepDef.id}.options.${answers[stepDef.id]}`)
-                : t("onboarding.notAnswered");
-        }
-        if (stepDef.type === "text") return answers.message.trim() || t("onboarding.notAnswered");
-        const identity = [answers.name, answers.email, answers.phone].filter(Boolean).join(" · ");
-        return identity || t("onboarding.notAnswered");
+    const restart = () => {
+        clearDraft();
+        const start = preset ? 1 : 0;
+        setAnswers({ ...EMPTY_ANSWERS, project: preset });
+        setFurthest(start);
+        setReturnTo(null);
+        setTouched({});
+        setSubmitted(false);
+        window.history.replaceState({ ...window.history.state, rkStep: start }, "");
+        show(start);
     };
 
-    const mailSubject = () => `${t("onboarding.mailSubject")}${answers.name ? ` — ${answers.name}` : ""}`;
+    const mailSubject = () => `${t("onboarding.mailSubject")}${answers.name.trim() ? ` — ${answers.name.trim()}` : ""}`;
 
     const mailBody = () => {
-        const lines = [];
-        for (const stepDef of ONBOARDING_STEPS) {
-            if (stepDef.type !== "choice" || !answers[stepDef.id]) continue;
-            lines.push(`${t(`onboarding.steps.${stepDef.id}.summary`)} : ${t(`onboarding.steps.${stepDef.id}.options.${answers[stepDef.id]}`)}`);
-        }
+        const lines = ONBOARDING_STEPS.filter((stepDef) => stepDef.type !== "identity" && answerText(stepDef, answers, t)).map(
+            (stepDef) =>
+                stepDef.type === "needs"
+                    ? `${t("onboarding.steps.needs.summary")} : ${answers.needs.map((need) => t(`onboarding.needs.${need}`)).join(", ") || "—"}`
+                    : `${t(`onboarding.steps.${stepDef.id}.summary`)} : ${answerText(stepDef, answers, t)}`
+        );
         const identity = [
-            answers.name && `${t("onboarding.fields.name")} : ${answers.name}`,
-            answers.email && `${t("onboarding.fields.email")} : ${answers.email}`,
-            answers.phone && `${t("onboarding.fields.phone")} : ${answers.phone}`,
+            answers.name.trim() && `${t("onboarding.fields.name")} : ${answers.name.trim()}`,
+            answers.email.trim() && `${t("onboarding.fields.email")} : ${answers.email.trim()}`,
+            answers.phone.trim() && `${t("onboarding.fields.phone")} : ${answers.phone.trim()}`,
         ].filter(Boolean);
         if (identity.length > 0) lines.push("", ...identity);
-        lines.push("", `${t("onboarding.steps.message.summary")} :`, answers.message.trim().slice(0, 1500));
+        if (answers.message.trim()) {
+            lines.push("", `${t("onboarding.steps.needs.messageSummary")} :`, answers.message.trim().slice(0, 1500));
+        }
         return lines.join("\n");
     };
 
@@ -178,12 +302,31 @@ export default function Onboarding() {
         }
     };
 
-    const onMailtoClick = () => {
-        trackSent("mailto");
-        setStatus("mailOpened");
-    };
+    // Seules les réponses à choix partent dans la mesure, jamais le nom, l'e-mail ni le message.
+    const trackSent = (mode) =>
+        track("demarrer-envoi", { mode, projet: answers.project || "-", budget: answers.budget || "-" });
 
-    const submit = async () => {
+    const send = async () => {
+        if (status === "loading") return;
+        setSubmitted(true);
+        if (!identityValid) {
+            document.getElementById(identityErrors.name ? "name" : "email")?.focus();
+            return;
+        }
+        // Filet de sécurité : une réponse manquante (brouillon modifié entre-temps) se complète d'abord.
+        const missing = firstIncomplete(answers);
+        if (missing < IDENTITY_STEP) {
+            setReturnTo(IDENTITY_STEP);
+            pushStep(missing);
+            return;
+        }
+        if (MAIL_MODE) {
+            trackSent("mailto");
+            setStatus("mailOpened");
+            window.location.href = mailtoHref();
+            return;
+        }
+
         setStatus("loading");
         try {
             const response = await fetch("/api/contact", {
@@ -194,6 +337,7 @@ export default function Onboarding() {
                     email: answers.email,
                     phone: answers.phone,
                     project: answers.project,
+                    needs: answers.needs,
                     stage: answers.stage,
                     timing: answers.timing,
                     budget: answers.budget,
@@ -203,346 +347,331 @@ export default function Onboarding() {
                 }),
             });
             const result = await response.json().catch(() => ({}));
-            const ok = response.ok && result.ok;
-            if (ok) trackSent("formulaire");
-            setStatus(ok ? "success" : "error");
+            if (response.ok && result.ok) {
+                clearDraft();
+                trackSent("formulaire");
+                setStatus("success");
+            } else {
+                setStatus("error");
+            }
         } catch {
             setStatus("error");
         }
     };
 
-    const screenKey = done ? "done" : onRecap ? "recap" : step.id;
-    const slide = reduceMotion ? 0 : 40;
+    const primary = () => (isIdentity ? send() : goNext());
 
-    return (
-        <main className="relative flex min-h-[100svh] flex-col overflow-hidden pt-24 md:pt-28">
-            <div
-                aria-hidden="true"
-                className="dot-grid pointer-events-none absolute inset-0 opacity-40 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_40%,black,transparent)]"
-            />
+    // Clavier (ordinateur) : 1 à 9 choisissent une réponse, Entrée valide l'écran.
+    const onKeyDown = useEffectEvent((event) => {
+        if (done || event.defaultPrevented || event.metaKey || event.ctrlKey || event.altKey || event.isComposing) return;
+        const target = event.target instanceof HTMLElement ? event.target : null;
+        const tag = target?.tagName ?? "";
+        if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT" || target?.isContentEditable) return;
 
-            <div className={`${container} relative flex flex-1 flex-col`}>
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                    <Label>{t("onboarding.label")}</Label>
-                    {!done && (
-                        <p aria-live="polite" className="text-[0.7rem] font-medium uppercase tracking-[0.2em] text-muted-foreground md:text-xs">
-                            {onRecap
-                                ? t("onboarding.recap.counter")
-                                : t("onboarding.stepCounter").replace("{current}", index + 1).replace("{total}", TOTAL_STEPS)}
-                        </p>
+        if (/^[1-9]$/.test(event.key)) {
+            const position = Number(event.key) - 1;
+            if (step.type === "choice" && step.options[position]) {
+                event.preventDefault();
+                choose(step.options[position]);
+            } else if (step.type === "needs" && needsFor(answers.project)[position]) {
+                event.preventDefault();
+                toggleNeed(needsFor(answers.project)[position]);
+            }
+            return;
+        }
+        if (event.key === "Enter" && !event.shiftKey && !["BUTTON", "A", "SUMMARY"].includes(tag)) {
+            event.preventDefault();
+            primary();
+        }
+    });
+
+    useEffect(() => {
+        const listener = (event) => onKeyDown(event);
+        window.addEventListener("keydown", listener);
+        return () => window.removeEventListener("keydown", listener);
+    }, []);
+
+    const counter = isIdentity
+        ? t("onboarding.lastStep")
+        : t("onboarding.questionCounter").replace("{current}", index + 1).replace("{total}", TOTAL_STEPS);
+    // Le premier écran affiché annonce l'effort demandé, tant qu'on n'est pas allé plus loin.
+    const showIntro = index === (preset ? 1 : 0) && furthest === index;
+    const showPrimary = !done && !pending && (step.type !== "choice" || Boolean(answers[step.id]));
+    const showBar = !done && (index > 0 || showPrimary);
+
+    let screen;
+    if (status === "success") {
+        screen = <SuccessScreen name={answers.name} />;
+    } else if (status === "mailOpened") {
+        screen = <MailOpenedScreen copied={copied} onCopy={copyMessage} onBack={() => setStatus("idle")} />;
+    } else {
+        screen = (
+            <>
+                {resumed && (
+                    <motion.div
+                        variants={itemVariants}
+                        className="mb-7 flex flex-wrap items-center gap-x-3 gap-y-1.5 rounded-2xl border border-border bg-card/60 px-4 py-3 text-sm"
+                    >
+                        <RotateCcw className="size-4 shrink-0 text-primary" aria-hidden="true" />
+                        <span className="text-muted-foreground">{t("onboarding.resumed")}</span>
+                        <button
+                            type="button"
+                            onClick={restart}
+                            className="font-medium text-foreground underline underline-offset-4 transition-colors hover:text-primary"
+                        >
+                            {t("onboarding.restart")}
+                        </button>
+                    </motion.div>
+                )}
+
+                <motion.div variants={itemVariants}>
+                    <Label>{counter}</Label>
+                </motion.div>
+                <div className="mt-4 md:mt-6">
+                    <Question text={t(`onboarding.steps.${step.id}.question`)} />
+                </div>
+                <motion.p variants={itemVariants} className="mt-4 max-w-xl leading-relaxed text-muted-foreground md:mt-5 md:text-lg">
+                    {t(`onboarding.steps.${step.id}.help`)}
+                </motion.p>
+                {showIntro && (
+                    <motion.p variants={itemVariants} className="mt-3 flex items-start gap-2.5 text-sm text-muted-foreground">
+                        <span aria-hidden="true" className="mt-[0.45rem] size-1.5 shrink-0 rounded-full bg-primary" />
+                        {t("onboarding.intro").replace("{total}", TOTAL_STEPS)}
+                    </motion.p>
+                )}
+
+                <div className="mt-7 md:mt-10">
+                    {step.type === "choice" && <ChoiceOptions step={step} value={answers[step.id]} onChoose={choose} />}
+
+                    {step.type === "needs" && (
+                        <NeedsPicker
+                            project={answers.project}
+                            needs={answers.needs}
+                            message={answers.message}
+                            onToggle={toggleNeed}
+                            onMessage={(value) => setAnswer("message", value)}
+                            onSubmit={goNext}
+                        />
+                    )}
+
+                    {isIdentity && (
+                        <>
+                            <IdentityFields
+                                values={answers}
+                                errors={identityErrors}
+                                touched={touched}
+                                submitted={submitted}
+                                onChange={setAnswer}
+                                onBlur={(field) => setTouched((current) => ({ ...current, [field]: true }))}
+                                onSubmit={send}
+                            />
+                            <motion.p variants={itemVariants} className="mt-4 flex items-center gap-2 text-sm text-muted-foreground">
+                                <Lock className="size-3.5 shrink-0" aria-hidden="true" />
+                                {t("onboarding.fields.privacy")}
+                            </motion.p>
+
+                            {MAIL_MODE && (
+                                <motion.p
+                                    variants={itemVariants}
+                                    className="mt-6 flex max-w-2xl items-start gap-2.5 rounded-xl border border-border bg-muted px-4 py-3 text-sm leading-relaxed text-muted-foreground"
+                                >
+                                    <Mail className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
+                                    {t("onboarding.send.notice")}
+                                </motion.p>
+                            )}
+
+                            {status === "error" && (
+                                <div role="alert" className="mt-6 max-w-2xl rounded-2xl border border-destructive/30 bg-destructive/10 p-5">
+                                    <p className="flex items-center gap-2 font-medium">
+                                        <AlertCircle className="size-5 shrink-0 text-destructive" aria-hidden="true" />
+                                        {t("onboarding.done.errorTitle")}
+                                    </p>
+                                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t("onboarding.done.errorText")}</p>
+                                    <a
+                                        href={mailtoHref()}
+                                        className="mt-4 inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-90"
+                                    >
+                                        <Mail className="size-4" aria-hidden="true" />
+                                        {t("onboarding.done.errorMailto")}
+                                    </a>
+                                </div>
+                            )}
+
+                            {/* Pot de miel anti-spam : invisible pour les humains, rempli par les robots. */}
+                            <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+                                <label htmlFor="website">Website</label>
+                                <input
+                                    id="website"
+                                    name="website"
+                                    type="text"
+                                    tabIndex={-1}
+                                    autoComplete="off"
+                                    value={answers.website}
+                                    onChange={(event) => setAnswer("website", event.target.value)}
+                                />
+                            </div>
+
+                            <motion.div variants={itemVariants} className="mt-8 flex max-w-2xl items-center gap-4">
+                                <Portrait className="size-12 md:size-14" />
+                                <p className="text-sm leading-relaxed text-muted-foreground">
+                                    <span className="block font-medium text-foreground">Romain Kantzer</span>
+                                    {t("onboarding.send.reassurance")}
+                                </p>
+                            </motion.div>
+                            <motion.div variants={itemVariants} className="mt-6 max-w-2xl">
+                                <MobileRecap answers={answers} onEdit={editStep} />
+                            </motion.div>
+                        </>
                     )}
                 </div>
-                <div className="mt-4 h-px w-full bg-border">
+            </>
+        );
+    }
+
+    let primaryContent;
+    if (status === "loading") {
+        primaryContent = (
+            <>
+                <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+                {t("onboarding.send.sending")}
+            </>
+        );
+    } else if (isIdentity && MAIL_MODE) {
+        primaryContent = (
+            <>
+                <Mail className="size-4" aria-hidden="true" />
+                {t("onboarding.send.mailto")}
+            </>
+        );
+    } else {
+        primaryContent = (
+            <>
+                {isIdentity ? t("onboarding.send.button") : t("onboarding.next")}
+                <ArrowRight className="size-4" aria-hidden="true" />
+            </>
+        );
+    }
+
+    const directMail = (
+        <>
+            {t("onboarding.footerNote")}{" "}
+            <a href={`mailto:${CONTACT_RECIPIENT}`} className="text-foreground underline underline-offset-4">
+                {CONTACT_RECIPIENT}
+            </a>
+        </>
+    );
+
+    return (
+        <div className="relative flex min-h-[100svh] flex-col">
+            <div
+                aria-hidden="true"
+                className="dot-grid pointer-events-none absolute inset-0 opacity-30 [mask-image:radial-gradient(ellipse_70%_50%_at_30%_25%,black,transparent)]"
+            />
+
+            {/* Tunnel fermé : le logo pour sortir, la langue, et l'avancement. */}
+            <header className="sticky top-0 z-40 bg-background/85 backdrop-blur-md">
+                <div className={`${container} flex h-14 items-center justify-between gap-4 md:h-[4.5rem]`}>
+                    <Logo />
+                    <LanguageSwitch />
+                </div>
+                <div
+                    role="progressbar"
+                    aria-label={t("onboarding.label")}
+                    aria-valuemin={0}
+                    aria-valuemax={100}
+                    aria-valuenow={Math.round(progress * 100)}
+                    className="h-[3px] w-full bg-border/60"
+                >
+                    {/* Déjà entamée à l'arrivée : la barre part de zéro et file jusqu'à sa valeur. */}
                     <motion.div
-                        className="h-full origin-left bg-primary"
-                        initial={false}
-                        animate={{ scaleX: done ? 1 : onRecap ? 1 : progress }}
-                        transition={{ duration: 0.6, ease: OUT }}
+                        className="h-full w-full origin-left bg-primary"
+                        initial={{ scaleX: 0 }}
+                        animate={{ scaleX: progress }}
+                        transition={{ duration: 0.9, ease: OUT }}
                     />
                 </div>
+            </header>
 
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={screenKey}
-                        initial={{ opacity: 0, x: slide }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -slide }}
-                        transition={{ duration: 0.45, ease: OUT }}
-                        className="flex flex-1 flex-col justify-center py-12 md:py-16"
-                    >
-                        {done ? (
-                            <div role="status" className="max-w-2xl">
-                                <span className="flex size-14 items-center justify-center rounded-full border-2 border-primary text-primary">
-                                    {status === "mailOpened" ? <Mail className="size-7" aria-hidden="true" /> : <Check className="size-7" aria-hidden="true" />}
-                                </span>
-                                <Question id="onboarding-question">
-                                    <span ref={questionRef} tabIndex={-1} data-focus-silent className="outline-none">
-                                        <Emphasis
-                                            text={status === "mailOpened" ? t("onboarding.done.mailTitle") : t("onboarding.done.successTitle")}
-                                        />
-                                    </span>
-                                </Question>
-                                <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-                                    {status === "mailOpened" ? t("onboarding.done.mailText") : t("onboarding.done.successText")}
-                                </p>
-                                {status === "mailOpened" && (
-                                    <>
-                                        <div className="mt-8 flex flex-wrap gap-3">
-                                            <Button variant="ghost" onClick={copyMessage}>
-                                                {copied ? t("common.copied") : t("onboarding.done.copy")}
-                                            </Button>
-                                            <Button variant="ghost" onClick={() => setStatus("idle")}>
-                                                {t("onboarding.done.back")}
-                                            </Button>
-                                        </div>
-                                        <div className="mt-6 text-lg">
-                                            <CopyEmail />
-                                        </div>
-                                    </>
-                                )}
-                            </div>
-                        ) : onRecap ? (
-                            <div className="max-w-3xl">
-                                <Question>
-                                    <span ref={questionRef} tabIndex={-1} data-focus-silent className="outline-none">
-                                        <Emphasis text={t("onboarding.recap.title")} />
-                                    </span>
-                                </Question>
-                                <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">{t("onboarding.recap.help")}</p>
+            <main className={`${container} relative flex flex-1 flex-col lg:grid lg:grid-cols-12 lg:gap-x-12 xl:gap-x-20`}>
+                <div className="flex min-w-0 flex-1 flex-col pb-44 pt-7 md:pb-20 md:pt-14 lg:col-span-8 lg:pt-[8vh]">
+                    <div className="relative">
+                        <AnimatePresence mode="popLayout" custom={direction}>
+                            <motion.div
+                                key={screenKey}
+                                custom={direction}
+                                variants={screenVariants}
+                                initial="enter"
+                                animate="center"
+                                exit="exit"
+                            >
+                                {screen}
+                            </motion.div>
+                        </AnimatePresence>
+                    </div>
 
-                                <dl className="mt-10 border-t border-border">
-                                    {ONBOARDING_STEPS.map((stepDef, stepIndex) => (
-                                        <div key={stepDef.id} className="flex items-start justify-between gap-6 border-b border-border py-4">
-                                            <div className="min-w-0">
-                                                <dt className="text-sm text-muted-foreground">{t(`onboarding.steps.${stepDef.id}.summary`)}</dt>
-                                                <dd className="mt-1 whitespace-pre-line text-lg leading-snug">{answerLabel(stepDef)}</dd>
-                                            </div>
-                                            <button
-                                                type="button"
-                                                onClick={() => editStep(stepIndex)}
-                                                className="shrink-0 text-sm font-medium text-primary transition-colors hover:text-primary-dark"
-                                            >
-                                                {t("onboarding.edit")}
-                                            </button>
-                                        </div>
-                                    ))}
-                                </dl>
-
-                                {MAIL_MODE && (
-                                    <p className="mt-6 flex items-start gap-2.5 rounded-xl border border-border bg-muted px-4 py-3 text-sm leading-relaxed text-muted-foreground">
-                                        <Mail className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
-                                        {t("onboarding.recap.notice")}
-                                    </p>
-                                )}
-
-                                {status === "error" && (
-                                    <div role="alert" className="mt-6 rounded-2xl border border-destructive/30 bg-destructive/10 p-5">
-                                        <p className="flex items-center gap-2 font-medium">
-                                            <AlertCircle className="size-5 shrink-0 text-destructive" aria-hidden="true" />
-                                            {t("onboarding.done.errorTitle")}
-                                        </p>
-                                        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t("onboarding.done.errorText")}</p>
-                                        <a
-                                            href={mailtoHref()}
-                                            className="mt-4 inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm font-medium text-background transition-opacity hover:opacity-90"
-                                        >
-                                            <Mail className="size-4" aria-hidden="true" />
-                                            {t("onboarding.done.errorMailto")}
-                                        </a>
-                                    </div>
-                                )}
-
-                                {/* Pot de miel anti-spam : invisible pour les humains, rempli par les robots. */}
-                                <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
-                                    <label htmlFor="website">Website</label>
-                                    <input
-                                        id="website"
-                                        name="website"
-                                        type="text"
-                                        tabIndex={-1}
-                                        autoComplete="off"
-                                        value={answers.website}
-                                        onChange={(event) => setAnswer("website", event.target.value)}
-                                    />
-                                </div>
-
-                                <div className="mt-10 flex flex-wrap items-center gap-3">
-                                    <Button variant="ghost" onClick={goBack}>
-                                        <ArrowLeft className="size-4" aria-hidden="true" />
-                                        {t("onboarding.back")}
-                                    </Button>
-                                    {MAIL_MODE ? (
-                                        <Button href={mailtoHref()} onClick={onMailtoClick} size="lg">
-                                            <Mail className="size-4" aria-hidden="true" />
-                                            {t("onboarding.recap.sendMailto")}
-                                        </Button>
-                                    ) : (
-                                        <Button size="lg" onClick={submit} disabled={status === "loading"}>
-                                            {status === "loading" ? (
-                                                <>
-                                                    <Loader2 className="size-4 animate-spin" aria-hidden="true" />
-                                                    {t("onboarding.recap.sending")}
-                                                </>
-                                            ) : (
-                                                <>
-                                                    {t("onboarding.recap.send")}
-                                                    <ArrowRight className="size-4" aria-hidden="true" />
-                                                </>
-                                            )}
-                                        </Button>
-                                    )}
-                                </div>
-                            </div>
-                        ) : (
-                            <div className="max-w-4xl">
-                                <Question>
-                                    <span ref={questionRef} tabIndex={-1} data-focus-silent className="outline-none">
-                                        <Emphasis text={t(`onboarding.steps.${step.id}.question`)} />
-                                    </span>
-                                </Question>
-                                <p className="mt-5 max-w-xl leading-relaxed text-muted-foreground md:text-lg">
-                                    {t(`onboarding.steps.${step.id}.help`)}
-                                </p>
-
-                                <div className="mt-10">
-                                    {step.type === "choice" && (
-                                        <div className="grid gap-3 sm:grid-cols-2">
-                                            {step.options.map((option) => {
-                                                const selected = answers[step.id] === option;
-                                                return (
-                                                    <button
-                                                        key={option}
-                                                        type="button"
-                                                        onClick={() => choose(option)}
-                                                        aria-pressed={selected}
-                                                        className={`flex items-center justify-between gap-4 rounded-2xl border px-5 py-4 text-left transition-colors duration-200 md:px-6 md:py-5 ${selected ? "border-primary bg-primary/10" : "border-border hover:border-foreground/40 hover:bg-muted/60"}`}
-                                                    >
-                                                        <span>
-                                                            <span className="block text-lg tracking-tight">
-                                                                {t(`onboarding.steps.${step.id}.options.${option}`)}
-                                                            </span>
-                                                            {/* Seuls les quatre services ont une description ; « refonte » et « autre » n'en ont pas. */}
-                                                            {step.describe && SERVICE_SLUGS.includes(option) && (
-                                                                <span className="mt-1 block text-sm leading-snug text-muted-foreground">
-                                                                    {t(`services.items.${option}.short`)}
-                                                                </span>
-                                                            )}
-                                                        </span>
-                                                        <span
-                                                            className={`flex size-6 shrink-0 items-center justify-center rounded-full border ${selected ? "border-primary bg-primary text-primary-foreground" : "border-border"}`}
-                                                        >
-                                                            {selected && <Check className="size-3.5" aria-hidden="true" />}
-                                                        </span>
-                                                    </button>
-                                                );
-                                            })}
-                                        </div>
-                                    )}
-
-                                    {step.type === "text" && (
-                                        <>
-                                            <label htmlFor="message" className="sr-only">
-                                                {t("onboarding.steps.message.summary")}
-                                            </label>
-                                            <textarea
-                                                id="message"
-                                                rows={6}
-                                                maxLength={LIMITS.messageMax}
-                                                placeholder={t("onboarding.steps.message.placeholder")}
-                                                value={answers.message}
-                                                onChange={(event) => setAnswer("message", event.target.value)}
-                                                className={`${inputClasses} min-h-[10rem] resize-y`}
-                                            />
-                                            <p className="mt-2 text-right text-xs tabular-nums text-muted-foreground">
-                                                {answers.message.length} / {LIMITS.messageMax}
-                                            </p>
-                                        </>
-                                    )}
-
-                                    {step.type === "identity" && (
-                                        <div className="grid max-w-2xl gap-5 sm:grid-cols-2">
-                                            <div>
-                                                <label htmlFor="name" className="text-sm font-medium">
-                                                    {t("onboarding.fields.name")}
-                                                </label>
-                                                <input
-                                                    id="name"
-                                                    type="text"
-                                                    autoComplete="name"
-                                                    maxLength={LIMITS.name}
-                                                    placeholder={t("onboarding.fields.namePlaceholder")}
-                                                    value={answers.name}
-                                                    onChange={(event) => setAnswer("name", event.target.value)}
-                                                    className={inputClasses}
-                                                />
-                                            </div>
-                                            <div>
-                                                <label htmlFor="email" className="text-sm font-medium">
-                                                    {t("onboarding.fields.email")}
-                                                </label>
-                                                <input
-                                                    id="email"
-                                                    type="email"
-                                                    inputMode="email"
-                                                    autoComplete="email"
-                                                    maxLength={LIMITS.email}
-                                                    placeholder={t("onboarding.fields.emailPlaceholder")}
-                                                    value={answers.email}
-                                                    onChange={(event) => setAnswer("email", event.target.value)}
-                                                    className={inputClasses}
-                                                />
-                                            </div>
-                                            <div className="sm:col-span-2 sm:max-w-[calc(50%-0.625rem)]">
-                                                <label htmlFor="phone" className="text-sm font-medium">
-                                                    {t("onboarding.fields.phone")}{" "}
-                                                    <span className="font-normal text-muted-foreground">— {t("onboarding.fields.optional")}</span>
-                                                </label>
-                                                <input
-                                                    id="phone"
-                                                    type="tel"
-                                                    inputMode="tel"
-                                                    autoComplete="tel"
-                                                    maxLength={30}
-                                                    placeholder={t("onboarding.fields.phonePlaceholder")}
-                                                    value={answers.phone}
-                                                    onChange={(event) => setAnswer("phone", event.target.value)}
-                                                    className={inputClasses}
-                                                />
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-
+                    {/* Mobile : barre fixée en bas, à portée de pouce. Masquée pendant la saisie : elle
+                        couvrirait le champ que le navigateur place juste au-dessus du clavier, et les
+                        touches « Suivant » / « Envoyer » du clavier prennent le relais. */}
+                    {showBar && (
+                        <div
+                            className={`fixed inset-x-0 bottom-0 z-30 border-t border-border bg-background/90 pb-[calc(0.75rem_+_env(safe-area-inset-bottom))] pt-3 backdrop-blur-md md:static md:mt-10 md:border-0 md:bg-transparent md:p-0 md:backdrop-blur-none ${keyboardOpen ? "max-md:hidden" : ""}`}
+                        >
+                            <div className="px-5 md:px-0">
                                 {error && (
-                                    <p role="alert" className="mt-6 flex items-center gap-2 text-sm text-destructive">
-                                        <AlertCircle className="size-4 shrink-0" aria-hidden="true" />
+                                    <p role="alert" className="mb-3 flex items-start gap-2 text-sm text-destructive">
+                                        <AlertCircle className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
                                         {error}
                                     </p>
                                 )}
-
-                                <div className="mt-10 flex flex-wrap items-center gap-3">
+                                <div className="flex items-center gap-3">
                                     {index > 0 && (
-                                        <Button variant="ghost" onClick={goBack}>
-                                            <ArrowLeft className="size-4" aria-hidden="true" />
-                                            {t("onboarding.back")}
-                                        </Button>
+                                        <>
+                                            <button
+                                                type="button"
+                                                onClick={goBack}
+                                                aria-label={t("onboarding.back")}
+                                                className="flex size-14 shrink-0 items-center justify-center rounded-full border border-border text-foreground transition-colors active:bg-muted md:hidden"
+                                            >
+                                                <ArrowLeft className="size-5" aria-hidden="true" />
+                                            </button>
+                                            <span className="hidden md:block">
+                                                <Button variant="ghost" size="lg" onClick={goBack}>
+                                                    <ArrowLeft className="size-4" aria-hidden="true" />
+                                                    {t("onboarding.back")}
+                                                </Button>
+                                            </span>
+                                        </>
                                     )}
-                                    <Button size="lg" onClick={goNext}>
-                                        {t("onboarding.next")}
-                                        <ArrowRight className="size-4" aria-hidden="true" />
-                                    </Button>
-                                    {step.optional && !answers[step.id] && (
-                                        <button
-                                            type="button"
-                                            onClick={() => goTo(fromRecap ? TOTAL_STEPS : index + 1)}
-                                            className="text-sm text-muted-foreground underline underline-offset-4 transition-colors hover:text-foreground"
-                                        >
-                                            {t("onboarding.skip")}
-                                        </button>
+                                    {showPrimary && (
+                                        <span className="min-w-0 flex-1 md:flex-none">
+                                            <Button size="lg" onClick={primary} disabled={status === "loading"} className="w-full md:w-auto">
+                                                {primaryContent}
+                                            </Button>
+                                        </span>
+                                    )}
+                                    {showPrimary && !isIdentity && (
+                                        <span className="hidden items-center gap-1.5 text-sm text-muted-foreground lg:flex">
+                                            {t("onboarding.enterHint")}
+                                            <CornerDownLeft className="size-3.5" aria-hidden="true" />
+                                        </span>
                                     )}
                                 </div>
                             </div>
-                        )}
-                    </motion.div>
-                </AnimatePresence>
+                        </div>
+                    )}
 
-                <div className="flex flex-wrap items-center justify-between gap-4 border-t border-border py-6 text-sm text-muted-foreground">
-                    <p>
-                        {t("onboarding.footerNote")}{" "}
-                        <a href={`mailto:${CONTACT_RECIPIENT}`} className="text-foreground underline underline-offset-4">
-                            {CONTACT_RECIPIENT}
-                        </a>
-                    </p>
-                    <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-                        <Link href="/contact" className="transition-colors hover:text-foreground">
-                            {t("onboarding.contactLink")}
-                        </Link>
-                        <Link href="/legal" className="transition-colors hover:text-foreground">
-                            {t("footer.legal")}
-                        </Link>
-                    </div>
+                    {!done && <p className="mt-12 text-sm text-muted-foreground lg:hidden">{directMail}</p>}
                 </div>
-            </div>
-        </main>
+
+                {!done && (
+                    <aside className="hidden lg:col-span-4 lg:block lg:pb-20 lg:pt-[8vh]">
+                        <div className="sticky top-28">
+                            <ProjectSummary answers={answers} index={index} furthest={furthest} onEdit={editStep} />
+                            <p className="mt-5 px-1 text-sm text-muted-foreground">{directMail}</p>
+                        </div>
+                    </aside>
+                )}
+            </main>
+        </div>
     );
 }

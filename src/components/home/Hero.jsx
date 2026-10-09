@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
+import { AnimatePresence, motion, useMotionTemplate, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { useTranslation } from "../LanguageProvider";
 import { usePageReady } from "../motion/TransitionProvider";
@@ -9,46 +9,16 @@ import AnimatedTitle from "../motion/AnimatedTitle";
 import Button from "../ui/Button";
 import Label, { LabelRule } from "../ui/Label";
 import { container } from "../ui/Section";
-import { BrowserMockup, DashboardMockup, PhoneMockup, ShopMockup } from "../visuals/Mockups";
+import HeroStage from "./HeroStage";
 
 const EASE = [0.76, 0, 0.24, 1];
 const OUT = [0.16, 1, 0.3, 1];
-
-// Les quatre services en maquettes superposées : chacune a sa profondeur (souris) et
-// sa dérive au scroll, ce qui crée la parallaxe.
-const COLLAGE = [
-    { key: "dashboard", Visual: DashboardMockup, className: "right-0 top-[2%] w-[64%]", rotate: 5, depth: 18, drift: -90 },
-    { key: "browser", Visual: BrowserMockup, className: "left-0 top-[17%] w-[70%]", rotate: -4, depth: 32, drift: -40 },
-    { key: "shop", Visual: ShopMockup, className: "bottom-0 left-[8%] w-[38%]", rotate: 4, depth: 48, drift: -150 },
-    { key: "phone", Visual: PhoneMockup, className: "bottom-[2%] right-[6%] w-[23%]", rotate: -7, depth: 64, drift: -230 },
-];
-
-function CollageItem({ item, index, play, pointerX, pointerY, progress }) {
-    const x = useTransform(pointerX, (value) => value * item.depth);
-    const mouseY = useTransform(pointerY, (value) => value * item.depth);
-    const scrollY = useTransform(progress, [0, 1], [0, item.drift]);
-    const y = useTransform(() => mouseY.get() + scrollY.get());
-    const { Visual } = item;
-
-    return (
-        <motion.div className={`absolute ${item.className}`} style={{ x, y }}>
-            <motion.div
-                initial={{ opacity: 0, y: 140, rotate: item.rotate * 2.5, scale: 0.86 }}
-                animate={play ? { opacity: 1, y: 0, rotate: item.rotate, scale: 1 } : undefined}
-                transition={{ duration: 1.5, ease: OUT, delay: 0.25 + index * 0.12 }}
-            >
-                <div className="animate-mock-float" style={{ animationDelay: `${index * -1.7}s` }}>
-                    <Visual />
-                </div>
-            </motion.div>
-        </motion.div>
-    );
-}
 
 export default function Hero() {
     const { t, tl } = useTranslation();
     const ready = usePageReady();
     const words = tl("home.hero.words");
+    // Exemple affiché : le mot du titre et la vue éclatée changent ensemble (minuterie dans HeroStage).
     const [index, setIndex] = useState(0);
     const sectionRef = useRef(null);
 
@@ -57,24 +27,27 @@ export default function Hero() {
     const pointerX = useSpring(rawX, { stiffness: 50, damping: 18 });
     const pointerY = useSpring(rawY, { stiffness: 50, damping: 18 });
 
+    // Trame de points qui s'allume autour de la souris.
+    const spotX = useMotionValue(-1000);
+    const spotY = useMotionValue(-1000);
+    const spotMask = useMotionTemplate`radial-gradient(280px circle at ${spotX}px ${spotY}px, black, transparent)`;
+
     const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
     const textY = useTransform(scrollYProgress, [0, 1], [0, 140]);
     const textOpacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
 
     useEffect(() => {
-        if (!ready || words.length < 2) return;
-        const interval = setInterval(() => setIndex((value) => (value + 1) % words.length), 2600);
-        return () => clearInterval(interval);
-    }, [ready, words.length]);
-
-    useEffect(() => {
         const onMove = (event) => {
             rawX.set(event.clientX / window.innerWidth - 0.5);
             rawY.set(event.clientY / window.innerHeight - 0.5);
+            if (event.pointerType !== "mouse" || !sectionRef.current) return;
+            const rect = sectionRef.current.getBoundingClientRect();
+            spotX.set(event.clientX - rect.left);
+            spotY.set(event.clientY - rect.top);
         };
         window.addEventListener("pointermove", onMove, { passive: true });
         return () => window.removeEventListener("pointermove", onMove);
-    }, [rawX, rawY]);
+    }, [rawX, rawY, spotX, spotY]);
 
     const current = words.length ? words[index % words.length] : "";
 
@@ -83,6 +56,11 @@ export default function Hero() {
             <div
                 aria-hidden="true"
                 className="dot-grid pointer-events-none absolute inset-0 opacity-50 [mask-image:radial-gradient(ellipse_60%_55%_at_74%_45%,black,transparent)]"
+            />
+            <motion.div
+                aria-hidden="true"
+                className="dot-grid pointer-events-none absolute inset-0 [--dot-color:var(--primary)]"
+                style={{ maskImage: spotMask, WebkitMaskImage: spotMask }}
             />
 
             <div className={`${container} relative flex flex-1 flex-col`}>
@@ -147,19 +125,21 @@ export default function Hero() {
                         </motion.div>
                     </motion.div>
 
-                    <div className="relative mx-auto aspect-[1/0.92] w-full max-w-[40rem] lg:max-w-none">
-                        {COLLAGE.map((item, itemIndex) => (
-                            <CollageItem
-                                key={item.key}
-                                item={item}
-                                index={itemIndex}
-                                play={ready}
-                                pointerX={pointerX}
-                                pointerY={pointerY}
-                                progress={scrollYProgress}
-                            />
-                        ))}
-                    </div>
+                    <motion.div
+                        className="mx-auto w-full max-w-[40rem] lg:max-w-none"
+                        initial={{ opacity: 0 }}
+                        animate={ready ? { opacity: 1 } : undefined}
+                        transition={{ duration: 0.6, delay: 0.1 }}
+                    >
+                        <HeroStage
+                            index={index}
+                            onIndexChange={setIndex}
+                            play={ready}
+                            pointerX={pointerX}
+                            pointerY={pointerY}
+                            words={words}
+                        />
+                    </motion.div>
                 </div>
 
                 <motion.div

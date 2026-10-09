@@ -33,7 +33,52 @@
             "cta": "Sprechen wir über Ihr Projekt",
             "secondary": "Leistungen ansehen",
             "ruleCenter": "Vom Elsass ins ganze Web",
-            "scroll": "Scrollen"
+            "scroll": "Scrollen",
+            "stage": {
+                "fig": "Abb.",
+                "caption": "Explosionsansicht",
+                "pick": "Beispiel wählen",
+                "layers": ["Entwurf", "Code", "Online"],
+                "vitrine": {
+                    "brand": "Ihr Unternehmen",
+                    "nav": ["Start", "Leistungen", "Kontakt"],
+                    "title": "Ihr Handwerk, *online*",
+                    "text": "Leistungen, Öffnungszeiten und Kontakt an einem Ort.",
+                    "cta": "Termin vereinbaren",
+                    "cards": ["Öffnungszeiten", "Anfahrt", "Telefon"],
+                    "toast": "Anfrage gesendet"
+                },
+                "shop": {
+                    "brand": "Ihr Shop",
+                    "search": "Suchen",
+                    "title": "Die neue *Kollektion*",
+                    "text": "Online bestellen, im Laden abholen.",
+                    "cta": "Entdecken",
+                    "cards": ["Vase", "Schale", "Tasse"],
+                    "toast": "In den Warenkorb gelegt"
+                },
+                "app": {
+                    "nav": ["Start", "Kalender", "Mitglieder", "Nachrichten", "Einstellungen"],
+                    "title": "Übersicht",
+                    "text": "Diese Woche",
+                    "cta": "Neu",
+                    "cards": ["Mitglieder", "Kalender", "Nachrichten"],
+                    "chart": "Anmeldungen",
+                    "toast": "Gespeichert"
+                },
+                "mobile": {
+                    "clock": "9:41",
+                    "title": "Hallo!",
+                    "text": "Ihre Woche auf einen Blick",
+                    "card": "Nächster Termin",
+                    "time": "14:30",
+                    "day": "Morgen",
+                    "items": ["Termin bestätigt", "Neue Nachricht", "Erinnerung"],
+                    "times": ["09:30", "11:00", "16:45"],
+                    "cta": "Termin buchen",
+                    "toast": "Termin gebucht"
+                }
+            }
         },
         "marquee": {
             "label": "Meine Leistungen"
@@ -315,15 +360,25 @@
     },
     "onboarding": {
         "label": "Projekt starten",
-        "stepCounter": "Schritt {current} von {total}",
+        "questionCounter": "Frage {current} von {total}",
+        "lastStep": "Letzter Schritt",
+        "intro": "{total} Fragen, die meisten mit einem Klick. Unverbindlich.",
+        "resumed": "Ihre Antworten wurden gespeichert: Wir machen dort weiter, wo Sie aufgehört haben.",
+        "restart": "Neu beginnen",
         "back": "Zurück",
         "next": "Weiter",
-        "skip": "Diese Frage überspringen",
+        "enterHint": "oder Enter drücken",
         "edit": "Ändern",
         "notAnswered": "Keine Angabe",
+        "pending": "Folgt",
+        "addMessage": "Ein Detail ergänzen",
         "footerNote": "Lieber direkt schreiben?",
-        "contactLink": "Meine Kontaktdaten ansehen",
         "mailSubject": "Projektanfrage",
+        "summary": {
+            "title": "Ihr Projekt",
+            "mobile": "Ihre Antworten",
+            "reassurance": "Ich lese jede Anfrage selbst und antworte Ihnen persönlich."
+        },
         "fields": {
             "name": "Name",
             "email": "E-Mail",
@@ -331,11 +386,13 @@
             "optional": "optional",
             "namePlaceholder": "Max Mustermann",
             "emailPlaceholder": "max@firma.de",
-            "phonePlaceholder": "+33 6 12 34 56 78"
+            "phonePlaceholder": "+33 6 12 34 56 78",
+            "suggestion": "Meinten Sie {email}?",
+            "privacy": "Ihre Kontaktdaten dienen nur dazu, Ihnen zu antworten."
         },
         "errors": {
             "choice": "Wählen Sie eine Antwort, um fortzufahren.",
-            "message": "Beschreiben Sie Ihr Projekt in ein paar Worten.",
+            "needs": "Wählen Sie mindestens eine Antwort oder beschreiben Sie Ihr Projekt in ein paar Worten.",
             "messageShort": "Ein paar Worte mehr würden helfen (mindestens 10 Zeichen).",
             "name": "Bitte geben Sie Ihren Namen an.",
             "email": "Bitte geben Sie eine gültige E-Mail an, damit ich antworten kann."
@@ -343,7 +400,7 @@
         "steps": {
             "project": {
                 "question": "Welche Art von *Projekt*?",
-                "help": "Wenn Sie unsicher sind, wählen Sie das Naheliegendste: Wir verfeinern es gemeinsam.",
+                "help": "Wählen Sie das Naheliegendste: Wir verfeinern es gemeinsam.",
                 "summary": "Art des Projekts",
                 "options": {
                     "site-vitrine": "Firmenwebsite",
@@ -353,6 +410,14 @@
                     "refonte": "Relaunch einer bestehenden Website",
                     "autre": "Etwas anderes, oder noch unklar"
                 }
+            },
+            "needs": {
+                "question": "Was soll es *ermöglichen*?",
+                "help": "Tippen Sie alles an, was Ihnen wichtig ist. Mehrere Antworten möglich.",
+                "summary": "Bedarf",
+                "messageLabel": "Möchten Sie etwas ergänzen?",
+                "messageSummary": "Nachricht",
+                "placeholder": "Zum Beispiel: Ich bin Schreiner bei Haguenau und möchte eine Website, die meine Arbeiten zeigt und Anfragen bringt."
             },
             "stage": {
                 "question": "Wo *stehen Sie*?",
@@ -378,7 +443,7 @@
             },
             "budget": {
                 "question": "Welches *Budget* haben Sie im Kopf?",
-                "help": "Eine Spanne genügt: Sie hilft mir, eine realistische Lösung vorzuschlagen. Sie können die Frage auch überspringen.",
+                "help": "Eine Spanne genügt: Sie hilft mir, eine realistische Lösung vorzuschlagen.",
                 "summary": "Budget",
                 "options": {
                     "less1k": "Unter 1.000 €",
@@ -388,34 +453,52 @@
                     "unknown": "Noch unklar"
                 }
             },
-            "message": {
-                "question": "Erzählen Sie mir von Ihrem *Projekt*.",
-                "help": "Ihr Betrieb, was die Website oder App ermöglichen soll, was bereits existiert … Ein paar Sätze genügen.",
-                "summary": "Das Projekt",
-                "placeholder": "Zum Beispiel: Ich bin Schreiner bei Haguenau und möchte eine Website, die meine Arbeiten zeigt und Anfragen bringt."
-            },
             "identity": {
                 "question": "Wie kann ich Ihnen *antworten*?",
-                "help": "Damit ich Ihnen antworten und Sie bei Bedarf zurückrufen kann.",
+                "help": "Das ist der letzte Schritt. Ich antworte Ihnen persönlich, per E-Mail oder auf Wunsch per Telefon.",
                 "summary": "Kontaktdaten"
             }
         },
-        "recap": {
-            "counter": "Übersicht",
-            "title": "Alles ist *bereit*.",
-            "help": "Lesen Sie noch einmal, ändern Sie bei Bedarf, und schicken Sie mir Ihre Anfrage.",
-            "notice": "Ihr E-Mail-Programm öffnet sich mit der bereits geschriebenen Anfrage: Sie wird erst verschickt, wenn Sie sie absenden.",
-            "send": "Anfrage senden",
+        "needs": {
+            "presenter": "Meinen Betrieb vorstellen",
+            "realisations": "Meine Arbeiten zeigen",
+            "demandes": "Angebotsanfragen erhalten",
+            "google": "Bei Google gefunden werden",
+            "rdv": "Online-Terminbuchung",
+            "autonomie": "Inhalte selbst bearbeiten",
+            "catalogue": "Meine Produkte präsentieren",
+            "paiement": "Online-Zahlung",
+            "livraison": "Lieferung oder Abholung vor Ort",
+            "commandes": "Bestellungen und Lager verwalten",
+            "reservations": "Online-Reservierungen oder Anmeldungen",
+            "espace-client": "Kundenbereich mit Login",
+            "adherents": "Mitglieder oder Kunden verwalten",
+            "suivi": "Dashboard, Aktivitäten im Blick",
+            "papier": "Excel-Dateien oder Papier ersetzen",
+            "stores": "Veröffentlichung im App Store und bei Google Play",
+            "notifications": "Benachrichtigungen",
+            "comptes": "Benutzerkonten",
+            "back-office": "Ein Backoffice zur Verwaltung der Inhalte",
+            "design": "Ein zeitgemäßeres Design",
+            "mobile": "Bessere Darstellung auf dem Smartphone",
+            "vitesse": "Eine schnellere Website"
+        },
+        "send": {
+            "button": "Anfrage senden",
             "sending": "Wird gesendet …",
-            "sendMailto": "E-Mail-Programm öffnen"
+            "mailto": "E-Mail-Programm öffnen",
+            "notice": "Ihr E-Mail-Programm öffnet sich mit der bereits geschriebenen Anfrage: Sie wird erst verschickt, wenn Sie sie absenden.",
+            "reassurance": "Ein kostenloses erstes Gespräch, dann ein detailliertes, unverbindliches Angebot."
         },
         "done": {
             "mailTitle": "Ihr E-Mail-Programm *öffnet sich*.",
             "mailText": "Die Anfrage ist bereits geschrieben – Sie müssen sie nur noch absenden. Falls sich nichts öffnet, kopieren Sie sie und senden Sie sie an contact@romain-kantzer.com.",
             "successTitle": "Danke, Ihre Anfrage ist *unterwegs*.",
-            "successText": "Ich lese sie und antworte Ihnen persönlich, per E-Mail oder Telefon.",
+            "successTitleNamed": "Danke {name}, Ihre Anfrage ist *unterwegs*.",
+            "successText": "Sie ist in meinem Postfach angekommen. So geht es weiter:",
+            "home": "Zur Startseite",
             "copy": "Anfrage kopieren",
-            "back": "Zurück zur Übersicht",
+            "back": "Zurück zu meiner Anfrage",
             "errorTitle": "Das Senden hat nicht funktioniert.",
             "errorText": "Das Problem liegt bei der Website, nicht bei Ihnen. Ihre Anfrage ist vorbereitet: Sie können sie mir direkt per E-Mail schicken.",
             "errorMailto": "Per E-Mail senden"
