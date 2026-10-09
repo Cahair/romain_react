@@ -4,14 +4,14 @@ import { mkdir, readFile, unlink, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { dataDir, readJson, writeJson } from "./files.mjs";
 import { CATEGORIES } from "./categories";
+import { MAX_UPLOAD_BYTES, prepareImage } from "./images";
 
 // Actualités saisies dans l'espace admin, stockées dans data/actualites.json.
 // Forme : { id, title, body, date, category, image, createdAt, updatedAt,
 //           social?: { instagram?: { caption, status, generatedAt, updatedAt,
-//                                    mediaId?, permalink?, publishedAt? } } }
+//                                    mediaId?, permalink?, publishedAt?, publishedBy? } } }
 const POSTS_FILE = "actualites.json";
 
-export const MAX_IMAGE_BYTES = 8 * 1024 * 1024;
 // Nom des photos : 32 caractères hexadécimaux aléatoires (adresse publique non devinable).
 export const MEDIA_NAME = /^[a-f0-9]{32}\.jpg$/;
 
@@ -68,60 +68,16 @@ export function validatePost(formData) {
     return { values, errors };
 }
 
-// Photo : JPEG uniquement, c'est le seul format qu'accepte la publication Instagram par API.
+// Photo envoyée : convertie en JPEG publiable sur Instagram (voir images.js). `cropped` signale
+// qu'elle a été recadrée pour entrer dans les proportions acceptées.
 export async function saveMedia(file) {
-    if (file.size > MAX_IMAGE_BYTES) return { error: "La photo dépasse 8 Mo." };
-    const buffer = Buffer.from(await file.arrayBuffer());
-    const isJpeg = buffer.length > 3 && buffer[0] === 0xff && buffer[1] === 0xd8 && buffer[2] === 0xff;
-    if (!isJpeg) return { error: "La photo doit être au format JPEG." };
+    if (file.size > MAX_UPLOAD_BYTES) return { error: "La photo dépasse 15 Mo." };
+    const prepared = await prepareImage(Buffer.from(await file.arrayBuffer()));
+    if (prepared.error) return { error: prepared.error };
     const name = `${randomBytes(16).toString("hex")}.jpg`;
     await mkdir(mediaDir(), { recursive: true });
-    await writeFile(path.join(mediaDir(), name), buffer);
-    return { name };
-}
-
-// Dimensions affichées d'un JPEG (en-tête SOF), orientation EXIF comprise : une photo de
-// téléphone prise en portrait est souvent enregistrée en paysage avec une consigne de rotation.
-export function jpegSize(buffer) {
-    let orientation = 1;
-    let offset = 2;
-    while (offset + 9 <= buffer.length) {
-        if (buffer[offset] !== 0xff) return null;
-        const marker = buffer[offset + 1];
-        if (marker === 0xff) {
-            offset += 1; // octet de remplissage
-            continue;
-        }
-        if (marker === 0x01 || (marker >= 0xd0 && marker <= 0xd7)) {
-            offset += 2; // marqueur sans longueur
-            continue;
-        }
-        const length = buffer.readUInt16BE(offset + 2);
-        if (marker === 0xe1) orientation = exifOrientation(buffer, offset + 4, offset + 2 + length) ?? orientation;
-        if (marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker)) {
-            const height = buffer.readUInt16BE(offset + 5);
-            const width = buffer.readUInt16BE(offset + 7);
-            return orientation >= 5 ? { width: height, height: width } : { width, height };
-        }
-        offset += 2 + length;
-    }
-    return null;
-}
-
-function exifOrientation(buffer, start, end) {
-    if (end > buffer.length || buffer.toString("latin1", start, start + 6) !== "Exif\0\0") return null;
-    const tiff = start + 6;
-    if (tiff + 8 > end) return null;
-    const little = buffer.toString("latin1", tiff, tiff + 2) === "II";
-    const u16 = (at) => (little ? buffer.readUInt16LE(at) : buffer.readUInt16BE(at));
-    const ifd = tiff + (little ? buffer.readUInt32LE(tiff + 4) : buffer.readUInt32BE(tiff + 4));
-    if (ifd + 2 > end) return null;
-    for (let index = 0; index < u16(ifd); index++) {
-        const entry = ifd + 2 + index * 12;
-        if (entry + 12 > end) return null;
-        if (u16(entry) === 0x0112) return u16(entry + 8);
-    }
-    return null;
+    await writeFile(path.join(mediaDir(), name), prepared.buffer);
+    return { name, cropped: prepared.cropped };
 }
 
 export async function readMedia(name) {

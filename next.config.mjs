@@ -2,8 +2,8 @@
 const nextConfig = {
   devIndicators: false,
   experimental: {
-    // Envoi des photos de l'espace admin (8 Mo max, contrôlé dans src/lib/admin/posts.js).
-    serverActions: { bodySizeLimit: '10mb' },
+    // Envoi des photos de l'espace admin (15 Mo max, contrôlé dans src/lib/admin/images.js).
+    serverActions: { bodySizeLimit: '16mb' },
   },
   async redirects() {
     return [

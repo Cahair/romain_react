@@ -22,7 +22,10 @@ export default function CaptionPanel({ postId, draft, automationReady, imageIssu
 function PublishedCaption({ draft }) {
     return (
         <div className="flex flex-col gap-6">
-            <Notice tone="success">Publiée sur Instagram le {formatDateTime(draft.publishedAt)}.</Notice>
+            <Notice tone="success">
+                Publiée sur Instagram le {formatDateTime(draft.publishedAt)}
+                {draft.publishedBy && ` par ${draft.publishedBy}`}.
+            </Notice>
             <p className="whitespace-pre-wrap text-[0.95rem] leading-relaxed">{draft.caption}</p>
             {draft.permalink && (
                 <div>
@@ -99,12 +102,21 @@ function CaptionEditor({ postId, draft, automationReady, imageIssue }) {
                     {imageIssue && <Notice>{imageIssue}</Notice>}
                     <form
                         action={publish}
+                        className="flex flex-col gap-4"
                         onSubmit={(event) => {
                             if (!window.confirm("Publier maintenant cette actualité sur Instagram ?")) event.preventDefault();
                         }}
                     >
                         <input type="hidden" name="postId" value={postId} />
+                        <label className="flex items-start gap-3 text-sm">
+                            <input type="checkbox" name="consent" required className="mt-0.5 size-4 shrink-0 accent-primary" />
+                            <span>
+                                Les personnes reconnaissables sur la photo sont d&apos;accord pour être publiées
+                                (autorisation des parents pour les mineurs).
+                            </span>
+                        </label>
                         <SubmitButton
+                            className="self-start"
                             size="sm"
                             disabled={!automationReady || Boolean(imageIssue)}
                             pendingLabel="Publication en cours…"

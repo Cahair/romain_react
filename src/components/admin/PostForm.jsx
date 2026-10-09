@@ -87,22 +87,23 @@ export default function PostForm({ post }) {
             <Field
                 label={post?.image ? "Remplacer la photo" : "Photo"}
                 htmlFor="image"
-                hint="JPEG uniquement (format exigé par Instagram), 8 Mo maximum."
+                hint="JPEG, PNG ou WebP, 15 Mo maximum. Recadrée automatiquement si elle est trop haute ou trop large pour Instagram."
                 error={errors.image}
             >
                 {post?.image && (
+                    // Proportions réelles : c'est exactement l'image qui partira sur Instagram.
                     // eslint-disable-next-line @next/next/no-img-element -- photo servie par /medias, hors next/image
                     <img
                         src={`/medias/${post.image}`}
                         alt=""
-                        className="mb-2 aspect-square w-40 rounded-xl border border-border object-cover"
+                        className="mb-2 h-auto w-48 rounded-xl border border-border"
                     />
                 )}
                 <input
                     id="image"
                     name="image"
                     type="file"
-                    accept="image/jpeg"
+                    accept="image/jpeg,image/png,image/webp"
                     className="text-sm text-muted-foreground file:mr-4 file:rounded-full file:border file:border-border file:bg-transparent file:px-4 file:py-2 file:text-sm file:font-medium file:text-foreground hover:file:border-foreground"
                     {...invalid("image")}
                 />

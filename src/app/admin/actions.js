@@ -73,6 +73,7 @@ export async function savePostAction(_previous, formData) {
     if (Object.keys(errors).length) return { errors, values };
 
     let image = existing?.image ?? null;
+    let cropped = false;
     const file = formData.get("image");
     const removeImage = formData.get("removeImage") === "on";
 
@@ -81,6 +82,7 @@ export async function savePostAction(_previous, formData) {
         if (saved.error) return { errors: { image: saved.error }, values };
         if (image) await deleteMedia(image);
         image = saved.name;
+        cropped = saved.cropped;
     } else if (removeImage && image) {
         await deleteMedia(image);
         image = null;
@@ -96,7 +98,7 @@ export async function savePostAction(_previous, formData) {
         updatedAt: now,
     });
 
-    redirect(`/admin/actualites/${post.id}?enregistre=1`);
+    redirect(`/admin/actualites/${post.id}?enregistre=1${cropped ? "&recadree=1" : ""}`);
 }
 
 export async function deletePostAction(formData) {
@@ -163,12 +165,16 @@ export async function saveCaptionAction(_previous, formData) {
 const publishing = new Set();
 
 export async function publishInstagramAction(_previous, formData) {
-    await requireSession();
+    const session = await requireSession();
     const post = await getPost(String(formData.get("postId") ?? ""));
     if (!post) return { error: "Cette actualité n'existe plus." };
     const draft = post.social?.instagram;
     if (draft?.status === "publiee") return { error: "Cette actualité est déjà publiée sur Instagram." };
     if (draft?.status !== "validee" || !draft.caption) return { error: "Valider d'abord la légende." };
+    // Droit à l'image : confirmé à chaque publication, par la personne qui publie.
+    if (formData.get("consent") !== "on") {
+        return { error: "Confirmer que les personnes reconnaissables sur la photo sont d'accord pour être publiées." };
+    }
     if (!isAutomationConfigured()) {
         return { error: "Aucun workflow branché : renseigner AUTOMATION_WEBHOOK_URL (voir .env.local.example)." };
     }
@@ -201,7 +207,14 @@ export async function publishInstagramAction(_previous, formData) {
         ...post,
         social: {
             ...post.social,
-            instagram: { ...draft, status: "publiee", ...result, publishedAt: now, updatedAt: now },
+            instagram: {
+                ...draft,
+                status: "publiee",
+                ...result,
+                publishedAt: now,
+                publishedBy: session.email,
+                updatedAt: now,
+            },
         },
     });
     revalidatePath(`/admin/actualites/${post.id}`);

@@ -1,6 +1,7 @@
 import "server-only";
 import { categoryLabel } from "./categories";
-import { jpegSize, readMedia } from "./posts";
+import { imageSize, ratioIssue } from "./images";
+import { readMedia } from "./posts";
 
 // Branchement vers l'outil d'automatisation (n8n, Make…) : le site envoie l'actualité à un
 // webhook unique, le workflow aiguille selon le champ « event ».
@@ -13,11 +14,6 @@ import { jpegSize, readMedia } from "./posts";
 //   { "id": "<identifiant du média>", "permalink": "https://www.instagram.com/p/…" } (permalink facultatif).
 const CAPTION_TIMEOUT_MS = 60_000;
 const PUBLISH_TIMEOUT_MS = 90_000;
-
-// Proportions acceptées par l'API Instagram pour une photo : de 4:5 (portrait) à 1,91:1 (paysage).
-const RATIO_MIN = 4 / 5;
-const RATIO_MAX = 1.91;
-const RATIO_TOLERANCE = 0.001;
 
 export const SITE_URL = (process.env.SITE_URL || "https://romain-kantzer.com").replace(/\/$/, "");
 
@@ -78,15 +74,12 @@ export async function instagramImageIssue(post) {
     if (!post.image) return "Ajouter une photo à l'actualité : Instagram ne publie pas de post sans image.";
     const file = await readMedia(post.image);
     if (!file) return "La photo de l'actualité est introuvable sur le serveur : la remplacer.";
-    const size = jpegSize(file);
-    if (!size) return "Impossible de lire les dimensions de la photo : la remplacer.";
-    const ratio = size.width / size.height;
-    const dimensions = `${size.width} × ${size.height}`;
-    if (ratio < RATIO_MIN - RATIO_TOLERANCE) {
-        return `Photo trop haute (${dimensions}) : Instagram accepte au plus le format 4:5 en portrait. La recadrer, puis la remplacer.`;
-    }
-    if (ratio > RATIO_MAX + RATIO_TOLERANCE) {
-        return `Photo trop large (${dimensions}) : Instagram accepte au plus le format 1,91:1 en paysage. La recadrer, puis la remplacer.`;
+    const size = await imageSize(file);
+    if (!size) return "Impossible de lire la photo : la remplacer.";
+    // Les photos envoyées depuis le recadrage automatique sont toujours conformes ; reste le cas
+    // des photos plus anciennes.
+    if (ratioIssue(size)) {
+        return `Photo trop ${ratioIssue(size)} pour Instagram (${size.width} × ${size.height}) : la renvoyer, elle sera recadrée automatiquement.`;
     }
     return null;
 }

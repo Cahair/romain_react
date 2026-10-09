@@ -15,7 +15,7 @@ export const metadata = { title: "Actualité" };
 export default async function EditPostPage({ params, searchParams }) {
     await requireSession();
     const { id } = await params;
-    const { enregistre } = await searchParams;
+    const { enregistre, recadree } = await searchParams;
     const post = await getPost(id);
     if (!post) notFound();
     // Contrôle de la photo seulement quand le bouton de publication est affiché.
@@ -36,7 +36,10 @@ export default async function EditPostPage({ params, searchParams }) {
 
             {enregistre && (
                 <div className="mt-6 max-w-xl">
-                    <Notice tone="success">Actualité enregistrée.</Notice>
+                    <Notice tone="success">
+                        Actualité enregistrée.
+                        {recadree && " La photo a été recadrée au format accepté par Instagram : vérifier le cadrage ci-dessous."}
+                    </Notice>
                 </div>
             )}
 
